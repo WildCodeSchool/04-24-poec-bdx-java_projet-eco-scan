@@ -1,83 +1,83 @@
 {
     "users": [
         {
-          "UserID": "1",
-          "Name": "Bruce Wayne",
-          "Email": "BruceWayne@batman.com",
-          "Points": 300,
+          "userID": "1",
+          "name": "Bruce Wayne",
+          "email": "BruceWayne@batman.com",
+          "points": 300,
           "isAdmin": true
         }
     ],
     "logins": [
         {
-            "UserID": "1",
+            "userID": "1",
             "Salt": "1AC3",
-            "HashedPassword": "ff5733"
+            "hashedPassword": "ff5733"
         }
     ],
-    "RubbishItems": [
+    "rubbishItems": [
         {
-            "RubbishID": "123",
-            "Type": "Glass"
+            "rubbishID": "123",
+            "type": "Glass"
         },
         {
-            "RubbishID": "234",
-            "Type": "Plastic"
+            "rubbishID": "234",
+            "type": "Plastic"
         },
         {
-            "RubbishID": "345",
-            "Type": "Battery"
+            "rubbishID": "345",
+            "type": "Battery"
         },
         {
-            "RubbishID": "456",
-            "Type": "Cardboard"
+            "rubbishID": "456",
+            "type": "Cardboard"
         }
     ],
-    "StagingArea": [
+    "stagingArea": [
         {
-            "UserID": "1",
-            "ItemID": "123"
+            "userID": "1",
+            "rubbishID": "123"
         }
     ],
-    "Bins":[
+    "bins":[
         {
-            "BinID": "999",
-            "Type": "Battery",
-            "Location": "44.8690178,-0.5683332"
+            "binID": "999",
+            "type": "Battery",
+            "location": "44.8690178,-0.5683332"
         }
     ],
-    "Deposits": [
+    "deposits": [
         {
-            "UserID": "1",
-            "RubbishID": "345",
-            "BinID": "999",
-            "TimeOf": "2007-05-10 00:00:00",
-            "ScanImgOne": "BLOB",
-            "ScanImgTwo": "BLOB"
+            "userID": "1",
+            "rubbishID": "345",
+            "binID": "999",
+            "timeOf": "2007-05-10 00:00:00",
+            "scanImgOne": "BLOB",
+            "scanImgTwo": "BLOB"
         }
     ],
-    "Promo": [
+    "promo": [
         {
-            "PromoID": "888",
-            "BrandID": "66",
-            "Title": "Carrefour Popcorn",
-            "Item": "Popcorn",
-            "PercentOff": 20,
-            "Description": "20% off of this delicious popcorn!",
-            "StartDate": "2007-05-10 12:00:00",
-            "EndDate": "2007-05-15 12:00:00",
-            "RedeemableAmount": "100",
-            "PointsNeed": 300
+            "promoID": "888",
+            "brandID": "66",
+            "title": "Carrefour Popcorn",
+            "item": "Popcorn",
+            "percentOff": 20,
+            "description": "20% off of this delicious popcorn!",
+            "startDate": "2007-05-10 12:00:00",
+            "endDate": "2007-05-15 12:00:00",
+            "redeemableAmount": "100",
+            "pointsNeed": 300
         }
     ],
-    "Brand": [
+    "brand": [
         {
-            "BrandID": "66",
-            "BrandName": "Carrefour",
-            "BrandLogo": "BLOB",
-            "BrandBanner": "BLOB",
-            "OtherImages": "BLOB",
-            "BrandDescription": "A shop"
+            "brandID": "66",
+            "brandName": "Carrefour",
+            "brandLogo": "BLOB",
+            "brandBanner": "BLOB",
+            "otherImages": "BLOB",
+            "brandDescription": "A shop"
         }
     ]
 }
