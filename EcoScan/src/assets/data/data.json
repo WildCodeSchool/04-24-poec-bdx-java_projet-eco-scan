@@ -1,1 +1,83 @@
-{}
+{
+    "users": [
+        {
+          "userID": "1",
+          "name": "Bruce Wayne",
+          "email": "BruceWayne@batman.com",
+          "points": 300,
+          "isAdmin": true
+        }
+    ],
+    "logins": [
+        {
+            "userID": "1",
+            "Salt": "1AC3",
+            "hashedPassword": "ff5733"
+        }
+    ],
+    "rubbishItems": [
+        {
+            "rubbishID": "123",
+            "type": "Glass"
+        },
+        {
+            "rubbishID": "234",
+            "type": "Plastic"
+        },
+        {
+            "rubbishID": "345",
+            "type": "Battery"
+        },
+        {
+            "rubbishID": "456",
+            "type": "Cardboard"
+        }
+    ],
+    "stagingArea": [
+        {
+            "userID": "1",
+            "rubbishID": "123"
+        }
+    ],
+    "bins":[
+        {
+            "binID": "999",
+            "type": "Battery",
+            "location": "44.8690178,-0.5683332"
+        }
+    ],
+    "deposits": [
+        {
+            "userID": "1",
+            "rubbishID": "345",
+            "binID": "999",
+            "timeOf": "2007-05-10 00:00:00",
+            "scanImgOne": "BLOB",
+            "scanImgTwo": "BLOB"
+        }
+    ],
+    "promo": [
+        {
+            "promoID": "888",
+            "brandID": "66",
+            "title": "Carrefour Popcorn",
+            "item": "Popcorn",
+            "percentOff": 20,
+            "description": "20% off of this delicious popcorn!",
+            "startDate": "2007-05-10 12:00:00",
+            "endDate": "2007-05-15 12:00:00",
+            "redeemableAmount": "100",
+            "pointsNeed": 300
+        }
+    ],
+    "brand": [
+        {
+            "brandID": "66",
+            "brandName": "Carrefour",
+            "brandLogo": "BLOB",
+            "brandBanner": "BLOB",
+            "otherImages": "BLOB",
+            "brandDescription": "A shop"
+        }
+    ]
+}
