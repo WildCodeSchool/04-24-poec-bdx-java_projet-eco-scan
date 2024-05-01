@@ -3,20 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CardListComponent } from './sliding-cards/card-list/card-list.component';
-import { CardComponent } from './sliding-cards/card/card.component';
+import { CardComponent } from './shared-module/sliding-cards/card/card.component';
+import { CardlistComponent } from './shared-module/sliding-cards/cardlist/cardlist.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardListComponent,
-    CardComponent
+    CardComponent,
+    CardlistComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
