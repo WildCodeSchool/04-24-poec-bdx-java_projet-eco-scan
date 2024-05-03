@@ -1,1 +1,4 @@
-<app-header-nav></app-header-nav>
+<div [class.active]="isOpen" class="blur"></div>
+<div class="landing">
+  <app-header-nav (boolChange)="onReceivedFromHeader($event)"></app-header-nav>
+</div>
