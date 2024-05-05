@@ -1,0 +1,54 @@
+<img src="../../../../assets/svg/logo.svg" alt="" />
+
+<div><h3>INSCRIPTION</h3></div>
+
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <div>
+    <fieldset>
+      <label for="user-firstname">Prénom</label>
+      <input
+        type="text"
+        formControlName="firstname"
+        placeholder="Votre prénom..."
+        required
+      />
+    </fieldset>
+    <fieldset>
+      <label for="user-lastname">Nom</label>
+      <input
+        type="text"
+        formControlName="lastname"
+        placeholder="Votre nom..."
+        required
+      />
+    </fieldset>
+  </div>
+  <fieldset>
+    <label for="user-pseudo">Pseudo</label>
+    <input
+      type="text"
+      formControlName="pseudo"
+      placeholder="Veuillez entrer un pseudo"
+      required
+    />
+  </fieldset>
+  <fieldset>
+    <label for="user-email">Email</label>
+    <input
+      type="email"
+      formControlName="email"
+      placeholder="Votre addresse email"
+      required
+    />
+  </fieldset>
+  <fieldset>
+    <label for="user-password">Mot de passe</label>
+    <input
+      type="password"
+      formControlName="password"
+      placeholder="Mot de passe"
+      required
+    />
+  </fieldset>
+  <button type="submit">S'INSCRIRE</button>
+</form>

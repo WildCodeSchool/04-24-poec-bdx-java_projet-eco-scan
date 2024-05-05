@@ -1,0 +1,25 @@
+<img src="../../../../assets/svg/logo.svg" alt="" />
+
+<div><h3>INSCRIPTION</h3></div>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <fieldset>
+    <label for="user-email">Email</label>
+    <input
+      type="email"
+      formControlName="email"
+      placeholder="Votre addresse email"
+      required
+    />
+  </fieldset>
+  <fieldset>
+    <label for="user-password">Mot de passe</label>
+    <input
+      type="password"
+      formControlName="password"
+      placeholder="Mot de passe"
+      required
+    />
+  </fieldset>
+  <button type="submit">S'INSCRIRE</button>
+</form>
