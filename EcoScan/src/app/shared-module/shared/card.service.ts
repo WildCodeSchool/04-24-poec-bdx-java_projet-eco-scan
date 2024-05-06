@@ -21,12 +21,13 @@ export class CardService {
 
   private http = inject(HttpClient)
 
-  getPromos$(): Observable<Promo[]> {
+  BASE_URL: string = "http://localhost:3000"
 
-    return this.http.get<Promo[]>('../../assets/data/data.json').pipe(
-      map(data => data[0].title),
-      tap(element => console.log(element))
-    )
+  getPromos$(): Observable<Promo[]> { 
+   return this.http.get<Promo[]>(`${this.BASE_URL}/promo`).pipe(
+    map((promo => promo)),
+    tap(promo => console.log(promo))
+   )
 
   }
 

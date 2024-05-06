@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CardComponent } from './shared-module/sliding-cards/card/card.component';
 import { CardlistComponent } from './shared-module/sliding-cards/cardlist/cardlist.component';
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,6 +17,7 @@ import { provideHttpClient } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule 
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent]
