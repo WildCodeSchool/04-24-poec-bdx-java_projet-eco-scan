@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CardComponent } from './shared-module/sliding-cards/card/card.component';
 import { CardlistComponent } from './shared-module/sliding-cards/cardlist/cardlist.component';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { SharedModule } from './shared-module/shared-module.module';
 
 
 @NgModule({
@@ -17,9 +18,11 @@ import { HttpClientModule, provideHttpClient } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule 
+    HttpClientModule,
+    SharedModule,
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {}
