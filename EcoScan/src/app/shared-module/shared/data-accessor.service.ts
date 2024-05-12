@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, catchError, map, of, switchMap } from 'rxjs';
 import { User } from '../models/classes/User.class';
 import { Promo } from '../models/types/Promo.type';
 import { DB_PATH } from './settings';
@@ -22,24 +22,44 @@ export class DataAccessorService {
       'Content-Type': 'application/json'
     })
   };
-  constructor() { }
+
+  handleFailure(err: HttpErrorResponse): void {
+    throw 'Connection to DB failure: ' + err.message;
+  }
+
   /*
      Users
   */
   // fetch
   getAllUsers$(): Observable<User[]> {
-    return this.http.get<User[]>(`${DB_PATH}/users`);
+    return this.http.get<User[]>(`${DB_PATH}/users`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   getUserByID$(id: string): Observable<User> {
-    return this.http.get<User>(`${DB_PATH}/users/${id}`);
+    return this.http.get<User>(`${DB_PATH}/users/${id}`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   // Create
   addUser(newUser: User): Observable<User> {
-    return this.http.post<User>(`${DB_PATH}/users`, newUser, this.httpOptions);
+    return this.http.post<User>(`${DB_PATH}/users`, newUser, this.httpOptions).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   // Update
   updateUser(updatedUser: User): Observable<User> {
-    return this.http.put<User>(`${DB_PATH}/users/${updatedUser.userID}`, updatedUser, this.httpOptions);
+    return this.http.put<User>(`${DB_PATH}/users/${updatedUser.userID}`, updatedUser, this.httpOptions).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
 
 
@@ -48,15 +68,27 @@ export class DataAccessorService {
   */
   // fetch
   getUserLogin$(id: string): Observable<Login> {
-    return this.http.get<Login>(`${DB_PATH}/logins/${id}`);
+    return this.http.get<Login>(`${DB_PATH}/logins/${id}`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   // Create
   addUserPassword(newLogin: Login): Observable<Login> {
-    return this.http.post<Login>(`${DB_PATH}/logins`, newLogin, this.httpOptions);
+    return this.http.post<Login>(`${DB_PATH}/logins`, newLogin, this.httpOptions).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   // Update
   updateUserPassword(updatedLogin: Login): Observable<Login> {
-    return this.http.put<Login>(`${DB_PATH}/logins/${updatedLogin.userID}`, updatedLogin, this.httpOptions);
+    return this.http.put<Login>(`${DB_PATH}/logins/${updatedLogin.userID}`, updatedLogin, this.httpOptions).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
 
   /*
@@ -64,10 +96,18 @@ export class DataAccessorService {
   */
   // fetch
   getAllRubbish$(): Observable<Rubbish[]> {
-    return this.http.get<Rubbish[]>(`${DB_PATH}/rubbishItems`);
+    return this.http.get<Rubbish[]>(`${DB_PATH}/rubbishItems`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   getRubbishByID$(id: string): Observable<Rubbish> {
-    return this.http.get<Rubbish>(`${DB_PATH}/rubbishItems/${id}`);
+    return this.http.get<Rubbish>(`${DB_PATH}/rubbishItems/${id}`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
 
   /*
@@ -75,11 +115,19 @@ export class DataAccessorService {
   */
   // fetch
   getStagedRubbishByID$(id: string): Observable<StagedRubbish> {
-    return this.http.get<StagedRubbish>(`${DB_PATH}/stagingArea/${id}`);
+    return this.http.get<StagedRubbish>(`${DB_PATH}/stagingArea/${id}`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   // Create
   addStagedRubbish(newRubbish: StagedRubbish): Observable<StagedRubbish> {
-    return this.http.post<StagedRubbish>(`${DB_PATH}/stagingArea`, newRubbish, this.httpOptions);
+    return this.http.post<StagedRubbish>(`${DB_PATH}/stagingArea`, newRubbish, this.httpOptions).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
 
 
@@ -88,26 +136,46 @@ export class DataAccessorService {
   */
   // fetch
   getAllBins$(): Observable<Bin[]> {
-    return this.http.get<Bin[]>(`${DB_PATH}/bins`);
+    return this.http.get<Bin[]>(`${DB_PATH}/bins`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   getBinByID$(id: string): Observable<Bin> {
-    return this.http.get<Bin>(`${DB_PATH}/bins/${id}`);
+    return this.http.get<Bin>(`${DB_PATH}/bins/${id}`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
 
 
   /*
      deposits
   */
- // fetch
+  // fetch
   getAllDeposits$(): Observable<Deposit[]> {
-    return this.http.get<Deposit[]>(`${DB_PATH}/deposits`);
+    return this.http.get<Deposit[]>(`${DB_PATH}/deposits`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   getDepositByID$(id: string): Observable<Deposit> {
-    return this.http.get<Deposit>(`${DB_PATH}/deposits/${id}`);
+    return this.http.get<Deposit>(`${DB_PATH}/deposits/${id}`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   // Create
   addDeposit(newDeposit: Deposit): Observable<Deposit> {
-    return this.http.post<Deposit>(`${DB_PATH}/deposits`, newDeposit, this.httpOptions);
+    return this.http.post<Deposit>(`${DB_PATH}/deposits`, newDeposit, this.httpOptions).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
 
 
@@ -116,18 +184,34 @@ export class DataAccessorService {
   */
   // fetch
   getAllPromos$(): Observable<Promo[]> {
-    return this.http.get<Promo[]>(`${DB_PATH}/promo`);
+    return this.http.get<Promo[]>(`${DB_PATH}/promo`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   getPromoByID$(id: string): Observable<Promo> {
-    return this.http.get<Promo>(`${DB_PATH}/promo/${id}`);
+    return this.http.get<Promo>(`${DB_PATH}/promo/${id}`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   // Create
   addPromo(newPromo: Promo): Observable<Promo> {
-    return this.http.post<Promo>(`${DB_PATH}/promo`, newPromo, this.httpOptions);
+    return this.http.post<Promo>(`${DB_PATH}/promo`, newPromo, this.httpOptions).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   // Update
   updatePromo(updatedPromo: Promo): Observable<Promo> {
-    return this.http.put<Promo>(`${DB_PATH}/promo/${updatedPromo.promoID}`, updatedPromo, this.httpOptions);
+    return this.http.put<Promo>(`${DB_PATH}/promo/${updatedPromo.promoID}`, updatedPromo, this.httpOptions).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
 
 
@@ -136,19 +220,35 @@ export class DataAccessorService {
   */
   // fetch
   getAllBrands$(): Observable<Brand[]> {
-    return this.http.get<Brand[]>(`${DB_PATH}/brand`);
+    return this.http.get<Brand[]>(`${DB_PATH}/brand`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   getBrandByID$(id: string): Observable<Brand> {
-    return this.http.get<Brand>(`${DB_PATH}/brand/${id}`);
+    return this.http.get<Brand>(`${DB_PATH}/brand/${id}`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
 
   // Create
   addBrand(newBrand: Brand): Observable<Brand> {
-    return this.http.post<Brand>(`${DB_PATH}/brand`, newBrand, this.httpOptions);
+    return this.http.post<Brand>(`${DB_PATH}/brand`, newBrand, this.httpOptions).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
   // Update
   updateBrand(updatedBrand: Brand): Observable<Brand> {
-    return this.http.put<Brand>(`${DB_PATH}/brand/${updatedBrand.brandID}`, updatedBrand, this.httpOptions);
+    return this.http.put<Brand>(`${DB_PATH}/brand/${updatedBrand.brandID}`, updatedBrand, this.httpOptions).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
   }
 
 }
