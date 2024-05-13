@@ -11,4 +11,5 @@ import { SharedModule } from '../shared-module/shared-module.module';
   declarations: [HeaderNavComponent, LandingPagesComponent],
   imports: [CommonModule, LandingPageRoutingModule, RouterLink, RouterOutlet, SharedModule],
 })
+
 export class LandingPageModule {}

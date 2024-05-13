@@ -1,6 +1,6 @@
-import { BinType } from "../enums/BinType.enum";
+import { WasteType } from "../enums/WasteType.enum";
 
 export type Rubbish = {
     rubbishID: string;
-    type: BinType;
+    type: WasteType;
 }

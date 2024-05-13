@@ -1,0 +1,15 @@
+<div *ngIf="cardList$ | async as cardList">
+  <div class="promo-card" *ngFor="let card of cardList">
+
+    <p>{{ card.description }}</p>
+    <p>{{ card.endDate }}</p>
+    <p>{{ card.item }}</p>
+    <p>{{ card.percentOff }}</p>
+    <p>{{ card.pointsNeed }}</p>
+    <p>{{ card.promoID }}</p>
+    <p>{{ card.redeemableAmount }}</p>
+    <p>{{ card.startDate }}</p>
+    <p>{{ card.title }}</p>
+  
+  </div>
+</div>

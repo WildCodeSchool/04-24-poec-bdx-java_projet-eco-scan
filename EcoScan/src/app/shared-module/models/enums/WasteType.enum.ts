@@ -1,4 +1,4 @@
-export enum BinType {
+export enum WasteType {
     GLASS = "glass",
     PLASTIC = "plastic",
     BATTERY = "battery",

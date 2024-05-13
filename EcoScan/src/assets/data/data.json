@@ -65,7 +65,7 @@
   "logins": [
     {
       "userID": "1",
-      "Salt": "1AC3",
+      "salt": "1AC3",
       "hashedPassword": "ff5733",
       "id": "5120"
     }
