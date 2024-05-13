@@ -1,8 +1,12 @@
+.card-container {
+  display: flex;
+}
+
 .promo-card {
   display: flex;
   flex-direction: column;
   border: 2px black solid;
-  width: fit-content;
+  min-width: max-content;
   margin: 1rem;
   padding: 1rem;
   border-radius: 10px;

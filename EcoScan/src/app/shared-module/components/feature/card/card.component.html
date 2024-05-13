@@ -1,15 +1,17 @@
 <div *ngIf="cardList$ | async as cardList">
-  <div class="promo-card" *ngFor="let card of cardList">
+  <div *ngIf="carrefourBrand$ | async as carrefourBrand"> 
 
-    <p>{{ card.description }}</p>
-    <p>{{ card.endDate }}</p>
-    <p>{{ card.item }}</p>
-    <p>{{ card.percentOff }}</p>
-    <p>{{ card.pointsNeed }}</p>
-    <p>{{ card.promoID }}</p>
-    <p>{{ card.redeemableAmount }}</p>
-    <p>{{ card.startDate }}</p>
-    <p>{{ card.title }}</p>
-  
-  </div>
+    <div class="card-container">
+      <div class="promo-card" *ngFor="let card of cardList">
+
+        <p>{{ card.percentOff }}%</p>
+        <p>{{ card.redeemableAmount }} points</p>
+        <p>{{ carrefourBrand.brandName }}</p>
+        
+        
+      
+      </div>
+    </div>
+
+  </div>   
 </div>
