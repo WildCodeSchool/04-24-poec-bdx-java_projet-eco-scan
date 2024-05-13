@@ -4,11 +4,30 @@
     <div class="card-container">
       <div class="promo-card" *ngFor="let card of cardList">
 
-        <p>{{ card.percentOff }}%</p>
-        <p>{{ card.redeemableAmount }} points</p>
-        <p>{{ carrefourBrand.brandName }}</p>
-        
-        
+        <div class="promo-amount">
+          <div class="percent-off">
+            FLAT
+            <div class="percent-container">
+
+              <p class="percent-discount"> {{ card.percentOff }} </p>
+              
+              <div>
+                <p id="percent">%</p>
+                <p>off</p>
+              </div>
+
+            </div>
+           
+          </div>
+          <div class="redeemable-amount">
+           <p> {{ card.redeemableAmount }} </p>
+           points
+          </div>
+        </div>
+        <div class="brand-and-details">
+          <p> {{ carrefourBrand.brandName }} </p>
+          <p> See details </p>
+        </div>
       
       </div>
     </div>
