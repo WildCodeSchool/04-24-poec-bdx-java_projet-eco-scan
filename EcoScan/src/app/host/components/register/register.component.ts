@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { HostService } from '../../shared/host.service';
 import { Users } from '../../models/user.type';
 import { Credential } from '../../models/crendential.type';
-import { switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -23,65 +22,47 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registrationForm.valid) {
-      const newUser = {
-        firstname: this.registrationForm.value.firstname,
-        lastname: this.registrationForm.value.lastname,
-        pseudo: this.registrationForm.value.pseudo,
-        email: this.registrationForm.value.email,
-        password: this.registrationForm.value.password,
-        points: 10,
-        isAdmin: false,
-      };
-      console.log(newUser);
+      const firstname = this.registrationForm.value.firstname;
+      const lastname = this.registrationForm.value.lastname;
+      const pseudo = this.registrationForm.value.pseudo;
+      const email = this.registrationForm.value.email;
+      const password = this.registrationForm.value.password;
 
-      if (!newUser.email || !newUser.password) {
-        console.error(
-          "Erreur lors de l'obtention des informations d'utilisateur"
-        );
+      if (!firstname || !lastname || !pseudo || !email || !password) {
+        console.error('Les champs du formulaire ne peuvent pas être vides.');
         return;
       }
 
-      this._hostService
-        .getUsers$()
-        .pipe(
-          tap((users) => console.log(users)),
-          switchMap((users) => {
-            console.log(users);
+      const newUser: Users = {
+        firstname: firstname,
+        lastname: lastname,
+        pseudo: pseudo,
+        email: email,
+        password: password,
+        points: 10,
+        isAdmin: false,
+      };
 
-            const emailExists = users.find(
-              (user) => user.email === newUser.email
-            );
-            const pseudoExists = users.find(
-              (user) => user.pseudo === newUser.pseudo
-            );
-
-            if (emailExists) {
-              console.log('Cet email existe déjà.');
-              return [];
-            } else if (pseudoExists) {
-              console.log('Ce pseudo est déjà utilisé.');
-              return [];
+      this._hostService.register$(newUser).subscribe((response) => {
+        if (response) {
+          console.log('Utilisateur ajouté avec succès :', response);
+          this.registrationForm.reset();
+          const credentials: Credential = {
+            email: response.email,
+            password: response.password,
+          };
+          this._hostService.login$(credentials).subscribe((loggedIn) => {
+            if (loggedIn) {
+              console.log('Utilisateur connecté avec succès');
+              // Redirection vers la page d'accueil ou toute autre action à effectuer après la connexion
             } else {
-              return this._hostService.postUser$(newUser as Users);
+              console.error("Erreur lors de la connexion de l'utilisateur");
             }
-          }),
-          switchMap((response) => {
-            if (response) {
-              console.log('Utilisateur ajouté avec succès :', response);
-              this.registrationForm.reset();
-              const credentials = {
-                email: response.email,
-                password: response.password,
-              };
-              return this._hostService.login$(credentials as Credential);
-            } else {
-              return [];
-            }
-          })
-        )
-        .subscribe((result) => {
-          console.log('Inscription terminée avec succès :', result);
-        });
+          });
+        } else {
+          console.error("Erreur lors de l'ajout de l'utilisateur");
+        }
+      });
     } else {
       console.log('Formulaire invalide.');
     }

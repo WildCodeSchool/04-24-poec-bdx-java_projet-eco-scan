@@ -40,6 +40,26 @@
       "password": "fsdfsdfsdf",
       "points": 10,
       "isAdmin": false
+    },
+    {
+      "id": "b835",
+      "firstname": "adam",
+      "lastname": "hemamou",
+      "pseudo": "fsdfdfsdf",
+      "email": "h-mamou@hotsdfsdfsdfmail.fr",
+      "password": "sdfsdfsdfsdfs",
+      "points": 10,
+      "isAdmin": false
+    },
+    {
+      "id": "e95f",
+      "firstname": "adam",
+      "lastname": "hemamou",
+      "pseudo": "kdfngjkdfng",
+      "email": "h-mamou@hotmdfsdfsdail.fr",
+      "password": "fsdfsdfsdfds",
+      "points": 10,
+      "isAdmin": false
     }
   ],
   "logins": [

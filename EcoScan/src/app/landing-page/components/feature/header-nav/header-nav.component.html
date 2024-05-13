@@ -51,7 +51,7 @@
       <div class="menu-item" *ngFor="let item of navigation; let i = index">
         <div class="logo-nav">
           <img [src]="item.svg" alt="" />
-          <a [routerLink]="item.navigations">{{ item.title }}</a>
+          <a (click)="item.click()">{{ item.title }}</a>
         </div>
       </div>
     </div>

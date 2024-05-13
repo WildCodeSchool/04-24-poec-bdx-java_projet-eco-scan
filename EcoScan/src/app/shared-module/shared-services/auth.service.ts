@@ -13,12 +13,16 @@ export class AuthService {
 
   constructor() {}
 
-  public getCurrentUserValue(): Users | null {
+  public getCurrentUserValue$(): Users | null {
     return this._currentUserStocked$.value;
   }
 
-  public setCurrentUser(user: Users | null): void {
+  public setCurrentUser$(user: Users | null): void {
     this._currentUserStocked$.next(user);
+  }
+
+  public isLoggedIn(): boolean {
+    return !!this.getCurrentUserValue$();
   }
 
   public verfyCredentials(

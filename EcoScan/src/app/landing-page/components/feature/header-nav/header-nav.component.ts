@@ -2,6 +2,8 @@ import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { SidebarCloseAnimation, SidebarOpenAnimation } from './animation';
 import { Nav } from '../../../models/nav.type';
+import { HostService } from '../../../../host/shared/host.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 const animationParams = {
   menuWidth: '250px',
@@ -35,39 +37,58 @@ export class HeaderNavComponent {
   @Output()
   boolChange: EventEmitter<boolean> = new EventEmitter();
 
+  constructor(
+    private hostService: HostService,
+    private routerNavigate: Router
+  ) {}
+
   imagePath: string = '../../../../../assets/svg/bar.png';
-  mapSvg: string = "'../../../../../assets/svg/map.svg'";
+  mapSvg: string = '../../../../../assets/svg/map.svg';
   isOpen: boolean = false;
   navigation: Nav[] = [
     {
-      navigations: ['/mypromos'],
       title: 'My Promos',
       svg: '/assets/svg/promos.svg',
+      click: () => {
+        this.routerNavigate.navigate(['/mypromos']);
+      },
     },
     {
-      navigations: ['/historic'],
       title: 'Historic',
       svg: '/assets/svg/historic.svg',
+      click: () => {
+        this.routerNavigate.navigate(['/historic']);
+      },
     },
     {
-      navigations: ['/staged'],
       title: 'Staged Waste',
       svg: '/assets/svg/staged.svg',
+      click: () => {
+        this.routerNavigate.navigate(['/staged']);
+      },
     },
     {
-      navigations: ['/setting'],
       title: 'Setting',
       svg: '/assets/svg/setting.svg',
+      click: () => {
+        this.routerNavigate.navigate(['/setting']);
+      },
     },
     {
-      navigations: ['/login'],
       title: 'Disconnect',
       svg: '/assets/svg/disconnect.svg',
+      click: () => {
+        this.logout();
+      },
     },
   ];
 
   sendIsOpenToParent() {
     this.isOpen = !this.isOpen;
     this.boolChange.emit(this.isOpen);
+  }
+
+  logout(): void {
+    this.hostService.logout();
   }
 }

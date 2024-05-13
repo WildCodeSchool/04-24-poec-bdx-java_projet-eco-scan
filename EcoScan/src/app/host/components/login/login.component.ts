@@ -10,8 +10,11 @@ import { Credential } from '../../models/crendential.type';
 })
 export class LoginComponent {
   loginForm = this._fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
+    email: [
+      'h-mamou@hotmdfsdfsdail.fr',
+      [Validators.required, Validators.email],
+    ],
+    password: ['fsdfsdfsdfds', [Validators.required]],
   });
 
   constructor(private _fb: FormBuilder, private _hostService: HostService) {}
@@ -23,8 +26,6 @@ export class LoginComponent {
       this._hostService.login$(credentials).subscribe((isLoggedIn) => {
         if (isLoggedIn) {
           console.log('Utilisateur connecté avec succès !');
-          // TODO redirection vers Landing-page plutot dans le service
-          //  pour que register puisse aussi en profiter !!
         } else {
           console.log('Identifiants incorrects.');
         }
