@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HostService } from '../../shared/host.service';
-import { Users } from '../../models/user.type';
 import { Credential } from '../../models/crendential.type';
+import { UserForm } from '../../models/user.type';
 
 @Component({
   selector: 'app-register',
@@ -33,7 +33,7 @@ export class RegisterComponent {
         return;
       }
 
-      const newUser: Users = {
+      const newUser: UserForm = {
         firstname: firstname,
         lastname: lastname,
         pseudo: pseudo,
@@ -47,14 +47,10 @@ export class RegisterComponent {
         if (response) {
           console.log('Utilisateur ajouté avec succès :', response);
           this.registrationForm.reset();
-          const credentials: Credential = {
-            email: response.email,
-            password: response.password,
-          };
-          this._hostService.login$(credentials).subscribe((loggedIn) => {
+
+          this._hostService.login$(response).subscribe((loggedIn) => {
             if (loggedIn) {
               console.log('Utilisateur connecté avec succès');
-              // Redirection vers la page d'accueil ou toute autre action à effectuer après la connexion
             } else {
               console.error("Erreur lors de la connexion de l'utilisateur");
             }

@@ -6,58 +6,16 @@
       "lastname": "Yoooo",
       "pseudo": "lil-Bruce",
       "email": "BruceWayne@batman.com",
-      "password": "12345678",
       "points": 300,
       "isAdmin": true,
       "id": "b4cb"
     },
     {
-      "id": "7aaf",
-      "firstname": "adam",
-      "lastname": "hemamou",
-      "pseudo": "Yoooo",
-      "email": "h-mamou@hotmail.fr",
-      "password": "123456789",
-      "points": 10,
-      "isAdmin": false
-    },
-    {
-      "id": "092c",
-      "firstname": "adam",
-      "lastname": "hemamou",
-      "pseudo": "dsfdfsdf",
-      "email": "h-mamou@hotdfsdfmail.fr",
-      "password": "12345647",
-      "points": 10,
-      "isAdmin": false
-    },
-    {
-      "id": "bc29",
-      "firstname": "dfsdfsdf",
-      "lastname": "sdfsdfsdf",
+      "id": "4cff",
+      "firstName": "adam",
+      "lastName": "hemamou",
       "pseudo": "sdfsdfsdf",
-      "email": "h-mamou@hotmfsddfsddail.fr",
-      "password": "fsdfsdfsdf",
-      "points": 10,
-      "isAdmin": false
-    },
-    {
-      "id": "b835",
-      "firstname": "adam",
-      "lastname": "hemamou",
-      "pseudo": "fsdfdfsdf",
-      "email": "h-mamou@hotsdfsdfsdfmail.fr",
-      "password": "sdfsdfsdfsdfs",
-      "points": 10,
-      "isAdmin": false
-    },
-    {
-      "id": "e95f",
-      "firstname": "adam",
-      "lastname": "hemamou",
-      "pseudo": "kdfngjkdfng",
-      "email": "h-mamou@hotmdfsdfsdail.fr",
-      "password": "fsdfsdfsdfds",
+      "email": "h-mamou@hotmail.fr",
       "points": 10,
       "isAdmin": false
     }
@@ -65,9 +23,16 @@
   "logins": [
     {
       "userID": "1",
-      "salt": "1AC3",
+      "Salt": "1AC3",
+      "email": "BruceWayne@batman.com",
       "hashedPassword": "ff5733",
       "id": "5120"
+    },
+    {
+      "id": "605b",
+      "salt": "abc",
+      "email": "h-mamou@hotmail.fr",
+      "hashedPassword": "sdfsdfsdf"
     }
   ],
   "rubbishItems": [

@@ -1,23 +1,26 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { Users } from '../../host/models/user.type';
+import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
+import { UserForm } from '../../host/models/user.type';
 import { Credential } from '../../host/models/crendential.type';
+import { User } from '../models/classes/User.class';
+import { DataAccessorService } from '../shared/data-accessor.service';
+import { GetUser } from '../../host/models/getUser.type';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private _currentUserStocked$: BehaviorSubject<Users | null> =
-    new BehaviorSubject<Users | null>(null);
-  public currentUser$!: Observable<Users>;
+  private _currentUserStocked$: BehaviorSubject<GetUser | null> =
+    new BehaviorSubject<GetUser | null>(null);
+  public currentUser$!: Observable<User>;
 
-  constructor() {}
+  constructor(private _dbAccessor: DataAccessorService) {}
 
-  public getCurrentUserValue$(): Users | null {
+  public getCurrentUserValue$(): GetUser | null {
     return this._currentUserStocked$.value;
   }
 
-  public setCurrentUser$(user: Users | null): void {
+  public setCurrentUser$(user: GetUser | null): void {
     this._currentUserStocked$.next(user);
   }
 
@@ -27,11 +30,21 @@ export class AuthService {
 
   public verfyCredentials(
     credentials: Credential,
-    user: Users
+    user: GetUser
   ): Observable<boolean> {
+    console.log('dans le verfiy', user);
+    console.log('dans le verfiy', credentials);
+
+    let userPassword = '';
+    this._dbAccessor
+      .getUserLoginByEmail$(user.email)
+      .pipe(map((login) => (userPassword = login.hashedPassword))),
+      tap((e) => console.log(e));
+    console.log(userPassword);
+
     if (
       user.email === credentials.email &&
-      user.password === credentials.password
+      userPassword === credentials.password
     ) {
       return of(true);
     }

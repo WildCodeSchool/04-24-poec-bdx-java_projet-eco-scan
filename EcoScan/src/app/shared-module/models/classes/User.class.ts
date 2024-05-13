@@ -1,34 +1,53 @@
 export class User {
   constructor(
-    private _userID: string,
-    private _name: string,
-    private _email: string,
-    private _points: number,
-    private _isAdmin: boolean = false
+    public userID: string | undefined,
+    public firstName: string,
+    public lastName: string,
+    public pseudo: string,
+    public email: string,
+    public points: number,
+    public isAdmin: boolean = false
   ) {}
 
-  public get isAdmin(): boolean {
-    return this._isAdmin;
+  public getIsAdmin(): boolean {
+    return this.isAdmin;
   }
-  public get points(): number {
-    return this._points;
+  public getPoints(): number {
+    return this.points;
   }
-  public set points(value: number) {
-    this._points = value;
+  public setPoints(value: number) {
+    this.points = value;
   }
-  public get email(): string {
-    return this._email;
+  public getEmail(): string {
+    return this.email;
   }
-  public set email(value: string) {
-    this._email = value;
+  public setEmail(value: string) {
+    this.email = value;
   }
-  public get name(): string {
-    return this._name;
+  public getFirstName(): string {
+    return this.firstName;
   }
-  public set name(value: string) {
-    this._name = value;
+  public setFirstName(value: string) {
+    this.firstName = value;
   }
-  public get userID(): string {
-    return this._userID;
+  public getLastName(): string {
+    return this.lastName;
+  }
+  public setLastName(value: string) {
+    this.lastName = value;
+  }
+  public getPseudo(): string {
+    return this.pseudo;
+  }
+  public setPseudo(value: string) {
+    this.pseudo = value;
+  }
+  public getUserID(): string {
+    return this.userID as string;
+  }
+  public setUserID(value: string) {
+    if (!this.userID) {
+      this.userID = value;
+    }
   }
 }

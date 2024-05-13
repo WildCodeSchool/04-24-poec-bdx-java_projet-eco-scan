@@ -1,4 +1,4 @@
-export type Users = {
+export type UserForm = {
   firstname: string;
   lastname: string;
   pseudo: string;
