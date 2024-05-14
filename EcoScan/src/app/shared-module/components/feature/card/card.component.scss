@@ -2,10 +2,16 @@
 
 .card-container {
   display: flex;
-  overflow: hidden;
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+}
+
+.card-container::-webkit-scrollbar {
+  display: none;
 }
 
 .promo-card {
@@ -21,7 +27,18 @@
 .promo-amount {
   display: flex;
   justify-content: space-between;
-  margin: 0 0.4rem;
+  padding-left: 0.4rem;
+  background-color: #F1ECE3;
+  border-radius: 8px;
+}
+
+.redeemable-amount {
+  background-color: white;
+  margin-bottom: 4px;
+  padding: 0.2rem 0.4rem;
+  margin-right: 0.4rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .percent-off {
