@@ -34,17 +34,19 @@
 
 .redeemable-amount {
   background-color: white;
-  margin-bottom: 4px;
-  padding: 0.2rem 0.4rem;
+  padding: 0 0.4rem;
+  padding-top: 1rem;
   margin-right: 0.4rem;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  line-height: 0.8;
 }
 
 .percent-off {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  line-height: 0.7;
 }
 
 .percent-container {
@@ -52,7 +54,6 @@
   
   div {
     display: flex;
-    margin-top: 0.4rem;
     line-height: 0.6rem;
     align-items: center;
     flex-direction: column;
@@ -68,11 +69,19 @@
 }
 
 #flat {
-  padding-left: 0.2rem;
+  margin-top: 1rem;
+  font-size: 1.8rem;
+}
+
+.percent-off-container {
+ margin-top: 0;
 }
 
 .percent-discount {
   font-size: 2rem;
+  margin: 0;
+  padding-top: 5px;
+  padding-left: 2px;
 }
 
 .brand-and-details {
