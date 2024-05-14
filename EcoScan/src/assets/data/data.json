@@ -68,6 +68,42 @@
             "endDate": "2007-05-15 12:00:00",
             "redeemableAmount": "100",
             "pointsNeed": 300
+        },
+        {
+            "promoID": "889",
+            "brandID": "66",
+            "title": "Carrefour Popcorn",
+            "item": "Popcorn",
+            "percentOff": 20,
+            "description": "20% off of this delicious popcorn!",
+            "startDate": "2007-05-10 12:00:00",
+            "endDate": "2007-05-15 12:00:00",
+            "redeemableAmount": "100",
+            "pointsNeed": 300
+        },
+        {
+            "promoID": "890",
+            "brandID": "66",
+            "title": "Carrefour Popcorn",
+            "item": "Popcorn",
+            "percentOff": 20,
+            "description": "20% off of this delicious popcorn!",
+            "startDate": "2007-05-10 12:00:00",
+            "endDate": "2007-05-15 12:00:00",
+            "redeemableAmount": "100",
+            "pointsNeed": 300
+        },
+        {
+            "promoID": "891",
+            "brandID": "66",
+            "title": "Carrefour Popcorn",
+            "item": "Popcorn",
+            "percentOff": 20,
+            "description": "20% off of this delicious popcorn!",
+            "startDate": "2007-05-10 12:00:00",
+            "endDate": "2007-05-15 12:00:00",
+            "redeemableAmount": "100",
+            "pointsNeed": 300
         }
     ],
     "brand": [
