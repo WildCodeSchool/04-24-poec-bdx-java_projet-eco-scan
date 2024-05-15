@@ -10,6 +10,7 @@ export class MapPageComponent implements OnInit{
   private googleApi = inject(GoogleApiService);
 
   ngOnInit(): void {
+    this.googleApi.initDependencies();
     this.googleApi.initMap();
   }
 

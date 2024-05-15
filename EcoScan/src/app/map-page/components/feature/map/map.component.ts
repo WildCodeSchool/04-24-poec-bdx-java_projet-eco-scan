@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { G_API_KEY } from '../../../../shared-module/shared/settings';
 
 declare var google: any;

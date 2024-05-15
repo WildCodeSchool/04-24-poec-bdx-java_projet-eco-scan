@@ -1,5 +1,9 @@
-<p-dropdown 
-    [options]="binList" 
-    [(ngModel)]="selectedBins" 
-    optionLabel="name" 
-    placeholder="Select bin type" />
+<div class="dropdown-container">
+    <p-dropdown 
+        [options]="binList" 
+        [(ngModel)]="selectedBins" 
+        optionLabel="name" 
+        placeholder="Select bin type"
+        (ngModelChange)="refreshMarkers()"
+    />
+</div>
