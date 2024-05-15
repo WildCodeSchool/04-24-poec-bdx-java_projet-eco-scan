@@ -1,5 +1,5 @@
 /// <reference types="@types/google.maps" />
-import { Injectable, inject } from '@angular/core';
+import { Injectable, OnInit, inject } from '@angular/core';
 import { DataAccessorService } from '../shared-module/shared/data-accessor.service';
 import { Bin } from '../shared-module/models/types/Bin.type';
 
@@ -7,11 +7,16 @@ import { Bin } from '../shared-module/models/types/Bin.type';
 @Injectable({
   providedIn: 'root'
 })
-export class GoogleApiService {
+export class GoogleApiService{
 
   constructor() { }
+  
+  initDependencies(){
+    this.DBAccessor.getAllBins$().subscribe(bins => this.binList = bins);
+  }
 
   private binList!: Bin[];
+  private markerList!: google.maps.marker.AdvancedMarkerElement;
   private DBAccessor = inject(DataAccessorService);
   private defaultPosition = { lat: 44.8455754131726, lng: -0.5730868208152291 };
   private map!: google.maps.Map;
@@ -63,7 +68,6 @@ export class GoogleApiService {
   async initMap(): Promise<void> {
     await this.createMap();
     await this.locateSelfAndCenter();
-    this.DBAccessor.getAllBins$().subscribe(bins => this.binList = bins);
 
     const locationButton = document.createElement("button");
     locationButton.textContent = "Re-center map";
@@ -85,7 +89,7 @@ export class GoogleApiService {
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
 
     for (let bin of this.binList) {
-      const infoWindowz = new google.maps.InfoWindow({
+      const infoWindow = new google.maps.InfoWindow({
         content: `<h3>${bin.type + " bin"}</h3>`
       });
       const marker = new AdvancedMarkerElement({
@@ -93,9 +97,9 @@ export class GoogleApiService {
         position: {lat: Number(bin.lat), lng: Number(bin.lng)},
       });
       marker.addListener("click", () => {
-        infoWindowz.open(this.map, marker);
+        infoWindow.open(this.map, marker);
       });
-
+      this.markerList.append(marker);
     }
   }
 

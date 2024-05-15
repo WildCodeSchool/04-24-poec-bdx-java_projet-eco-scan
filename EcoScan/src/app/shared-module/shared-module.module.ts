@@ -24,7 +24,7 @@ import { ButtonModule } from 'primeng/button';
   exports:[
     FooterComponent,
     CardComponent,
-    HeaderComponent
+    HeaderComponent,
     ModalComponent
   ]
 })
