@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, map, of, switchMap } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { User } from '../models/classes/User.class';
 import { Promo } from '../models/types/Promo.type';
 import { DB_PATH } from './settings';
@@ -46,7 +46,7 @@ export class DataAccessorService {
     );
   }
   // Create
-  addUser(newUser: User): Observable<User> {
+  addUser$(newUser: User): Observable<User> {
     return this.http.post<User>(`${DB_PATH}/users`, newUser, this.httpOptions).pipe(
       catchError(err => {
         throw this.handleFailure(err);
@@ -54,7 +54,7 @@ export class DataAccessorService {
     );
   }
   // Update
-  updateUser(updatedUser: User): Observable<User> {
+  updateUser$(updatedUser: User): Observable<User> {
     return this.http.put<User>(`${DB_PATH}/users/${updatedUser.userID}`, updatedUser, this.httpOptions).pipe(
       catchError(err => {
         throw this.handleFailure(err);
@@ -75,7 +75,7 @@ export class DataAccessorService {
     );
   }
   // Create
-  addUserPassword(newLogin: Login): Observable<Login> {
+  addUserPassword$(newLogin: Login): Observable<Login> {
     return this.http.post<Login>(`${DB_PATH}/logins`, newLogin, this.httpOptions).pipe(
       catchError(err => {
         throw this.handleFailure(err);
@@ -83,7 +83,7 @@ export class DataAccessorService {
     );
   }
   // Update
-  updateUserPassword(updatedLogin: Login): Observable<Login> {
+  updateUserPassword$(updatedLogin: Login): Observable<Login> {
     return this.http.put<Login>(`${DB_PATH}/logins/${updatedLogin.userID}`, updatedLogin, this.httpOptions).pipe(
       catchError(err => {
         throw this.handleFailure(err);
@@ -122,7 +122,7 @@ export class DataAccessorService {
     );
   }
   // Create
-  addStagedRubbish(newRubbish: StagedRubbish): Observable<StagedRubbish> {
+  addStagedRubbish$(newRubbish: StagedRubbish): Observable<StagedRubbish> {
     return this.http.post<StagedRubbish>(`${DB_PATH}/stagingArea`, newRubbish, this.httpOptions).pipe(
       catchError(err => {
         throw this.handleFailure(err);
@@ -170,7 +170,7 @@ export class DataAccessorService {
     );
   }
   // Create
-  addDeposit(newDeposit: Deposit): Observable<Deposit> {
+  addDeposit$(newDeposit: Deposit): Observable<Deposit> {
     return this.http.post<Deposit>(`${DB_PATH}/deposits`, newDeposit, this.httpOptions).pipe(
       catchError(err => {
         throw this.handleFailure(err);
@@ -198,7 +198,7 @@ export class DataAccessorService {
     );
   }
   // Create
-  addPromo(newPromo: Promo): Observable<Promo> {
+  addPromo$(newPromo: Promo): Observable<Promo> {
     return this.http.post<Promo>(`${DB_PATH}/promo`, newPromo, this.httpOptions).pipe(
       catchError(err => {
         throw this.handleFailure(err);
@@ -206,7 +206,7 @@ export class DataAccessorService {
     );
   }
   // Update
-  updatePromo(updatedPromo: Promo): Observable<Promo> {
+  updatePromo$(updatedPromo: Promo): Observable<Promo> {
     return this.http.put<Promo>(`${DB_PATH}/promo/${updatedPromo.promoID}`, updatedPromo, this.httpOptions).pipe(
       catchError(err => {
         throw this.handleFailure(err);
@@ -235,7 +235,7 @@ export class DataAccessorService {
   }
 
   // Create
-  addBrand(newBrand: Brand): Observable<Brand> {
+  addBrand$(newBrand: Brand): Observable<Brand> {
     return this.http.post<Brand>(`${DB_PATH}/brand`, newBrand, this.httpOptions).pipe(
       catchError(err => {
         throw this.handleFailure(err);
@@ -243,7 +243,7 @@ export class DataAccessorService {
     );
   }
   // Update
-  updateBrand(updatedBrand: Brand): Observable<Brand> {
+  updateBrand$(updatedBrand: Brand): Observable<Brand> {
     return this.http.put<Brand>(`${DB_PATH}/brand/${updatedBrand.brandID}`, updatedBrand, this.httpOptions).pipe(
       catchError(err => {
         throw this.handleFailure(err);

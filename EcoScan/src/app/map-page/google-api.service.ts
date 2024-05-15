@@ -1,5 +1,7 @@
 /// <reference types="@types/google.maps" />
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { DataAccessorService } from '../shared-module/shared/data-accessor.service';
+import { Bin } from '../shared-module/models/types/Bin.type';
 
 
 @Injectable({
@@ -9,11 +11,13 @@ export class GoogleApiService {
 
   constructor() { }
 
-  private map!: google.maps.Map;
+  private binList!: Bin[];
+  private DBAccessor = inject(DataAccessorService);
   private defaultPosition = { lat: 44.8455754131726, lng: -0.5730868208152291 };
+  private map!: google.maps.Map;
 
 
-  private async createMap(): Promise<void>{
+  private async createMap(): Promise<void> {
     const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
     this.map = new Map(
       document.getElementById('map') as HTMLElement,
@@ -25,7 +29,7 @@ export class GoogleApiService {
     );
   }
 
-  private async locateSelfAndCenter(){
+  private async locateSelfAndCenter(dropPin: boolean = false) {
     navigator.geolocation.getCurrentPosition(
       (position: GeolocationPosition) => {
         const pos = {
@@ -41,8 +45,12 @@ export class GoogleApiService {
 
         bounds.extend(point);
 
-        // this.map.setCenter(pos);
-        // this.map.panTo(bounds.getCenter());
+        if (dropPin) {
+          const infoWindow = new google.maps.InfoWindow();
+          infoWindow.setPosition(pos);
+          infoWindow.setContent("Current location");
+          infoWindow.open(this.map);
+        }
         this.map.fitBounds(bounds);
         this.map.setZoom(16);
       },
@@ -53,9 +61,10 @@ export class GoogleApiService {
   }
 
   async initMap(): Promise<void> {
-    
     await this.createMap();
     await this.locateSelfAndCenter();
+    this.DBAccessor.getAllBins$().subscribe(bins => this.binList = bins);
+
     const locationButton = document.createElement("button");
     locationButton.textContent = "Re-center map";
     locationButton.classList.add("custom-map-control-button");
@@ -63,17 +72,31 @@ export class GoogleApiService {
 
     locationButton.addEventListener("click", () => {
       if (navigator.geolocation) {
-        this.locateSelfAndCenter();
+        this.locateSelfAndCenter(true);
       } else {
         // Browser doesn't support Geolocation
         this.handleLocationError(false, this.map.getCenter()!);
       }
     });
+    await this.populateMapMarkers();
   }
 
-  async populateMapMarkers(): Promise<void>{
-    //acquire bin co-ordinates
-    //create and push markers to the map
+  async populateMapMarkers(): Promise<void> {
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+
+    for (let bin of this.binList) {
+      const infoWindowz = new google.maps.InfoWindow({
+        content: `<h3>${bin.type + " bin"}</h3>`
+      });
+      const marker = new AdvancedMarkerElement({
+        map: this.map,
+        position: {lat: Number(bin.lat), lng: Number(bin.lng)},
+      });
+      marker.addListener("click", () => {
+        infoWindowz.open(this.map, marker);
+      });
+
+    }
   }
 
   handleLocationError(
@@ -91,14 +114,3 @@ export class GoogleApiService {
   }
 
 }
-
-
-  // const position = { lat: 44.8455754131726, lng: -0.5730868208152291 };
-  // const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
-
-  // The marker, positioned at Uluru
-  // const marker = new AdvancedMarkerElement({
-  //   map: this.map,
-  //   position: position,
-  //   title: 'Uluru'
-  // });

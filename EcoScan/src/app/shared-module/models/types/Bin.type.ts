@@ -3,5 +3,6 @@ import { WasteType } from "../enums/WasteType.enum";
 export type Bin = {
     binID: string;
     type: WasteType;
-    location: string;
+    lat: string;
+    lng: string;
 }
