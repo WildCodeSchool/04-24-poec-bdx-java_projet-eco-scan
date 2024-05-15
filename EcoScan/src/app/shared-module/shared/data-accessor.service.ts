@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { User } from '../models/classes/User.class';
 import { Promo } from '../models/types/Promo.type';
 import { DB_PATH } from './settings';
@@ -228,6 +228,14 @@ export class DataAccessorService {
   }
   getBrandByID$(id: string): Observable<Brand> {
     return this.http.get<Brand>(`${DB_PATH}/brand/${id}`).pipe(
+      catchError(err => {
+        throw this.handleFailure(err);
+      })
+    );
+  }
+  getBrandByName$(name: string): Observable<Brand> {
+    return this.http.get<Brand[]>(`${DB_PATH}/brand/`).pipe(
+      map((brands: Brand[]) => brands.filter((brand: Brand) => brand.brandName === name)[0]),
       catchError(err => {
         throw this.handleFailure(err);
       })
