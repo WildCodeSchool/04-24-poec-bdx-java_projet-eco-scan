@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/ui/header/header.component';
 import { ModalComponent } from './components/ui/modal/modal.component';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ButtonModule } from 'primeng/button';
     CommonModule,
     SharedModuleRouting,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    FormsModule
   ],
   exports:[
     FooterComponent,
