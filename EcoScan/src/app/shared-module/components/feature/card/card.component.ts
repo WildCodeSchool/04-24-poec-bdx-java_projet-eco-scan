@@ -13,13 +13,8 @@ export class CardComponent {
 
   constructor(private cardService: CardService) {}
 
-  cardList$!: Observable<Promo[]>;
+  cardList$: Observable<Promo[]> = this.cardService.getPromos$();
 
-  carrefourBrand$!: Observable<Brand>;
-
-  ngOnInit(): void {
-    this.cardList$ = this.cardService.getPromos$();
-    this.carrefourBrand$ = this.cardService.getBrandByName$("Carrefour");
-  }
+  carrefourBrand$: Observable<Brand> = this.cardService.getBrandByName$("Carrefour");
 
 }
