@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { GoogleApiService } from '../../google-api.service';
-import { Observable, map, switchMap } from 'rxjs';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-map-page',
