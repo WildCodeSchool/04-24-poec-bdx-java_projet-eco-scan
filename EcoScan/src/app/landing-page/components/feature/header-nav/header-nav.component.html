@@ -12,13 +12,14 @@
 
     <input type="search " />
 
-    <svg
+    <a [routerLink]="['/map']">
+      <svg
       width="30"
       height="30"
       viewBox="0 0 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-    >
+      >
       <path
         d="M15.625 9.80185C15.4218 9.76775 15.213 9.75 15 9.75C12.9289 9.75 11.25 11.4289 11.25 13.5C11.25 15.5711 12.9289 17.25 15 17.25C17.0711 17.25 18.75 15.5711 18.75 13.5C18.75 13.2871 18.7322 13.0782 18.6981 12.875"
         stroke="white"
@@ -32,6 +33,7 @@
         stroke-linecap="round"
       />
     </svg>
+  </a>
   </div>
 
   <div class="side-menu" *ngIf="isOpen" [@sideMenu]>
