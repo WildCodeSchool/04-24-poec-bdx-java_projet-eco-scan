@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './landing-pages.component.scss',
 })
 export class LandingPagesComponent {
+
   isOpen!: boolean;
 
   onReceivedFromHeader(open: boolean): void {

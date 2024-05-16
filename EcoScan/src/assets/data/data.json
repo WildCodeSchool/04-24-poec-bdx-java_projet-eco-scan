@@ -2,89 +2,67 @@
   "users": [
     {
       "userID": "1",
-      "firstname": "Bruce Wayne",
-      "lastname": "Yoooo",
-      "pseudo": "lil-Bruce",
+      "name": "Bruce Wayne",
       "email": "BruceWayne@batman.com",
       "points": 300,
-      "isAdmin": true,
-      "id": "b4cb"
-    },
-    {
-      "id": "4cff",
-      "firstName": "adam",
-      "lastName": "hemamou",
-      "pseudo": "sdfsdfsdf",
-      "email": "h-mamou@hotmail.fr",
-      "points": 10,
-      "isAdmin": false
-    },
-    {
-      "id": "ca31",
-      "firstName": "adam",
-      "lastName": "hemamou",
-      "pseudo": "dsfsdfsdf",
-      "email": "h-mamou@hoteeemail.fr",
-      "points": 10,
-      "isAdmin": false
+      "isAdmin": true
     }
   ],
   "logins": [
     {
       "userID": "1",
-      "Salt": "1AC3",
-      "email": "BruceWayne@batman.com",
-      "hashedPassword": "ff5733",
-      "id": "5120"
-    },
-    {
-      "id": "4cff",
-      "salt": "abc",
-      "email": "h-mamou@hotmail.fr",
-      "hashedPassword": "sdfsdfsdf"
-    },
-    {
-      "id": "a340",
-      "salt": "abc",
-      "email": "h-mamou@hoteeemail.fr",
-      "hashedPassword": "sdfsdfsdfs"
+      "salt": "1AC3",
+      "hashedPassword": "ff5733"
     }
   ],
   "rubbishItems": [
     {
       "rubbishID": "123",
-      "type": "Glass",
-      "id": "e81d"
+      "type": "Glass"
     },
     {
       "rubbishID": "234",
-      "type": "Plastic",
-      "id": "498b"
+      "type": "Plastic"
     },
     {
       "rubbishID": "345",
-      "type": "Battery",
-      "id": "e801"
+      "type": "Battery"
     },
     {
       "rubbishID": "456",
-      "type": "Cardboard",
-      "id": "58fe"
+      "type": "Cardboard"
     }
   ],
   "stagingArea": [
     {
       "userID": "1",
-      "rubbishID": "123",
-      "id": "2514"
+      "rubbishID": "123"
     }
   ],
   "bins": [
     {
       "binID": "999",
       "type": "Battery",
-      "location": "44.8690178,-0.5683332",
-      "id": "07b8"
+      "lat": "44.8690178",
+      "lng": "-0.5683332"
+    },
+    {
+      "binID": "1000",
+      "type": "Glass",
+      "lat": "44.86404963386602",
+      "lng": "-0.5579769971768761"
+    },
+    {
+      "binID": "1001",
+      "type": "Paper",
+      "lat": "44.86823153641414",
+      "lng": "-0.563709120282005"
+    },
+    {
+      "binID": "1002",
+      "type": "Waste",
+      "lat": "44.868992683367225",
+      "lng": "-0.5567995182921108"
     }
   ],
   "deposits": [
@@ -94,8 +72,7 @@
       "binID": "999",
       "timeOf": "2007-05-10 00:00:00",
       "scanImgOne": "BLOB",
-      "scanImgTwo": "BLOB",
-      "id": "1213"
+      "scanImgTwo": "BLOB"
     }
   ],
   "promo": [
@@ -109,8 +86,43 @@
       "startDate": "2007-05-10 12:00:00",
       "endDate": "2007-05-15 12:00:00",
       "redeemableAmount": "100",
-      "pointsNeed": 300,
-      "id": "45ba"
+      "pointsNeed": 300
+    },
+    {
+      "promoID": "889",
+      "brandID": "66",
+      "title": "Carrefour Popcorn",
+      "item": "Popcorn",
+      "percentOff": 20,
+      "description": "20% off of this delicious popcorn!",
+      "startDate": "2007-05-10 12:00:00",
+      "endDate": "2007-05-15 12:00:00",
+      "redeemableAmount": "100",
+      "pointsNeed": 300
+    },
+    {
+      "promoID": "890",
+      "brandID": "66",
+      "title": "Carrefour Popcorn",
+      "item": "Popcorn",
+      "percentOff": 20,
+      "description": "20% off of this delicious popcorn!",
+      "startDate": "2007-05-10 12:00:00",
+      "endDate": "2007-05-15 12:00:00",
+      "redeemableAmount": "100",
+      "pointsNeed": 300
+    },
+    {
+      "promoID": "891",
+      "brandID": "66",
+      "title": "Carrefour Popcorn",
+      "item": "Popcorn",
+      "percentOff": 20,
+      "description": "20% off of this delicious popcorn!",
+      "startDate": "2007-05-10 12:00:00",
+      "endDate": "2007-05-15 12:00:00",
+      "redeemableAmount": "100",
+      "pointsNeed": 300
     }
   ],
   "brand": [
@@ -120,8 +132,7 @@
       "brandLogo": "BLOB",
       "brandBanner": "BLOB",
       "otherImages": "BLOB",
-      "brandDescription": "A shop",
-      "id": "ac8f"
+      "brandDescription": "A shop"
     }
   ]
 }

@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPagesComponent } from './pages/landing-pages/landing-pages.component';
-import { authGuard } from '../host/shared/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: LandingPagesComponent, canActivate: [authGuard] },
+  { path: '', component: LandingPagesComponent },
+  {
+    path: 'map',
+    loadChildren: () =>
+      import('../map-page/map-page.module').then((m) => m.MapPageModule),
+  },
 ];
 
 @NgModule({

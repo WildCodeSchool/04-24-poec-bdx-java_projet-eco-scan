@@ -1,0 +1,20 @@
+<div class="card flex justify-content-center" *ngIf="modalState$ | async as modal">
+  <p-dialog 
+
+  header="Card Details" 
+  [modal]="true" 
+  [(visible)]="modal.visible" 
+  [style]="{ width: '50rem' }" 
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" 
+  (onHide)="hideDialog()">
+<ng-container *ngIf="modal.cardData as cardData">
+  <h3>{{ cardData.title }}</h3>
+  <p>{{ cardData.description }}</p>
+  <p><strong>Item:</strong> {{ cardData.item }}</p>
+  <p><strong>Percent Off:</strong> {{ cardData.percentOff }}%</p>
+  <p><strong>Redeemable Amount:</strong> {{ cardData.redeemableAmount }}</p>
+  <p><strong>Start Date:</strong> {{ cardData.startDate | date }}</p>
+  <p><strong>End Date:</strong> {{ cardData.endDate | date }}</p>
+</ng-container>
+</p-dialog>
+</div>

@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable, catchError, map, of, switchMap, tap } from 'rxjs';
+import { Observable, catchError, map, tap } from 'rxjs';
 import { User } from '../models/classes/User.class';
 import { Promo } from '../models/types/Promo.type';
 import { DB_PATH } from './settings';
@@ -50,7 +50,7 @@ export class DataAccessorService {
     );
   }
   // Create
-  addUser(newUser: User): Observable<User> {
+  addUser$(newUser: User): Observable<User> {
     return this.http
       .post<User>(`${DB_PATH}/users`, newUser, this.httpOptions)
       .pipe(
@@ -60,10 +60,10 @@ export class DataAccessorService {
       );
   }
   // Update
-  updateUser(updatedUser: User): Observable<User> {
+  updateUser$(updatedUser: User): Observable<User> {
     return this.http
       .put<User>(
-        `${DB_PATH}/users/${updatedUser.getUserID()}`,
+        `${DB_PATH}/users/${updatedUser.userID}`,
         updatedUser,
         this.httpOptions
       )
@@ -145,7 +145,7 @@ export class DataAccessorService {
     );
   }
   // Create
-  addStagedRubbish(newRubbish: StagedRubbish): Observable<StagedRubbish> {
+  addStagedRubbish$(newRubbish: StagedRubbish): Observable<StagedRubbish> {
     return this.http
       .post<StagedRubbish>(
         `${DB_PATH}/stagingArea`,
@@ -197,7 +197,7 @@ export class DataAccessorService {
     );
   }
   // Create
-  addDeposit(newDeposit: Deposit): Observable<Deposit> {
+  addDeposit$(newDeposit: Deposit): Observable<Deposit> {
     return this.http
       .post<Deposit>(`${DB_PATH}/deposits`, newDeposit, this.httpOptions)
       .pipe(
@@ -226,7 +226,7 @@ export class DataAccessorService {
     );
   }
   // Create
-  addPromo(newPromo: Promo): Observable<Promo> {
+  addPromo$(newPromo: Promo): Observable<Promo> {
     return this.http
       .post<Promo>(`${DB_PATH}/promo`, newPromo, this.httpOptions)
       .pipe(
@@ -236,7 +236,7 @@ export class DataAccessorService {
       );
   }
   // Update
-  updatePromo(updatedPromo: Promo): Observable<Promo> {
+  updatePromo$(updatedPromo: Promo): Observable<Promo> {
     return this.http
       .put<Promo>(
         `${DB_PATH}/promo/${updatedPromo.promoID}`,
@@ -268,9 +268,20 @@ export class DataAccessorService {
       })
     );
   }
+  getBrandByName$(name: string): Observable<Brand> {
+    return this.http.get<Brand[]>(`${DB_PATH}/brand/`).pipe(
+      map(
+        (brands: Brand[]) =>
+          brands.filter((brand: Brand) => brand.brandName === name)[0]
+      ),
+      catchError((err) => {
+        throw this.handleFailure(err);
+      })
+    );
+  }
 
   // Create
-  addBrand(newBrand: Brand): Observable<Brand> {
+  addBrand$(newBrand: Brand): Observable<Brand> {
     return this.http
       .post<Brand>(`${DB_PATH}/brand`, newBrand, this.httpOptions)
       .pipe(
@@ -280,7 +291,7 @@ export class DataAccessorService {
       );
   }
   // Update
-  updateBrand(updatedBrand: Brand): Observable<Brand> {
+  updateBrand$(updatedBrand: Brand): Observable<Brand> {
     return this.http
       .put<Brand>(
         `${DB_PATH}/brand/${updatedBrand.brandID}`,
