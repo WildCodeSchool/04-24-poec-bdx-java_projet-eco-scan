@@ -36,10 +36,11 @@ export class AuthService {
     console.log('dans le verfiy', credentials);
 
     let userPassword = '';
-    this._dbAccessor
-      .getUserLoginByEmail$(user.email)
-      .pipe(map((login) => (userPassword = login.hashedPassword))),
-      tap((e) => console.log(e));
+
+    // this._dbAccessor
+    //   .getUserLogin$(user.id)
+    //   .pipe(map((login) => (userPassword = login.hashedPassword))),
+    //   tap((e) => console.log(e));
     console.log(userPassword);
 
     if (

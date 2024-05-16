@@ -89,16 +89,6 @@ export class DataAccessorService {
     );
   }
 
-  getUserLoginByEmail$(email: string): Observable<Login> {
-    console.log(email);
-
-    return this.http.get<Login>(`${DB_PATH}/logins?email=${email}`).pipe(
-      tap((e) => console.log(e)),
-      catchError((err) => {
-        throw this.handleFailure(err);
-      })
-    );
-  }
   // Create
   addUserPassword$(newLogin: Login): Observable<Login> {
     return this.http

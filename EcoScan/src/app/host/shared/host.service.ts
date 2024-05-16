@@ -28,12 +28,13 @@ export class HostService {
       switchMap((users: GetUser[]) => {
         console.log('arr', users);
 
-        const user = users.find((user) => credentials.email === user.email);
+        const user = users.find((user) => user.email === credentials.email);
 
         console.log('YPPPPPPP', user);
         if (user) {
           this._authService.setCurrentUser$(user);
-          return this._authService.verfyCredentials(credentials, user);
+          return of(true);
+          // return this._authService.verfyCredentials(credentials, user);
         } else {
           return of(false);
         }

@@ -18,6 +18,15 @@
       "email": "h-mamou@hotmail.fr",
       "points": 10,
       "isAdmin": false
+    },
+    {
+      "id": "ca31",
+      "firstName": "adam",
+      "lastName": "hemamou",
+      "pseudo": "dsfsdfsdf",
+      "email": "h-mamou@hoteeemail.fr",
+      "points": 10,
+      "isAdmin": false
     }
   ],
   "logins": [
@@ -29,10 +38,16 @@
       "id": "5120"
     },
     {
-      "id": "605b",
+      "id": "4cff",
       "salt": "abc",
       "email": "h-mamou@hotmail.fr",
       "hashedPassword": "sdfsdfsdf"
+    },
+    {
+      "id": "a340",
+      "salt": "abc",
+      "email": "h-mamou@hoteeemail.fr",
+      "hashedPassword": "sdfsdfsdfs"
     }
   ],
   "rubbishItems": [

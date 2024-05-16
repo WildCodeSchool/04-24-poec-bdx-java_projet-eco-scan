@@ -1,54 +1,69 @@
-<img src="../../../../assets/svg/logo.svg" alt="" />
-
-<div><h3>INSCRIPTION</h3></div>
-
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+<div class="register-container">
   <div>
-    <fieldset>
-      <label for="user-firstname">Prénom</label>
-      <input
-        type="text"
-        formControlName="firstname"
-        placeholder="Votre prénom..."
-        required
-      />
-    </fieldset>
-    <fieldset>
-      <label for="user-lastname">Nom</label>
-      <input
-        type="text"
-        formControlName="lastname"
-        placeholder="Votre nom..."
-        required
-      />
-    </fieldset>
+    <div class="logo-eco">
+      <img src="../../../../assets/svg/logo.svg" alt="" />
+    </div>
+
+    <div class="bandeau">
+      <h3>INSCRIPTION</h3>
+    </div>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="first-lastName">
+        <fieldset>
+          <label for="user-firstname">Prénom</label>
+          <input
+            type="text"
+            formControlName="firstname"
+            placeholder="Votre prénom..."
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <label for="user-lastname">Nom</label>
+          <input
+            type="text"
+            formControlName="lastname"
+            placeholder="Votre nom..."
+            required
+          />
+        </fieldset>
+      </div>
+      <fieldset>
+        <label for="user-pseudo">Pseudo</label>
+        <input
+          type="text"
+          formControlName="pseudo"
+          placeholder="Veuillez entrer un pseudo"
+          required
+        />
+      </fieldset>
+      <fieldset>
+        <label for="user-email">Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Votre addresse email"
+          required
+        />
+      </fieldset>
+      <fieldset>
+        <label for="user-password">Mot de passe</label>
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Mot de passe"
+          required
+        />
+      </fieldset>
+      <div class="button-container">
+        <button type="submit">S'INSCRIRE</button>
+      </div>
+    </form>
   </div>
-  <fieldset>
-    <label for="user-pseudo">Pseudo</label>
-    <input
-      type="text"
-      formControlName="pseudo"
-      placeholder="Veuillez entrer un pseudo"
-      required
-    />
-  </fieldset>
-  <fieldset>
-    <label for="user-email">Email</label>
-    <input
-      type="email"
-      formControlName="email"
-      placeholder="Votre addresse email"
-      required
-    />
-  </fieldset>
-  <fieldset>
-    <label for="user-password">Mot de passe</label>
-    <input
-      type="password"
-      formControlName="password"
-      placeholder="Mot de passe"
-      required
-    />
-  </fieldset>
-  <button type="submit">S'INSCRIRE</button>
-</form>
+  <div class="register">
+    <p>
+      Vous avez déjà inscrit ? <span [routerLink]="['/']">Se Connecter</span>
+    </p>
+  </div>
+</div>

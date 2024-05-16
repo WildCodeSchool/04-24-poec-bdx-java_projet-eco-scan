@@ -1,26 +1,44 @@
-<img src="../../../../assets/svg/logo.svg" alt="" />
+<div class="login-container">
+  <div>
+    <div class="logo-eco">
+      <img src="../../../../assets/svg/logo.svg" alt="" />
+    </div>
 
-<div><h3>CONNEXION</h3></div>
+    <div class="bandeau">
+      <h3>CONNEXION</h3>
+    </div>
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <fieldset>
-    <label for="user-email">Email</label>
-    <input
-      type="email"
-      formControlName="email"
-      placeholder="Votre addresse email"
-      required
-    />
-  </fieldset>
-  <fieldset>
-    <label for="user-password">Mot de passe</label>
-    <input
-      type="password"
-      formControlName="password"
-      placeholder="Mot de passe"
-      required
-    />
-  </fieldset>
-  <button type="submit">Se connecter</button>
-</form>
-<p>mot de passe oublié</p>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div>
+        <fieldset>
+          <label for="user-email">Email *</label>
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="Votre addresse email"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <label for="user-password">Mot de passe *</label>
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Mot de passe"
+            required
+          />
+        </fieldset>
+        <p>Mot de passe oublié</p>
+      </div>
+      <div class="button-container">
+        <button type="submit">SE CONNECTER</button>
+      </div>
+    </form>
+  </div>
+  <div class="connect">
+    <p>
+      Vous n'êtes pas encore inscrit ?
+      <span [routerLink]="['/register']">S'inscrire</span>
+    </p>
+  </div>
+</div>
