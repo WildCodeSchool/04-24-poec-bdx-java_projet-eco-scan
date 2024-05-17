@@ -1,0 +1,33 @@
+.p-dialog-titlebar{
+  background-color: black;
+}
+
+.promo-amount {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0.4rem;
+  padding-bottom: 1rem;
+  background-color: #F1ECE3;
+  border-radius: 8px;
+}
+
+.percent-off {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  line-height: 0.7;
+}
+
+.percent-container {
+  display: flex;
+  
+  div {
+    display: flex;
+    line-height: 0.6rem;
+    align-items: center;
+    flex-direction: column;
+    max-width: 40px;
+    margin-right: 10px;
+    }
+  
+}

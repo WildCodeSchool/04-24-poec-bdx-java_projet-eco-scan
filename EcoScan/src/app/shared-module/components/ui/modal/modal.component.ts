@@ -6,6 +6,7 @@ import { Observable, tap } from 'rxjs';
 @Component({
     selector: 'app-modal',
     templateUrl: './modal.component.html',
+    styleUrl: './modal.component.scss'  
 })
 export class ModalComponent {
   modalState$: Observable<{ visible: boolean, cardData: Promo | null }>;
