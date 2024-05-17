@@ -22,18 +22,14 @@ export class HostService {
   ) {}
 
   login$(credentials: Credential): Observable<boolean> {
-    console.log('jo', credentials);
-
     return this._dbAccessor.getAllUsers$().pipe(
       switchMap((users: GetUser[]) => {
-        console.log('arr', users);
-
         const user = users.find((user) => user.email === credentials.email);
 
-        console.log('YPPPPPPP', user);
         if (user) {
           this._authService.setCurrentUser$(user);
           return of(true);
+          // TODO
           // return this._authService.verfyCredentials(credentials, user);
         } else {
           return of(false);
@@ -55,10 +51,10 @@ export class HostService {
           (user) => user.pseudo === newUser.pseudo
         );
         if (emailExists) {
-          console.log('Cet email existe déjà.');
+          // email exist toast
           return of(null);
         } else if (pseudoExists) {
-          console.log('Ce pseudo est déjà utilisé.');
+          // pseudo exist toast
           return of(null);
         } else {
           const credentials: Credential = {
@@ -75,11 +71,10 @@ export class HostService {
             newUser.points,
             newUser.isAdmin
           );
-          console.log(user);
 
           return this._dbAccessor.addUser$(user).pipe(
             switchMap((addedUser) => {
-              console.log('Utilisateur ajouté avec succès :', addedUser);
+              //  Success register toast
               const login: Login = {
                 userID: addedUser.userID as string,
                 salt: 'abc',

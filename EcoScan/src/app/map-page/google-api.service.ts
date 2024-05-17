@@ -6,18 +6,16 @@ import { DataAccessorService } from '../shared-module/shared/data-accessor.servi
 import { getWasteTypeString } from '../shared-module/models/enums/WasteType.enum';
 import { Observable, map, of } from 'rxjs';
 
-
 interface MarkerTuple {
   marker: google.maps.marker.AdvancedMarkerElement;
   binType: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GoogleApiService {
-
-  constructor() { }
+  constructor() {}
 
   private DBAccessor = inject(DataAccessorService);
   private map!: google.maps.Map;
@@ -63,7 +61,6 @@ export class GoogleApiService {
   private locateSelfAndCenter(dropPin: boolean = false): void {
     navigator.geolocation.getCurrentPosition(
       (position: GeolocationPosition) => {
-
         const pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
@@ -97,26 +94,30 @@ export class GoogleApiService {
   private populateMapMarkers(binList: Bin[]): void {
     for (let bin of binList) {
       const infoWindow = new google.maps.InfoWindow({
-        content: `<h3>${bin.type + " bin"}</h3>`
+        content: `<h3>${bin.type + ' bin'}</h3>`,
       });
       const marker = new google.maps.marker.AdvancedMarkerElement({
         map: this.map,
         position: { lat: Number(bin.lat), lng: Number(bin.lng) },
       });
-      marker.addListener("click", () => {
+      marker.addListener('click', () => {
         infoWindow.open(this.map, marker);
       });
-      this.markerList.push({ marker: marker, binType: getWasteTypeString(bin.type) });
+      this.markerList.push({
+        marker: marker,
+        binType: getWasteTypeString(bin.type),
+      });
     }
-
   }
 
   private createLocateButton(): void {
-    const locationButton = document.createElement("button");
-    locationButton.textContent = "Re-center map";
-    locationButton.classList.add("custom-map-control-button");
-    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-    locationButton.addEventListener("click", () => {
+    const locationButton = document.createElement('button');
+    locationButton.textContent = 'Re-center map';
+    locationButton.classList.add('custom-map-control-button');
+    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+      locationButton
+    );
+    locationButton.addEventListener('click', () => {
       if (navigator.geolocation) {
         this.locateSelfAndCenter(true);
       } else {
@@ -126,12 +127,12 @@ export class GoogleApiService {
   }
 
   private initSearchBar(): void {
-    const input = document.getElementById("mapSearch") as HTMLInputElement;
+    const input = document.getElementById('mapSearch') as HTMLInputElement;
     const searchBox = new google.maps.places.SearchBox(input);
-    this.map.addListener("bounds_changed", () => {
+    this.map.addListener('bounds_changed', () => {
       searchBox.setBounds(this.map.getBounds() as google.maps.LatLngBounds);
     });
-    searchBox.addListener("places_changed", () => {
+    searchBox.addListener('places_changed', () => {
       const places = searchBox.getPlaces() as google.maps.places.PlaceResult[];
       if (places.length == 0) {
         return;
@@ -140,7 +141,6 @@ export class GoogleApiService {
 
       places.forEach((place) => {
         if (!place.geometry || !place.geometry.location) {
-          console.log("Returned place contains no geometry");
           return;
         }
         if (place.geometry.viewport) {
@@ -161,7 +161,7 @@ export class GoogleApiService {
     infoWindow.setPosition(pos);
     infoWindow.setContent(
       browserHasGeolocation
-        ? "Error: The Geolocation service failed."
+        ? 'Error: The Geolocation service failed.'
         : "Error: Your browser doesn't support geolocation."
     );
     infoWindow.open(this.map);

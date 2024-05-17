@@ -22,13 +22,13 @@ export class LoginComponent {
 
       this._hostService.login$(credentials).subscribe((isLoggedIn) => {
         if (isLoggedIn) {
-          console.log('Utilisateur connecté avec succès !');
+          //  success connect toast
         } else {
-          console.log('Identifiants incorrects.');
+          //  incorrect user toast
         }
       });
     } else {
-      console.log('Formulaire invalide.');
+      //  invalid form toast
     }
   }
 }

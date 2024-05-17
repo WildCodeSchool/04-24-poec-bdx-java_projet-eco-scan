@@ -32,9 +32,6 @@ export class AuthService {
     credentials: Credential,
     user: GetUser
   ): Observable<boolean> {
-    console.log('dans le verfiy', user);
-    console.log('dans le verfiy', credentials);
-
     let userPassword = '';
 
     // TODO

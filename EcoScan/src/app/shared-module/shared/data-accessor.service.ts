@@ -79,10 +79,7 @@ export class DataAccessorService {
   */
   // fetch
   getUserLogin$(id: string): Observable<Login> {
-    console.log('dans le login id:', id);
-
     return this.http.get<Login>(`${DB_PATH}/logins/${id}`).pipe(
-      tap((e) => console.log(e)),
       catchError((err) => {
         throw this.handleFailure(err);
       })
