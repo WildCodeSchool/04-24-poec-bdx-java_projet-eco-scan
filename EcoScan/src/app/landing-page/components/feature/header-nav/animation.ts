@@ -11,7 +11,7 @@ export const SidebarOpenAnimation = animation([
   style({ left: '-{{menuWidth}}' }),
   query('.menu-item', [style({ transform: 'translateX(-{{menuWidth}})' })]),
   sequence([
-    animate('200ms', style({ left: '0' })),
+    animate('350ms', style({ left: '0' })),
     query('.menu-item', [
       stagger(50, [
         animate('{{animationStyle}}', style({ transform: 'none' })),
@@ -23,5 +23,5 @@ export const SidebarOpenAnimation = animation([
 export const SidebarCloseAnimation = animation([
   style({ left: '0' }),
   query('.menu-item', [style({ transform: 'none' })]),
-  animate('200ms', style({ left: '-{{menuWidth}}' })),
+  animate('300ms', style({ left: '-{{menuWidth}}' })),
 ]);

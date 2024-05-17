@@ -4,13 +4,12 @@ import { LandingPagesComponent } from './pages/landing-pages/landing-pages.compo
 
 const routes: Routes = [
   { path: '', component: LandingPagesComponent },
-  { 
+  {
     path: 'map',
     loadChildren: () =>
-    import('../map-page/map-page.module').then(
-      (m) => m.MapPageModule
-    ),
-  }];
+      import('../map-page/map-page.module').then((m) => m.MapPageModule),
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
