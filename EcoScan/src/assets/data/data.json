@@ -5,38 +5,60 @@
       "name": "Bruce Wayne",
       "email": "BruceWayne@batman.com",
       "points": 300,
-      "isAdmin": true
+      "isAdmin": true,
+      "id": "4867"
+    },
+    {
+      "id": "674d",
+      "firstName": "adam",
+      "lastName": "hemamou",
+      "pseudo": "fdfsdfsdfsdf",
+      "email": "h-mamou@hotmail.fr",
+      "points": 10,
+      "isAdmin": false
     }
   ],
   "logins": [
     {
       "userID": "1",
       "salt": "1AC3",
-      "hashedPassword": "ff5733"
+      "hashedPassword": "ff5733",
+      "id": "a072"
+    },
+    {
+      "id": "b311",
+      "salt": "abc",
+      "email": "h-mamou@hotmail.fr",
+      "hashedPassword": "1234"
     }
   ],
   "rubbishItems": [
     {
       "rubbishID": "123",
-      "type": "Glass"
+      "type": "Glass",
+      "id": "667f"
     },
     {
       "rubbishID": "234",
-      "type": "Plastic"
+      "type": "Plastic",
+      "id": "be89"
     },
     {
       "rubbishID": "345",
-      "type": "Battery"
+      "type": "Battery",
+      "id": "f55a"
     },
     {
       "rubbishID": "456",
-      "type": "Cardboard"
+      "type": "Cardboard",
+      "id": "813a"
     }
   ],
   "stagingArea": [
     {
       "userID": "1",
-      "rubbishID": "123"
+      "rubbishID": "123",
+      "id": "daa9"
     }
   ],
   "bins": [
@@ -44,25 +66,29 @@
       "binID": "999",
       "type": "Battery",
       "lat": "44.8690178",
-      "lng": "-0.5683332"
+      "lng": "-0.5683332",
+      "id": "e73b"
     },
     {
       "binID": "1000",
       "type": "Glass",
       "lat": "44.86404963386602",
-      "lng": "-0.5579769971768761"
+      "lng": "-0.5579769971768761",
+      "id": "276c"
     },
     {
       "binID": "1001",
       "type": "Paper",
       "lat": "44.86823153641414",
-      "lng": "-0.563709120282005"
+      "lng": "-0.563709120282005",
+      "id": "1893"
     },
     {
       "binID": "1002",
       "type": "Waste",
       "lat": "44.868992683367225",
-      "lng": "-0.5567995182921108"
+      "lng": "-0.5567995182921108",
+      "id": "a8fb"
     }
   ],
   "deposits": [
@@ -72,7 +98,8 @@
       "binID": "999",
       "timeOf": "2007-05-10 00:00:00",
       "scanImgOne": "BLOB",
-      "scanImgTwo": "BLOB"
+      "scanImgTwo": "BLOB",
+      "id": "217e"
     }
   ],
   "promo": [
@@ -86,7 +113,8 @@
       "startDate": "2007-05-10 12:00:00",
       "endDate": "2007-05-15 12:00:00",
       "redeemableAmount": "100",
-      "pointsNeed": 300
+      "pointsNeed": 300,
+      "id": "b670"
     },
     {
       "promoID": "889",
@@ -98,7 +126,8 @@
       "startDate": "2007-05-10 12:00:00",
       "endDate": "2007-05-15 12:00:00",
       "redeemableAmount": "100",
-      "pointsNeed": 300
+      "pointsNeed": 300,
+      "id": "b273"
     },
     {
       "promoID": "890",
@@ -110,7 +139,8 @@
       "startDate": "2007-05-10 12:00:00",
       "endDate": "2007-05-15 12:00:00",
       "redeemableAmount": "100",
-      "pointsNeed": 300
+      "pointsNeed": 300,
+      "id": "cd53"
     },
     {
       "promoID": "891",
@@ -122,7 +152,8 @@
       "startDate": "2007-05-10 12:00:00",
       "endDate": "2007-05-15 12:00:00",
       "redeemableAmount": "100",
-      "pointsNeed": 300
+      "pointsNeed": 300,
+      "id": "686f"
     }
   ],
   "brand": [
@@ -132,7 +163,8 @@
       "brandLogo": "BLOB",
       "brandBanner": "BLOB",
       "otherImages": "BLOB",
-      "brandDescription": "A shop"
+      "brandDescription": "A shop",
+      "id": "018d"
     }
   ]
 }

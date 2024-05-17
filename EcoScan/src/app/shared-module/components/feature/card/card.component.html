@@ -1,38 +1,38 @@
 <div *ngIf="cardList$ | async as cardList">
-  <div *ngIf="carrefourBrand$ | async as carrefourBrand"> 
-
+  <div *ngIf="carrefourBrand$ | async as carrefourBrand">
     <div class="card-container">
       <div class="promo-card" *ngFor="let card of cardList">
-
         <div class="promo-amount">
+          <div *ngIf="isOpen" class="blur"></div>
           <div class="percent-off">
             <p id="flat">FLAT</p>
             <div class="percent-container">
+              <p class="percent-discount">{{ card.percentOff }}</p>
 
-              <p class="percent-discount"> {{ card.percentOff }} </p>
-              
               <div class="percent-off-container">
                 <p id="percent">%</p>
                 <p id="off">off</p>
               </div>
-
             </div>
-           
           </div>
           <div class="redeemable-amount">
-           <p id="points-amount"> {{ card.redeemableAmount }} </p>
-           points
+            <p id="points-amount">{{ card.redeemableAmount }}</p>
+            points
           </div>
         </div>
         <div class="brand-and-details">
           <!-- <p> {{ carrefourBrand.brandName }} </p> -->
-          <img id="logo" src="../../../../../assets/svg/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png" alt="carrouf logo">
-            <p id="details" > See details </p>
-          <button type="button" (click)="openModal(card)"><img src="../../../../../assets/svg/arrow.png" alt="Arrow"></button>
+          <img
+            id="logo"
+            src="../../../../../assets/svg/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
+            alt="carrouf logo"
+          />
+          <p id="details">See details</p>
+          <button type="button" (click)="openModal(card)">
+            <img src="../../../../../assets/svg/arrow.png" alt="Arrow" />
+          </button>
         </div>
-      
       </div>
     </div>
-
-  </div>   
+  </div>
 </div>

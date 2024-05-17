@@ -1,12 +1,21 @@
 <div class="footer">
-    <div class="color-bar">
-        <div *ngIf="scanButton">
-            <!-- @TODO linkage when page is created -->
-            <a [routerLink]="['/scan-page']"><img class="scan-button" src="../../../../../assets/svg/smartphone.svg"></a>
-        </div>
-        <div *ngIf="captureButton">
-            <!-- @TODO linkage when page is created -->
-            <a [routerLink]="['/capture-page']"><img class="capture-button" src="../../../../../assets/svg/aperture.svg"></a>
-        </div>
+  <div class="color-bar">
+    <div *ngIf="scanButton">
+      <!-- @TODO linkage when page is created -->
+
+      <a [routerLink]="['/scan-page']"
+        ><img
+          class="scan-button"
+          src="../../../../../assets/svg/smartphone.png"
+      /></a>
     </div>
+    <div *ngIf="captureButton">
+      <!-- @TODO linkage when page is created -->
+      <a [routerLink]="['/capture-page']"
+        ><img
+          class="capture-button"
+          src="../../../../../assets/svg/aperture.svg"
+      /></a>
+    </div>
+  </div>
 </div>

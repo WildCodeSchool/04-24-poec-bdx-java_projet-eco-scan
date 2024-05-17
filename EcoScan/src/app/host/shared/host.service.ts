@@ -77,7 +77,7 @@ export class HostService {
           );
           console.log(user);
 
-          return this._dbAccessor.addUser(user).pipe(
+          return this._dbAccessor.addUser$(user).pipe(
             switchMap((addedUser) => {
               console.log('Utilisateur ajouté avec succès :', addedUser);
               const login: Login = {
