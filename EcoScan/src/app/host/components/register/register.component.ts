@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HostService } from '../../shared/host.service';
-import { Credential } from '../../models/crendential.type';
 import { UserForm } from '../../models/user.type';
 
 @Component({
@@ -29,7 +28,6 @@ export class RegisterComponent {
       const password = this.registrationForm.value.password;
 
       if (!firstname || !lastname || !pseudo || !email || !password) {
-        console.error('Les champs du formulaire ne peuvent pas être vides.');
         return;
       }
 
@@ -45,22 +43,22 @@ export class RegisterComponent {
 
       this._hostService.register$(newUser).subscribe((response) => {
         if (response) {
-          console.log('Utilisateur ajouté avec succès :', response);
+          //  success add user tost
           this.registrationForm.reset();
 
           this._hostService.login$(response).subscribe((loggedIn) => {
             if (loggedIn) {
-              console.log('Utilisateur connecté avec succès');
+              //  Success connect toast
             } else {
-              console.error("Erreur lors de la connexion de l'utilisateur");
+              // err lors de la connexion toast
             }
           });
         } else {
-          console.error("Erreur lors de l'ajout de l'utilisateur");
+          // err lors de l'ajout toast
         }
       });
     } else {
-      console.log('Formulaire invalide.');
+      // Erreur invalide toast
     }
   }
 }

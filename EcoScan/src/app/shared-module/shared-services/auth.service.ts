@@ -37,11 +37,11 @@ export class AuthService {
 
     let userPassword = '';
 
+    // TODO
+
     // this._dbAccessor
     //   .getUserLogin$(user.id)
-    //   .pipe(map((login) => (userPassword = login.hashedPassword))),
-    //   tap((e) => console.log(e));
-    console.log(userPassword);
+    //   .pipe(map((login) => (userPassword = login.hashedPassword)))
 
     if (
       user.email === credentials.email &&
