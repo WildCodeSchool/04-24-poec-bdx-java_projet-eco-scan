@@ -8,11 +8,16 @@
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
+
+  &-vertical {
+    flex-direction: column;
+  }
 }
 
-.card-container::-webkit-scrollbar {
+.card-container::-webkit-scrollbar, .card-container-vertical::-webkit-scrollbar {
   display: none;
 }
+
 
 .blur {
   position: absolute;

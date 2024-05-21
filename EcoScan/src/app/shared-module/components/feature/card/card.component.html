@@ -1,9 +1,9 @@
 <div *ngIf="cardList$ | async as cardList">
   <div *ngIf="carrefourBrand$ | async as carrefourBrand">
-    <div class="card-container">
+    <div [ngClass]="{'card-container': !vertical, 'card-container-vertical': vertical}">
       <div class="promo-card" *ngFor="let card of cardList">
         <div class="promo-amount">
-          <div *ngIf="isOpen" class="blur"></div>
+          <div *ngIf="blurCards" class="blur"></div>
           <div class="percent-off">
             <p id="flat">FLAT</p>
             <div class="percent-container">

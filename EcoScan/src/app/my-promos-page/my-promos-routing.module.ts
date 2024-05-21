@@ -4,7 +4,6 @@ import { MyPromosPageComponent } from './pages/my-promos-page/my-promos-page.com
 
 const routes: Routes = [
   {path: '', component: MyPromosPageComponent},
-  {path: 'mypromos', component: MyPromosPageComponent}
 
 ];
 
