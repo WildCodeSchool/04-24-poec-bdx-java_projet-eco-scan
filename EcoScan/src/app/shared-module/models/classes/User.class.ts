@@ -1,12 +1,12 @@
 export class User {
   constructor(
-    public userID: string | undefined,
-    public firstName: string,
-    public lastName: string,
-    public pseudo: string,
-    public email: string,
-    public points: number,
-    public isAdmin: boolean = false
+    private userID: string | undefined,
+    private firstName: string,
+    private lastName: string,
+    private pseudo: string,
+    private email: string,
+    private points: number,
+    private isAdmin: boolean = false
   ) {}
 
   public getIsAdmin(): boolean {
