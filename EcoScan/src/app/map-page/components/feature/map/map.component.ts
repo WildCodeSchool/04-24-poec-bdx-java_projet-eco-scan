@@ -1,12 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { G_API_KEY } from '../../../../shared-module/shared/settings';
-
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrl: './map.component.scss'
+  styleUrl: './map.component.scss',
 })
-export class MapComponent {
-
-}
+export class MapComponent {}

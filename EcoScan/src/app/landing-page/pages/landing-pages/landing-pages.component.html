@@ -1,11 +1,9 @@
-<div [class.active]="isOpen" class="blur"></div>
+<!-- <div [class.active]="isOpen" class="blur"></div> -->
 <div class="landing">
   <app-header-nav (boolChange)="onReceivedFromHeader($event)"></app-header-nav>
-  
-  <app-card/>
-  <app-modal/>
 
-  <app-footer
-    [scanButton]="true"
-  ></app-footer>
+  <app-card [blurCards]="isOpen" />
+  <app-modal />
+
+  <app-footer [scanButton]="true"></app-footer>
 </div>

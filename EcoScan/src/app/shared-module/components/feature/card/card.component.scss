@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 .card-container {
   display: flex;
@@ -6,12 +6,22 @@
   font-weight: 400;
   font-style: normal;
   overflow: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none; 
+
+  &-vertical {
+    @extend .card-container;
+    flex-direction: column;
+  }
 }
 
-.card-container::-webkit-scrollbar {
-  display: none;
+
+.blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.089);
+  border-radius: 10px;
 }
 
 .promo-card {
@@ -21,15 +31,14 @@
   margin: 1rem;
   border-radius: 10px;
   box-shadow: 0px 0px 4px 2px rgb(0, 0, 0, 0.45);
-}
-
-.promo-amount {
-  display: flex;
-  justify-content: space-between;
-  padding-left: 0.4rem;
-  padding-bottom: 1rem;
-  background-color: #F1ECE3;
-  border-radius: 8px;
+  .promo-amount {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0.4rem;
+    padding-bottom: 1rem;
+    background-color: #f1ece3;
+    border-radius: 8px;
+  }
 }
 
 .redeemable-amount {
@@ -51,7 +60,7 @@
 
 .percent-container {
   display: flex;
-  
+
   div {
     display: flex;
     line-height: 0.6rem;
@@ -59,8 +68,7 @@
     flex-direction: column;
     max-width: 40px;
     margin-right: 10px;
-    }
-  
+  }
 }
 
 .off {
@@ -74,7 +82,7 @@
 }
 
 .percent-off-container {
- margin-top: 0;
+  margin-top: 0;
 }
 
 .percent-discount {

@@ -1,17 +1,16 @@
 .footer {
-
-  height: 5%;
+  height: 7%;
   width: 100%;
   bottom: 0;
   left: 0;
   position: fixed;
 
-  .color-bar{
+  .color-bar {
     @extend .footer;
     background: #1d212d;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
-    width:100%;
+    width: 100%;
     display: flex;
     justify-content: center;
   }
@@ -19,19 +18,22 @@
 
 .centre-button {
   background-color: white;
-  translate: 0px -25px;
-  width: 3.5rem;
+  translate: 0px -35px;
   margin-bottom: 4rem;
-  border-radius: 30px;
-  border: 8px solid #1d212d;
+  border-radius: 50%;
+  border: 7px solid #1d212d;
+  width: 100px;
 }
 
-.scan-button{
+.scan-button {
   @extend .centre-button;
-  padding: 4px;
+  padding: 6px;
+  height: 5rem;
+  width: auto;
+  object-fit: contain;
 }
 
-.capture-button{
+.capture-button {
   @extend .centre-button;
   padding: 5px;
 }
