@@ -7,15 +7,14 @@
   justify-content: space-between;
   padding-left: 0.4rem;
   padding-bottom: 1rem;
-  background-color: #F1ECE3;
+  background-color: #f1ece3;
   border-radius: 8px;
 }
 
 .p-dialog-header {
-  background-color: #F1ECE3;
+  background-color: #f1ece3;
   display: block;
 }
-
 
 .redeemable-amount {
   background-color: white;
@@ -36,7 +35,7 @@
 
 .percent-container {
   display: flex;
-  
+
   div {
     display: flex;
     line-height: 0.6rem;
@@ -44,8 +43,7 @@
     flex-direction: column;
     max-width: 40px;
     margin-right: 10px;
-    }
-  
+  }
 }
 
 .percent {
@@ -63,7 +61,7 @@
 }
 
 .percent-off-container {
- margin-top: 0.4rem;
+  margin-top: 0.4rem;
 }
 
 .percent-discount {
