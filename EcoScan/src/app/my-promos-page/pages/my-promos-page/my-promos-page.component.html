@@ -1,0 +1,16 @@
+<app-header
+    headerPageTitle="MY PROMOS"
+    [searchBar]="false"
+></app-header>
+<div class="pageContent">
+    <app-promo-gallery
+        title="PROMOS"
+        [verticalCards]="true"
+    ></app-promo-gallery>
+
+    <!-- @TODO link to explanation page once created -->
+    <a [routerLink]="['/']" class="tip-link">How to use your promo</a>
+</div>
+<app-footer
+    [scanButton]="true"
+/>
