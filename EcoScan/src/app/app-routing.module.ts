@@ -17,6 +17,16 @@ const routes: Routes = [
     path: 'scan',
     loadChildren: () => import('./scan/scan.module').then((m) => m.ScanModule),
   },
+  {
+    path: 'mypromos',
+    loadChildren: () =>
+      import('./my-promos-page/my-promos.module').then((m) => m.MyPromosModule),
+  },
+  {
+    path: 'map',
+    loadChildren: () =>
+      import('./map-page/map-page.module').then((m) => m.MapPageModule),
+  },
 ];
 
 @NgModule({

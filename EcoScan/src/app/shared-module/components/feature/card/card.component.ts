@@ -11,6 +11,9 @@ import { ModalService } from '../../../shared/modal.service';
   styleUrl: './card.component.scss',
 })
 export class CardComponent {
+
+  @Input() blurCards!: boolean;
+  @Input() vertical: boolean = false;
   cardList$: Observable<Promo[]> = this.cardService.getPromos$();
   carrefourBrand$: Observable<Brand> =
     this.cardService.getBrandByName$('Carrefour');
@@ -19,7 +22,6 @@ export class CardComponent {
     private cardService: CardService,
     private modalService: ModalService
   ) {}
-  @Input() isOpen!: boolean;
 
   openModal(cardData: Promo) {
     this.modalService.openModal(cardData);

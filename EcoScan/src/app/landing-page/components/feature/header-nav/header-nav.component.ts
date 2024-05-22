@@ -3,7 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { SidebarCloseAnimation, SidebarOpenAnimation } from './animation';
 import { Nav } from '../../../models/nav.type';
 import { HostService } from '../../../../host/shared/host.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 const animationParams = {
   menuWidth: '250px',
