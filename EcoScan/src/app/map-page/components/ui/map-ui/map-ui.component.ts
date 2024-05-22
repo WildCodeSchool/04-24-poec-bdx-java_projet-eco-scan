@@ -1,6 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { GoogleApiService } from '../../../google-api.service';
 
+
+interface binSelection {
+  name: string;
+}
+
 @Component({
   selector: 'app-map-ui',
   templateUrl: './map-ui.component.html',
@@ -9,8 +14,8 @@ import { GoogleApiService } from '../../../google-api.service';
 export class MapUiComponent {
   
   private googleApi = inject(GoogleApiService);
-  binList:any[];
-  selectedBins: any;
+  binList:binSelection[];
+  selectedBins!: binSelection;
 
   constructor(){
     this.binList = [

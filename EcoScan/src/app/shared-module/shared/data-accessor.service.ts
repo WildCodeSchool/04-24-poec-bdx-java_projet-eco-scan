@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable, catchError, map, tap } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { User } from '../models/classes/User.class';
 import { Promo } from '../models/types/Promo.type';
 import { DB_PATH } from './settings';
@@ -63,7 +63,7 @@ export class DataAccessorService {
   updateUser$(updatedUser: User): Observable<User> {
     return this.http
       .put<User>(
-        `${DB_PATH}/users/${updatedUser.userID}`,
+        `${DB_PATH}/users/${updatedUser.getUserID()}`,
         updatedUser,
         this.httpOptions
       )

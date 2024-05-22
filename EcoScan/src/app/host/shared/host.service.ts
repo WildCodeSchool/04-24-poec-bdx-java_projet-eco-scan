@@ -76,7 +76,7 @@ export class HostService {
             switchMap((addedUser) => {
               //  Success register toast
               const login: Login = {
-                userID: addedUser.userID as string,
+                userID: addedUser.getUserID() as string,
                 salt: 'abc',
                 email: newUser.email,
                 hashedPassword: newUser.password,
