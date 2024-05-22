@@ -35,7 +35,7 @@
 .redeemable-amount {
   background-color: white;
   padding: 0 0.4rem;
-  padding-top: 1rem;
+  padding-top: 0.4rem;
   margin-right: 0.4rem;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -63,12 +63,12 @@
   
 }
 
-#off {
+.off {
   font-size: small;
   justify-self: flex-start;
 }
 
-#flat {
+.flat {
   margin-top: 1rem;
   font-size: 1.8rem;
 }
