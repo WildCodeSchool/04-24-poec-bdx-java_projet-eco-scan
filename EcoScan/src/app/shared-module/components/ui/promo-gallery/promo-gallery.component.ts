@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-promo-gallery',
@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class PromoGalleryComponent {
 
+  @Input()
+  title!:string;
+
+  @Input()
+  verticalCards!:boolean;
 }

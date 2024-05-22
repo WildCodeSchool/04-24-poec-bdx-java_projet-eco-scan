@@ -6,16 +6,11 @@
   font-weight: 400;
   font-style: normal;
   overflow: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 
   &-vertical {
+    @extend .card-container;
     flex-direction: column;
   }
-}
-
-.card-container::-webkit-scrollbar, .card-container-vertical::-webkit-scrollbar {
-  display: none;
 }
 
 
