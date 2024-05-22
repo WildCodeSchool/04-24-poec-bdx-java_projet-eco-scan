@@ -4,7 +4,7 @@ import { Injectable, inject } from '@angular/core';
 import { Bin } from '../shared-module/models/types/Bin.type';
 import { DataAccessorService } from '../shared-module/shared/data-accessor.service';
 import { getWasteTypeString } from '../shared-module/models/enums/WasteType.enum';
-import { Observable, map, of } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 
 interface MarkerTuple {
   marker: google.maps.marker.AdvancedMarkerElement;
@@ -15,7 +15,6 @@ interface MarkerTuple {
   providedIn: 'root',
 })
 export class GoogleApiService {
-  constructor() {}
 
   private DBAccessor = inject(DataAccessorService);
   private map!: google.maps.Map;
@@ -27,7 +26,7 @@ export class GoogleApiService {
 
   public initMap(binList: Bin[]): Observable<void> {
     return this.createMap().pipe(
-      map(() => {
+      tap(() => {
         this.locateSelfAndCenter(true);
         this.populateMapMarkers(binList);
         this.createLocateButton();
@@ -72,14 +71,7 @@ export class GoogleApiService {
         bounds.extend(point);
 
         if (dropPin) {
-          const pinBackground = new google.maps.marker.PinElement({
-            background: '#FBBC04',
-          });
-          new google.maps.marker.AdvancedMarkerElement({
-            map: this.map,
-            position: pos,
-            content: pinBackground.element,
-          });
+          this.createUserMarker(pos);
         }
 
         this.map.fitBounds(bounds);
@@ -89,6 +81,17 @@ export class GoogleApiService {
         this.handleLocationError(true, this.map.getCenter()!);
       }
     );
+  }
+
+  private createUserMarker(pos:{lat: number, lng:number}){
+    const pinBackground = new google.maps.marker.PinElement({
+      background: '#FBBC04',
+    });
+    new google.maps.marker.AdvancedMarkerElement({
+      map: this.map,
+      position: pos,
+      content: pinBackground.element,
+    });
   }
 
   private populateMapMarkers(binList: Bin[]): void {
