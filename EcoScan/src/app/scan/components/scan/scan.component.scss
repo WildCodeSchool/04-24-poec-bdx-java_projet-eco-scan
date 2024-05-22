@@ -1,0 +1,84 @@
+::ng-deep .ngx-scanner-qrcode {
+  background-color: #474747;
+}
+
+::ng-deep .origin-video {
+  width: 100%;
+  background-color: #474747 !important;
+  background-image: url("../../../../assets/svg/scan.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 300px;
+}
+
+.bandeau {
+  width: 100%;
+  background-color: #178b68;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px;
+
+  .information {
+    display: flex;
+    gap: 30px;
+    padding-top: 20px;
+
+    p {
+      display: inline-block;
+      border-bottom: 1px solid;
+      padding-bottom: 3px;
+    }
+  }
+}
+
+.scan-btn {
+  display: flex;
+  margin: 20px auto;
+  border: none;
+  width: 100px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lato", sans-serif;
+  color: white;
+  background-color: #1d222e;
+  border-radius: 3px;
+}
+
+.next-btn {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+
+  .staged-btn {
+    width: 100px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    font-family: "Lato", sans-serif;
+    color: white;
+    background-color: #1d222e;
+    border-radius: 3px;
+    border: none;
+  }
+
+  .throw-btn {
+    width: 100px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    font-family: "Lato", sans-serif;
+    color: white;
+    background-color: #178b68;
+    border-radius: 3px;
+    border: none;
+  }
+}
