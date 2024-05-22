@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, filter, map, of, switchMap, tap } from 'rxjs';
 import { UserForm } from '../models/user.type';
-import { AuthService } from '../../shared-module/shared-services/auth.service';
+import { AuthService } from '../../shared-module/shared/auth.service';
 import { Credential } from '../models/crendential.type';
 import { Router } from '@angular/router';
 import { DataAccessorService } from '../../shared-module/shared/data-accessor.service';
