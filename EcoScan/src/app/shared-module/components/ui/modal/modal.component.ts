@@ -1,17 +1,16 @@
-import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA, Component, ViewEncapsulation } from '@angular/core';
-import { Promo } from '../../../models/types/Promo.type';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ModalService } from '../../../shared/modal.service';
 import { Observable } from 'rxjs';
+import { Modal } from '../../../models/types/modal.type';
 
 @Component({
-    selector: 'app-modal',
-    templateUrl: './modal.component.html',
-    styleUrl: './modal.component.scss',
-    encapsulation: ViewEncapsulation.None,
-    // schemas: [NO_ERRORS_SCHEMA]
+  selector: 'app-modal',
+  templateUrl: './modal.component.html',
+  styleUrl: './modal.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class ModalComponent {
-  modalState$: Observable<{ visible: boolean, cardData: Promo | null }>;
+  modalState$: Observable<Modal>;
 
   constructor(private modalService: ModalService) {
     this.modalState$ = this.modalService.modalState$;
