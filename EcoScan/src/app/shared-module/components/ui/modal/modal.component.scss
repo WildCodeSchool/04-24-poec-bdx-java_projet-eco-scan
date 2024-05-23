@@ -108,6 +108,7 @@
 .details-container {
   margin: 0 0 1rem 1rem;
   width: fit-content;
+  display: block;
 }
 
 span {
@@ -115,4 +116,15 @@ span {
 }
 
 .modal-logo-container {
+  display: flex;
+  align-items: center; /* Centre verticalement */
+  justify-content: space-between;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+.logo-modal {
+  padding: 0 2rem 1rem 0;
 }

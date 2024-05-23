@@ -44,21 +44,22 @@
       </ng-template>
 
       <h2 class="promo-description-modal">Description</h2>
-      <div class="details-container">
-        <h3>{{ cardData.title }}</h3>
-        <p>{{ cardData.description }}</p>
-        <p><span>Item:</span> {{ cardData.item }}</p>
-        <p><span>Percent Off:</span> {{ cardData.percentOff }}%</p>
-        <p><span>Redeemable Amount:</span> {{ cardData.redeemableAmount }}</p>
-        <p><span>Start Date:</span> {{ cardData.startDate | date }}</p>
-        <p><span>End Date:</span> {{ cardData.endDate | date }}</p>
-        <div class="modal-logo-container">
-          <img
-            width="200"
-            src="../../../../../assets/svg/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
-            alt=""
-          />
+      <div class="modal-logo-container">
+        <div class="details-container">
+          <h3>{{ cardData.title }}</h3>
+          <p>{{ cardData.description }}</p>
+          <p><span>Item:</span> {{ cardData.item }}</p>
+          <p><span>Percent Off:</span> {{ cardData.percentOff }}%</p>
+          <p><span>Redeemable Amount:</span> {{ cardData.redeemableAmount }}</p>
+          <p><span>Start Date:</span> {{ cardData.startDate | date }}</p>
+          <p><span>End Date:</span> {{ cardData.endDate | date }}</p>
         </div>
+        <img
+          class="logo-modal"
+          width="200"
+          src="../../../../../assets/svg/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
+          alt=""
+        />
       </div>
     </ng-container>
   </p-dialog>
