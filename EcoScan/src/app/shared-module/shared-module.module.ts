@@ -8,6 +8,7 @@ import { ModalComponent } from './components/ui/modal/modal.component';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { DumbCardComponent } from './components/ui/dumb-card/dumb-card.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     CardComponent,
     HeaderComponent,
     ModalComponent,
+    DumbCardComponent,
   ],
   imports: [
     CommonModule,

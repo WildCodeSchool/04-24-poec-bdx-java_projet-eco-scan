@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+.card-container {
+  display: flex;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  overflow: auto;
+
+  &-vertical {
+    @extend .card-container;
+    flex-direction: column;
+  }
+}
+
+.blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.089);
+  border-radius: 10px;
+}
+
+.promo-card {
+  display: flex;
+  flex-direction: column;
+  min-width: max-content;
+  margin: 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px 2px rgb(0, 0, 0, 0.45);
+  .promo-amount {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0.4rem;
+    padding-bottom: 1rem;
+    background-color: #f1ece3;
+    border-radius: 8px;
+  }
+}
+
+.redeemable-amount {
+  background-color: white;
+  padding: 0 0.4rem;
+  padding-top: 0.4rem;
+  margin-right: 0.4rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  line-height: 0.8;
+}
+
+.percent-off {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  line-height: 0.7;
+}
+
+.percent-container {
+  display: flex;
+
+  div {
+    display: flex;
+    line-height: 0.6rem;
+    align-items: center;
+    flex-direction: column;
+    max-width: 40px;
+    margin-right: 10px;
+  }
+}
+
+.off {
+  font-size: small;
+  justify-self: flex-start;
+}
+
+.flat {
+  margin-top: 1rem;
+  font-size: 1.8rem;
+}
+
+.percent-off-container {
+  margin-top: 0;
+}
+
+.percent-discount {
+  font-size: 2rem;
+  margin: 0;
+  padding-top: 5px;
+  padding-left: 2px;
+}
+
+.brand-and-details {
+  display: flex;
+  margin: 1rem;
+}
+
+p {
+  width: fit-content;
+  margin: 0.2rem;
+}
+
+#details {
+  padding-top: 1.5rem;
+  margin-left: 2rem;
+}
+
+button {
+  background: none;
+  border: none;
+  margin-top: 0.3rem;
+  margin-left: 0.3rem;
+}
+
+img {
+  width: 20px;
+}
+
+#logo {
+  width: 70px;
+}
