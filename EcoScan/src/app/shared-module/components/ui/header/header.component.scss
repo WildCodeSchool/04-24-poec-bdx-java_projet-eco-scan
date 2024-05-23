@@ -1,25 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 .header {
-    background-color: #1d212d;
-    height: 60px;
-    width: 100%;
-    position: relative;
-    z-index: 2;
-  
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 15px 15px;
-      gap:2rem;
-  
-      h3 {
-        padding-top: 3px;
-        padding-bottom: 4px;
-        color: white;
-        font-family: "Lato";
-      }
+  background-color: #2f323d;
+  height: 60px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px 15px;
+    gap: 2rem;
+
+    h3 {
+      padding-top: 3px;
+      padding-bottom: 4px;
+      color: white;
+      font-family: "Lato";
     }
   }
-  
+}

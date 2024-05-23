@@ -8,6 +8,8 @@ import { ModalComponent } from './components/ui/modal/modal.component';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { WasteCardComponent } from './components/ui/waste-card/waste-card.component';
+import { BinTypePipe } from './shared/bin-type.pipe';
 import { DumbCardComponent } from './components/ui/dumb-card/dumb-card.component';
 
 @NgModule({
@@ -16,21 +18,18 @@ import { DumbCardComponent } from './components/ui/dumb-card/dumb-card.component
     CardComponent,
     HeaderComponent,
     ModalComponent,
+    WasteCardComponent,
+    BinTypePipe,
     DumbCardComponent,
   ],
-  imports: [
-    CommonModule,
-    SharedModuleRouting,
-    DialogModule,
-    ButtonModule,
-    FormsModule
-  ],
-  exports:[
+  imports: [SharedModuleRouting, DialogModule, ButtonModule, FormsModule],
+  exports: [
     FooterComponent,
     CardComponent,
     HeaderComponent,
-    ModalComponent
-  ]
+    ModalComponent,
+    WasteCardComponent,
+    BinTypePipe,
+  ],
 })
-
-export class SharedModule { }
+export class SharedModule {}
