@@ -8,6 +8,7 @@ import { ModalComponent } from './components/ui/modal/modal.component';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { WasteCardComponent } from './components/ui/waste-card/waste-card.component';
 
 @NgModule({
   declarations: [
@@ -15,20 +16,21 @@ import { FormsModule } from '@angular/forms';
     CardComponent,
     HeaderComponent,
     ModalComponent,
+    WasteCardComponent,
   ],
   imports: [
     CommonModule,
     SharedModuleRouting,
     DialogModule,
     ButtonModule,
-    FormsModule
+    FormsModule,
   ],
-  exports:[
+  exports: [
     FooterComponent,
     CardComponent,
     HeaderComponent,
-    ModalComponent
-  ]
+    ModalComponent,
+    WasteCardComponent,
+  ],
 })
-
-export class SharedModule { }
+export class SharedModule {}

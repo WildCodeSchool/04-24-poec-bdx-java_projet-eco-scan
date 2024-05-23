@@ -59,10 +59,11 @@ export class ScanComponent {
     }
   }
 
-  sendToPic() {
-    // this.sendData.emit(this.scannedData);
+  sendToStaged() {
     this.scanService.addDurtyScan(this.scannedData as Rubbish);
     this.scannedData = undefined;
+
+    //post to staged waste
   }
 
   navigateToPictureComponent() {
