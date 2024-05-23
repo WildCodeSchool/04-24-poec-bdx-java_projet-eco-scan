@@ -11,7 +11,7 @@ export class DumbCardComponent {
   @Input() blurCards!: boolean;
   @Input() vertical: boolean = false;
   @Input() cardList!: Promo[] | null;
-  @Input() carrefourBrand!: Brand | null;
+  @Input() promoBrand!: Brand | null;
   @Output() openModal = new EventEmitter<Promo>();
 
   onOpenModal(card: Promo) {
