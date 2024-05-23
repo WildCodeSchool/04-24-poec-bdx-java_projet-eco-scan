@@ -14,8 +14,7 @@ export class CardComponent {
   @Input() blurCards!: boolean;
   @Input() vertical: boolean = false;
   cardList$: Observable<Promo[]> = this.cardService.getPromos$();
-  carrefourBrand$: Observable<Brand> =
-    this.cardService.getBrandByName$('Carrefour');
+  Brands$: Observable<Brand> = this.cardService.getBrandByName$('Carrefour');
 
   constructor(
     private cardService: CardService,
