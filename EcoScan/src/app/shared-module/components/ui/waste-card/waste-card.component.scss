@@ -1,0 +1,65 @@
+.waste-card {
+  display: flex;
+
+  margin: 30px auto;
+  height: auto;
+  width: 330px;
+  border-radius: 14px;
+  box-shadow: 4px 3px 20px 2px rgba(0, 0, 0, 25%);
+
+  .picto {
+    background-color: #fff;
+    height: auto;
+    width: 40%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+
+    img {
+      margin: 0 auto;
+      height: 100px;
+      width: auto;
+      background-color: white;
+    }
+  }
+
+  .waste-detail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: white;
+    background-color: #2f323d;
+    padding: 10px;
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+
+    .details {
+      padding: 10px;
+    }
+
+    h3 {
+      padding-bottom: 8px;
+    }
+
+    span {
+      img {
+        padding-top: 3px;
+      }
+    }
+
+    .near {
+      padding-top: 15px;
+      align-self: flex-end;
+      display: flex;
+      gap: 5px;
+
+      p {
+        font-size: 13px;
+        text-align: end;
+      }
+    }
+  }
+}
