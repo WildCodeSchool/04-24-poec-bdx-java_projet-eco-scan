@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SharedModuleRouting } from './shared-module-routing.module';
 import { FooterComponent } from './components/feature/footer/footer.component';
 import { CardComponent } from './components/feature/card/card.component';
@@ -11,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { WasteCardComponent } from './components/ui/waste-card/waste-card.component';
 import { BinTypePipe } from './shared/bin-type.pipe';
 import { DumbCardComponent } from './components/ui/dumb-card/dumb-card.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,13 @@ import { DumbCardComponent } from './components/ui/dumb-card/dumb-card.component
     BinTypePipe,
     DumbCardComponent,
   ],
-  imports: [SharedModuleRouting, DialogModule, ButtonModule, FormsModule],
+  imports: [
+    CommonModule,
+    SharedModuleRouting,
+    DialogModule,
+    ButtonModule,
+    FormsModule,
+  ],
   exports: [
     FooterComponent,
     CardComponent,
