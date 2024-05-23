@@ -43,13 +43,23 @@
         </div>
       </ng-template>
 
-      <h3>{{ cardData.title }}</h3>
-      <p>{{ cardData.description }}</p>
-      <p><strong>Item:</strong> {{ cardData.item }}</p>
-      <p><strong>Percent Off:</strong> {{ cardData.percentOff }}%</p>
-      <p><strong>Redeemable Amount:</strong> {{ cardData.redeemableAmount }}</p>
-      <p><strong>Start Date:</strong> {{ cardData.startDate | date }}</p>
-      <p><strong>End Date:</strong> {{ cardData.endDate | date }}</p>
+      <h2 class="promo-description-modal">Description</h2>
+      <div class="details-container">
+        <h3>{{ cardData.title }}</h3>
+        <p>{{ cardData.description }}</p>
+        <p><span>Item:</span> {{ cardData.item }}</p>
+        <p><span>Percent Off:</span> {{ cardData.percentOff }}%</p>
+        <p><span>Redeemable Amount:</span> {{ cardData.redeemableAmount }}</p>
+        <p><span>Start Date:</span> {{ cardData.startDate | date }}</p>
+        <p><span>End Date:</span> {{ cardData.endDate | date }}</p>
+        <div class="modal-logo-container">
+          <img
+            width="200"
+            src="../../../../../assets/svg/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
+            alt=""
+          />
+        </div>
+      </div>
     </ng-container>
   </p-dialog>
 </div>
