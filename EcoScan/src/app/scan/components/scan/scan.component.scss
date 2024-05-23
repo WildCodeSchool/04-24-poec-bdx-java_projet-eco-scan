@@ -4,7 +4,7 @@
 
 ::ng-deep .origin-video {
   width: 100%;
-  background-color: #474747 !important;
+  background-color: #474747;
   background-image: url("../../../../assets/svg/scan.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -43,7 +43,7 @@
   display: flex;
   margin: 20px auto;
   border: none;
-  width: 100px;
+  width: 150px;
   height: 40px;
   justify-content: center;
   align-items: center;
@@ -59,7 +59,7 @@
   margin-top: 20px;
 
   .staged-btn {
-    width: 100px;
+    width: 150px;
     height: 40px;
     justify-content: center;
     align-items: center;
@@ -71,7 +71,7 @@
   }
 
   .throw-btn {
-    width: 100px;
+    width: 150px;
     height: 40px;
     justify-content: center;
     align-items: center;

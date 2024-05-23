@@ -6,7 +6,13 @@
     (event)="onEvent($event, action)"
   ></ngx-scanner-qrcode>
 
-  <div class="bandeau">{{ "Comment scanner vos déchets" | uppercase }}</div>
+  <div class="bandeau">
+    {{
+      scannedData
+        ? ("Vous voulez jeter : " + scannedData.type | uppercase)
+        : ("Comment scanner vos déchets" | uppercase)
+    }}
+  </div>
 
   <div *ngIf="!scannedData" class="info-container">
     <div *ngFor="let inf of infos" class="information">
@@ -26,15 +32,17 @@
   <div *ngIf="scannedData" class="next-pic">
     <div>
       <app-waste-card [binType]="scannedData"></app-waste-card>
-      <!-- id -->
-      <!-- img -->
     </div>
     <div class="next-btn">
       <button class="staged-btn" (click)="sendToStaged()">
-        Jetter plus tard
+        Jeter plus tard
       </button>
-      <button class="throw-btn" (click)="navigateToPictureComponent()">
-        Jetter maintenant
+      <button
+        class="throw-btn"
+        (click)="navigateToPictureComponent()"
+        #scannedSection
+      >
+        Jeter maintenant
       </button>
     </div>
   </div>

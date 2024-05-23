@@ -45,43 +45,7 @@ export class HeaderNavComponent {
   imagePath: string = '../../../../../assets/svg/bar.png';
   mapSvg: string = '../../../../../assets/svg/map.svg';
   isOpen: boolean = false;
-  navigation: Nav[] = [
-    {
-      title: 'My Promos',
-      svg: '/assets/svg/promos.svg',
-      click: () => {
-        this.routerNavigate.navigate(['/mypromos']);
-      },
-    },
-    {
-      title: 'Historic',
-      svg: '/assets/svg/historic.svg',
-      click: () => {
-        this.routerNavigate.navigate(['/historic']);
-      },
-    },
-    {
-      title: 'Staged Waste',
-      svg: '/assets/svg/staged.svg',
-      click: () => {
-        this.routerNavigate.navigate(['/staged']);
-      },
-    },
-    {
-      title: 'Setting',
-      svg: '/assets/svg/setting.svg',
-      click: () => {
-        this.routerNavigate.navigate(['/setting']);
-      },
-    },
-    {
-      title: 'Disconnect',
-      svg: '/assets/svg/disconnect.svg',
-      click: () => {
-        this.logout();
-      },
-    },
-  ];
+  navigation: Nav[] = [];
 
   sendIsOpenToParent() {
     this.isOpen = !this.isOpen;
@@ -90,5 +54,45 @@ export class HeaderNavComponent {
 
   logout(): void {
     this.hostService.logout();
+  }
+
+  ngOnInit() {
+    this.navigation = [
+      {
+        title: 'My Promos',
+        svg: '/assets/svg/promos.svg',
+        click: () => {
+          this.routerNavigate.navigate(['/mypromos']);
+        },
+      },
+      {
+        title: 'Historic',
+        svg: '/assets/svg/historic.svg',
+        click: () => {
+          this.routerNavigate.navigate(['/historic']);
+        },
+      },
+      {
+        title: 'Staged Waste',
+        svg: '/assets/svg/staged.svg',
+        click: () => {
+          this.routerNavigate.navigate(['/staged']);
+        },
+      },
+      {
+        title: 'Setting',
+        svg: '/assets/svg/setting.svg',
+        click: () => {
+          this.routerNavigate.navigate(['/setting']);
+        },
+      },
+      {
+        title: 'Disconnect',
+        svg: '/assets/svg/disconnect.svg',
+        click: () => {
+          this.logout();
+        },
+      },
+    ];
   }
 }

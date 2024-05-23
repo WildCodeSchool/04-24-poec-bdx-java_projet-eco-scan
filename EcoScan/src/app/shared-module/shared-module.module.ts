@@ -9,6 +9,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { WasteCardComponent } from './components/ui/waste-card/waste-card.component';
+import { BinTypePipe } from './shared/bin-type.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { WasteCardComponent } from './components/ui/waste-card/waste-card.compon
     HeaderComponent,
     ModalComponent,
     WasteCardComponent,
+    BinTypePipe,
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { WasteCardComponent } from './components/ui/waste-card/waste-card.compon
     HeaderComponent,
     ModalComponent,
     WasteCardComponent,
+    BinTypePipe,
   ],
 })
 export class SharedModule {}

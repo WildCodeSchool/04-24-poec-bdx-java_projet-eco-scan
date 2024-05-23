@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   NgxScannerQrcodeComponent,
@@ -19,10 +19,11 @@ export class ScanComponent {
   infos: String[] = [
     'Scanner le Qr-code',
     'Récuperer les informations du déchet',
-    'Jeter maintenant ou stocker pour plus tard',
+    'Jeter maintenant ou plus tard',
   ];
 
   @ViewChild('action') action!: NgxScannerQrcodeComponent;
+  @ViewChild('scannedSection') scannedSection!: ElementRef;
 
   public config: ScannerQRCodeConfig = {
     constraints: {
@@ -35,12 +36,19 @@ export class ScanComponent {
 
   constructor(private router: Router, private scanService: ScanService) {}
 
+  private scrollToScannedSection(): void {
+    this.scannedSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+
   public onEvent(e: ScannerQRCodeResult[], action?: any): void {
     if (e.length > 0) {
       const scannedDataString = e[0].value;
       console.log(scannedDataString);
 
       this.scannedData = JSON.parse(scannedDataString);
+
+      action?.stop();
+      setTimeout(() => this.scrollToScannedSection(), 100);
     }
   }
 
@@ -60,13 +68,13 @@ export class ScanComponent {
   }
 
   sendToStaged() {
-    this.scanService.addDurtyScan(this.scannedData as Rubbish);
     this.scannedData = undefined;
 
-    //post to staged waste
+    // TODO POST to staged waste table && DELETE from rubbish table
   }
 
   navigateToPictureComponent() {
-    this.router.navigate(['/picture']);
+    this.scanService.addDurtyScan(this.scannedData as Rubbish);
+    this.router.navigate(['/photo']);
   }
 }

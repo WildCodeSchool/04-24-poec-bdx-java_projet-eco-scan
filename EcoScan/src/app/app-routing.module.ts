@@ -18,6 +18,11 @@ const routes: Routes = [
     loadChildren: () => import('./scan/scan.module').then((m) => m.ScanModule),
   },
   {
+    path: 'photo',
+    loadChildren: () =>
+      import('./photo/photo.module').then((m) => m.PhotoModule),
+  },
+  {
     path: 'mypromos',
     loadChildren: () =>
       import('./my-promos-page/my-promos.module').then((m) => m.MyPromosModule),

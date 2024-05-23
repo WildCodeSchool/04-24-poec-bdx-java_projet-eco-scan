@@ -1,14 +1,14 @@
-<!-- *ngIf="binType" -->
-<div class="waste-card">
+<div class="waste-card" *ngIf="binType">
   <div class="picto">
-    <img src="../../../../../assets/svg/un-verre.png" alt="" />
+    <img
+      [src]="'../../../../../assets/svg/' + (binType.type | binType)"
+      alt=""
+    />
   </div>
   <div class="waste-detail">
-    <!-- <h6>}</h6> -->
     <div class="details">
       <h3>{{ binType.type }}</h3>
       <p>Poubelle : Verre</p>
-      <!-- <p> <span>points </span></p> -->
       <p>
         Points : {{ binType.points }}
         <span><img src="../../../../../assets/svg/etoile.png" alt="" /> </span>
