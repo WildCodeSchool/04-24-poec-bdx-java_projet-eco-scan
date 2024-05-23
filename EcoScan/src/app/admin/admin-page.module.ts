@@ -10,6 +10,7 @@ import { AdminStatsComponent } from './pages/admin-stats/admin-stats.component';
 import { AdminPromosComponent } from './pages/admin-promos/admin-promos.component';
 import { StatsDisplayComponent } from './components/feature/stats-display/stats-display.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PromoAdminCardComponent } from './components/ui/promo-admin-card/promo-admin-card.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PromoDisplayComponent,
     AdminStatsComponent,
     AdminPromosComponent,
-    StatsDisplayComponent
+    StatsDisplayComponent,
+    PromoAdminCardComponent
   ],
   imports: [
     CommonModule,

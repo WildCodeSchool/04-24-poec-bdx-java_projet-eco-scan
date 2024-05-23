@@ -38,6 +38,7 @@ export class PromoFormComponent {
   }
 }
 
+//move to shared or smthg
 function checkDateValidity(startDate: string, endDate: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const startControl = control.get(startDate);
