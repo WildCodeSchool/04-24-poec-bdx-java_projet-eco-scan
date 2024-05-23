@@ -1,5 +1,9 @@
-.p-dialog-titlebar{
+.p-dialog-titlebar {
   background-color: black;
+}
+
+.exit-modal-btn {
+  border-radius: 50%;
 }
 
 .promo-amount {
@@ -7,8 +11,44 @@
   justify-content: space-between;
   padding-left: 0.4rem;
   padding-bottom: 1rem;
-  background-color: #F1ECE3;
+  background-color: #f1ece3;
   border-radius: 8px;
+}
+
+.exit-btn-and-promo-amount {
+  display: flex;
+
+  .exit-modal-btn {
+    background: none;
+    height: 2rem;
+    width: 2rem;
+    padding-top: 0.2rem;
+    margin-top: 1.5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+}
+
+.p-dialog-header {
+  background-color: #f1ece3;
+  display: block;
+  .p-dialog-header-close-icon {
+    display: none;
+  }
+
+  .p-dialog-header-icons {
+    display: none;
+  }
+}
+
+.redeemable-amount {
+  background-color: white;
+  padding: 0 0.4rem;
+  padding-top: 1rem;
+  margin-right: 2rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  line-height: 0.8;
 }
 
 .percent-off {
@@ -20,7 +60,7 @@
 
 .percent-container {
   display: flex;
-  
+
   div {
     display: flex;
     line-height: 0.6rem;
@@ -28,6 +68,63 @@
     flex-direction: column;
     max-width: 40px;
     margin-right: 10px;
-    }
-  
+  }
+}
+
+.percent {
+  margin-bottom: 0.2rem;
+}
+
+.off {
+  font-size: small;
+  justify-self: flex-start;
+}
+
+.flat {
+  margin-top: 1rem;
+  font-size: 1.8rem;
+}
+
+.percent-off-container {
+  margin-top: 0.4rem;
+}
+
+.percent-discount {
+  font-size: 2rem;
+  margin: 0;
+  padding-top: 8px;
+  padding-left: 2px;
+}
+
+.promo-description-modal {
+  margin: 1rem 0;
+  padding: 0.3rem 1rem 0.8rem 1rem;
+  width: fit-content;
+  border-radius: 0 0 20px 0;
+  background-color: #178b68;
+  color: white;
+}
+
+.details-container {
+  margin: 0 0 1rem 1rem;
+  width: fit-content;
+  display: block;
+}
+
+span {
+  font-weight: bold;
+}
+
+.modal-logo-container {
+  display: flex;
+  align-items: center; /* Centre verticalement */
+  justify-content: space-between;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+.logo-modal {
+  padding: 0 1rem 1rem 0;
 }
