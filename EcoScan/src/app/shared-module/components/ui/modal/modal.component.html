@@ -13,14 +13,25 @@
     <ng-container *ngIf="modal.cardData as cardData">
       <ng-template pTemplate="header">
         <div class="promo-amount">
-          <div class="percent-off">
-            <p class="flat">FLAT</p>
-            <div class="percent-container">
-              <p class="percent-discount">{{ cardData.percentOff }}</p>
+          <div class="exit-btn-and-promo-amount">
+            <button class="exit-modal-btn" (click)="modal.visible = false">
+              <img
+                width="20"
+                class="exit-btn"
+                src="../../../../../assets/svg/arrow-black.png"
+                alt="exit"
+              />
+            </button>
 
-              <div class="percent-off-container">
-                <p class="percent">%</p>
-                <p class="off">off</p>
+            <div class="percent-off">
+              <p class="flat">FLAT</p>
+              <div class="percent-container">
+                <p class="percent-discount">{{ cardData.percentOff }}</p>
+
+                <div class="percent-off-container">
+                  <p class="percent">%</p>
+                  <p class="off">off</p>
+                </div>
               </div>
             </div>
           </div>

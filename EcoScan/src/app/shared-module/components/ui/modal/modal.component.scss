@@ -2,6 +2,10 @@
   background-color: black;
 }
 
+.exit-modal-btn {
+  border-radius: 50%;
+}
+
 .promo-amount {
   display: flex;
   justify-content: space-between;
@@ -9,6 +13,20 @@
   padding-bottom: 1rem;
   background-color: #f1ece3;
   border-radius: 8px;
+}
+
+.exit-btn-and-promo-amount {
+  display: flex;
+
+  .exit-modal-btn {
+    background: none;
+    height: 2rem;
+    width: 2rem;
+    padding-top: 0.2rem;
+    margin-top: 1.5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
 }
 
 .p-dialog-header {
@@ -27,7 +45,7 @@
   background-color: white;
   padding: 0 0.4rem;
   padding-top: 1rem;
-  margin-right: 0.4rem;
+  margin-right: 2rem;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   line-height: 0.8;
