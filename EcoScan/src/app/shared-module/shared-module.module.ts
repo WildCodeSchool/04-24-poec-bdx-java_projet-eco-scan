@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { WasteCardComponent } from './components/ui/waste-card/waste-card.component';
 import { BinTypePipe } from './shared/bin-type.pipe';
+import { DumbCardComponent } from './components/ui/dumb-card/dumb-card.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +20,9 @@ import { BinTypePipe } from './shared/bin-type.pipe';
     ModalComponent,
     WasteCardComponent,
     BinTypePipe,
+    DumbCardComponent,
   ],
-  imports: [
-    CommonModule,
-    SharedModuleRouting,
-    DialogModule,
-    ButtonModule,
-    FormsModule,
-  ],
+  imports: [SharedModuleRouting, DialogModule, ButtonModule, FormsModule],
   exports: [
     FooterComponent,
     CardComponent,
