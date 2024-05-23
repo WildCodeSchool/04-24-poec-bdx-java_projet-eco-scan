@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { PromoAdminService } from '../../../shared/promo-admin.service';
 
 @Component({
   selector: 'app-promo-form',
@@ -8,23 +9,53 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class PromoFormComponent {
 
-  promoConstructor!:FormGroup;
+  promoConstructor!: FormGroup;
+  private promoService = inject(PromoAdminService);
 
-  constructor(private formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder) {
     this.promoConstructor = this.formBuilder.group({
-      title: [''],
-      item: [''],
-      description: [''],
+      title: ['', [Validators.required]],
+      item: ['', [Validators.required]],
+      description: ['', [Validators.required]],
 
-      percentOff: [0],
-      redeemableAmount: [0],
-      startDate: [],
-      endDate: []
-    });
+      percentOff: [0, [Validators.required]],
+      redeemableAmount: [0, [Validators.required]],
+      pointsNeeded: [0, [Validators.required]],
+
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]]
+    },
+      {
+        validators: checkDateValidity('startDate', 'endDate')
+      }
+    );
   }
 
-  onSubmit(){
-    console.log(this.promoConstructor);
-    
+  onSubmit() {
+    this.promoService.createNewPromo(this.promoConstructor.value);
+    this.promoConstructor.reset();
+    this.promoConstructor.markAsUntouched();
   }
 }
+
+function checkDateValidity(startDate: string, endDate: string): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const startControl = control.get(startDate);
+    const endControl = control.get(endDate);
+
+    if (!startControl || !endControl) {
+      return null;
+    }
+
+    const startVal: string = startControl.value;
+    const endVal: string = endControl.value;
+
+    if (startVal > endVal) {
+      return { 'inValid dates': { beginnig: startVal, end: endVal } };
+    } else {
+      return null;
+    }
+
+  };
+}
+
