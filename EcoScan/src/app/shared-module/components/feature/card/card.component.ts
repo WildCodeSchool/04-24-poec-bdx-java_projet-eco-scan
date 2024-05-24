@@ -11,19 +11,17 @@ import { ModalService } from '../../../shared/modal.service';
   styleUrl: './card.component.scss',
 })
 export class CardComponent {
-
   @Input() blurCards!: boolean;
   @Input() vertical: boolean = false;
   cardList$: Observable<Promo[]> = this.cardService.getPromos$();
-  carrefourBrand$: Observable<Brand> =
-    this.cardService.getBrandByName$('Carrefour');
+  Brand$: Observable<Brand> = this.cardService.getBrandByName$('Carrefour');
 
   constructor(
     private cardService: CardService,
-    private modalService: ModalService
+    private modalService: ModalService,
   ) {}
 
-  openModal(cardData: Promo) {
-    this.modalService.openModal(cardData);
+  openModal(card: Promo) {
+    this.modalService.openModal(card);
   }
 }

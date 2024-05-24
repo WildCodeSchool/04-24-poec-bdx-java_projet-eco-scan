@@ -5,9 +5,7 @@ import { adminGuard } from './shared-module/guards/admin.guard';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./host/host.module').then(
-      (m) => m.HostModule
-    ),
+    loadChildren: () => import('./host/host.module').then((m) => m.HostModule),
   },
   {
     path: 'home',
@@ -17,11 +15,18 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'scan',
+    loadChildren: () => import('./scan/scan.module').then((m) => m.ScanModule),
+  },
+  {
+    path: 'photo',
+    loadChildren: () =>
+      import('./photo/photo.module').then((m) => m.PhotoModule),
+  },
+  {
     path: 'mypromos',
     loadChildren: () =>
-      import('./my-promos-page/my-promos.module').then(
-        (m) => m.MyPromosModule
-      ),
+      import('./my-promos-page/my-promos.module').then((m) => m.MyPromosModule),
   },
   {
     path: 'map',
@@ -44,5 +49,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-
 export class AppRoutingModule {}

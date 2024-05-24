@@ -1,21 +1,66 @@
-<div class="card flex justify-content-center" *ngIf="modalState$ | async as modal">
-  
-  <p-dialog 
-  header
-  [modal]="true" 
-  [(visible)]="modal.visible" 
-  [style]="{ width: '50rem' }" 
-  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" 
-  (onHide)="hideDialog()">
-  <ng-container *ngIf="modal.cardData as cardData">
-  
-  <h3>{{ cardData.title }}</h3>
-  <p>{{ cardData.description }}</p>
-  <p><strong>Item:</strong> {{ cardData.item }}</p>
-  <p><strong>Percent Off:</strong> {{ cardData.percentOff }}%</p>
-  <p><strong>Redeemable Amount:</strong> {{ cardData.redeemableAmount }}</p>
-  <p><strong>Start Date:</strong> {{ cardData.startDate | date }}</p>
-  <p><strong>End Date:</strong> {{ cardData.endDate | date }}</p>
-</ng-container>
-</p-dialog>
+<div
+  class="card flex justify-content-center"
+  *ngIf="modalState$ | async as modal"
+>
+  <p-dialog
+    header
+    [modal]="true"
+    [(visible)]="modal.visible"
+    [style]="{ width: '50rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    (onHide)="hideDialog()"
+  >
+    <ng-container *ngIf="modal.cardData as cardData">
+      <ng-template pTemplate="header">
+        <div class="promo-amount">
+          <div class="exit-btn-and-promo-amount">
+            <button class="exit-modal-btn" (click)="modal.visible = false">
+              <img
+                width="20"
+                class="exit-btn"
+                src="../../../../../assets/svg/arrow-black.png"
+                alt="exit"
+              />
+            </button>
+
+            <div class="percent-off">
+              <p class="flat">FLAT</p>
+              <div class="percent-container">
+                <p class="percent-discount">{{ cardData.percentOff }}</p>
+
+                <div class="percent-off-container">
+                  <p class="percent">%</p>
+                  <p class="off">off</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="redeemable-amount">
+            <p id="points-amount">{{ cardData.redeemableAmount }}</p>
+            points
+          </div>
+        </div>
+      </ng-template>
+
+      <h2 class="promo-description-modal">Description</h2>
+      <div class="modal-logo-container">
+        <div class="details-container">
+          <h3>{{ cardData.title }}</h3>
+          <p>{{ cardData.description }}</p>
+          <p><span>Item:</span> {{ cardData.item }}</p>
+          <p><span>Percent Off:</span> {{ cardData.percentOff }}%</p>
+          <p><span>Redeemable Amount:</span> {{ cardData.redeemableAmount }}</p>
+          <p><span>Start Date:</span> {{ cardData.startDate | date }}</p>
+          <p><span>End Date:</span> {{ cardData.endDate | date }}</p>
+        </div>
+        <img
+          class="logo-modal"
+          width="200"
+          src="../../../../../assets/svg/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
+          alt=""
+        />
+      </div>
+    </ng-container>
+  </p-dialog>
 </div>
