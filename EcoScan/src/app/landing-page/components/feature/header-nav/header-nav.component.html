@@ -1,0 +1,42 @@
+<div class="header">
+  <div *ngIf="isOpen" class="blur"></div>
+  <div class="header-container">
+    <div class="menu-trigger">
+      <img
+        (click)="sendIsOpenToParent()"
+        class="gg-push-chevron-right-o"
+        [src]="imagePath"
+        alt=""
+      />
+    </div>
+
+    <input type="search " />
+
+    <a [routerLink]="['/map']">
+      <img src="../../../../../assets/svg/map.svg" alt="" />
+    </a>
+  </div>
+
+  <div class="side-menu" *ngIf="isOpen" [@sideMenu]>
+    <div class="menu-close" (click)="sendIsOpenToParent()">
+      <p>MY PROFILE</p>
+      <img class="gg-push-chevron-left-o" [src]="imagePath" alt="" />
+    </div>
+    <div class="profil-section">
+      <div class="photo"></div>
+      <div class="identity">
+        <p>name</p>
+        <p>emailmail.com</p>
+        <p>Your <span>point</span></p>
+      </div>
+    </div>
+    <div class="white">
+      <div class="menu-item" *ngFor="let item of navigation; let i = index">
+        <div class="logo-nav">
+          <img [src]="item.svg" alt="" />
+          <a (click)="item.click()">{{ item.title }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

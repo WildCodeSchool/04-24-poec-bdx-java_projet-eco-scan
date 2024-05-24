@@ -1,0 +1,7 @@
+<app-dumb-card
+  [blurCards]="blurCards"
+  [vertical]="vertical"
+  [cardList]="cardList$ | async"
+  [promoBrand]="Brand$ | async"
+  (openModal)="openModal($event)"
+></app-dumb-card>

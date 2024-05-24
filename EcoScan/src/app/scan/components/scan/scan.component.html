@@ -1,0 +1,50 @@
+<app-header headerPageTitle="SCAN"></app-header>
+<div>
+  <ngx-scanner-qrcode
+    #action="scanner"
+    [config]="config"
+    (event)="onEvent($event, action)"
+  ></ngx-scanner-qrcode>
+
+  <div class="bandeau">
+    {{
+      scannedData
+        ? ("Vous voulez jeter : " + scannedData.type | uppercase)
+        : ("Comment scanner vos déchets" | uppercase)
+    }}
+  </div>
+
+  <div *ngIf="!scannedData" class="info-container">
+    <div *ngFor="let inf of infos" class="information">
+      <img src="../../../../assets/svg/validation.svg" alt="" />
+      <p>{{ inf }}</p>
+    </div>
+  </div>
+
+  <button
+    *ngIf="!scannedData"
+    class="scan-btn"
+    (click)="handle(action, action.isStart ? 'stop' : 'start')"
+  >
+    SCANNER
+  </button>
+
+  <div *ngIf="scannedData" class="next-pic">
+    <div>
+      <app-waste-card [binType]="scannedData"></app-waste-card>
+    </div>
+    <div class="next-btn">
+      <button class="staged-btn" (click)="sendToStaged()">
+        Jeter plus tard
+      </button>
+      <button
+        class="throw-btn"
+        (click)="navigateToPictureComponent()"
+        #scannedSection
+      >
+        Jeter maintenant
+      </button>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

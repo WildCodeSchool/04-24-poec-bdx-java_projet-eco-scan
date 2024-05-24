@@ -1,0 +1,27 @@
+
+.dropdown-container {
+    background-color: #178B68;
+    width: 100%;
+}
+
+:host ::ng-deep .p-dropdown {
+    width: 100%;
+    left: 0 !important;
+    right: 0 !important;
+}
+
+:host ::ng-deep .p-dropdown-label {
+    font-size: larger;
+    text-indent: calc(50% - 60px);
+}
+
+:host ::ng-deep .p.element {
+    font-size: larger;
+}
+
+:host ::ng-deep .p-dropdown-item {
+    font-size: larger;
+    background-color: #178B68;
+    border: 1px solid white;
+    text-indent: calc(50% - 30px);
+}

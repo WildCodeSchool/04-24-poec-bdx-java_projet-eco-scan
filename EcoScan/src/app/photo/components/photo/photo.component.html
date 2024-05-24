@@ -1,0 +1,41 @@
+<app-header headerPageTitle="CAPTURE PHOTO"></app-header>
+<div>
+  <video #video id="video" autoplay></video>
+  <canvas #canvas id="canvas" style="display: none"></canvas>
+
+  <div class="bandeau">
+    {{ "Comment prendre la photo " | uppercase }}
+  </div>
+
+  <div *ngIf="captureButton">
+    <div *ngIf="binType | async as binType" class="info-container">
+      <app-waste-card [binType]="binType"></app-waste-card>
+    </div>
+  </div>
+
+  <div *ngIf="!captureButton" class="info-container">
+    <div *ngFor="let inf of infos" class="information">
+      <img src="../../../../assets/svg/validation.svg" alt="" />
+      <p>{{ inf }}</p>
+    </div>
+  </div>
+
+  <div class="btn-side">
+    <button class="yoo" *ngIf="!captureButton" id="snap" (click)="takePhoto()">
+      Prendre une photo
+    </button>
+    <div class="retake-btn">
+      <button *ngIf="capturedImage" id="retake" (click)="retake()">
+        Reprendre la photo
+      </button>
+      <button *ngIf="capturedImage" id="point" (click)="takePoints()">
+        Prendre vos point
+      </button>
+    </div>
+  </div>
+</div>
+<div #bottomButtons></div>
+<app-footer
+  [captureButton]="captureButton"
+  (takePhoto)="capture()"
+></app-footer>
