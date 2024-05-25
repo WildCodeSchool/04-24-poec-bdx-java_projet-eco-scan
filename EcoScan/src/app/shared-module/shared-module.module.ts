@@ -11,6 +11,9 @@ import { WasteCardComponent } from './components/ui/waste-card/waste-card.compon
 import { BinTypePipe } from './shared/bin-type.pipe';
 import { DumbCardComponent } from './components/ui/dumb-card/dumb-card.component';
 import { CommonModule } from '@angular/common';
+import { RubbishService } from './shared/rubbish.service';
+import { PointCardComponent } from './components/ui/point-card/point-card/point-card.component';
+import { ThousandKPipe } from './shared/thousand-k.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { CommonModule } from '@angular/common';
     WasteCardComponent,
     BinTypePipe,
     DumbCardComponent,
+    PointCardComponent,
+    ThousandKPipe,
   ],
   imports: [
     CommonModule,
@@ -36,6 +41,7 @@ import { CommonModule } from '@angular/common';
     ModalComponent,
     WasteCardComponent,
     BinTypePipe,
+    PointCardComponent,
   ],
 })
 export class SharedModule {}

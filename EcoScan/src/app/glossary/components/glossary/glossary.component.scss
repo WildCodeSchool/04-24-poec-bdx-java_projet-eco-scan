@@ -1,0 +1,31 @@
+.glossaire {
+  margin: 90px auto;
+
+  .new-card {
+    margin-top: 50px;
+    border: 1px solid black;
+    width: 95%;
+    margin: 25px auto;
+    border-radius: 14px;
+
+    p {
+      padding-top: 20px;
+      text-align: center;
+      margin: 0 auto;
+      width: 90%;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+
+  .yo {
+    display: flex;
+    justify-content: center;
+    .tuto {
+      font-style: italic;
+      display: inline-block;
+      border-bottom: 1px solid;
+      padding-bottom: 3px;
+    }
+  }
+}

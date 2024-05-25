@@ -35,22 +35,32 @@
   "rubbishItems": [
     {
       "rubbishID": "123",
-      "type": "Glass",
+      "type": "Verre",
+      "points": 20,
       "id": "667f"
     },
     {
       "rubbishID": "234",
-      "type": "Plastic",
+      "type": "Batterie",
+      "points": 50,
       "id": "be89"
     },
     {
       "rubbishID": "345",
-      "type": "Battery",
+      "type": "Cartouche d'encre",
+      "points": 100,
+      "id": "f55a"
+    },
+    {
+      "rubbishID": "345",
+      "type": "Cosmetique",
+      "points": 150,
       "id": "f55a"
     },
     {
       "rubbishID": "456",
-      "type": "Cardboard",
+      "type": "Parfum",
+      "points": 250,
       "id": "813a"
     }
   ],

@@ -11,6 +11,7 @@ export class BinTypePipe implements PipeTransform {
       "Cartouche d'encre": 'encre.svg',
       Parfum: 'parfum.svg',
       Cosmetique: 'cosmetic.svg',
+      Telephone: 'iphone.png',
     };
 
     return imageMap[type];
