@@ -1,0 +1,34 @@
+<div class="landing">
+  <div *ngIf="isOpen" [class.active]="isOpen" class="blur"></div>
+  <app-header-nav (boolChange)="onReceivedFromHeader($event)"></app-header-nav>
+
+  <app-promo-gallery title="NOUVELLE PROMOS"></app-promo-gallery>
+
+  <div class="card-container" *ngIf="cardList$ | async as cardList">
+    <div *ngFor="let card of cardList">
+      <app-dumb-card [card]="card" [blurCards]="isOpen"></app-dumb-card>
+    </div>
+  </div>
+
+  <app-promo-gallery title="MEILLEURE PROMOS"></app-promo-gallery>
+
+  <div class="card-container" *ngIf="cardList1$ | async as cardList1">
+    <div *ngFor="let card of cardList1">
+      <app-dumb-card [card]="card" [blurCards]="isOpen"></app-dumb-card>
+    </div>
+  </div>
+
+  <app-promo-gallery title="VOS PROMOS FAVORITES"></app-promo-gallery>
+
+  <div class="card-container" *ngIf="cardList2$ | async as cardList2">
+    <div *ngFor="let card of cardList2">
+      <app-dumb-card [card]="card" [blurCards]="isOpen"></app-dumb-card>
+    </div>
+  </div>
+
+  <app-promo-gallery title="MEILLEURE PROMOS"></app-promo-gallery>
+
+  <app-modal />
+
+  <app-footer [scanButton]="true"></app-footer>
+</div>

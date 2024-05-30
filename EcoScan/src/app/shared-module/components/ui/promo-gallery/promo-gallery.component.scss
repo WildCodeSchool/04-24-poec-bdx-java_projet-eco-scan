@@ -1,12 +1,16 @@
-.title {
-    background-color: #178B68;
-    width: 7rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 2rem 1rem 0.5rem 0rem;
-    padding: 0.5rem;
+.bandeau {
+  background-color: #178b68;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-right-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 3px;
+
+  h3 {
     color: white;
-    border-bottom-right-radius: 18px;
-    font-weight: bold;
+    text-align: center;
+  }
 }

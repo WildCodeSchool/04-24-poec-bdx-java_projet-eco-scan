@@ -29,6 +29,23 @@ const routes: Routes = [
       import('./my-promos-page/my-promos.module').then((m) => m.MyPromosModule),
   },
   {
+    path: 'historic',
+    loadChildren: () =>
+      import('./historic/historic.module').then((m) => m.HistoricModule),
+  },
+  {
+    path: 'staged',
+    loadChildren: () =>
+      import('./staged-waste/staged-waste.module').then(
+        (m) => m.StagedWasteModule
+      ),
+  },
+  {
+    path: 'glossary',
+    loadChildren: () =>
+      import('./glossary/glossary.module').then((m) => m.GlossaryModule),
+  },
+  {
     path: 'map',
     loadChildren: () =>
       import('./map-page/map-page.module').then(

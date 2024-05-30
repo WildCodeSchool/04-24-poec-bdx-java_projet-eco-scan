@@ -6,16 +6,8 @@ import { MyPromosPageComponent } from './pages/my-promos-page/my-promos-page.com
 import { SharedModule } from '../shared-module/shared-module.module';
 import { PromoGalleryComponent } from '../shared-module/components/ui/promo-gallery/promo-gallery.component';
 
-
 @NgModule({
-  declarations: [
-    MyPromosPageComponent,
-    PromoGalleryComponent
-  ],
-  imports: [
-    CommonModule,
-    MyPromosRoutingModule,
-    SharedModule
-  ]
+  declarations: [MyPromosPageComponent],
+  imports: [CommonModule, MyPromosRoutingModule, SharedModule],
 })
-export class MyPromosModule { }
+export class MyPromosModule {}
