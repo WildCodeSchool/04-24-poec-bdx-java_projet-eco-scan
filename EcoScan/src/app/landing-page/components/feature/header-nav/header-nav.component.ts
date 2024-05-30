@@ -42,7 +42,7 @@ export class HeaderNavComponent {
     private routerNavigate: Router
   ) {}
 
-  imagePath: string = 'assets/svg/bar.png';
+  imagePath: string = 'assets/png/bar.png';
   mapSvg: string = 'assets/svg/map.svg';
   isOpen: boolean = false;
   navigation: Nav[] = [];
