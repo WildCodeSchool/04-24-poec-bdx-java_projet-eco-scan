@@ -18,8 +18,8 @@ import {
     trigger('buttonState', [
       state('inactive', style({ backgroundColor: 'transparent' })),
       state('active', style({ backgroundColor: 'green' })),
-      transition('inactive => active', animate('200ms ease-in')),
-      transition('active => inactive', animate('200ms ease-out')),
+      transition('inactive => active', animate('300ms ease-in')),
+      transition('active => inactive', animate('300ms ease-out')),
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,9 +28,14 @@ export class HistoricPageComponent {
   constructor(private router: Router) {}
 
   prepareRoute(outlet: RouterOutlet) {
-    if (!this.isHistoricRoute(this.router.url)) {
-      return null;
+    if (this.router.url === '/home') {
+      return null; // Ne retourne pas d'animation si on quitte la page historique
     }
+
+    if (!this.isHistoricRoute(this.router.url)) {
+      return null; // Ne retourne pas d'animation si on navigue en dehors de la page historique
+    }
+
     return outlet?.activatedRouteData?.['animation'];
   }
 
