@@ -60,42 +60,42 @@ export class HeaderNavComponent {
     this.navigation = [
       {
         title: 'Mes Promos',
-        svg: '/assets/svg/promotion.png',
+        svg: 'assets/png/promotion.png',
         click: () => {
           this.routerNavigate.navigate(['/mypromos']);
         },
       },
       {
         title: 'Historique',
-        svg: '/assets/svg/fichier.png',
+        svg: 'assets/png/fichier.png',
         click: () => {
           this.routerNavigate.navigate(['/historic']);
         },
       },
       {
         title: 'Déchets stockés',
-        svg: '/assets/svg/poubelle-1.png',
+        svg: 'assets/png/poubelle-1.png',
         click: () => {
           this.routerNavigate.navigate(['/staged']);
         },
       },
       {
         title: 'Comment ça marche ?',
-        svg: '/assets/svg/point-dinterrogation.png',
+        svg: 'assets/png/point-dinterrogation.png',
         click: () => {
           this.routerNavigate.navigate(['/glossary']);
         },
       },
       {
         title: 'Parametre',
-        svg: '/assets/svg/setting.svg',
+        svg: 'assets/svg/setting.svg',
         click: () => {
           this.routerNavigate.navigate(['/setting']);
         },
       },
       {
         title: 'Déconnexion',
-        svg: '/assets/svg/disconnect.svg',
+        svg: 'assets/svg/disconnect.svg',
         click: () => {
           this.logout();
         },
