@@ -1,13 +1,13 @@
 <div class="point-card" *ngIf="rubbishDetail">
   <div class="point">
     <p>{{ rubbishDetail.points | thousandK }}</p>
-    <img src="assets/svg/etoile (1).png" alt="point" />
+    <img src="assets/png/etoile (1).png" alt="point" />
   </div>
   <div class="details">
     <div class="pic-details">
       <img [src]="'assets/svg/' + (rubbishDetail.type | binType)" alt="" />
       <p>{{ rubbishDetail.type }}</p>
     </div>
-    <img class="info" src="assets/svg/information.png" alt="" />
+    <img class="info" src="assets/png/information.png" alt="" />
   </div>
 </div>

@@ -7,12 +7,12 @@ export class BinTypePipe implements PipeTransform {
   transform(type: string): string {
     const imageMap: { [key: string]: string } = {
 
-      Verre: 'un-verre.png',
-      Batterie: 'batterie.svg',
-      "Cartouche d'encre": 'encre.svg',
-      Parfum: 'parfum.svg',
-      Cosmetique: 'cosmetic.svg',
-      Telephone: 'iphone.png',
+      Verre: 'png/un-verre.png',
+      Batterie: 'svg/batterie.svg',
+      "Cartouche d'encre": 'svg/encre.svg',
+      Parfum: 'svg/parfum.svg',
+      Cosmetique: 'svg/cosmetic.svg',
+      Telephone: 'png/iphone.png',
 
     };
 
