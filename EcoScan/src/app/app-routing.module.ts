@@ -60,6 +60,12 @@ const routes: Routes = [
       ),
     canActivate: [adminGuard]
   },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./error-pages/error-pages.module').then((m) => m.ErrorPagesModule),
+  },
+
 ];
 
 @NgModule({
