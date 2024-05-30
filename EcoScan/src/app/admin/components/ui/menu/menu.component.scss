@@ -1,11 +1,15 @@
 .menu {
+    // top: 0;
+    // left: 0;
+    // position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    align-items: stretch;
 
     width: 20vw;
-    height: 94vh;
+    height:max-content;
 
     gap: 2rem;
     padding: 2rem;

@@ -12,20 +12,29 @@
           </div>
         </div>
         <div class="redeemable-amount">
-          <p id="points-amount">{{ promo.redeemableAmount }}</p>
+          <!-- need access to amount redeemed? -->
+          <p>User uptake of promo</p>
+          <p>0 / {{promo.redeemableAmount}}</p>
+        </div>
+        <div class="points-amount">
+          <p>{{ promo.pointsNeed }}</p>
           points
         </div>
       </div>
-      <div class="brand-and-details">
+      <div class="detail-row">
         <img
           id="logo"
           src="../../../../../assets/svg/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
           alt="carrouf logo"
         />
-        <p id="details">See details</p>
-        <button type="button">
-          <img src="../../../../../assets/svg/arrow.png" alt="Arrow" />
-        </button>
+        <div id="details">
+          <p>{{promo.description}}</p>
+        </div>
+      </div>
+      <div class="detail-row">
+        <p id="small-date">{{promo.startDate}} - {{promo.endDate}}</p>
+        <button type="button" (click)="deletePromo(promo)">Delete promo</button>
+        <button type="button" (click)="suspendPromo(promo)">Suspend promo</button>
       </div>
 
 </div>
