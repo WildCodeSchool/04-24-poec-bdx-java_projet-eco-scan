@@ -1,0 +1,8 @@
+<div class="stat-display">
+    <!-- placeholder for when we actually have db data -->
+    <div *ngIf="activeStat$ | async as activeStat">
+        <p>{{activeStat.title}}</p>
+        <p>{{activeStat.description}}</p>
+        <p>{{activeStat.brandID}}</p>
+    </div>
+</div>

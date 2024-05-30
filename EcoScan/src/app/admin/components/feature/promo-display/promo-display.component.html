@@ -1,0 +1,10 @@
+<div class="promo-column">
+
+    <div *ngIf="promos$ | async as promos">
+        <div *ngFor="let promo of promos">
+            <app-promo-admin-card
+            [promo]="promo"
+            ></app-promo-admin-card>
+        </div>
+    </div>
+</div>

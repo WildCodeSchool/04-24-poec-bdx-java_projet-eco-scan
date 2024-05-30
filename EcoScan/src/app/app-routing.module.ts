@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { adminGuard } from './shared-module/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -30,7 +31,17 @@ const routes: Routes = [
   {
     path: 'map',
     loadChildren: () =>
-      import('./map-page/map-page.module').then((m) => m.MapPageModule),
+      import('./map-page/map-page.module').then(
+        (m) => m.MapPageModule
+      ),
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin-page.module').then(
+        (m) => m.AdminPageModule
+      ),
+    canActivate: [adminGuard]
   },
 ];
 
