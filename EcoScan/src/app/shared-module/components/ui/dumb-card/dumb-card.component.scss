@@ -6,11 +6,6 @@
   font-weight: 400;
   font-style: normal;
   overflow: auto;
-
-  &-vertical {
-    @extend .card-container;
-    flex-direction: column;
-  }
 }
 
 .blur {
@@ -19,10 +14,27 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.089);
+  background: rgba(41, 40, 40, 0.059);
   border-radius: 10px;
+  height: 100vh;
 }
 
+.small-card {
+  display: flex;
+  flex-direction: column;
+  width: 170px;
+  margin: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px 2px rgb(0, 0, 0, 0.45);
+  .promo-amount {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0.4rem;
+    padding-bottom: 1rem;
+    background-color: #f1ece3;
+    border-radius: 8px;
+  }
+}
 .promo-card {
   display: flex;
   flex-direction: column;
@@ -94,16 +106,36 @@
 .brand-and-details {
   display: flex;
   margin: 1rem;
+
+  #logo {
+    width: 70px;
+  }
+
+  #details {
+    padding-top: 1.5rem;
+    margin-left: 2rem;
+  }
+}
+.small-brand-and-details {
+  display: flex;
+  margin: 1rem;
+  align-items: center;
+
+  #logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  #details {
+    padding-top: 5px;
+    margin-left: 2rem;
+    font-size: 12px;
+  }
 }
 
 p {
   width: fit-content;
   margin: 0.2rem;
-}
-
-#details {
-  padding-top: 1.5rem;
-  margin-left: 2rem;
 }
 
 button {
@@ -115,8 +147,4 @@ button {
 
 img {
   width: 20px;
-}
-
-#logo {
-  width: 70px;
 }

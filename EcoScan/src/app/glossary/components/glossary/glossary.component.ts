@@ -20,7 +20,7 @@ export class GlossaryComponent {
       {
         rubbishID: '234',
         type: 'Batterie',
-        points: 5000,
+        points: 50,
       },
       {
         rubbishID: '345',

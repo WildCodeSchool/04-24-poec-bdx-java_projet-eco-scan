@@ -1,18 +1,24 @@
 .glossaire {
-  margin: 90px auto;
+  margin: 0 auto;
 
   .new-card {
-    margin-top: 50px;
+    // margin-top: 50px;
     border: 1px solid black;
     width: 95%;
-    margin: 25px auto;
+    margin: 25px auto 70px;
     border-radius: 14px;
 
     p {
-      padding-top: 20px;
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
       text-align: center;
       margin: 0 auto;
-      width: 90%;
+      background-color: #178b68;
+      color: white;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+      // width: 90%;
       font-weight: bold;
       font-size: 20px;
     }
@@ -26,6 +32,8 @@
       display: inline-block;
       border-bottom: 1px solid;
       padding-bottom: 3px;
+      text-decoration: none;
+      color: black;
     }
   }
 }
