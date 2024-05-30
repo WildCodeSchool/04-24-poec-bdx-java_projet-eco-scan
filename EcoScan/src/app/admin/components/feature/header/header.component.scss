@@ -1,0 +1,13 @@
+.header{
+    background-color: #1D212D;
+    font-family: "Lato", sans-serif;
+
+    width: 100%;
+    position: relative;
+    z-index: 2;
+
+    .title{
+        color: white;
+        padding: 1rem;
+    }
+}

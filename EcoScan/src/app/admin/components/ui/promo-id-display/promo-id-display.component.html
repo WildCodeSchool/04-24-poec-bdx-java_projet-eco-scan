@@ -1,0 +1,8 @@
+<div class="promo-column">
+    <div *ngIf="promos$ | async as promos">
+        <div *ngFor="let promo of promos">
+            <p (click)="selectedPromo(promo)">{{promo.promoID}} - {{promo.title}}</p>
+        </div>
+    </div>
+
+</div>

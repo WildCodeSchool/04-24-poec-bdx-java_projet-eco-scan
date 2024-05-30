@@ -1,0 +1,39 @@
+<div class="promoForm">
+    <form *ngIf="promoConstructor" [formGroup]="promoConstructor" #promoForm="ngForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="title">Title: </label>
+            <input name="title" type="text" formControlName="title" required>
+        </div>
+        
+        <!-- <div *ngIf="promoConstructor.controls['title'].errors && promoForm.submitted">
+            <span *ngIf="promoConstructor.controls['title'].errors?.['isRequired']">One of the two fields 'Identifier' or 'Title' must be filled in</span>
+        </div> -->
+        <div>
+            <label for="item">Item: </label>
+            <input name="item" type="text" formControlName="item" required>
+        </div>
+
+        <div>
+            <label for="description">Description: </label>
+            <input name="description" type="text" formControlName="description" required>
+        </div>
+
+        <div>
+            <label for="percentOff">Percent off: </label>
+            <input name="percentOff" type="number" formControlName="percentOff" required>
+        </div>
+        <div>
+            <label for="redeemableAmount">Redeemable amount: </label>
+            <input name="redeemableAmount" type="number" formControlName="redeemableAmount" required>
+        </div>
+        <div>
+            <label for="startDate">Start date: </label>
+            <input name="startDate" type="date" formControlName="startDate" required>
+        </div>
+        <div>
+            <label for="endDate">End date: </label>
+            <input name="endDate" type="date" formControlName="endDate" required>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>

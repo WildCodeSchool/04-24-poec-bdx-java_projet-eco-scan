@@ -15,7 +15,7 @@
       "pseudo": "fdfsdfsdfsdf",
       "email": "h-mamou@hotmail.fr",
       "points": 10,
-      "isAdmin": false
+      "isAdmin": true
     }
   ],
   "logins": [
@@ -129,10 +129,10 @@
     {
       "promoID": "889",
       "brandID": "66",
-      "title": "Carrefour Popcorn",
-      "item": "Popcorn",
+      "title": "Carrefour bisquits",
+      "item": "bisquits",
       "percentOff": 20,
-      "description": "20% off of this delicious popcorn!",
+      "description": "20% off of this these fantastic bisquits, quite incredible really if you can even believe it! ldjhgldkjghlkdjhls jkfhesjh;se ;efjes;oifjs;oeifjseiojfs;eijf sefijs;efij s iesjf; isjef; isejf ;isjef ois;jee",
       "startDate": "2007-05-10 12:00:00",
       "endDate": "2007-05-15 12:00:00",
       "redeemableAmount": "100",
