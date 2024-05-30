@@ -21,7 +21,12 @@
   </div>
 
   <div class="btn-side">
-    <button class="yoo" *ngIf="!captureButton" id="snap" (click)="takePhoto()">
+    <button
+      class="take-pic-btn"
+      *ngIf="!captureButton"
+      id="snap"
+      (click)="takePhoto()"
+    >
       Prendre une photo
     </button>
     <div class="retake-btn">

@@ -1,41 +1,36 @@
-<div *ngIf="cardList">
-  <div *ngIf="promoBrand">
-    <div
-      [ngClass]="{
-        'card-container': !vertical,
-        'card-container-vertical': vertical
-      }"
-    >
-      <div class="promo-card" *ngFor="let card of cardList">
-        <div class="promo-amount">
-          <div *ngIf="blurCards" class="blur"></div>
-          <div class="percent-off">
-            <p id="flat">FLAT</p>
-            <div class="percent-container">
-              <p class="percent-discount">{{ card.percentOff }}</p>
+<div class="card-container">
+  <div [ngClass]="smallCard ? 'small-card' : 'promo-card'">
+    <div class="promo-amount">
+      <!-- <div *ngIf="blurCards" class="blur"></div> -->
+      <div class="percent-off">
+        <p id="flat">FLAT</p>
+        <div class="percent-container">
+          <p class="percent-discount">{{ card.percentOff }}</p>
 
-              <div class="percent-off-container">
-                <p id="percent">%</p>
-                <p id="off">off</p>
-              </div>
-            </div>
-          </div>
-          <div class="redeemable-amount">
-            <p id="points-amount">{{ card.redeemableAmount }}</p>
-            points
+          <div class="percent-off-container">
+            <p id="percent">%</p>
+            <p id="off">off</p>
           </div>
         </div>
-        <div class="brand-and-details">
-          <img
-            id="logo"
-            src="assets/png/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
-            alt="carrouf logo"
-          />
-          <p id="details">See details</p>
-          <button type="button" (click)="onOpenModal(card)">
-            <img src="assets/png/arrow.png" alt="Arrow" />
-          </button>
-        </div>
+      </div>
+      <div class="redeemable-amount">
+        <p id="points-amount">{{ card.redeemableAmount }}</p>
+        points
+      </div>
+    </div>
+    <div class="see-details">
+      <div
+        [ngClass]="smallBrand ? 'small-brand-and-details' : 'brand-and-details'"
+      >
+        <img
+          id="logo"
+          src="../../../../../assets/svg/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
+          alt="carrouf logo"
+        />
+        <p id="details">See details</p>
+        <button type="button" (click)="openModal(card)">
+          <img src="../../../../../assets/svg/arrow.png" alt="Arrow" />
+        </button>
       </div>
     </div>
   </div>

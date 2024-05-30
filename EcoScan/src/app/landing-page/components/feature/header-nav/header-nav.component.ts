@@ -59,35 +59,42 @@ export class HeaderNavComponent {
   ngOnInit() {
     this.navigation = [
       {
-        title: 'My Promos',
-        svg: '/assets/svg/promos.svg',
+        title: 'Mes Promos',
+        svg: '/assets/svg/promotion.png',
         click: () => {
           this.routerNavigate.navigate(['/mypromos']);
         },
       },
       {
-        title: 'Historic',
-        svg: '/assets/svg/historic.svg',
+        title: 'Historique',
+        svg: '/assets/svg/fichier.png',
         click: () => {
           this.routerNavigate.navigate(['/historic']);
         },
       },
       {
-        title: 'Staged Waste',
-        svg: '/assets/svg/staged.svg',
+        title: 'Déchets stockés',
+        svg: '/assets/svg/poubelle-1.png',
         click: () => {
           this.routerNavigate.navigate(['/staged']);
         },
       },
       {
-        title: 'Setting',
+        title: 'Comment ça marche ?',
+        svg: '/assets/svg/point-dinterrogation.png',
+        click: () => {
+          this.routerNavigate.navigate(['/glossary']);
+        },
+      },
+      {
+        title: 'Parametre',
         svg: '/assets/svg/setting.svg',
         click: () => {
           this.routerNavigate.navigate(['/setting']);
         },
       },
       {
-        title: 'Disconnect',
+        title: 'Déconnexion',
         svg: '/assets/svg/disconnect.svg',
         click: () => {
           this.logout();

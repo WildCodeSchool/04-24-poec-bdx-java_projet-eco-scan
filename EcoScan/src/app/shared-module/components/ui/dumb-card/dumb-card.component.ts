@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Promo } from '../../../models/types/Promo.type';
-import { Brand } from '../../../models/types/Brand.type';
+
+import { ModalService } from '../../../shared/modal.service';
 
 @Component({
   selector: 'app-dumb-card',
@@ -8,13 +9,15 @@ import { Brand } from '../../../models/types/Brand.type';
   styleUrl: './dumb-card.component.scss',
 })
 export class DumbCardComponent {
+  @Input() smallBrand: boolean = false;
+  @Input() smallCard: boolean = false;
   @Input() blurCards!: boolean;
-  @Input() vertical: boolean = false;
-  @Input() cardList!: Promo[] | null;
-  @Input() promoBrand!: Brand | null;
-  @Output() openModal = new EventEmitter<Promo>();
+  @Input() card!: Promo;
 
-  onOpenModal(card: Promo) {
-    this.openModal.emit(card);
+  constructor(private modalService: ModalService) {}
+
+  openModal(card: Promo) {
+    this.modalService.openModal(card);
+    this.blurCards = false;
   }
 }
