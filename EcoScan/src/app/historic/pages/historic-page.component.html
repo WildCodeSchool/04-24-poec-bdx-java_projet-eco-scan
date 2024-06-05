@@ -1,26 +1,28 @@
-<app-header headerPageTitle="HISTORIQUE"></app-header>
+<div [@landingPageAnimation]>
+  <app-header headerPageTitle="HISTORIQUE"></app-header>
 
-<div class="route-btn">
-  <div
-    class="promos"
-    [routerLink]="['/historic/promos']"
-    [@buttonState]="isPromosRoute(outlet) ? 'active' : 'inactive'"
-  >
-    <h4>PROMOS</h4>
+  <div class="route-btn">
+    <div
+      class="promos"
+      [routerLink]="['/historic/promos']"
+      [@buttonState]="isPromosRoute(outlet) ? 'active' : 'inactive'"
+    >
+      <h4>PROMOS</h4>
+    </div>
+    <div
+      class="waste"
+      [routerLink]="['/historic/waste']"
+      [@buttonState]="isWasteRoute(outlet) ? 'active' : 'inactive'"
+    >
+      <h4>DECHETS</h4>
+    </div>
   </div>
-  <div
-    class="waste"
-    [routerLink]="['/historic/waste']"
-    [@buttonState]="isWasteRoute(outlet) ? 'active' : 'inactive'"
-  >
-    <h4>DECHETS</h4>
-  </div>
+
+  <main [@routeAnimation]="prepareRoute(outlet)" class="content">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </main>
+
+  <footer>
+    <app-footer [scanButton]="true"></app-footer>
+  </footer>
 </div>
-
-<main [@routeAnimation]="prepareRoute(outlet)" class="content">
-  <router-outlet #outlet="outlet"></router-outlet>
-</main>
-
-<footer>
-  <app-footer [scanButton]="true"></app-footer>
-</footer>
