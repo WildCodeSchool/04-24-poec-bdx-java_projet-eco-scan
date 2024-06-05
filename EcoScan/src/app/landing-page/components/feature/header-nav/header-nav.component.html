@@ -11,7 +11,8 @@
     </div>
 
     <div class="points-box" *ngIf="userPoints$ | async as userPoints">
-      <img src="/assets/png/etoile.png"><p>{{userPoints | thousandK}}</p>
+      <img src="/assets/png/point-landing-page.png" />
+      <p>{{ userPoints | thousandK }}</p>
     </div>
 
     <a [routerLink]="['/map']">
