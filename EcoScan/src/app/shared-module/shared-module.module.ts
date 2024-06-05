@@ -42,6 +42,7 @@ import { PromoGalleryComponent } from './components/ui/promo-gallery/promo-galle
     PointCardComponent,
     DumbCardComponent,
     PromoGalleryComponent,
+    ThousandKPipe
   ],
 })
 export class SharedModule {}
