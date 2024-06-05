@@ -1,9 +1,10 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { SidebarCloseAnimation, SidebarOpenAnimation } from './animation';
 import { Nav } from '../../../models/nav.type';
 import { HostService } from '../../../../host/shared/host.service';
 import { Router } from '@angular/router';
+import { UserDataService } from '../../../../shared-module/shared/user-data.service';
 
 const animationParams = {
   menuWidth: '250px',
@@ -37,15 +38,19 @@ export class HeaderNavComponent {
   @Output()
   boolChange: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(
-    private hostService: HostService,
-    private routerNavigate: Router
-  ) {}
 
+  private userService = inject(UserDataService);
+  userPoints$ = this.userService.getUserPoints$("674d");
   imagePath: string = 'assets/png/bar.png';
   mapSvg: string = 'assets/svg/map.svg';
   isOpen: boolean = false;
   navigation: Nav[] = [];
+  
+
+  constructor(
+    private hostService: HostService,
+    private routerNavigate: Router,
+  ) {}
 
   sendIsOpenToParent() {
     this.isOpen = !this.isOpen;

@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable, catchError, map } from 'rxjs';
+import { Observable, catchError, map, switchMap } from 'rxjs';
 import { User } from '../models/classes/User.class';
 import { Promo } from '../models/types/Promo.type';
 import { environment } from '../../../environments/environment';
@@ -42,8 +42,8 @@ export class DataAccessorService {
       }),
     );
   }
-  getUserByID$(id: string): Observable<User> {
-    return this.http.get<User>(`${environment.database.path}/users/${id}`).pipe(
+  getUserByID$(id: string): Observable<GetUser> {
+    return this.http.get<GetUser>(`${environment.database.path}/users/${id}`).pipe(
       catchError((err) => {
         throw this.handleFailure(err);
       }),
