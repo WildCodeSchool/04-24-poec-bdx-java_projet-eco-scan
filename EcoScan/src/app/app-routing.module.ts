@@ -48,24 +48,21 @@ const routes: Routes = [
   {
     path: 'map',
     loadChildren: () =>
-      import('./map-page/map-page.module').then(
-        (m) => m.MapPageModule
-      ),
+      import('./map-page/map-page.module').then((m) => m.MapPageModule),
   },
   {
     path: 'admin',
     loadChildren: () =>
-      import('./admin/admin-page.module').then(
-        (m) => m.AdminPageModule
-      ),
-    canActivate: [adminGuard]
+      import('./admin/admin-page.module').then((m) => m.AdminPageModule),
+    canActivate: [adminGuard],
   },
   {
     path: '**',
     loadChildren: () =>
-      import('./error-pages/error-pages.module').then((m) => m.ErrorPagesModule),
+      import('./error-pages/error-pages.module').then(
+        (m) => m.ErrorPagesModule
+      ),
   },
-
 ];
 
 @NgModule({
