@@ -6,7 +6,6 @@ import { HeaderNavComponent } from './components/feature/header-nav/header-nav.c
 import { LandingPagesComponent } from './pages/landing-pages.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { SharedModule } from '../shared-module/shared-module.module';
-import { PromoGalleryComponent } from '../shared-module/components/ui/promo-gallery/promo-gallery.component';
 
 @NgModule({
   declarations: [HeaderNavComponent, LandingPagesComponent],

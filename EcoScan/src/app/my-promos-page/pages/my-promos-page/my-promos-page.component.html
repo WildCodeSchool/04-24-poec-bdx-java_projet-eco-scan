@@ -1,21 +1,29 @@
-<app-header headerPageTitle="MES PROMOS" [searchBar]="false"></app-header>
-<div class="pageContent">
-  <app-promo-gallery title="MES PROMOS"></app-promo-gallery>
+<div [@openClosePageAnimation]>
+  <div [@openClosePageAnimation]>
+    <app-header headerPageTitle="MES PROMOS" [searchBar]="false"></app-header>
+    <div [@openPageAnimation]>
+      <div class="pageContent">
+        <app-promo-gallery title="MES PROMOS"></app-promo-gallery>
 
-  <div class="card-container" *ngIf="cardList$ | async as cardList">
-    <div *ngFor="let card of cardList">
-      <app-dumb-card
-        [smallBrand]="true"
-        [smallCard]="true"
-        [card]="card"
-      ></app-dumb-card>
+        <div class="card-container" *ngIf="cardList$ | async as cardList">
+          <div *ngFor="let card of cardList">
+            <app-dumb-card
+              [smallBrand]="true"
+              [smallCard]="true"
+              [card]="card"
+            ></app-dumb-card>
+          </div>
+          <app-modal />
+        </div>
+
+        <!-- @TODO link to explanation page once created -->
+        <div class="yo">
+          <a [routerLink]="['/']" class="tip-link"
+            ><p>How to use your promo</p></a
+          >
+        </div>
+      </div>
     </div>
-    <app-modal />
-  </div>
-
-  <!-- @TODO link to explanation page once created -->
-  <div class="yo">
-    <a [routerLink]="['/']" class="tip-link"><p>How to use your promo</p></a>
+    <app-footer [scanButton]="true" />
   </div>
 </div>
-<app-footer [scanButton]="true" />

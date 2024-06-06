@@ -2,7 +2,7 @@
   <div *ngIf="isOpen" [class.active]="isOpen" class="blur"></div>
   <app-header-nav (boolChange)="onReceivedFromHeader($event)"></app-header-nav>
 
-  <app-promo-gallery title="NOUVELLE PROMOS"></app-promo-gallery>
+  <app-promo-gallery title="NOUVELLES PROMOS"></app-promo-gallery>
 
   <div class="card-container" *ngIf="cardList$ | async as cardList">
     <div *ngFor="let card of cardList">
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <app-promo-gallery title="MEILLEURE PROMOS"></app-promo-gallery>
+  <app-promo-gallery title="MEILLEURES PROMOS"></app-promo-gallery>
 
   <div class="card-container" *ngIf="cardList1$ | async as cardList1">
     <div *ngFor="let card of cardList1">
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <app-promo-gallery title="MEILLEURE PROMOS"></app-promo-gallery>
+  <app-promo-gallery title="GROS PRIX"></app-promo-gallery>
 
   <app-modal />
 

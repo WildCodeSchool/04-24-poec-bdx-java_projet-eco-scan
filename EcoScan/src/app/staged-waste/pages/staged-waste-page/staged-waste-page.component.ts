@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import {
+  openClosePageAnimation,
+  openPageAnimation,
+} from '../../../shared-module/shared/route-animations';
 
 @Component({
   selector: 'app-staged-waste-page',
   templateUrl: './staged-waste-page.component.html',
-  styleUrl: './staged-waste-page.component.scss'
+  styleUrls: ['./staged-waste-page.component.scss'],
+  animations: [openClosePageAnimation, openPageAnimation],
 })
-export class StagedWastePageComponent {
-
-}
+export class StagedWastePageComponent {}

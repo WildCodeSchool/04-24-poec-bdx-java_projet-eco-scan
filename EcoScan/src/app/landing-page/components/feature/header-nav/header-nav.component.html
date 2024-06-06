@@ -10,7 +10,10 @@
       />
     </div>
 
-    <input type="search " />
+    <div class="points-box" *ngIf="userPoints$ | async as userPoints">
+      <img src="/assets/png/point-landing-page.png" />
+      <p>{{ userPoints | thousandK }}</p>
+    </div>
 
     <a [routerLink]="['/map']">
       <img src="assets/svg/map.svg" alt="" />
