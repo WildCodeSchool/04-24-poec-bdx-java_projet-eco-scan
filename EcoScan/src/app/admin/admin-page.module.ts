@@ -12,6 +12,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PromoAdminCardComponent } from './components/ui/promo-admin-card/promo-admin-card.component';
 import { HeaderComponent } from './components/feature/header/header.component';
 import { PromoIdDisplayComponent } from './components/ui/promo-id-display/promo-id-display.component';
+import { AdminBrandsComponent } from './pages/admin-brands/admin-brands.component';
+import { AdminTypesComponent } from './pages/admin-types/admin-types.component';
+import { TypeFormComponent } from './components/ui/type-form/type-form.component';
+import { TypeDisplayComponent } from './components/feature/type-display/type-display.component';
+import { BrandDisplayComponent } from './components/feature/brand-display/brand-display.component';
+import { BrandFormComponent } from './components/ui/brand-form/brand-form.component';
+import { BrandCardComponent } from './components/ui/brand-card/brand-card.component';
+import { TypeCardComponent } from './components/ui/type-card/type-card.component';
 
 
 @NgModule({
@@ -24,7 +32,15 @@ import { PromoIdDisplayComponent } from './components/ui/promo-id-display/promo-
     StatsDisplayComponent,
     PromoAdminCardComponent,
     HeaderComponent,
-    PromoIdDisplayComponent
+    PromoIdDisplayComponent,
+    AdminBrandsComponent,
+    AdminTypesComponent,
+    TypeFormComponent,
+    TypeDisplayComponent,
+    BrandDisplayComponent,
+    BrandFormComponent,
+    BrandCardComponent,
+    TypeCardComponent
   ],
   imports: [
     CommonModule,

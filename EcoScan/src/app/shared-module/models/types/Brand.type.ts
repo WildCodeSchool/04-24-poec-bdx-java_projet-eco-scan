@@ -1,5 +1,5 @@
 export type Brand = {
     brandID: string;
-    brandName: string;
-    brandDescription: string;
+    title: string;
+    logo: string;
 }

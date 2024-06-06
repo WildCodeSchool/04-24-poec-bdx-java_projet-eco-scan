@@ -1,0 +1,22 @@
+.brand-card {
+    display: flex;
+    gap: 1rem;
+
+    background-color: white;
+    margin: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 2px rgb(0, 0, 0, 0.45);
+    padding: 1rem;
+
+    button {
+        margin: 1rem;
+        border-radius: 10px;
+        padding: 6px;
+    }
+}
+
+.fields{
+    p{
+        padding: 0.3rem;
+    }
+}

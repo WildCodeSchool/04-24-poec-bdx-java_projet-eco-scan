@@ -1,0 +1,11 @@
+<div class="type-card">
+    <div class="fields">
+        <p>Nom de type: {{type.name}}</p>
+        <!-- change to img when we connect the BE -->
+        <p>Pictogram: {{type.pictogram}}</p>
+        <p>Description: {{type.description}}</p>
+        <p>Points: {{type.points}}</p>
+
+    </div>
+    <button (click)="deleteType(type)">Delete</button>
+</div>

@@ -1,0 +1,31 @@
+<div class="type-form">
+    <form *ngIf="typeConstructor" [formGroup]="typeConstructor" #typeForm="ngForm" (ngSubmit)="typeConstructor.valid && onSubmit()">
+        <div>
+            <label for="name">Nom: </label>
+            <input name="name" type="text" formControlName="name" required>
+        </div>
+
+        <div>
+            <label for="pictogram">Pictogram: </label>
+            <input name="pictogram" type="text" formControlName="pictogram" required>
+        </div>
+
+        <div>
+            <label for="description">Description: </label>
+            <input name="description" type="text" formControlName="description" required>
+        </div>
+
+        <div>
+            <label for="points">Points: </label>
+            <input name="points" type="number" formControlName="points" required min=1>
+        </div>
+
+        <div *ngIf="typeForm.touched && typeForm.submitted && typeForm.invalid">
+            <ng-template #required>
+                <span style="color: red;">All fields are required to submit this form.</span>
+            </ng-template>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
