@@ -1,18 +1,16 @@
 import { Injectable, inject } from '@angular/core';
+import { TypeForm } from '../models/types/TypeForm.type';
 import { DataAccessorService } from '../../shared-module/shared/data-accessor.service';
-import { PromoForm } from '../models/types/PromoForm.type';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PromoAdminService {
-    
+export class TypeAdminService {
+  
+  
   private DBAccessor = inject(DataAccessorService);
-  constructor() { }
-
-  createNewPromo(newPromo: PromoForm){
-    //push to db
-    // this.DBAccessor.addPromo$(newPromo);
+  
+  createNewType(value: TypeForm) {
+    //update when BE connected
   }
-
 }

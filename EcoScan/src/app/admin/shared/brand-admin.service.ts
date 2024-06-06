@@ -1,18 +1,17 @@
 import { Injectable, inject } from '@angular/core';
 import { DataAccessorService } from '../../shared-module/shared/data-accessor.service';
-import { PromoForm } from '../models/types/PromoForm.type';
+import { BrandForm } from '../models/types/BrandForm.type';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PromoAdminService {
-    
+export class BrandAdminService {
+
   private DBAccessor = inject(DataAccessorService);
   constructor() { }
 
-  createNewPromo(newPromo: PromoForm){
+  createNewBrand(newBrand: BrandForm){
     //push to db
-    // this.DBAccessor.addPromo$(newPromo);
+    // this.DBAccessor.addPromo$(newBrand);
   }
-
 }

@@ -168,13 +168,29 @@
   ],
   "brand": [
     {
-      "brandID": "66",
-      "brandName": "Carrefour",
-      "brandLogo": "BLOB",
-      "brandBanner": "BLOB",
-      "otherImages": "BLOB",
-      "brandDescription": "A shop",
+      "title": "Carrefour",
+      "logo": "BLOB",
       "id": "018d"
+    },
+    {
+      "title": "Monop",
+      "logo": "src/s/s",
+      "id": "448d"
     }
+  ],
+  "type": [
+    {
+      "name": "Verre",
+      "description": "place for glass",
+      "points": 100,
+      "pictogram": "src/asset/example.jpg"
+    },
+    {
+      "name": "plastique",
+      "description": "place for plastique",
+      "points": 320,
+      "pictogram": "src/asset/example.jpg"
+    }
+
   ]
 }

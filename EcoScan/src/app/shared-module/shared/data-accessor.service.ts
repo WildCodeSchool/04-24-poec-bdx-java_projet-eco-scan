@@ -15,6 +15,7 @@ import { Bin } from '../models/types/Bin.type';
 import { Deposit } from '../models/types/Deposits.type';
 import { Brand } from '../models/types/Brand.type';
 import { GetUser } from '../../host/models/getUser.type';
+import { Type } from '../models/types/Type.type';
 
 @Injectable({
   providedIn: 'root',
@@ -297,11 +298,11 @@ export class DataAccessorService {
         }),
       );
   }
-  getBrandByName$(name: string): Observable<Brand> {
+  getBrandByName$(title: string): Observable<Brand> {
     return this.http.get<Brand[]>(`${environment.database.path}/brand/`).pipe(
       map(
         (brands: Brand[]) =>
-          brands.filter((brand: Brand) => brand.brandName === name)[0],
+          brands.filter((brand: Brand) => brand.title === title)[0],
       ),
       catchError((err) => {
         throw this.handleFailure(err);
@@ -337,4 +338,15 @@ export class DataAccessorService {
         }),
       );
   }
+
+
+  //types
+  getAllTypes$(): Observable<Type[]> {
+    return this.http.get<Type[]>(`${environment.database.path}/type`).pipe(
+      catchError((err) => {
+        throw this.handleFailure(err);
+      }),
+    );
+  }
+
 }

@@ -1,4 +1,4 @@
-export type PromoFrom = {
+export type PromoForm = {
     title: string;
     item: string;
     description: string;

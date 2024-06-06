@@ -1,15 +1,12 @@
 .menu {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 
     width: 20vw;
     height: 100%;
 
     gap: 2rem;
     padding: 2rem;
-
-    border-right: 4px gray groove;
 
     .menu-item {
         display: flex;

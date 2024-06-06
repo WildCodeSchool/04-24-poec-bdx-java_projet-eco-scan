@@ -1,0 +1,10 @@
+<div class="brand-column">
+
+    <div *ngIf="brands$ | async as brands">
+        <div *ngFor="let brand of brands">
+            <app-brand-card
+            [brand]="brand"
+            ></app-brand-card>
+        </div>
+    </div>
+</div>
