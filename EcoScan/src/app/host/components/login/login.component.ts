@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HostService } from '../../shared/host.service';
-import { Credential } from '../../models/crendential.type';
+import { Credential } from '../../models/credential.type';
 
 @Component({
   selector: 'app-login',

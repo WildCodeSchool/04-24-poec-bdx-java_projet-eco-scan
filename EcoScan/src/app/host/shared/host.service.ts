@@ -2,39 +2,36 @@ import { Injectable } from '@angular/core';
 import { Observable, filter, map, of, switchMap, tap } from 'rxjs';
 import { UserForm } from '../models/user.type';
 import { AuthService } from '../../shared-module/shared/auth.service';
-import { Credential } from '../models/crendential.type';
+import { Credential } from '../models/credential.type';
 import { Router } from '@angular/router';
 import { DataAccessorService } from '../../shared-module/shared/data-accessor.service';
 import { User } from '../../shared-module/models/classes/User.class';
-import { Login } from '../../shared-module/models/types/Login.type';
+import { AuthResponse } from '../../shared-module/models/types/Login.type';
 import { GetUser } from '../models/getUser.type';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HostService {
-  private _baseUrl = 'http://localhost:3000';
 
   constructor(
     private _authService: AuthService,
     private _router: Router,
     private _dbAccessor: DataAccessorService
-  ) {}
+  ) {
+
+  }
 
   login$(credentials: Credential): Observable<boolean> {
-    return this._dbAccessor.getAllUsers$().pipe(
-      switchMap((users: GetUser[]) => {
-        const user = users.find((user) => user.email === credentials.email);
-
-        if (user) {
-          this._authService.setCurrentUser$(user);
+    return this._dbAccessor.authenticateUser$(credentials).pipe(
+      switchMap((authResp: AuthResponse) => {
+        if (authResp.message === "Logged In") {
           return of(true);
-          // TODO
-          // return this._authService.verfyCredentials(credentials, user);
         } else {
           return of(false);
         }
-      }),
+      }
+      ),
       tap((isLoggedIn) => {
         if (isLoggedIn) {
           this._router.navigate(['/home']);
@@ -71,21 +68,22 @@ export class HostService {
             newUser.points,
             newUser.isAdmin
           );
+          return of(credentials);
 
-          return this._dbAccessor.addUser$(user).pipe(
-            switchMap((addedUser) => {
-              //  Success register toast
-              const login: Login = {
-                userID: addedUser.getUserID() as string,
-                salt: 'abc',
-                email: newUser.email,
-                hashedPassword: newUser.password,
-              };
-              return this._dbAccessor
-                .addUserPassword$(login)
-                .pipe(map(() => credentials));
-            })
-          );
+          // return this._dbAccessor.addUser$(user).pipe(
+          //   switchMap((addedUser) => {
+          //     //  Success register toast
+          //     const login: RegisterResponse = {
+          //       message: addedUser.getUserID() as string,
+          //       salt: 'abc',
+          //       email: newUser.email,
+          //       hashedPassword: newUser.password,
+          //     };
+          //     return this._dbAccessor
+          //       .addUserPassword$(login)
+          //       .pipe(map(() => credentials));
+          //   })
+          // );
         }
       }),
       map((userOrNull) => {

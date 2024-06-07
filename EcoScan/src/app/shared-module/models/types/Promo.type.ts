@@ -6,7 +6,7 @@ export type Promo = {
     description: string;
     percentOff: number;
     redeemableAmount: number;
-    pointsNeed: number;
+    price: number;
     startDate: Date;
     endDate: Date;
 }
