@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, filter, map, of, switchMap, tap } from 'rxjs';
 import { UserForm } from '../models/user.type';
 import { AuthService } from '../../shared-module/shared/auth.service';
@@ -8,16 +8,20 @@ import { DataAccessorService } from '../../shared-module/shared/data-accessor.se
 import { User } from '../../shared-module/models/classes/User.class';
 import { AuthResponse } from '../../shared-module/models/types/Login.type';
 import { GetUser } from '../models/getUser.type';
+import { TokenService } from './token.service';
+import { UserService } from '../../shared-module/shared/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HostService {
+  userService = inject(UserService);
 
   constructor(
     private _authService: AuthService,
     private _router: Router,
-    private _dbAccessor: DataAccessorService
+    private _dbAccessor: DataAccessorService,
+    private _tokenService: TokenService
   ) {
 
   }
@@ -26,6 +30,7 @@ export class HostService {
     return this._dbAccessor.authenticateUser$(credentials).pipe(
       switchMap((authResp: AuthResponse) => {
         if (authResp.message === "Logged In") {
+          this._tokenService.updateToken(authResp.token);
           return of(true);
         } else {
           return of(false);

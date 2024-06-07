@@ -1,10 +1,10 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, OnInit, inject } from '@angular/core';
 import {
   HttpClient,
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable, catchError, map, tap } from 'rxjs';
+import { Observable, catchError, map, switchMap, tap } from 'rxjs';
 import { User } from '../models/classes/User.class';
 import { Promo } from '../models/types/Promo.type';
 import { environment } from '../../../environments/environment';
@@ -17,31 +17,43 @@ import { Brand } from '../models/types/Brand.type';
 import { GetUser } from '../../host/models/getUser.type';
 import { Type } from '../models/types/Type.type';
 import { Credential } from '../../host/models/credential.type';
+import { TokenService } from '../../host/shared/token.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DataAccessorService {
+export class DataAccessorService implements OnInit{
   private http = inject(HttpClient);
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
+  private tokenService = inject(TokenService);
+  private token!:string;
+
+  private httpOptions!:object;
+
+  ngOnInit(): void {
+    this.tokenService.getEncodedToken$().pipe(
+      map(token => {
+        this.token = token;
+        console.log("token iss ");
+        console.log(this.token);
+        
+        this.httpOptions = {
+          headers:  new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + this.token
+          })
+        }
+        console.log(this.httpOptions);
+        
+        console.log(this.token);
+      })
+    ).subscribe();
+  }
 
 
   handleFailure(err: HttpErrorResponse): void {
     throw 'Connection to DB failure: ' + err.message;
   }
 
-  setToken(token: string) {
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token
-      }),
-    };
-  }
 
   /*
      Auth
@@ -54,11 +66,6 @@ export class DataAccessorService {
         this.httpOptions
       )
       .pipe(
-        tap(response => {
-          if (response.message === "Logged In"){
-            this.setToken(response.token)
-          }
-        }),
         catchError((err) => {
           throw this.handleFailure(err);
         }),
@@ -301,6 +308,11 @@ export class DataAccessorService {
   */
   // fetch
   getAllPromos$(): Observable<Promo[]> {
+    console.log("getting all promos");
+    console.log(this.httpOptions);
+    console.log("getting all promos");
+    
+
     return this.http.get<Promo[]>(
       `${environment.database.path}/promos/get/all`,
       this.httpOptions
