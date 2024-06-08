@@ -4,19 +4,26 @@ import { LocalStorageService } from '../../shared-module/local-storage.service';
 import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TokenService {
-
-  private _encodedTokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  private _decodedTokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  public _encodedTokenSubject: BehaviorSubject<string> =
+    new BehaviorSubject<string>('');
+  private _decodedTokenSubject: BehaviorSubject<string> =
+    new BehaviorSubject<string>('');
   localStorageService = inject(LocalStorageService);
 
+  constructor() {
+    const token = this.localStorageService.getToken();
+    if (token) {
+      this._encodedTokenSubject.next(token);
+    }
+  }
+
   updateToken(newToken: string): void {
-    console.log("######updting token");
+    console.log('######updting token');
     console.log(newToken);
-    
-    
+
     this.localStorageService.clearToken();
     this.localStorageService.setToken(newToken);
     this._encodedTokenSubject.next(newToken);
@@ -32,12 +39,15 @@ export class TokenService {
 
   resetToken$(): void {
     this.localStorageService.clearToken();
-    this._encodedTokenSubject.next("");
-    this._encodedTokenSubject.next("");
+    this._encodedTokenSubject.next('');
+    this._encodedTokenSubject.next('');
+  }
+
+  getToken(): string {
+    return this._encodedTokenSubject.value;
   }
 
   decodeToken(token: string): string {
     return jwtDecode(token);
   }
-
 }

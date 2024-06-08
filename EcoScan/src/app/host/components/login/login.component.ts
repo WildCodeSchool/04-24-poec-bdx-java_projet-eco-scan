@@ -10,8 +10,8 @@ import { Credential } from '../../models/credential.type';
 })
 export class LoginComponent {
   loginForm = this._fb.group({
-    email: ['h-mamou@hotmail.fr', [Validators.required, Validators.email]],
-    password: ['sdfsdfsdf', [Validators.required]],
+    email: ['user1@user1.com', [Validators.required, Validators.email]],
+    password: ['user1', [Validators.required]],
   });
 
   constructor(private _fb: FormBuilder, private _hostService: HostService) {}
