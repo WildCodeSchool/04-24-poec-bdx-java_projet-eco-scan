@@ -9,10 +9,14 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { LocalStorageService } from '../local-storage.service';
+import { MessageService } from 'primeng/api';
 
 @Injectable()
 export class TokenInterceptorInterceptor implements HttpInterceptor {
-  constructor(private lsService: LocalStorageService) {}
+  constructor(
+    private lsService: LocalStorageService,
+    private messageService: MessageService
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -36,23 +40,24 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       tap((incomingRequest) => {
-        console.log(incomingRequest);
-        // j'intercepte les requêtes que mon serveur me renvoie en statut 200 (Statut : succès)
-        if (incomingRequest instanceof HttpResponse) {
-          // this.authS.setHttpSuccessSubject$(incomingRequest);
+        const incomingReq = incomingRequest instanceof HttpResponse;
+        if (incomingReq && request.body) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: incomingRequest.body.message,
+          });
         }
       }),
-      // J'intercepte les requêtes que mon serveur me renvoit en statut 400 (pbl côté client) ou 500 (pbl côté serveur)
-      // Les plus courantes sont :
-      // HTTP Error 401 — Unauthorized
-      // HTTP Error 400 — Bad Request
-      // HTTP Error 404 — Page Not Found
-      // HTTP Error 403 — Forbidden Error
-      // HTTP Error 500 — Internal Error
-      // HTTP Error 503 — Service Unavailable
+
       catchError((err: HttpErrorResponse) => {
-        console.log(err);
-        // this.authS.setHttpErrorSubject$(err);
+        if (err.error.Error) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erreur',
+            detail: err.error.Error,
+          });
+        }
         return throwError(() => new Error('Une erreur est survenue'));
       })
     );

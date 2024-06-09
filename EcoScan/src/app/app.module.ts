@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
 import { TokenInterceptorInterceptor } from './shared-module/interceptor/http-request.interceptor';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { TokenInterceptorInterceptor } from './shared-module/interceptor/http-re
     BrowserModule,
     MessagesModule,
     MessageModule,
+    ToastModule,
   ],
   providers: [
     MessageService,

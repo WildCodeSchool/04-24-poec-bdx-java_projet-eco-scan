@@ -27,7 +27,7 @@ export class HostService {
   login$(credentials: Credential): Observable<boolean> {
     return this._dbAccessor.authenticateUser$(credentials).pipe(
       switchMap((authResp: AuthResponse) => {
-        if (authResp.message === 'Logged In') {
+        if (authResp.message) {
           this._tokenService.updateToken(authResp.token);
           return of(true);
         } else {

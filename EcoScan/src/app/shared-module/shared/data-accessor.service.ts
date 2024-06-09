@@ -35,16 +35,10 @@ export class DataAccessorService {
      Auth
   */
   authenticateUser$(login: Credential): Observable<AuthResponse> {
-    return this.http
-      .post<AuthResponse>(
-        `${environment.database.path}/auth/authenticate`,
-        login
-      )
-      .pipe(
-        catchError((err) => {
-          throw this.handleFailure(err);
-        })
-      );
+    return this.http.post<AuthResponse>(
+      `${environment.database.path}/auth/authenticate`,
+      login
+    );
   }
 
   /*

@@ -33,8 +33,8 @@ export class RegisterComponent {
   });
 
   constructor(
-    private _fb: FormBuilder,
     private messageService: MessageService,
+    private _fb: FormBuilder,
     private _hostService: HostService
   ) {}
 
@@ -43,15 +43,13 @@ export class RegisterComponent {
     if (this.registrationForm.valid) {
       const newUser: UserForm = this.registrationForm.value as UserForm;
 
-      this._hostService.register$(newUser).subscribe((response) => {
-        if (response) {
-          //  success add user tost
-          this.registrationForm.reset();
-        } else {
-          // err lors de l'ajout toast
-        }
-      });
+      this._hostService.register$(newUser).subscribe();
     } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erreur',
+        detail: 'Formulaire invalide',
+      });
       this.validateForm(this.registrationForm);
     }
   }
@@ -81,13 +79,13 @@ export class RegisterComponent {
       if (control.errors['email']) {
         this.messages[controlName].push({
           severity: 'error',
-          summary: `${controlName} n'est pas valide`,
+          summary: `L'${controlName} n'est pas valide`,
         });
       }
       if (control.errors['password']) {
         this.messages[controlName].push({
           severity: 'error',
-          summary: `${controlName} doit contenir une majuscule`,
+          summary: `Le mot de passe n'est pas assez robuste`,
         });
       }
       if (control.errors['mismatch']) {
