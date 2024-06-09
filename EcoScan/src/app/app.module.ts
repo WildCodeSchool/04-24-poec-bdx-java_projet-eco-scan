@@ -7,7 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
-import { TokenInterceptorInterceptor } from './shared-module/interceptor/http-option.interceptor';
+import { TokenInterceptorInterceptor } from './shared-module/interceptor/http-request.interceptor';
 
 @NgModule({
   declarations: [AppComponent],

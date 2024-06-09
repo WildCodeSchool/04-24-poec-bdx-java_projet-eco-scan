@@ -16,11 +16,10 @@ import { Message, MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class RegisterComponent {
-  submitted = false;
   messages: { [key: string]: Message[] } = {
     firstname: [],
     lastname: [],
-    pseudo: [],
+    username: [],
     email: [],
     password: [],
   };
@@ -40,7 +39,6 @@ export class RegisterComponent {
   ) {}
 
   onSubmit() {
-    this.submitted = true;
     this.clearMessages();
     if (this.registrationForm.valid) {
       const newUser: UserForm = this.registrationForm.value as UserForm;
@@ -49,14 +47,6 @@ export class RegisterComponent {
         if (response) {
           //  success add user tost
           this.registrationForm.reset();
-
-          this._hostService.login$(response).subscribe((loggedIn) => {
-            if (loggedIn) {
-              //  Success connect toast
-            } else {
-              // err lors de la connexion toast
-            }
-          });
         } else {
           // err lors de l'ajout toast
         }

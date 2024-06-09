@@ -17,6 +17,7 @@ import { Brand } from '../models/types/Brand.type';
 import { GetUser } from '../../host/models/getUser.type';
 import { Type } from '../models/types/Type.type';
 import { Credential } from '../../host/models/credential.type';
+import { UserForm } from '../../host/models/user.type';
 
 @Injectable({
   providedIn: 'root',
@@ -61,14 +62,11 @@ export class DataAccessorService {
   }
 
   // Create
-  addUserPassword$(newLogin: AuthResponse): Observable<AuthResponse> {
-    return this.http
-      .post<AuthResponse>(`${environment.database.path}/logins`, newLogin)
-      .pipe(
-        catchError((err) => {
-          throw this.handleFailure(err);
-        })
-      );
+  addUserAndLogin$(newLogin: UserForm): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
+      `${environment.database.path}/auth/register`,
+      newLogin
+    );
   }
 
   /*

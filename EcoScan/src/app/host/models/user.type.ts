@@ -1,9 +1,8 @@
 export type UserForm = {
   firstname: string;
   lastname: string;
-  pseudo: string;
+  username: string;
   email: string;
   password: string;
   points: number;
-  isAdmin: boolean;
 };
