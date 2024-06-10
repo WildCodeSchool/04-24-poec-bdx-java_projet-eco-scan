@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { PointCardComponent } from './components/ui/point-card/point-card/point-card.component';
 import { ThousandKPipe } from './shared/thousand-k.pipe';
 import { PromoGalleryComponent } from './components/ui/promo-gallery/promo-gallery.component';
+import { TransitionComponent } from './components/ui/transition/transition.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PromoGalleryComponent } from './components/ui/promo-gallery/promo-galle
     PointCardComponent,
     ThousandKPipe,
     PromoGalleryComponent,
+    TransitionComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { PromoGalleryComponent } from './components/ui/promo-gallery/promo-galle
     PointCardComponent,
     DumbCardComponent,
     PromoGalleryComponent,
-    ThousandKPipe
+    ThousandKPipe,
+    TransitionComponent,
   ],
 })
 export class SharedModule {}
