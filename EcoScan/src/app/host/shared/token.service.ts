@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LocalStorageService } from '../../shared-module/local-storage.service';
 import { jwtDecode } from 'jwt-decode';
+import { Token } from '../../shared-module/models/types/Token.type';
 
 @Injectable({
   providedIn: 'root',
@@ -9,27 +10,27 @@ import { jwtDecode } from 'jwt-decode';
 export class TokenService {
   public _encodedTokenSubject: BehaviorSubject<string> =
     new BehaviorSubject<string>('');
-  private _decodedTokenSubject: BehaviorSubject<string> =
-    new BehaviorSubject<string>('');
-  localStorageService = inject(LocalStorageService);
+  public _decodedTokenSubject: BehaviorSubject<Token>=
+  new BehaviorSubject<Token>({role: "", sub: ""});
+  private localStorageService = inject(LocalStorageService);
 
   constructor() {
     const token = this.localStorageService.getToken();
     if (token) {
-      this._encodedTokenSubject.next(token);
+      this.updateToken(token);
     }
   }
 
   updateToken(newToken: string): void {
-    console.log('######updting token');
-    console.log(newToken);
-
     this.localStorageService.clearToken();
     this.localStorageService.setToken(newToken);
     this._encodedTokenSubject.next(newToken);
+
+    this._decodedTokenSubject.next(this.decodeToken(newToken));
+
   }
 
-  getDecodedToken$(): Observable<string> {
+  getDecodedToken$(): Observable<Token> {
     return this._decodedTokenSubject.asObservable();
   }
 
@@ -40,14 +41,14 @@ export class TokenService {
   resetToken$(): void {
     this.localStorageService.clearToken();
     this._encodedTokenSubject.next('');
-    this._encodedTokenSubject.next('');
+    this._decodedTokenSubject.next({role: "", sub: ""});
   }
 
   getToken(): string {
     return this._encodedTokenSubject.value;
   }
 
-  decodeToken(token: string): string {
+  decodeToken(token: string): Token {
     return jwtDecode(token);
   }
 }

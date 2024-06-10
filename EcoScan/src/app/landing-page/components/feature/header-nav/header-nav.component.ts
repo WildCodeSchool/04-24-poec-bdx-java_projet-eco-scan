@@ -4,7 +4,7 @@ import { SidebarCloseAnimation, SidebarOpenAnimation } from './animation';
 import { Nav } from '../../../models/nav.type';
 import { HostService } from '../../../../host/shared/host.service';
 import { Router } from '@angular/router';
-import { UserDataService } from '../../../../shared-module/shared/user-data.service';
+import { UserService } from '../../../../shared-module/shared/user.service';
 
 const animationParams = {
   menuWidth: '250px',
@@ -39,8 +39,9 @@ export class HeaderNavComponent {
   boolChange: EventEmitter<boolean> = new EventEmitter();
 
 
-  private userService = inject(UserDataService);
-  userPoints$ = this.userService.getUserPoints$("674d");
+  private userService = inject(UserService);
+
+  user$ = this.userService.getUser$();
   imagePath: string = 'assets/png/bar.png';
   mapSvg: string = 'assets/svg/map.svg';
   isOpen: boolean = false;

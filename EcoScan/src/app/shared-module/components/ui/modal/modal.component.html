@@ -37,7 +37,7 @@
           </div>
 
           <div class="redeemable-amount">
-            <p id="points-amount">{{ cardData.redeemableAmount }}</p>
+            <p id="points-amount">{{ cardData.amount | thousandK }}</p>
             points
           </div>
         </div>
@@ -50,7 +50,7 @@
           <p>{{ cardData.description }}</p>
           <p><span>Item:</span> {{ cardData.item }}</p>
           <p><span>Percent Off:</span> {{ cardData.percentOff }}%</p>
-          <p><span>Redeemable Amount:</span> {{ cardData.redeemableAmount }}</p>
+          <p><span>Redeemable Amount:</span> {{ cardData.amount }}</p>
           <p><span>Start Date:</span> {{ cardData.startDate | date }}</p>
           <p><span>End Date:</span> {{ cardData.endDate | date }}</p>
         </div>

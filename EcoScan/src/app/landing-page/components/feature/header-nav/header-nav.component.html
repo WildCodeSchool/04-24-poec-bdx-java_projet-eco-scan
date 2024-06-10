@@ -10,9 +10,9 @@
       />
     </div>
 
-    <div class="points-box" *ngIf="userPoints$ | async as userPoints">
+    <div class="points-box" *ngIf="user$ | async as user">
       <img src="/assets/png/point-landing-page.png" />
-      <p>{{ userPoints | thousandK }}</p>
+      <p>{{ user.points | thousandK }}</p>
     </div>
 
     <a [routerLink]="['/map']">

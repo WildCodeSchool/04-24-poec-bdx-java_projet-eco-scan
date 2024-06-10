@@ -1,11 +1,10 @@
 <div class="card-container">
   <div [ngClass]="smallCard ? 'small-card' : 'promo-card'">
     <div class="promo-amount">
-      <!-- <div *ngIf="blurCards" class="blur"></div> -->
       <div class="percent-off">
         <p id="flat">FLAT</p>
         <div class="percent-container">
-          <p class="percent-discount">{{ card.percentOff }}</p>
+          <p class="percent-discount">{{ promo.percentOff }}</p>
 
           <div class="percent-off-container">
             <p id="percent">%</p>
@@ -14,7 +13,7 @@
         </div>
       </div>
       <div class="redeemable-amount">
-        <p id="points-amount">{{ card.price }}</p>
+        <p id="points-amount">{{ promo.price | thousandK }}</p>
         points
       </div>
     </div>
@@ -28,7 +27,7 @@
           alt="carrouf logo"
         />
         <p id="details">See details</p>
-        <button type="button" (click)="openModal(card)">
+        <button type="button" (click)="openModal(promo)">
           <img src="assets/png/arrow.png" alt="arrow" />
         </button>
       </div>

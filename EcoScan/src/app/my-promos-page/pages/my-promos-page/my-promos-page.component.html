@@ -5,12 +5,12 @@
       <div class="pageContent">
         <app-promo-gallery title="MES PROMOS"></app-promo-gallery>
 
-        <div class="card-container" *ngIf="cardList$ | async as cardList">
-          <div *ngFor="let card of cardList">
+        <div class="card-container" *ngIf="user$ | async as user">
+          <div *ngFor="let userPromo of user.userPromos">
             <app-dumb-card
               [smallBrand]="true"
               [smallCard]="true"
-              [card]="card"
+              [promo]="userPromo.promos"
             ></app-dumb-card>
           </div>
           <app-modal />

@@ -12,7 +12,7 @@ export class DumbCardComponent {
   @Input() smallBrand: boolean = false;
   @Input() smallCard: boolean = false;
   @Input() blurCards!: boolean;
-  @Input() card!: Promo;
+  @Input() promo!: Promo;
 
   constructor(private modalService: ModalService) {}
 

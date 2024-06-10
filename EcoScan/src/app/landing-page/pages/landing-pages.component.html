@@ -4,25 +4,25 @@
 
   <app-promo-gallery title="NOUVELLES PROMOS"></app-promo-gallery>
 
-  <div class="card-container" *ngIf="cardList$ | async as cardList">
-    <div *ngFor="let card of cardList">
-      <app-dumb-card [card]="card" [blurCards]="isOpen"></app-dumb-card>
+  <div class="card-container" *ngIf="cardList$ | async as promoList">
+    <div *ngFor="let promo of promoList">
+      <app-dumb-card [promo]="promo" [blurCards]="isOpen"></app-dumb-card>
     </div>
   </div>
 
   <app-promo-gallery title="MEILLEURES PROMOS"></app-promo-gallery>
 
-  <div class="card-container" *ngIf="cardList1$ | async as cardList1">
-    <div *ngFor="let card of cardList1">
-      <app-dumb-card [card]="card" [blurCards]="isOpen"></app-dumb-card>
+  <div class="card-container" *ngIf="cardList1$ | async as promoList1">
+    <div *ngFor="let promo of promoList1">
+      <app-dumb-card [promo]="promo" [blurCards]="isOpen"></app-dumb-card>
     </div>
   </div>
 
   <app-promo-gallery title="VOS PROMOS FAVORITES"></app-promo-gallery>
 
-  <div class="card-container" *ngIf="cardList2$ | async as cardList2">
-    <div *ngFor="let card of cardList2">
-      <app-dumb-card [card]="card" [blurCards]="isOpen"></app-dumb-card>
+  <div class="card-container" *ngIf="cardList2$ | async as promoList2">
+    <div *ngFor="let promo of promoList2">
+      <app-dumb-card [promo]="promo" [blurCards]="isOpen"></app-dumb-card>
     </div>
   </div>
 
