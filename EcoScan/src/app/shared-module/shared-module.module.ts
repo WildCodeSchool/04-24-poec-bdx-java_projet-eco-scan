@@ -7,11 +7,11 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { WasteCardComponent } from './components/ui/waste-card/waste-card.component';
-import { BinTypePipe } from './shared/bin-type.pipe';
+import { BinTypePipe } from './pipes/bin-type.pipe';
 import { DumbCardComponent } from './components/ui/dumb-card/dumb-card.component';
 import { CommonModule } from '@angular/common';
 import { PointCardComponent } from './components/ui/point-card/point-card/point-card.component';
-import { ThousandKPipe } from './shared/thousand-k.pipe';
+import { ThousandKPipe } from './pipes/thousand-k.pipe';
 import { PromoGalleryComponent } from './components/ui/promo-gallery/promo-gallery.component';
 import { TransitionComponent } from './components/ui/transition/transition.component';
 

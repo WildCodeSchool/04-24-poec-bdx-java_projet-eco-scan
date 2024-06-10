@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
 import { UserForm } from '../../host/models/user.type';
-import { Credential } from '../../host/models/crendential.type';
+import { Credential } from '../../host/models/credential.type';
 import { User } from '../models/classes/User.class';
 import { DataAccessorService } from './data-accessor.service';
 import { GetUser } from '../../host/models/getUser.type';
