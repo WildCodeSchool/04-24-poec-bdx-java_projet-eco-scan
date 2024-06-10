@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Rubbish } from '../../shared-module/models/types/Rubbish.type';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { RubbishService } from '../../shared-module/shared/rubbish.service';
+import { StagedRubbish } from '../../shared-module/models/types/StagedRubbish.type';
 
 @Component({
   selector: 'app-staged-waste',
@@ -9,7 +10,11 @@ import { RubbishService } from '../../shared-module/shared/rubbish.service';
   styleUrl: './staged-waste.component.scss',
 })
 export class StagedWasteComponent {
-  wastesList: Observable<Rubbish[]> = this.rubbishService.getRubbish();
+  wastesList: Observable<StagedRubbish[]> = this.rubbishService.getStaged$();
 
   constructor(private rubbishService: RubbishService) {}
+
+  ngOnInit() {
+    this.rubbishService.getStaged$().subscribe((e) => console.log(e));
+  }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { DataAccessorService } from './data-accessor.service';
 import { Observable } from 'rxjs';
 import { Rubbish } from '../models/types/Rubbish.type';
+import { StagedRubbish } from '../models/types/StagedRubbish.type';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,8 @@ import { Rubbish } from '../models/types/Rubbish.type';
 export class RubbishService {
   constructor(private _dbAccess: DataAccessorService) {}
 
-  getRubbish(): Observable<Rubbish[]> {
-    return this._dbAccess.getAllRubbish$();
+  getStaged$(): Observable<StagedRubbish[]> {
+    return this._dbAccess.getMystaged$();
     // From User
   }
 }

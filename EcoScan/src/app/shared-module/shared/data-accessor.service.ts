@@ -128,9 +128,9 @@ export class DataAccessorService {
      rubbishItems
   */
   // fetch
-  getAllRubbish$(): Observable<Rubbish[]> {
+  getMystaged$(): Observable<StagedRubbish[]> {
     return this.http
-      .get<Rubbish[]>(`${environment.database.path}/rubbish/get/all`)
+      .get<StagedRubbish[]>(`${environment.database.path}/staged/get/all`)
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);

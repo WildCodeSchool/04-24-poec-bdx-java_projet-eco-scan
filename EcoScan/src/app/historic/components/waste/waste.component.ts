@@ -9,7 +9,7 @@ import { RubbishService } from '../../../shared-module/shared/rubbish.service';
   styleUrl: './waste.component.scss',
 })
 export class WasteComponent {
-  wastesList: Observable<Rubbish[]> = this.rubbishService.getRubbish();
+  // wastesList: Observable<Rubbish[]> = this.rubbishService.getRubbish();
 
   constructor(private rubbishService: RubbishService) {}
 }
