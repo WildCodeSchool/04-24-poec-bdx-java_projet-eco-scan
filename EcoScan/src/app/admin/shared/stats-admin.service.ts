@@ -15,7 +15,7 @@ export class StatsAdminService {
     description: '',
     percentOff: 0,
     redeemableAmount: 0,
-    pointsNeed: 0,
+    price: 0,
     startDate: new Date(),
     endDate: new Date(),
 };

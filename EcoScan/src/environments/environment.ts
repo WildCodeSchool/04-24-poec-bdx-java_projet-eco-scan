@@ -1,6 +1,6 @@
 export const environment = {
     database: {
-        path: "http://localhost:3000"
+        path: "http://localhost:8080/api/v1"
     },
     credentials: {
         google: {

@@ -1,6 +1,4 @@
-export type Login = {
-  userID: string;
-  salt: string;
-  email: string;
-  hashedPassword: string;
+export type AuthResponse = {
+  token: string;
+  message: string;
 };
