@@ -76,7 +76,7 @@ export class DataAccessorService {
         })
       );
   }
-  getUserByID$(id: string): Observable<GetUser> {
+  getUserByID$(id: number): Observable<GetUser> {
     return this.http
       .get<GetUser>(`${environment.database.path}/user/get/${id}`)
       .pipe(
@@ -85,6 +85,16 @@ export class DataAccessorService {
         })
       );
   }
+  getUserByEmail$(email: string): Observable<GetUser> {
+    return this.http
+      .get<GetUser>(`${environment.database.path}/user/get/email/${email}`)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+
   // Create
   addUser$(newUser: User): Observable<User> {
     return this.http
