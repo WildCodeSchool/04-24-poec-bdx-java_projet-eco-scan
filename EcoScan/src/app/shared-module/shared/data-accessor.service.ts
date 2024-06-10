@@ -270,6 +270,17 @@ export class DataAccessorService {
         })
       );
   }
+  deletePromo(promoToDelete: Promo): Observable<void> {
+    return this.http
+      .delete<void>(
+        `${environment.database.path}/promos/delete/${promoToDelete.id}`
+      )
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
 
   /*
      brands

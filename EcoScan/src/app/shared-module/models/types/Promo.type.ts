@@ -1,5 +1,7 @@
+import { Brand } from "./Brand.type";
+
 export type Promo = {
-    id: number;
+    id: number | null;
     title: string;
     item: string;
     description: string;
@@ -9,4 +11,5 @@ export type Promo = {
     price: number;
     startDate: Date;
     endDate: Date;
+    brand: Brand;
 }
