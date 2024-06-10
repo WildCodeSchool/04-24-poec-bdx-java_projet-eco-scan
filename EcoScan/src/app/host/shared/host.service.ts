@@ -1,13 +1,11 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, filter, map, of, switchMap, tap } from 'rxjs';
+import { Observable, of, switchMap, tap } from 'rxjs';
 import { UserForm } from '../models/user.type';
 import { AuthService } from '../../shared-module/shared/auth.service';
 import { Credential } from '../models/credential.type';
 import { Router } from '@angular/router';
 import { DataAccessorService } from '../../shared-module/shared/data-accessor.service';
-import { User } from '../../shared-module/models/classes/User.class';
 import { AuthResponse } from '../../shared-module/models/types/Login.type';
-import { GetUser } from '../models/getUser.type';
 import { TokenService } from './token.service';
 import { UserService } from '../../shared-module/shared/user.service';
 

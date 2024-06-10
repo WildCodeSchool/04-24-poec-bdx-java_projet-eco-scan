@@ -9,7 +9,7 @@ export class UserDataService {
 
   private dataService = inject(DataAccessorService);
 
-  getUserPoints$(id: string): Observable<number>{
+  getUserPoints$(id: number): Observable<number>{
     return this.dataService.getUserByID$(id).pipe(
       map(user => Number(user.points))
     );
