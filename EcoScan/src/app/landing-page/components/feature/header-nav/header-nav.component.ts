@@ -4,9 +4,7 @@ import { SidebarCloseAnimation, SidebarOpenAnimation } from './animation';
 import { Nav } from '../../../models/nav.type';
 import { HostService } from '../../../../host/shared/host.service';
 import { Router } from '@angular/router';
-import { UserDataService } from '../../../../shared-module/shared/user-data.service';
 import { UserService } from '../../../../shared-module/shared/user.service';
-import { DataAccessorService } from '../../../../shared-module/shared/data-accessor.service';
 
 const animationParams = {
   menuWidth: '250px',

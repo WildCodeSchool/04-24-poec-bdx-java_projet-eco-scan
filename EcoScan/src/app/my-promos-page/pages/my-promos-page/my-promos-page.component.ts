@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { CardService } from '../../../shared-module/shared/card.service';
-import { Promo } from '../../../shared-module/models/types/Promo.type';
 import { Observable } from 'rxjs';
 import {
   openClosePageAnimation,
   openPageAnimation,
 } from '../../../shared-module/shared/route-animations';
+import { UserService } from '../../../shared-module/shared/user.service';
+import { GetUser } from '../../../host/models/getUser.type';
 
 @Component({
   selector: 'app-my-promos-page',
@@ -14,7 +14,7 @@ import {
   animations: [openClosePageAnimation, openPageAnimation],
 })
 export class MyPromosPageComponent {
-  cardList$: Observable<Promo[]> = this.cardService.getPromos$();
+  user$: Observable<GetUser> = this.userService.getUser$();
 
-  constructor(private cardService: CardService) {}
+  constructor(private userService: UserService) {}
 }

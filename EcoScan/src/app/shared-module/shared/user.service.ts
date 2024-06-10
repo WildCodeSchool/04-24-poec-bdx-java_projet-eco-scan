@@ -1,6 +1,6 @@
-import { Injectable, OnInit, inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { TokenService } from '../../host/shared/token.service';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { GetUser } from '../../host/models/getUser.type';
 import { DataAccessorService } from './data-accessor.service';
 
