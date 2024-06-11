@@ -8,13 +8,13 @@ import { Promo } from '../../shared-module/models/types/Promo.type';
 export class StatsAdminService {
   //dummy init data, can grab whichever brand the user manages on navigate to page instead
   emptyPromo: Promo = {
-    promoID: 0,
-    brandID: 0,
+    id: 0,
     title: '',
     item: '',
     description: '',
     percentOff: 0,
-    redeemableAmount: 0,
+    amount: 0,
+    color: "",
     price: 0,
     startDate: new Date(),
     endDate: new Date(),

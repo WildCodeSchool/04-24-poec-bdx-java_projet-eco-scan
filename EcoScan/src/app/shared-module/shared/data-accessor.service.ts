@@ -1,10 +1,9 @@
-import { Injectable, OnInit, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpHeaders,
 } from '@angular/common/http';
-import { Observable, catchError, map, switchMap, tap } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { User } from '../models/classes/User.class';
 import { Promo } from '../models/types/Promo.type';
 import { environment } from '../../../environments/environment';
@@ -118,21 +117,6 @@ export class DataAccessorService {
         })
       );
   }
-
-  // Update
-  // updateUserPassword$(updatedLogin: Login): Observable<Login> {
-  //   return this.http
-  //     .put<Login>(
-  //       `${environment.database.path}/logins/${updatedLogin.userID}`,
-  //       updatedLogin,
-  //       this.httpOptions,
-  //     )
-  //     .pipe(
-  //       catchError((err) => {
-  //         throw this.handleFailure(err);
-  //       }),
-  //     );
-  // }
 
   /*
      rubbishItems
@@ -277,7 +261,7 @@ export class DataAccessorService {
   updatePromo$(updatedPromo: Promo): Observable<Promo> {
     return this.http
       .put<Promo>(
-        `${environment.database.path}/promo/update/${updatedPromo.promoID}`,
+        `${environment.database.path}/promo/update/${updatedPromo.id}`,
         updatedPromo
       )
       .pipe(
@@ -337,7 +321,7 @@ export class DataAccessorService {
   updateBrand$(updatedBrand: Brand): Observable<Brand> {
     return this.http
       .put<Brand>(
-        `${environment.database.path}/brand/update/${updatedBrand.brandID}`,
+        `${environment.database.path}/brand/update/${updatedBrand.id}`,
         updatedBrand
       )
       .pipe(
