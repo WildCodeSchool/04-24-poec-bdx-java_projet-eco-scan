@@ -342,6 +342,20 @@ export class DataAccessorService {
       );
   }
 
+  deleteBrand(brandToDelete: Brand): Observable<void> {
+    return this.http
+      .delete<void>(
+        `${environment.database.path}/brand/delete/${brandToDelete.id}`
+      )
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+
+
+
   //types
   getAllTypes$(): Observable<Type[]> {
     return this.http
@@ -352,4 +366,28 @@ export class DataAccessorService {
         })
       );
   }
+
+  addType$(newType: Type): Observable<Type> {
+    return this.http
+      .post<Type>(`${environment.database.path}/type/add`, newType)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+
+  // deleteType(typeToDelete: Type): Observable<void> {
+  //   return this.http
+  //     .delete<void>(
+  //       `${environment.database.path}/type/delete/${typeToDelete.id}`
+  //     )
+  //     .pipe(
+  //       catchError((err) => {
+  //         throw this.handleFailure(err);
+  //       })
+  //     );
+  // }
+
+
 }

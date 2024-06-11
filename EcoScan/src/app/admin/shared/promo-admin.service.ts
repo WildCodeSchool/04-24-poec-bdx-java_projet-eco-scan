@@ -2,7 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { DataAccessorService } from '../../shared-module/shared/data-accessor.service';
 import { Promo } from '../../shared-module/models/types/Promo.type';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Brand } from '../../shared-module/models/types/Brand.type';
 
 @Injectable({
   providedIn: 'root'
@@ -43,8 +42,5 @@ export class PromoAdminService {
     );
   }
 
-  getBrands(): Observable<Brand[]>{
-    return this.DBAccessor.getAllBrands$();
-  }
 
 }

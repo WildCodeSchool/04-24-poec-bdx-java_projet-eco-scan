@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PromoAdminService } from '../../../shared/promo-admin.service';
 import { checkDateValidity } from '../../../../shared-module/validators/date.validator';
 import { Brand } from '../../../../shared-module/models/types/Brand.type';
+import { BrandAdminService } from '../../../shared/brand-admin.service';
 
 interface colorMap {
   name: string;
@@ -19,6 +20,8 @@ export class PromoFormComponent {
 
   promoConstructor!: FormGroup;
   private promoService = inject(PromoAdminService);
+  private brandService = inject(BrandAdminService);
+
   brands!:Brand[];
   presetColors: colorMap[] = [
     {name: "Bleu", hexCode: "215dad"},
@@ -30,7 +33,7 @@ export class PromoFormComponent {
 
   constructor(private formBuilder: FormBuilder) {
 
-    this.promoService.getBrands().subscribe(
+    this.brandService.getBrands$().subscribe(
       inBrands => this.brands = inBrands
     );
 

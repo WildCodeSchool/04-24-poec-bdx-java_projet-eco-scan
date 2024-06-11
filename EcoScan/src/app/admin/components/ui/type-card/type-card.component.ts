@@ -1,6 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { Type } from '../../../../shared-module/models/types/Type.type';
-import { DataAccessorService } from '../../../../shared-module/shared/data-accessor.service';
+import { TypeAdminService } from '../../../shared/type-admin.service';
 
 @Component({
   selector: 'app-type-card',
@@ -12,12 +12,11 @@ export class TypeCardComponent {
   @Input()
   type!:Type;
 
-  private dbAccessor = inject(DataAccessorService);
+  private typeService = inject(TypeAdminService);
 
-
-  deleteType(inBrand: Type){
-    //TODO when BE created
-    // this.dbAccessor.deleteBrand(inBrand).subscribe();
+  //sql dependency constraits make this difficult, do we want to do this anyway?
+  deleteType(inType: Type){
+    // this.typeService.deleteType(inType);
   }
 
 }

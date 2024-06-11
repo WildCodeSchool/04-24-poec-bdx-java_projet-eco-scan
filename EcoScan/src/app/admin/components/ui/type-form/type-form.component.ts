@@ -23,7 +23,7 @@ export class TypeFormComponent {
   }
 
   onSubmit() {
-    this.typeService.createNewType(this.typeConstructor.value);
+    this.typeService.addType(this.typeConstructor.value);
     this.typeConstructor.reset();
     this.typeConstructor.markAsUntouched();
   }

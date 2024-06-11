@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { DataAccessorService } from '../../shared-module/shared/data-accessor.service';
-import { BrandForm } from '../models/types/BrandForm.type';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Brand } from '../../shared-module/models/types/Brand.type';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,42 @@ import { BrandForm } from '../models/types/BrandForm.type';
 export class BrandAdminService {
 
   private DBAccessor = inject(DataAccessorService);
-  constructor() { }
+  public brandListSubject$: BehaviorSubject<Brand[]> = new BehaviorSubject<Brand[]>([]);
+  brandList$ = this.brandListSubject$.asObservable();
 
-  createNewBrand(newBrand: BrandForm){
-    //push to db
-    // this.DBAccessor.addPromo$(newBrand);
+  constructor() {
+    this.updateBrandList();
   }
+
+  getBrandList$(): Observable<Brand[]> {
+    return this.brandList$;
+  }
+
+  addBrand(newBrand: Brand): void {
+    this.DBAccessor.addBrand$(newBrand).subscribe(
+      brand => {
+        this.updateBrandList()
+      }
+    );
+  }
+
+  getBrands$(): Observable<Brand[]> {
+    return this.DBAccessor.getAllBrands$();
+  }
+
+  updateBrandList(): void {
+    this.DBAccessor.getAllBrands$().subscribe(
+      brands => this.brandListSubject$.next(brands)
+    );
+  }
+
+  deleteBrand(brand: Brand): void {
+    this.DBAccessor.deleteBrand(brand).subscribe(
+      newBrand => {
+        this.updateBrandList();
+      }
+    );
+  }
+
+
 }

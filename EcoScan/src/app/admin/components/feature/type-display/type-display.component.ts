@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { DataAccessorService } from '../../../../shared-module/shared/data-accessor.service';
+import { TypeAdminService } from '../../../shared/type-admin.service';
 
 @Component({
   selector: 'app-type-display',
@@ -8,7 +8,7 @@ import { DataAccessorService } from '../../../../shared-module/shared/data-acces
 })
 export class TypeDisplayComponent {
 
-  private dbAccessor = inject(DataAccessorService);
-  types$ = this.dbAccessor.getAllTypes$();
+  private typeService = inject(TypeAdminService);
+  types$ = this.typeService.getTypeList$();
 
 }
