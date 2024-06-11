@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Promo } from '../../shared-module/models/types/Promo.type';
-import { CardService } from '../../shared-module/shared/card.service';
+import { CardService } from '../../shared-module/shared/services/card.service';
+import { GetUser } from '../../host/models/getUser.type';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-landing-pages',
@@ -9,15 +11,24 @@ import { CardService } from '../../shared-module/shared/card.service';
   styleUrl: './landing-pages.component.scss',
 })
 export class LandingPagesComponent {
-  cardList$: Observable<Promo[]> = this.cardService.getPromos$();
-  cardList1$: Observable<Promo[]> = this.cardService.getPromos$();
-  cardList2$: Observable<Promo[]> = this.cardService.getPromos$();
+  cardList$!: Promo[];
 
   isOpen!: boolean;
 
-  constructor(private cardService: CardService) {}
+  user!: GetUser;
+
+  constructor(
+    private cardService: CardService,
+    private route: ActivatedRoute
+  ) {}
 
   onReceivedFromHeader(open: boolean): void {
     this.isOpen = open;
+  }
+
+  ngOnInit() {
+    this.user = this.route.snapshot.data['user'];
+
+    this.cardList$ = this.route.snapshot.data['promos'];
   }
 }

@@ -10,7 +10,7 @@
       />
     </div>
 
-    <div class="points-box" *ngIf="user$ | async as user">
+    <div class="points-box" *ngIf="user">
       <img src="/assets/png/point-landing-page.png" />
       <p>{{ user.points | thousandK }}</p>
     </div>

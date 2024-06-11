@@ -9,7 +9,7 @@
   <div class="bandeau">
     {{
       scannedData
-        ? ("Vous voulez jeter : " + scannedData.type | uppercase)
+        ? ("Vous voulez jeter : " + scannedData.type.name | uppercase)
         : ("Comment scanner vos déchets" | uppercase)
     }}
   </div>

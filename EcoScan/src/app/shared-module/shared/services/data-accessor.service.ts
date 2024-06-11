@@ -1,22 +1,19 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, map } from 'rxjs';
-import { User } from '../models/classes/User.class';
-import { Promo } from '../models/types/Promo.type';
-import { environment } from '../../../environments/environment';
-import { Rubbish } from '../models/types/Rubbish.type';
-import { AuthResponse } from '../models/types/Login.type';
-import { StagedRubbish } from '../models/types/StagedRubbish.type';
-import { Bin } from '../models/types/Bin.type';
-import { Deposit } from '../models/types/Deposits.type';
-import { Brand } from '../models/types/Brand.type';
-import { GetUser } from '../../host/models/getUser.type';
-import { Type } from '../models/types/Type.type';
-import { Credential } from '../../host/models/credential.type';
-import { UserForm } from '../../host/models/user.type';
+import { User } from '../../models/classes/User.class';
+import { Promo } from '../../models/types/Promo.type';
+import { environment } from '../../../../environments/environment';
+import { Rubbish } from '../../models/types/Rubbish.type';
+import { AuthResponse } from '../../models/types/Login.type';
+import { StagedRubbish } from '../../models/types/StagedRubbish.type';
+import { Bin } from '../../models/types/Bin.type';
+import { Deposit } from '../../models/types/Deposits.type';
+import { Brand } from '../../models/types/Brand.type';
+import { GetUser } from '../../../host/models/getUser.type';
+import { Type } from '../../models/types/Type.type';
+import { Credential } from '../../../host/models/credential.type';
+import { UserForm } from '../../../host/models/user.type';
 
 @Injectable({
   providedIn: 'root',
@@ -122,9 +119,9 @@ export class DataAccessorService {
      rubbishItems
   */
   // fetch
-  getAllRubbish$(): Observable<Rubbish[]> {
+  getMystaged$(id: string): Observable<StagedRubbish> {
     return this.http
-      .get<Rubbish[]>(`${environment.database.path}/rubbish/get/all`)
+      .get<StagedRubbish>(`${environment.database.path}/staged/get/${id}`)
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);

@@ -2,8 +2,7 @@
 import { Injectable, inject } from '@angular/core';
 
 import { Bin } from '../shared-module/models/types/Bin.type';
-import { DataAccessorService } from '../shared-module/shared/data-accessor.service';
-import { getWasteTypeString } from '../shared-module/models/enums/WasteType.enum';
+import { DataAccessorService } from '../shared-module/shared/services/data-accessor.service';
 import { Observable, of, tap } from 'rxjs';
 
 interface MarkerTuple {
@@ -11,17 +10,26 @@ interface MarkerTuple {
   binType: string;
 }
 
+type longLat = {
+  lng: number;
+  lat: number;
+};
+
 @Injectable({
   providedIn: 'root',
 })
 export class GoogleApiService {
-
   private DBAccessor = inject(DataAccessorService);
   private map!: google.maps.Map;
   private markerList: MarkerTuple[] = [];
 
   public initDependencies(): Observable<Bin[]> {
     return this.DBAccessor.getAllBins$();
+  }
+
+  public splitLongAndLat(loc: string): longLat {
+    const [lat, lng] = loc.split(',').map((coord) => parseFloat(coord.trim()));
+    return { lat, lng };
   }
 
   public initMap(binList: Bin[]): Observable<void> {
@@ -83,7 +91,7 @@ export class GoogleApiService {
     );
   }
 
-  private createUserMarker(pos:{lat: number, lng:number}){
+  private createUserMarker(pos: { lat: number; lng: number }) {
     const pinBackground = new google.maps.marker.PinElement({
       background: '#FBBC04',
     });
@@ -96,19 +104,22 @@ export class GoogleApiService {
 
   private populateMapMarkers(binList: Bin[]): void {
     for (let bin of binList) {
+      const { lat, lng } = this.splitLongAndLat(bin.localisation);
       const infoWindow = new google.maps.InfoWindow({
-        content: `<h3>${bin.type + ' bin'}</h3>`,
+        content: `<h3>${
+          bin.binName ? bin.binName : bin.type.name + ' bin'
+        }</h3>`,
       });
       const marker = new google.maps.marker.AdvancedMarkerElement({
         map: this.map,
-        position: { lat: Number(bin.lat), lng: Number(bin.lng) },
+        position: { lat, lng },
       });
       marker.addListener('click', () => {
         infoWindow.open(this.map, marker);
       });
       this.markerList.push({
         marker: marker,
-        binType: getWasteTypeString(bin.type),
+        binType: bin.type.name,
       });
     }
   }

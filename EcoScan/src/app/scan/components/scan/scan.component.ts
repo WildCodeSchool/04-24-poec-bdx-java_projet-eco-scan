@@ -45,10 +45,19 @@ export class ScanComponent {
       const scannedDataString = e[0].value;
       console.log(scannedDataString);
 
-      this.scannedData = JSON.parse(scannedDataString);
+      try {
+        const scannedDataObj = JSON.parse(scannedDataString);
+        const rubbishId = scannedDataObj.id;
 
-      action?.stop();
-      setTimeout(() => this.scrollToScannedSection(), 100);
+        this.scanService.getRubbishById$(rubbishId).subscribe((rubbish) => {
+          this.scannedData = rubbish;
+
+          action?.stop();
+          setTimeout(() => this.scrollToScannedSection(), 100);
+        });
+      } catch (error) {
+        console.error('Invalid QR code format', error);
+      }
     }
   }
 
@@ -75,6 +84,6 @@ export class ScanComponent {
 
   navigateToPictureComponent() {
     this.scanService.addDurtyScan(this.scannedData as Rubbish);
-    this.router.navigate(['/photo']);
+    this.router.navigate(['/home']);
   }
 }
