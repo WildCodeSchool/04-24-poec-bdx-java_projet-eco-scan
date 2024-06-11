@@ -9,7 +9,7 @@
   <div class="bandeau">
     {{
       scannedData
-        ? ("Vous voulez jeter : " + scannedData.type | uppercase)
+        ? ("Vous voulez jeter : " + scannedData.type.name | uppercase)
         : ("Comment scanner vos déchets" | uppercase)
     }}
   </div>
@@ -31,7 +31,7 @@
 
   <div *ngIf="scannedData" class="next-pic">
     <div>
-      <!-- <app-waste-card [binType]="scannedData"></app-waste-card> -->
+      <app-waste-card [binType]="scannedData"></app-waste-card>
     </div>
     <div class="next-btn">
       <button class="staged-btn" (click)="sendToStaged()">

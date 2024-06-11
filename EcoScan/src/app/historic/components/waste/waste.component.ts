@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
-import { RubbishService } from '../../../shared-module/shared/rubbish.service';
+import { RubbishService } from '../../../shared-module/shared/services/rubbish.service';
 
 @Component({
   selector: 'app-waste',

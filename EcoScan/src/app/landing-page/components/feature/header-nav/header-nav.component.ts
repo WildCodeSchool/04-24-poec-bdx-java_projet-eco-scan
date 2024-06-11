@@ -1,10 +1,11 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { SidebarCloseAnimation, SidebarOpenAnimation } from './animation';
 import { Nav } from '../../../models/nav.type';
 import { HostService } from '../../../../host/shared/host.service';
-import { Router } from '@angular/router';
-import { UserService } from '../../../../shared-module/shared/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../../../../shared-module/shared/services/user.service';
+import { GetUser } from '../../../../host/models/getUser.type';
 
 const animationParams = {
   menuWidth: '250px',
@@ -38,19 +39,17 @@ export class HeaderNavComponent {
   @Output()
   boolChange: EventEmitter<boolean> = new EventEmitter();
 
+  @Input()
+  user!: GetUser;
 
-  private userService = inject(UserService);
-
-  user$ = this.userService.getUser$();
   imagePath: string = 'assets/png/bar.png';
   mapSvg: string = 'assets/svg/map.svg';
   isOpen: boolean = false;
   navigation: Nav[] = [];
-  
 
   constructor(
     private hostService: HostService,
-    private routerNavigate: Router,
+    private routerNavigate: Router
   ) {}
 
   sendIsOpenToParent() {
@@ -63,6 +62,8 @@ export class HeaderNavComponent {
   }
 
   ngOnInit() {
+    console.log(this.user);
+
     this.navigation = [
       {
         title: 'Mes Promos',

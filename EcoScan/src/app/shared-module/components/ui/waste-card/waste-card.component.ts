@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Rubbish } from '../../../models/types/Rubbish.type';
-import { StagedRubbish } from '../../../models/types/StagedRubbish.type';
 
 @Component({
   selector: 'app-waste-card',
@@ -9,5 +8,5 @@ import { StagedRubbish } from '../../../models/types/StagedRubbish.type';
 })
 export class WasteCardComponent {
   @Input()
-  binType!: Rubbish[];
+  binType!: Rubbish;
 }

@@ -2,7 +2,7 @@
 import { Injectable, inject } from '@angular/core';
 
 import { Bin } from '../shared-module/models/types/Bin.type';
-import { DataAccessorService } from '../shared-module/shared/data-accessor.service';
+import { DataAccessorService } from '../shared-module/shared/services/data-accessor.service';
 import { Observable, of, tap } from 'rxjs';
 
 interface MarkerTuple {
