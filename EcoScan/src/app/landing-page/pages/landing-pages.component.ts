@@ -1,7 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
 import { Promo } from '../../shared-module/models/types/Promo.type';
-import { CardService } from '../../shared-module/shared/services/card.service';
 import { GetUser } from '../../host/models/getUser.type';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,7 +16,6 @@ export class LandingPagesComponent {
   user!: GetUser;
 
   constructor(
-    private cardService: CardService,
     private route: ActivatedRoute
   ) {}
 

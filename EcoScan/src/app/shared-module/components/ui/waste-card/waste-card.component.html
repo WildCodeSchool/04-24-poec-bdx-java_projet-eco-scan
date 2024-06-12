@@ -1,6 +1,7 @@
 <div class="waste-card" *ngIf="binType">
   <div class="picto">
-    <img [src]="'assets/' + (binType.type.name | binType)" alt="" />
+    <img *ngIf="binType.type.pictogram" [src]="'data:image/svg+xml;base64,' + binType.type.pictogram">
+
   </div>
   <div class="waste-detail">
     <div class="details">
