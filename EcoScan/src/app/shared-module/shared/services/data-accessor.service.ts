@@ -152,10 +152,13 @@ export class DataAccessorService {
       );
   }
   // Create
-  addStagedRubbish$(newRubbish: StagedRubbish): Observable<StagedRubbish> {
+  addStagedRubbish$(
+    stagedId: number,
+    newRubbish: Rubbish
+  ): Observable<Rubbish> {
     return this.http
-      .post<StagedRubbish>(
-        `${environment.database.path}/staged/add`,
+      .post<Rubbish>(
+        `${environment.database.path}/staged/add/${stagedId}`,
         newRubbish
       )
       .pipe(

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SecondRubbish } from '../../../../models/types/SecondRubbish.type';
+import { Type } from '../../../../models/types/Type.type';
 
 @Component({
   selector: 'app-point-card',
@@ -8,5 +9,5 @@ import { SecondRubbish } from '../../../../models/types/SecondRubbish.type';
 })
 export class PointCardComponent {
   @Input()
-  rubbishDetail!: SecondRubbish;
+  rubbishDetail!: Type;
 }

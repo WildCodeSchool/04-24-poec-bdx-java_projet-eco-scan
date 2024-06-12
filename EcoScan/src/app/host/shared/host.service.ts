@@ -13,10 +13,8 @@ import { UserService } from '../../shared-module/shared/services/user.service';
   providedIn: 'root',
 })
 export class HostService {
-  userService = inject(UserService);
-
   constructor(
-    private _authService: AuthService,
+    private _userService: UserService,
     private _router: Router,
     private _dbAccessor: DataAccessorService,
     private _tokenService: TokenService
@@ -53,7 +51,7 @@ export class HostService {
   }
 
   logout(): void {
-    this._authService.setCurrentUser$(null);
+    this._userService.disconnect();
     this._tokenService.resetToken$();
     this._router.navigate(['']);
   }

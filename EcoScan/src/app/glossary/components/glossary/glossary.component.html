@@ -1,6 +1,8 @@
-<div class="glossaire" *ngIf="glossary">
-  <div *ngFor="let rubbish of glossary" class="rubbish-points">
-    <app-point-card [rubbishDetail]="rubbish"></app-point-card>
+<div class="glossaire">
+  <div *ngIf="typeCard$ | async as typeCard">
+    <div *ngFor="let rubbish of typeCard" class="rubbish-points">
+      <app-point-card [rubbishDetail]="rubbish"></app-point-card>
+    </div>
   </div>
   <div class="yo">
     <a [routerLink]="['/']"

@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { adminGuard } from './shared-module/guards/admin.guard';
 import { userResolver } from './shared-module/shared/resolvers/user.resolver';
-// import { stagedWasteResolver } from './shared-module/shared/resolvers/staged-waste.resolver';
-import { promoResolver } from './shared-module/shared/resolvers/promo.resolver';
 
 const routes: Routes = [
   {
@@ -21,6 +19,7 @@ const routes: Routes = [
   {
     path: 'scan',
     loadChildren: () => import('./scan/scan.module').then((m) => m.ScanModule),
+    resolve: { user: userResolver },
   },
   {
     path: 'mypromos',

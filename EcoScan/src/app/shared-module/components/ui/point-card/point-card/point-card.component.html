@@ -5,8 +5,11 @@
   </div>
   <div class="details">
     <div class="pic-details">
-      <img [src]="'assets/' + (rubbishDetail.type | binType)" alt="" />
-      <p>{{ rubbishDetail.type }}</p>
+      <img
+        [src]="'data:image/svg+xml;base64,' + rubbishDetail.pictogram"
+        alt=""
+      />
+      <p>{{ rubbishDetail.name }}</p>
     </div>
     <img class="info" src="assets/png/information.png" alt="" />
   </div>

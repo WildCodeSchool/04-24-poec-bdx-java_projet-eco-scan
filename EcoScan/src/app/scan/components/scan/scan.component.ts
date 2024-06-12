@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   NgxScannerQrcodeComponent,
   ScannerQRCodeConfig,
@@ -7,6 +7,8 @@ import {
 } from 'ngx-scanner-qrcode';
 import { ScanService } from '../../services/scan.service';
 import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
+import { GetUser } from '../../../host/models/getUser.type';
+import { UserService } from '../../../shared-module/shared/services/user.service';
 
 @Component({
   selector: 'app-scan',
@@ -15,6 +17,7 @@ import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
 })
 export class ScanComponent {
   scannedData!: Rubbish | undefined;
+  user!: GetUser;
 
   infos: String[] = [
     'Scanner le Qr-code',
@@ -34,7 +37,16 @@ export class ScanComponent {
     },
   };
 
-  constructor(private router: Router, private scanService: ScanService) {}
+  constructor(
+    private router: Router,
+    private scanService: ScanService,
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
+
+  ngOnInit() {
+    this.user = this.route.snapshot.data['user'];
+  }
 
   private scrollToScannedSection(): void {
     this.scannedSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
@@ -51,6 +63,8 @@ export class ScanComponent {
 
         this.scanService.getRubbishById$(rubbishId).subscribe((rubbish) => {
           this.scannedData = rubbish;
+
+          console.log(this.scannedData);
 
           action?.stop();
           setTimeout(() => this.scrollToScannedSection(), 100);
@@ -77,13 +91,24 @@ export class ScanComponent {
   }
 
   sendToStaged() {
-    this.scannedData = undefined;
-
-    // TODO POST to staged waste table && DELETE from rubbish table
+    if (this.scannedData && this.user) {
+      this.scanService
+        .stageRubbishForUser(this.user.staged.id, this.scannedData)
+        .subscribe(
+          (response) => {
+            console.log('Rubbish staged successfully', response);
+            this.userService.refreshUser();
+            this.scannedData = undefined;
+          },
+          (error) => {
+            console.error('Failed to stage rubbish', error);
+          }
+        );
+    }
   }
 
   navigateToPictureComponent() {
-    this.scanService.addDurtyScan(this.scannedData as Rubbish);
+    // this.scanService(this.scannedData as Rubbish);
     this.router.navigate(['/home']);
   }
 }
