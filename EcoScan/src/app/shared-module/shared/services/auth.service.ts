@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
-import { UserForm } from '../../../host/models/user.type';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Credential } from '../../../host/models/credential.type';
 import { User } from '../../models/classes/User.class';
-import { DataAccessorService } from './data-accessor.service';
 import { GetUser } from '../../../host/models/getUser.type';
 
 @Injectable({
@@ -14,7 +12,7 @@ export class AuthService {
     new BehaviorSubject<GetUser | null>(null);
   public currentUser$!: Observable<User>;
 
-  constructor(private _dbAccessor: DataAccessorService) {}
+  constructor() {}
 
   public getCurrentUserValue$(): GetUser | null {
     return this._currentUserStocked$.value;
@@ -32,14 +30,8 @@ export class AuthService {
     credentials: Credential,
     user: GetUser
   ): Observable<boolean> {
+
     let userPassword = '';
-
-    // TODO
-
-    // this._dbAccessor
-    //   .getUserLogin$(user.id)
-    //   .pipe(map((login) => (userPassword = login.hashedPassword)))
-
     if (
       user.email === credentials.email &&
       userPassword === credentials.password
