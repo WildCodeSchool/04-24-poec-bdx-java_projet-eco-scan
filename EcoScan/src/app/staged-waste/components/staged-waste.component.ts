@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { StagedRubbish } from '../../shared-module/models/types/StagedRubbish.type';
 import { ActivatedRoute } from '@angular/router';
 import { GetUser } from '../../host/models/getUser.type';
 import { Rubbish } from '../../shared-module/models/types/Rubbish.type';
@@ -18,6 +16,10 @@ export class StagedWasteComponent {
 
   ngOnInit() {
     this.user = this.route.snapshot.data['user'];
+    console.log(this.user);
+    
     this.wastesList = this.user.staged.rubbish;
+    console.log(this.wastesList);
+
   }
 }
