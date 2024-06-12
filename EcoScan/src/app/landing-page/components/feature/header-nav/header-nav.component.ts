@@ -4,7 +4,6 @@ import { SidebarCloseAnimation, SidebarOpenAnimation } from './animation';
 import { Nav } from '../../../models/nav.type';
 import { HostService } from '../../../../host/shared/host.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../../../shared-module/shared/services/user.service';
 import { GetUser } from '../../../../host/models/getUser.type';
 
 const animationParams = {
@@ -62,8 +61,6 @@ export class HeaderNavComponent {
   }
 
   ngOnInit() {
-    console.log(this.user);
-
     this.navigation = [
       {
         title: 'Mes Promos',
