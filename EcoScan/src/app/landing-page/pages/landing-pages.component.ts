@@ -9,9 +9,12 @@ import { CardService } from '../../shared-module/shared/card.service';
   styleUrl: './landing-pages.component.scss',
 })
 export class LandingPagesComponent {
-  cardList$: Observable<Promo[]> = this.cardService.getPromos$();
-  cardList1$: Observable<Promo[]> = this.cardService.getPromos$();
   cardList2$: Observable<Promo[]> = this.cardService.getPromos$();
+  cardListByPercentOff$: Observable<Promo[]> =
+    this.cardService.getPromoByPercentOff$();
+
+  cardListByReleasedDate: Observable<Promo[]> =
+    this.cardService.getPromoByReleaseDate$();
 
   isOpen!: boolean;
 
