@@ -26,7 +26,15 @@ export class UserService {
     this.tokenService.getDecodedToken$().subscribe((resp) => {
       this.currentRole.next(resp.role);
       this.email = resp.sub;
+      this.fetchAndSetUser();
     });
+  }
+
+  private fetchAndSetUser() {
+    this.dataService
+      .getUserByEmail$(this.email)
+      .pipe(tap((user) => this.currentUser.next(user)))
+      .subscribe();
   }
 
   getUser$(): Observable<GetUser> {
@@ -45,4 +53,11 @@ export class UserService {
     return this.currentRole.asObservable();
   }
 
+  refreshUser() {
+    this.fetchAndSetUser();
+  }
+
+  disconnect() {
+    this.currentUser.next({} as GetUser);
+  }
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DataAccessorService } from './data-accessor.service';
 import { Observable } from 'rxjs';
-import { Rubbish } from '../../models/types/Rubbish.type';
 import { StagedRubbish } from '../../models/types/StagedRubbish.type';
 
 @Injectable({
@@ -12,6 +11,5 @@ export class RubbishService {
 
   getStaged$(id: string): Observable<StagedRubbish> {
     return this._dbAccess.getMystaged$(id);
-    // From User
   }
 }

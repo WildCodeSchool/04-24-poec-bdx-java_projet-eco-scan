@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Rubbish } from '../../shared-module/models/types/Rubbish.type';
 import { DataAccessorService } from '../../shared-module/shared/services/data-accessor.service';
+import { StagedRubbish } from '../../shared-module/models/types/StagedRubbish.type';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class ScanService {
     return this.durtyScan$.asObservable();
   }
 
-  addDurtyScan(scan: Rubbish): void {
-    this.durtyScan$.next(scan);
+  stageRubbishForUser(id: number, rubbish: Rubbish): Observable<Rubbish> {
+    return this.dbAccessor.addStagedRubbish$(id, rubbish);
   }
 }
