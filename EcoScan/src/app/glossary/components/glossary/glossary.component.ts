@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SecondRubbish } from '../../../shared-module/models/types/SecondRubbish.type';
 import { Type } from '../../../shared-module/models/types/Type.type';
 import { DataAccessorService } from '../../../shared-module/shared/services/data-accessor.service';
 import { Observable } from 'rxjs';

@@ -12,7 +12,7 @@ export class UserService {
   private dataService = inject(DataAccessorService);
   private email!: string;
   private currentRole: BehaviorSubject<string> = new BehaviorSubject<string>(
-    ""
+    ''
   );
   private currentUser: BehaviorSubject<GetUser> = new BehaviorSubject<GetUser>(
     {} as GetUser
@@ -38,9 +38,6 @@ export class UserService {
   }
 
   getUser$(): Observable<GetUser> {
-    // if (Object.entries(this.currentUser.value).length) {
-    //   return this.currentUser.asObservable();
-    // }
     return this.dataService.getUserByEmail$(this.email).pipe(
       tap((user) => this.currentUser.next(user)),
       switchMap(() => this.currentUser.asObservable())
@@ -51,12 +48,11 @@ export class UserService {
     const points = user.points;
     const newUser = this.currentUser.value;
     this.currentUser.next({ ...newUser, points });
-    console.log('toto', this.currentUser.value);
   }
 
-  getRole$(): Observable<string>{
+  getRole$(): Observable<string> {
     if (!Object.entries(this.currentRole.value).length) {
-        this.fetchTokenData();
+      this.fetchTokenData();
     }
     return this.currentRole.asObservable();
   }

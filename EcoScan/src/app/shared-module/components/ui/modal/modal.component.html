@@ -58,10 +58,15 @@
           *ngIf="cardData.brand"
           id="logo"
           [src]="'data:image/svg+xml;base64,' + cardData.brand.logo"
-          alt="{{cardData.brand.title}}"
+          alt="{{ cardData.brand.title }}"
         />
       </div>
-      <button (click)="buyPromo(cardData.id)" class="buy-button">
+      <button *ngIf="shiwCode">Voir le Code</button>
+      <button
+        *ngIf="!shiwCode"
+        (click)="buyPromo(cardData.id)"
+        class="buy-button"
+      >
         Acheter
       </button>
     </ng-container>

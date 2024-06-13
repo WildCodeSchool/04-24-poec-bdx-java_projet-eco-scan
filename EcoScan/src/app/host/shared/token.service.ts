@@ -10,8 +10,8 @@ import { Token } from '../../shared-module/models/types/Token.type';
 export class TokenService {
   public _encodedTokenSubject: BehaviorSubject<string> =
     new BehaviorSubject<string>('');
-  public _decodedTokenSubject: BehaviorSubject<Token>=
-  new BehaviorSubject<Token>({role: "", sub: ""});
+  public _decodedTokenSubject: BehaviorSubject<Token> =
+    new BehaviorSubject<Token>({ role: '', sub: '' });
   private localStorageService = inject(LocalStorageService);
 
   constructor() {
@@ -27,7 +27,6 @@ export class TokenService {
     this._encodedTokenSubject.next(newToken);
 
     this._decodedTokenSubject.next(this.decodeToken(newToken));
-
   }
 
   getDecodedToken$(): Observable<Token> {
@@ -41,7 +40,7 @@ export class TokenService {
   resetToken$(): void {
     this.localStorageService.clearToken();
     this._encodedTokenSubject.next('');
-    this._decodedTokenSubject.next({role: "", sub: ""});
+    this._decodedTokenSubject.next({ role: '', sub: '' });
   }
 
   getToken(): string {

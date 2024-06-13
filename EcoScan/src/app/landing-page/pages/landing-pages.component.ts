@@ -29,10 +29,6 @@ export class LandingPagesComponent {
   }
 
   ngOnInit() {
-    // this.user$ = this.route.snapshot.data['user'];
-    // console.log(this.user);
-    console.log(this.route.snapshot.data['promos']);
-
     this.cardList$ = this.route.data.pipe(
       map((data) => data['promos']),
       switchMap((initialPromos) =>

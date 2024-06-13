@@ -20,7 +20,7 @@ export class LoginComponent {
     private _fb: FormBuilder,
     private _hostService: HostService,
     private transitionService: TransitionService,
-    private messageService: MessageService,
+    private messageService: MessageService
   ) {}
 
   onSubmit() {

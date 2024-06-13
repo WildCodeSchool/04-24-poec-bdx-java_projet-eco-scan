@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Promo } from '../../../models/types/Promo.type';
-
 import { ModalService } from '../../../shared/services/modal.service';
 
 @Component({
