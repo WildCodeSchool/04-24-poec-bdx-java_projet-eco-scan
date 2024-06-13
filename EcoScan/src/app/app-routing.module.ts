@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { adminGuard } from './shared-module/guards/admin.guard';
+import { userResolver } from './shared-module/shared/resolvers/user.resolver';
 
 const routes: Routes = [
   {
@@ -13,20 +14,18 @@ const routes: Routes = [
       import('./landing-page/landing-page.module').then(
         (m) => m.LandingPageModule
       ),
+    resolve: { user: userResolver },
   },
   {
     path: 'scan',
     loadChildren: () => import('./scan/scan.module').then((m) => m.ScanModule),
-  },
-  {
-    path: 'photo',
-    loadChildren: () =>
-      import('./photo/photo.module').then((m) => m.PhotoModule),
+    resolve: { user: userResolver },
   },
   {
     path: 'mypromos',
     loadChildren: () =>
       import('./my-promos-page/my-promos.module').then((m) => m.MyPromosModule),
+    resolve: { user: userResolver },
   },
   {
     path: 'historic',
@@ -39,6 +38,7 @@ const routes: Routes = [
       import('./staged-waste/staged-waste.module').then(
         (m) => m.StagedWasteModule
       ),
+    resolve: { user: userResolver },
   },
   {
     path: 'glossary',

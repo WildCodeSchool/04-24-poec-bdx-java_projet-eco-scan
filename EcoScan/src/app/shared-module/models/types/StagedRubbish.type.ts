@@ -1,4 +1,7 @@
+import { Rubbish } from './Rubbish.type';
+
 export type StagedRubbish = {
-    userID: string;
-    rubbishID: string;
-}
+  id: number;
+  userID: number;
+  rubbish: Rubbish[];
+};

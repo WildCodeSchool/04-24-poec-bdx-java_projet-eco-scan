@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {
   openClosePageAnimation,
   openPageAnimation,
-} from '../../../shared-module/shared/route-animations';
+} from '../../../shared-module/shared/services/route-animations';
 
 @Component({
   selector: 'app-glossary-page',

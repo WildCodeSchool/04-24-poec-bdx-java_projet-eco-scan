@@ -37,7 +37,7 @@
           </div>
 
           <div class="redeemable-amount">
-            <p id="points-amount">{{ cardData.amount | thousandK }}</p>
+            <p id="points-amount">{{ cardData.price | thousandK }}</p>
             points
           </div>
         </div>
@@ -55,12 +55,20 @@
           <p><span>End Date:</span> {{ cardData.endDate | date }}</p>
         </div>
         <img
-          class="logo-modal"
-          width="200"
-          src="assets/png/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
-          alt=""
+          *ngIf="cardData.brand"
+          id="logo"
+          [src]="'data:image/svg+xml;base64,' + cardData.brand.logo"
+          alt="{{ cardData.brand.title }}"
         />
       </div>
+      <button *ngIf="shiwCode">Voir le Code</button>
+      <button
+        *ngIf="!shiwCode"
+        (click)="buyPromo(cardData.id)"
+        class="buy-button"
+      >
+        Acheter
+      </button>
     </ng-container>
   </p-dialog>
 </div>

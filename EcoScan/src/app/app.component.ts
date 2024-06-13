@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { TransitionService } from './shared-module/shared/transition.service';
+import { TransitionService } from './shared-module/shared/services/transition.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private transitionService: TransitionService,
+    private transitionService: TransitionService
   ) {}
 
   ngOnInit() {

@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, map } from 'rxjs';
-import { User } from '../models/classes/User.class';
-import { Promo } from '../models/types/Promo.type';
-import { environment } from '../../../environments/environment';
-import { Rubbish } from '../models/types/Rubbish.type';
-import { AuthResponse } from '../models/types/Login.type';
-import { StagedRubbish } from '../models/types/StagedRubbish.type';
-import { Bin } from '../models/types/Bin.type';
-import { Deposit } from '../models/types/Deposits.type';
-import { Brand } from '../models/types/Brand.type';
-import { GetUser } from '../../host/models/getUser.type';
-import { Type } from '../models/types/Type.type';
-import { Credential } from '../../host/models/credential.type';
-import { UserForm } from '../../host/models/user.type';
+import { Observable, catchError } from 'rxjs';
+import { Promo } from '../../models/types/Promo.type';
+import { environment } from '../../../../environments/environment';
+import { Rubbish } from '../../models/types/Rubbish.type';
+import { AuthResponse } from '../../models/types/Login.type';
+import { StagedRubbish } from '../../models/types/StagedRubbish.type';
+import { Bin } from '../../models/types/Bin.type';
+import { Deposit } from '../../models/types/Deposits.type';
+import { Brand } from '../../models/types/Brand.type';
+import { GetUser } from '../../models/types/GetUser.type';
+import { Type } from '../../models/types/Type.type';
+import { Credential } from '../../../host/models/credential.type';
+import { UserForm } from '../../../host/models/user.type';
 
 @Injectable({
   providedIn: 'root',
@@ -92,9 +91,9 @@ export class DataAccessorService {
   }
 
   // Create
-  addUser$(newUser: User): Observable<User> {
+  addUser$(newUser: GetUser): Observable<GetUser> {
     return this.http
-      .post<User>(`${environment.database.path}/user/add`, newUser)
+      .post<GetUser>(`${environment.database.path}/user/add`, newUser)
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
@@ -102,11 +101,11 @@ export class DataAccessorService {
       );
   }
   // Update
-  updateUser$(updatedUser: User): Observable<User> {
+  updateUser$(updatedUser: GetUser): Observable<GetUser> {
     return this.http
-      .put<User>(
-        `${environment.database.path}/user/update/${updatedUser.getUserID()}`,
-        updatedUser,
+      .put<GetUser>(
+        `${environment.database.path}/user/update/${updatedUser.id}`,
+        updatedUser
       )
       .pipe(
         catchError((err) => {
@@ -119,9 +118,9 @@ export class DataAccessorService {
      rubbishItems
   */
   // fetch
-  getAllRubbish$(): Observable<Rubbish[]> {
+  getMystaged$(id: string): Observable<StagedRubbish> {
     return this.http
-      .get<Rubbish[]>(`${environment.database.path}/rubbish/get/all`)
+      .get<StagedRubbish>(`${environment.database.path}/staged/get/${id}`)
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
@@ -152,11 +151,14 @@ export class DataAccessorService {
       );
   }
   // Create
-  addStagedRubbish$(newRubbish: StagedRubbish): Observable<StagedRubbish> {
+  addStagedRubbish$(
+    stagedId: number,
+    newRubbish: Rubbish
+  ): Observable<Rubbish> {
     return this.http
-      .post<StagedRubbish>(
-        `${environment.database.path}/staged/add`,
-        newRubbish,
+      .post<Rubbish>(
+        `${environment.database.path}/staged/add/${stagedId}`,
+        newRubbish
       )
       .pipe(
         catchError((err) => {
@@ -289,6 +291,20 @@ export class DataAccessorService {
   }
 
   /*
+    UserPromo
+  */
+  // post
+  addUserPromo$(userId: string, promoId: number): Observable<any> {
+    return this.http.post<any>(
+      `${environment.database.path}/user-promos/add/promos`,
+      {
+        userId,
+        promoId,
+      }
+    );
+  }
+
+  /*
      brands
   */
   // fetch
@@ -305,19 +321,6 @@ export class DataAccessorService {
     return this.http
       .get<Brand>(`${environment.database.path}/brand/get/${id}`)
       .pipe(
-        catchError((err) => {
-          throw this.handleFailure(err);
-        }),
-      );
-  }
-  getBrandByName$(title: string): Observable<Brand> {
-    return this.http
-      .get<Brand[]>(`${environment.database.path}/brand/`, this.httpOptions)
-      .pipe(
-        map(
-          (brands: Brand[]) =>
-            brands.filter((brand: Brand) => brand.title === title)[0],
-        ),
         catchError((err) => {
           throw this.handleFailure(err);
         }),
@@ -356,6 +359,16 @@ export class DataAccessorService {
         catchError((err) => {
           throw this.handleFailure(err);
         }),
+      );
+  }
+
+  getType$(inType: Type): Observable<Type> {
+    return this.http
+      .get<Type>(`${environment.database.path}/type/get/${inType.id}`)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
       );
   }
 }
