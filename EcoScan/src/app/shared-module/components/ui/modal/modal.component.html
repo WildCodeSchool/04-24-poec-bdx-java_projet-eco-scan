@@ -37,7 +37,7 @@
           </div>
 
           <div class="redeemable-amount">
-            <p id="points-amount">{{ cardData.amount | thousandK }}</p>
+            <p id="points-amount">{{ cardData.price | thousandK }}</p>
             points
           </div>
         </div>
@@ -61,6 +61,9 @@
           alt="{{cardData.brand.title}}"
         />
       </div>
+      <button (click)="buyPromo(cardData.id)" class="buy-button">
+        Acheter
+      </button>
     </ng-container>
   </p-dialog>
 </div>

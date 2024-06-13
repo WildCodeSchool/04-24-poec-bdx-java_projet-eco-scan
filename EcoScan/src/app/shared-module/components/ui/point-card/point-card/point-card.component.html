@@ -11,6 +11,23 @@
       />
       <p>{{ rubbishDetail.name }}</p>
     </div>
-    <img class="info" src="assets/png/information.png" alt="" />
+    <img
+      class="info"
+      src="assets/png/information.png"
+      alt=""
+      (click)="showDialog()"
+    />
   </div>
 </div>
+
+<p-dialog
+  header="Header"
+  [(visible)]="visible"
+  [modal]="true"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <p>{{ rubbishDetail.description }}</p>
+</p-dialog>
