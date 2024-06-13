@@ -1,6 +1,13 @@
 export type Deposit = {
-    userID: string;
-    rubbishID: string;
-    binID: string;
-    timeOf: Date;
+    id: number | null;
+    user: {
+        id: number;
+    }
+    rubbish: {
+        id: number
+    };
+    bin: {
+        id:number
+    }
+    scanData: string;
 }

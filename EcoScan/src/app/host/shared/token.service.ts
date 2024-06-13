@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { LocalStorageService } from '../../shared-module/local-storage.service';
+import { LocalStorageService } from '../../shared-module/shared/services/local-storage.service';
 import { jwtDecode } from 'jwt-decode';
 import { Token } from '../../shared-module/models/types/Token.type';
 

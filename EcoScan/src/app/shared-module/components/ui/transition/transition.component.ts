@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TransitionService } from '../../../shared/transition.service';
+import { TransitionService } from '../../../shared/services/transition.service';
 import { Router } from '@angular/router';
 
 @Component({

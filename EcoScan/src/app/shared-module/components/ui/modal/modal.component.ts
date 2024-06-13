@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ModalService } from '../../../shared/services/modal.service';
 import { Observable } from 'rxjs';
-import { Modal } from '../../../models/types/modal.type';
 import { DataAccessorService } from '../../../shared/services/data-accessor.service';
 import { UserService } from '../../../shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { GetUser } from '../../../../host/models/getUser.type';
+import { GetUser } from '../../../models/types/getUser.type';
 import { Promo } from '../../../models/types/Promo.type';
+import { Modal } from '../../../models/types/Modal.type';
 
 @Component({
   selector: 'app-modal',

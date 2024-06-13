@@ -6,5 +6,5 @@ export type Type = {
   pictogram: string;
   points: number;
   description: string;
-  bins?: Bin[];
+  bins: Bin[];
 };

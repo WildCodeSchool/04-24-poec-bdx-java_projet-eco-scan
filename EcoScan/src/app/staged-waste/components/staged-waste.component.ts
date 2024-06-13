@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GetUser } from '../../host/models/getUser.type';
+import { GetUser } from '../../shared-module/models/types/getUser.type';
 import { Rubbish } from '../../shared-module/models/types/Rubbish.type';
 
 @Component({

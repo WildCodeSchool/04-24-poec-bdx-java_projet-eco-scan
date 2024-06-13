@@ -1,7 +1,6 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, of, switchMap, tap } from 'rxjs';
 import { UserForm } from '../models/user.type';
-import { AuthService } from '../../shared-module/shared/services/auth.service';
 import { Credential } from '../models/credential.type';
 import { Router } from '@angular/router';
 import { DataAccessorService } from '../../shared-module/shared/services/data-accessor.service';

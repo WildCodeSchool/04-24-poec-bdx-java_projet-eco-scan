@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   NgxScannerQrcodeComponent,
@@ -7,18 +7,26 @@ import {
 } from 'ngx-scanner-qrcode';
 import { ScanService } from '../../services/scan.service';
 import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
-import { GetUser } from '../../../host/models/getUser.type';
 import { UserService } from '../../../shared-module/shared/services/user.service';
+import { longLat } from '../../../shared-module/models/types/LongLat.type';
+import { Deposit } from '../../../shared-module/models/types/Deposits.type';
+import { GetUser } from '../../../shared-module/models/types/getUser.type';
+import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-scan',
   templateUrl: './scan.component.html',
   styleUrl: './scan.component.scss',
 })
-export class ScanComponent {
-  scannedData!: Rubbish | undefined;
+export class ScanComponent implements OnDestroy {
+  scannedRubbish!: Rubbish;
+  scanData!: string;
   user!: GetUser;
-
+  location!: longLat;
+  inProximity: boolean = false;
+  binOfDeposit!: string;
+  subscriptions!: Subscription[];
   infos: String[] = [
     'Scanner le Qr-code',
     'Récuperer les informations du déchet',
@@ -41,11 +49,21 @@ export class ScanComponent {
     private router: Router,
     private scanService: ScanService,
     private route: ActivatedRoute,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private messageService: MessageService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.user = this.route.snapshot.data['user'];
+    this.updateUserLocation();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscriptions.length){
+      for (const sub of this.subscriptions){
+        sub.unsubscribe();
+      }
+    }
   }
 
   private scrollToScannedSection(): void {
@@ -55,20 +73,40 @@ export class ScanComponent {
   public onEvent(e: ScannerQRCodeResult[], action?: any): void {
     if (e.length > 0) {
       const scannedDataString = e[0].value;
-      console.log(scannedDataString);
+      this.scanData = scannedDataString;
 
       try {
         const scannedDataObj = JSON.parse(scannedDataString);
         const rubbishId = scannedDataObj.id;
 
-        this.scanService.getRubbishById$(rubbishId).subscribe((rubbish) => {
-          this.scannedData = rubbish;
+        const sub = this.scanService.getRubbishById$(rubbishId).subscribe((rubbish) => {
+          this.scannedRubbish = rubbish;
 
-          console.log(this.scannedData);
+          console.log(this.scannedRubbish);
 
           action?.stop();
+
+          const sub = this.scanService.checkBinsAreClose(this.scannedRubbish, this.location).subscribe(
+            binID => {
+              if (binID === "") {
+                this.inProximity = false;
+                this.messageService.add({
+                  severity: 'warning',
+                  summary: 'Aucune poubelle trouvée',
+                  detail: 'Aucune poubelle trouvée à proximité, approchez-vous d\'un bac'
+                });
+              } else {
+                this.binOfDeposit = binID;
+                this.inProximity = true;
+
+              }
+            }
+          );
+          this.subscriptions.push(sub);
+
           setTimeout(() => this.scrollToScannedSection(), 100);
         });
+        this.subscriptions.push(sub);
       } catch (error) {
         console.error('Invalid QR code format', error);
       }
@@ -90,25 +128,79 @@ export class ScanComponent {
     }
   }
 
-  sendToStaged() {
-    if (this.scannedData && this.user) {
-      this.scanService
-        .stageRubbishForUser(this.user.staged.id, this.scannedData)
+  sendToStaged(): void {
+    if (this.scannedRubbish && this.user) {
+      const sub = this.scanService
+        .stageRubbishForUser(this.user.staged.id, this.scannedRubbish)
         .subscribe(
           (response) => {
             console.log('Rubbish staged successfully', response);
             this.userService.refreshUser();
-            this.scannedData = undefined;
+            this.scannedRubbish = {} as Rubbish;
           },
           (error) => {
             console.error('Failed to stage rubbish', error);
           }
         );
+        this.subscriptions.push(sub);
     }
   }
 
-  navigateToPictureComponent() {
-    // this.scanService(this.scannedData as Rubbish);
-    this.router.navigate(['/home']);
+  makeDeposit(): void {
+    if (this.scannedRubbish && this.user && this.binOfDeposit) {
+      let newDeposit: Deposit = {
+        id: null,
+        user: {
+          id: Number(this.user.id)
+        },
+        rubbish: {
+          id: this.scannedRubbish.id
+        },
+        bin: {
+          id: Number(this.binOfDeposit)
+        },
+        scanData: this.scanData
+      }
+      const sub = this.scanService.sendDeposit$(newDeposit).subscribe(
+        respDeposit => {
+          console.log(respDeposit);
+          this.router.navigate(['/home'])
+        }
+      );
+      this.subscriptions.push(sub);
+    }
   }
+
+  updateUserLocation(): void {
+    navigator.geolocation.getCurrentPosition(
+      (position: GeolocationPosition) => {
+        this.location = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+      },
+      () => {
+        if (navigator.geolocation) {
+          this.handleLocationError(true);
+        } else {
+          this.handleLocationError(false);
+        }
+      }
+    )
+  }
+
+  private handleLocationError(
+    browserHasGeolocation: boolean
+  ): void {
+    let error = browserHasGeolocation
+      ? 'Erreur : Le service de géolocalisation a échoué.'
+      : "Erreur : Votre navigateur ne prend pas en charge la géolocalisation."
+    console.log(error);
+    this.messageService.add({
+      severity: 'warning',
+      summary: 'Impossible de localiser',
+      detail: error,
+    });
+  }
+
 }
