@@ -13,6 +13,9 @@ export class ModalService {
     });
   modalState$ = this.modalState.asObservable();
 
+  private promoListSubject = new BehaviorSubject<Promo[]>([]);
+  promoList$ = this.promoListSubject.asObservable();
+
   constructor() {}
 
   openModal(cardData: Promo) {
@@ -21,5 +24,16 @@ export class ModalService {
 
   closeModal() {
     this.modalState.next({ visible: false, cardData: {} as Promo });
+  }
+
+  updatePromo(cardData: Promo) {
+    const currentState = this.modalState.getValue();
+    if (currentState.visible) {
+      this.modalState.next({ ...currentState, cardData });
+    }
+  }
+
+  updatePromoList(newPromos: Promo[]) {
+    this.promoListSubject.next(newPromos);
   }
 }

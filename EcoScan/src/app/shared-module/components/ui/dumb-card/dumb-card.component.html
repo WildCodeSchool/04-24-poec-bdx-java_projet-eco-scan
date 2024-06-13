@@ -25,7 +25,7 @@
           *ngIf="promo.brand.logo"
           id="logo"
           [src]="'data:image/svg+xml;base64,' + promo.brand.logo"
-          alt="{{promo.brand.title}}"
+          alt="{{ promo.brand.title }}"
         />
         <p id="details">See details</p>
         <button type="button" (click)="openModal(promo)">

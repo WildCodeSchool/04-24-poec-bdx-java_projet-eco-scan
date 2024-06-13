@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private transitionService: TransitionService,
+    private transitionService: TransitionService
   ) {}
 
   ngOnInit() {

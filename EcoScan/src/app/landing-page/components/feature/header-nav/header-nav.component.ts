@@ -5,6 +5,8 @@ import { Nav } from '../../../models/nav.type';
 import { HostService } from '../../../../host/shared/host.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetUser } from '../../../../host/models/getUser.type';
+import { Observable } from 'rxjs';
+import { UserService } from '../../../../shared-module/shared/services/user.service';
 
 const animationParams = {
   menuWidth: '250px',
@@ -39,7 +41,7 @@ export class HeaderNavComponent {
   boolChange: EventEmitter<boolean> = new EventEmitter();
 
   @Input()
-  user!: GetUser;
+  user$: Observable<GetUser> = this.userService.getUser$();
 
   imagePath: string = 'assets/png/bar.png';
   mapSvg: string = 'assets/svg/map.svg';
@@ -48,7 +50,8 @@ export class HeaderNavComponent {
 
   constructor(
     private hostService: HostService,
-    private routerNavigate: Router
+    private routerNavigate: Router,
+    private userService: UserService
   ) {}
 
   sendIsOpenToParent() {

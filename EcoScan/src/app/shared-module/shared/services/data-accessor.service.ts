@@ -272,6 +272,20 @@ export class DataAccessorService {
   }
 
   /*
+    UserPromo
+  */
+  // post
+  addUserPromo$(userId: string, promoId: number): Observable<any> {
+    return this.http.post<any>(
+      `${environment.database.path}/user-promos/add/promos`,
+      {
+        userId,
+        promoId,
+      }
+    );
+  }
+
+  /*
      brands
   */
   // fetch

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { TokenService } from '../../../host/shared/token.service';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
 import { GetUser } from '../../../host/models/getUser.type';
 import { DataAccessorService } from './data-accessor.service';
 
@@ -33,17 +33,25 @@ export class UserService {
   private fetchAndSetUser() {
     this.dataService
       .getUserByEmail$(this.email)
-      .pipe(tap((user) => this.currentUser.next(user)))
+      .pipe(tap((user) => this.setUser(user)))
       .subscribe();
   }
 
   getUser$(): Observable<GetUser> {
-    if (Object.entries(this.currentUser.value).length) {
-      return this.currentUser.asObservable();
-    }
-    return this.dataService
-      .getUserByEmail$(this.email)
-      .pipe(tap((user) => this.currentUser.next(user)));
+    // if (Object.entries(this.currentUser.value).length) {
+    //   return this.currentUser.asObservable();
+    // }
+    return this.dataService.getUserByEmail$(this.email).pipe(
+      tap((user) => this.currentUser.next(user)),
+      switchMap(() => this.currentUser.asObservable())
+    );
+  }
+
+  setUser(user: GetUser): void {
+    const points = user.points;
+    const newUser = this.currentUser.value;
+    this.currentUser.next({ ...newUser, points });
+    console.log('toto', this.currentUser.value);
   }
 
   getRole$(): Observable<string>{
