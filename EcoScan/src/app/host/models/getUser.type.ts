@@ -4,8 +4,9 @@ import { UserPromos } from '../../shared-module/models/types/UserPromos.type';
 export type GetUser = {
   id: string;
   staged: StagedRubbish;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  username: string;
+  lastname: string;
   email: string;
   points: number;
   userPromos: UserPromos[];
