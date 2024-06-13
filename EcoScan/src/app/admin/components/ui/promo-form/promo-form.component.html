@@ -20,12 +20,24 @@
             <input name="percentOff" type="number" formControlName="percentOff" required min=1 max="100">
         </div>
         <div>
-            <label for="pointsNeeded">Points needed to redeem: </label>
-            <input name="pointsNeeded" type="number" formControlName="pointsNeeded" required min=1>
+            <label for="price">Points needed to redeem: </label>
+            <input name="price" type="number" formControlName="price" required min=1>
         </div>
         <div>
-            <label for="redeemableAmount">Redeemable amount: </label>
-            <input name="redeemableAmount" type="number" formControlName="redeemableAmount" required min=1>
+            <label for="amount">Redeemable amount: </label>
+            <input name="amount" type="number" formControlName="amount" required min=1>
+        </div>
+        <div>
+            <label for="brand">Brand: </label>
+            <select name="brand" formControlName="brand" required>
+                <option *ngFor="let brand of brands" [ngValue]="brand">{{brand.title}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="color">Color: </label>
+            <select name="color" formControlName="color" required>
+                <option *ngFor="let color of presetColors" [ngValue]="color.hexCode">{{color.name}}</option>
+            </select>
         </div>
         <div>
             <label for="startDate">Start date: </label>

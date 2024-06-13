@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { DataAccessorService } from '../../../../shared-module/shared/services/data-accessor.service';
+import { BrandAdminService } from '../../../shared/brand-admin.service';
 
 @Component({
   selector: 'app-brand-display',
@@ -7,6 +7,8 @@ import { DataAccessorService } from '../../../../shared-module/shared/services/d
   styleUrl: './brand-display.component.scss',
 })
 export class BrandDisplayComponent {
-  private dbAccessor = inject(DataAccessorService);
-  brands$ = this.dbAccessor.getAllBrands$();
+
+  private brandService = inject(BrandAdminService);
+  brands$ = this.brandService.getBrandList$();
+
 }
