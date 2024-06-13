@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { HostService } from '../../shared/host.service';
 import { Credential } from '../../models/credential.type';
 import { MessageService } from 'primeng/api';
-import { TransitionService } from '../../../shared-module/shared/transition.service';
+import { TransitionService } from '../../../shared-module/shared/services/transition.service';
 
 @Component({
   selector: 'app-login',

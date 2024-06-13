@@ -341,4 +341,16 @@ export class DataAccessorService {
         })
       );
   }
+
+  getType$(inType: Type): Observable<Type> {
+    return this.http
+      .get<Type>(`${environment.database.path}/type/get/${inType.id}`)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+
+
 }

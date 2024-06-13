@@ -76,10 +76,18 @@
     justify-content: center;
     align-items: center;
     font-family: "Lato", sans-serif;
-    color: white;
-    background-color: #178b68;
     border-radius: 3px;
     border: none;
+  }
+
+  .throw-btn:active {
+    color: white;
+    background-color: #178b68;
+  }
+
+  .throw-btn:disabled {
+    color: white;
+    background-color: #2f323d;
   }
 }
 

@@ -22,6 +22,7 @@ export class GlossaryComponent {
       pictogram: '',
       points: 1000,
       description: 'yoooo',
+      bins: []
     };
   }
 }

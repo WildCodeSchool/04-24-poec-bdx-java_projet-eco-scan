@@ -9,6 +9,7 @@ import { ScanService } from '../../services/scan.service';
 import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
 import { GetUser } from '../../../host/models/getUser.type';
 import { UserService } from '../../../shared-module/shared/services/user.service';
+import { longLat } from '../../../shared-module/models/types/LongLat.type';
 
 @Component({
   selector: 'app-scan',
@@ -16,9 +17,10 @@ import { UserService } from '../../../shared-module/shared/services/user.service
   styleUrl: './scan.component.scss',
 })
 export class ScanComponent {
-  scannedData!: Rubbish | undefined;
+  scannedData!: Rubbish;
   user!: GetUser;
-
+  location!: longLat;
+  inProximity:boolean = false;
   infos: String[] = [
     'Scanner le Qr-code',
     'Récuperer les informations du déchet',
@@ -42,10 +44,11 @@ export class ScanComponent {
     private scanService: ScanService,
     private route: ActivatedRoute,
     private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.user = this.route.snapshot.data['user'];
+    this.updateUserLocation();
   }
 
   private scrollToScannedSection(): void {
@@ -55,7 +58,6 @@ export class ScanComponent {
   public onEvent(e: ScannerQRCodeResult[], action?: any): void {
     if (e.length > 0) {
       const scannedDataString = e[0].value;
-      console.log(scannedDataString);
 
       try {
         const scannedDataObj = JSON.parse(scannedDataString);
@@ -67,6 +69,12 @@ export class ScanComponent {
           console.log(this.scannedData);
 
           action?.stop();
+
+          this.scanService.checkBinsAreClose(this.scannedData, this.location).subscribe(
+            proximity => this.inProximity = proximity
+          );
+
+
           setTimeout(() => this.scrollToScannedSection(), 100);
         });
       } catch (error) {
@@ -90,7 +98,7 @@ export class ScanComponent {
     }
   }
 
-  sendToStaged() {
+  sendToStaged(): void{
     if (this.scannedData && this.user) {
       this.scanService
         .stageRubbishForUser(this.user.staged.id, this.scannedData)
@@ -98,7 +106,7 @@ export class ScanComponent {
           (response) => {
             console.log('Rubbish staged successfully', response);
             this.userService.refreshUser();
-            this.scannedData = undefined;
+            this.scannedData = {} as Rubbish;
           },
           (error) => {
             console.error('Failed to stage rubbish', error);
@@ -107,8 +115,36 @@ export class ScanComponent {
     }
   }
 
-  navigateToPictureComponent() {
-    // this.scanService(this.scannedData as Rubbish);
+  navigateToPictureComponent(): void {
     this.router.navigate(['/home']);
   }
+
+  updateUserLocation(): void {
+    navigator.geolocation.getCurrentPosition(
+      (position: GeolocationPosition) => {
+        this.location = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+      },
+      () => {
+        if (navigator.geolocation){
+          this.handleLocationError(true);
+        } else {
+          this.handleLocationError(false);
+        }
+      }
+    )
+  }
+
+  private handleLocationError(
+    browserHasGeolocation: boolean
+  ): void {
+    //create a toast
+    let error = browserHasGeolocation
+      ? 'Error: The Geolocation service failed.'
+      : "Error: Your browser doesn't support geolocation."
+    console.log(error);
+  }
+
 }

@@ -15,9 +15,9 @@
   </div>
 
   <div *ngIf="!scannedData" class="info-container">
-    <div *ngFor="let inf of infos" class="information">
+    <div *ngFor="let info of infos" class="information">
       <img src="assets/svg/validation.svg" alt="" />
-      <p>{{ inf }}</p>
+      <p>{{ info }}</p>
     </div>
   </div>
 
@@ -38,6 +38,7 @@
         Jeter plus tard
       </button>
       <button
+        [disabled]="!inProximity"
         class="throw-btn"
         (click)="navigateToPictureComponent()"
         #scannedSection

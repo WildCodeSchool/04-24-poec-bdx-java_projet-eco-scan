@@ -8,7 +8,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
-import { LocalStorageService } from '../local-storage.service';
+import { LocalStorageService } from '../shared/services/local-storage.service';
 import { MessageService } from 'primeng/api';
 
 @Injectable()

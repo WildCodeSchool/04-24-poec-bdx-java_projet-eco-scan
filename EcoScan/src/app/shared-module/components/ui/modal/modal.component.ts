@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ModalService } from '../../../shared/services/modal.service';
 import { Observable } from 'rxjs';
-import { Modal } from '../../../models/types/modal.type';
+import { Modal } from '../../../models/types/Modal.type';
 
 @Component({
   selector: 'app-modal',
