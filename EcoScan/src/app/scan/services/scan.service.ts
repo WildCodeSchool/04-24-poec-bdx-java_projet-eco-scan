@@ -11,7 +11,6 @@ import { Deposit } from '../../shared-module/models/types/Deposits.type';
   providedIn: 'root',
 })
 export class ScanService {
-
   constructor(
     private dbAccessor: DataAccessorService,
     private locationService: LocationService
@@ -25,31 +24,34 @@ export class ScanService {
     return this.dbAccessor.addStagedRubbish$(id, rubbish);
   }
 
-  sendDeposit$(newDeposit: Deposit){
+  sendDeposit$(newDeposit: Deposit) {
     return this.dbAccessor.addDeposit$(newDeposit);
   }
 
-  checkBinsAreClose(rubbish: Rubbish, userLocation: longLat): Observable<string>{
-    console.log("in bin location check " + userLocation.lat + " " + userLocation.lng);
+  checkBinsAreClose(
+    rubbish: Rubbish,
+    userLocation: longLat
+  ): Observable<string> {
     return this.dbAccessor.getType$(rubbish.type).pipe(
-      switchMap(
-        (type: Type) => {
-          for (const bin of type.bins) {
-            const binLocation = this.locationService.splitLongAndLat(bin.localisation);
-            const latDiff = parseFloat(Math.abs(binLocation.lat - userLocation.lat).toFixed(6));
-            const lngDiff = parseFloat(Math.abs(binLocation.lng - userLocation.lng).toFixed(6));
-            console.log(latDiff + " - " + lngDiff);
-            
-            // if (latDiff <= 0.000135 && lngDiff <= 0.000135){ //in 15m
-            if (latDiff <= 0.0002 || lngDiff <= 0.0002){
+      switchMap((type: Type) => {
+        for (const bin of type.bins) {
+          const binLocation = this.locationService.splitLongAndLat(
+            bin.localisation
+          );
+          const latDiff = parseFloat(
+            Math.abs(binLocation.lat - userLocation.lat).toFixed(6)
+          );
+          const lngDiff = parseFloat(
+            Math.abs(binLocation.lng - userLocation.lng).toFixed(6)
+          );
 
-              console.log("found a close bin");
-              return of(bin.id);
-            }
+          // if (latDiff <= 0.000135 && lngDiff <= 0.000135){ //in 15m
+          if (latDiff <= 0.0002 || lngDiff <= 0.0002) {
+            return of(bin.id);
           }
-          return of("");
         }
-      )
+        return of('');
+      })
     );
   }
 }

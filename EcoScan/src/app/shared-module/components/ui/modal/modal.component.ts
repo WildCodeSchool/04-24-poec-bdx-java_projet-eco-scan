@@ -1,10 +1,10 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { ModalService } from '../../../shared/services/modal.service';
 import { Observable } from 'rxjs';
 import { DataAccessorService } from '../../../shared/services/data-accessor.service';
 import { UserService } from '../../../shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { GetUser } from '../../../models/types/getUser.type';
+import { GetUser } from '../../../models/types/GetUser.type';
 import { Promo } from '../../../models/types/Promo.type';
 import { Modal } from '../../../models/types/Modal.type';
 
@@ -17,6 +17,9 @@ import { Modal } from '../../../models/types/Modal.type';
 export class ModalComponent {
   modalState$: Observable<Modal>;
   user!: GetUser;
+
+  @Input()
+  shiwCode: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -33,10 +36,7 @@ export class ModalComponent {
 
   buyPromo(promoId: number) {
     this.dbAccess.addUserPromo$(this.user.id, promoId).subscribe((res) => {
-      console.log('promo added', res);
       this.userService.refreshUser();
-
-      // Fetch updated promo list
       this.dbAccess.getAllPromos$().subscribe((updatedPromos: Promo[]) => {
         this.modalService.updatePromoList(updatedPromos);
       });

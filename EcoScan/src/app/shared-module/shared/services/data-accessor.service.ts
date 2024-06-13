@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, map } from 'rxjs';
-import { User } from '../../models/classes/User.class';
+import { Observable, catchError } from 'rxjs';
 import { Promo } from '../../models/types/Promo.type';
 import { environment } from '../../../../environments/environment';
 import { Rubbish } from '../../models/types/Rubbish.type';
@@ -10,7 +9,7 @@ import { StagedRubbish } from '../../models/types/StagedRubbish.type';
 import { Bin } from '../../models/types/Bin.type';
 import { Deposit } from '../../models/types/Deposits.type';
 import { Brand } from '../../models/types/Brand.type';
-import { GetUser } from '../../models/types/getUser.type';
+import { GetUser } from '../../models/types/GetUser.type';
 import { Type } from '../../models/types/Type.type';
 import { Credential } from '../../../host/models/credential.type';
 import { UserForm } from '../../../host/models/user.type';
@@ -92,9 +91,9 @@ export class DataAccessorService {
   }
 
   // Create
-  addUser$(newUser: User): Observable<User> {
+  addUser$(newUser: GetUser): Observable<GetUser> {
     return this.http
-      .post<User>(`${environment.database.path}/user/add`, newUser)
+      .post<GetUser>(`${environment.database.path}/user/add`, newUser)
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
@@ -102,10 +101,10 @@ export class DataAccessorService {
       );
   }
   // Update
-  updateUser$(updatedUser: User): Observable<User> {
+  updateUser$(updatedUser: GetUser): Observable<GetUser> {
     return this.http
-      .put<User>(
-        `${environment.database.path}/user/update/${updatedUser.getUserID()}`,
+      .put<GetUser>(
+        `${environment.database.path}/user/update/${updatedUser.id}`,
         updatedUser
       )
       .pipe(
@@ -307,19 +306,6 @@ export class DataAccessorService {
         })
       );
   }
-  getBrandByName$(title: string): Observable<Brand> {
-    return this.http
-      .get<Brand[]>(`${environment.database.path}/brand/`, this.httpOptions)
-      .pipe(
-        map(
-          (brands: Brand[]) =>
-            brands.filter((brand: Brand) => brand.title === title)[0]
-        ),
-        catchError((err) => {
-          throw this.handleFailure(err);
-        })
-      );
-  }
 
   // Create
   addBrand$(newBrand: Brand): Observable<Brand> {
@@ -365,6 +351,4 @@ export class DataAccessorService {
         })
       );
   }
-
-
 }

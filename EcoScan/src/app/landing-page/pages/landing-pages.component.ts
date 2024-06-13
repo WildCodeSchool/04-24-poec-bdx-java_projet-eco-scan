@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Promo } from '../../shared-module/models/types/Promo.type';
-import { GetUser } from '../../shared-module/models/types/getUser.type';
+import { GetUser } from '../../shared-module/models/types/GetUser.type';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
 import { UserService } from '../../shared-module/shared/services/user.service';
@@ -29,10 +29,6 @@ export class LandingPagesComponent {
   }
 
   ngOnInit() {
-    // this.user$ = this.route.snapshot.data['user'];
-    // console.log(this.user);
-    console.log(this.route.snapshot.data['promos']);
-
     this.cardList$ = this.route.data.pipe(
       map((data) => data['promos']),
       switchMap((initialPromos) =>

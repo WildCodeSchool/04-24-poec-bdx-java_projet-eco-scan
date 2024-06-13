@@ -10,7 +10,7 @@ import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
 import { UserService } from '../../../shared-module/shared/services/user.service';
 import { longLat } from '../../../shared-module/models/types/LongLat.type';
 import { Deposit } from '../../../shared-module/models/types/Deposits.type';
-import { GetUser } from '../../../shared-module/models/types/getUser.type';
+import { GetUser } from '../../../shared-module/models/types/GetUser.type';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
@@ -51,7 +51,7 @@ export class ScanComponent implements OnDestroy {
     private route: ActivatedRoute,
     private userService: UserService,
     private messageService: MessageService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.user = this.route.snapshot.data['user'];
@@ -59,8 +59,8 @@ export class ScanComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.subscriptions.length){
-      for (const sub of this.subscriptions){
+    if (this.subscriptions.length) {
+      for (const sub of this.subscriptions) {
         sub.unsubscribe();
       }
     }
@@ -79,33 +79,35 @@ export class ScanComponent implements OnDestroy {
         const scannedDataObj = JSON.parse(scannedDataString);
         const rubbishId = scannedDataObj.id;
 
-        const sub = this.scanService.getRubbishById$(rubbishId).subscribe((rubbish) => {
-          this.scannedRubbish = rubbish;
+        const sub = this.scanService
+          .getRubbishById$(rubbishId)
+          .subscribe((rubbish) => {
+            this.scannedRubbish = rubbish;
 
-          console.log(this.scannedRubbish);
+            console.log(this.scannedRubbish);
 
-          action?.stop();
+            action?.stop();
 
-          const sub = this.scanService.checkBinsAreClose(this.scannedRubbish, this.location).subscribe(
-            binID => {
-              if (binID === "") {
-                this.inProximity = false;
-                this.messageService.add({
-                  severity: 'warning',
-                  summary: 'Aucune poubelle trouvée',
-                  detail: 'Aucune poubelle trouvée à proximité, approchez-vous d\'un bac'
-                });
-              } else {
-                this.binOfDeposit = binID;
-                this.inProximity = true;
+            const sub = this.scanService
+              .checkBinsAreClose(this.scannedRubbish, this.location)
+              .subscribe((binID) => {
+                if (binID === '') {
+                  this.inProximity = false;
+                  this.messageService.add({
+                    severity: 'warning',
+                    summary: 'Aucune poubelle trouvée',
+                    detail:
+                      "Aucune poubelle trouvée à proximité, approchez-vous d'un bac",
+                  });
+                } else {
+                  this.binOfDeposit = binID;
+                  this.inProximity = true;
+                }
+              });
+            this.subscriptions.push(sub);
 
-              }
-            }
-          );
-          this.subscriptions.push(sub);
-
-          setTimeout(() => this.scrollToScannedSection(), 100);
-        });
+            setTimeout(() => this.scrollToScannedSection(), 100);
+          });
         this.subscriptions.push(sub);
       } catch (error) {
         console.error('Invalid QR code format', error);
@@ -142,7 +144,7 @@ export class ScanComponent implements OnDestroy {
             console.error('Failed to stage rubbish', error);
           }
         );
-        this.subscriptions.push(sub);
+      this.subscriptions.push(sub);
     }
   }
 
@@ -151,22 +153,22 @@ export class ScanComponent implements OnDestroy {
       let newDeposit: Deposit = {
         id: null,
         user: {
-          id: Number(this.user.id)
+          id: Number(this.user.id),
         },
         rubbish: {
-          id: this.scannedRubbish.id
+          id: this.scannedRubbish.id,
         },
         bin: {
-          id: Number(this.binOfDeposit)
+          id: Number(this.binOfDeposit),
         },
-        scanData: this.scanData
-      }
-      const sub = this.scanService.sendDeposit$(newDeposit).subscribe(
-        respDeposit => {
+        scanData: this.scanData,
+      };
+      const sub = this.scanService
+        .sendDeposit$(newDeposit)
+        .subscribe((respDeposit) => {
           console.log(respDeposit);
-          this.router.navigate(['/home'])
-        }
-      );
+          this.router.navigate(['/home']);
+        });
       this.subscriptions.push(sub);
     }
   }
@@ -186,15 +188,13 @@ export class ScanComponent implements OnDestroy {
           this.handleLocationError(false);
         }
       }
-    )
+    );
   }
 
-  private handleLocationError(
-    browserHasGeolocation: boolean
-  ): void {
+  private handleLocationError(browserHasGeolocation: boolean): void {
     let error = browserHasGeolocation
       ? 'Erreur : Le service de géolocalisation a échoué.'
-      : "Erreur : Votre navigateur ne prend pas en charge la géolocalisation."
+      : 'Erreur : Votre navigateur ne prend pas en charge la géolocalisation.';
     console.log(error);
     this.messageService.add({
       severity: 'warning',
@@ -202,5 +202,4 @@ export class ScanComponent implements OnDestroy {
       detail: error,
     });
   }
-
 }
