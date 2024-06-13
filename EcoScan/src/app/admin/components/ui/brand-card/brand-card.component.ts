@@ -1,6 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { Brand } from '../../../../shared-module/models/types/Brand.type';
-import { DataAccessorService } from '../../../../shared-module/shared/services/data-accessor.service';
+import { BrandAdminService } from '../../../shared/brand-admin.service';
 
 @Component({
   selector: 'app-brand-card',
@@ -11,10 +11,10 @@ export class BrandCardComponent {
   @Input()
   brand!: Brand;
 
-  private dbAccessor = inject(DataAccessorService);
+  private brandService = inject(BrandAdminService);
 
-  deleteBrand(inBrand: Brand) {
-    //TODO when BE created
-    // this.dbAccessor.deleteBrand(inBrand).subscribe();
+
+  deleteBrand(inBrand: Brand){
+    this.brandService.deleteBrand(inBrand);
   }
 }

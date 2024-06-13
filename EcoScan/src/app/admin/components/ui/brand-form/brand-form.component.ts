@@ -21,7 +21,7 @@ export class BrandFormComponent {
   }
 
   onSubmit() {
-    this.brandService.createNewBrand(this.brandConstructor.value);
+    this.brandService.addBrand(this.brandConstructor.value);
     this.brandConstructor.reset();
     this.brandConstructor.markAsUntouched();
   }

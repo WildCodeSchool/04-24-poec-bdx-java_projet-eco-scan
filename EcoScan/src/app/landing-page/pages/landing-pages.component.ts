@@ -4,8 +4,8 @@ import { GetUser } from '../../shared-module/models/types/GetUser.type';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
 import { UserService } from '../../shared-module/shared/services/user.service';
-import { ModalService } from '../../shared-module/shared/services/modal.service';
 import { CardService } from '../../shared-module/shared/services/card.service';
+import { ModalService } from '../../shared-module/shared/services/modal.service';
 
 @Component({
   selector: 'app-landing-pages',
@@ -28,7 +28,7 @@ export class LandingPagesComponent {
     private route: ActivatedRoute,
     private userService: UserService,
     private modalService: ModalService,
-    private cardService: CardService
+    private cardService: CardService,
   ) {}
 
   onReceivedFromHeader(open: boolean): void {
@@ -41,10 +41,10 @@ export class LandingPagesComponent {
       switchMap((initialPromos) =>
         this.modalService.promoList$.pipe(
           map((updatedPromos) =>
-            updatedPromos.length ? updatedPromos : initialPromos
-          )
-        )
-      )
+            updatedPromos.length ? updatedPromos : initialPromos,
+          ),
+        ),
+      ),
     );
   }
 }
