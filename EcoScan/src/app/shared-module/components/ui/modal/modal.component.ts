@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { ModalService } from '../../../shared/services/modal.service';
+import { ModalService } from '../../../shared/services/Modal.service';
 import { Observable } from 'rxjs';
 import { DataAccessorService } from '../../../shared/services/data-accessor.service';
 import { UserService } from '../../../shared/services/user.service';

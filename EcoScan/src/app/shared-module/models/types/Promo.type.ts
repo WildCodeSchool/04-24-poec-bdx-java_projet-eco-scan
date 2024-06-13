@@ -1,7 +1,7 @@
 import { Brand } from "./Brand.type";
 
 export type Promo = {
-    id: number | null;
+    id: number;
     title: string;
     item: string;
     description: string;
