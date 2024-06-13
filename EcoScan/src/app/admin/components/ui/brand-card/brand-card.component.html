@@ -1,8 +1,12 @@
 <div class="brand-card">
     <div class="fields">
         <p>Titre de la marque: {{brand.title}}</p>
-        <!-- change to img when we connect the BE -->
-        <p>Atout image: {{brand.logo}}</p>
+        <img
+            *ngIf="brand.logo"
+            id="logo"
+            [src]="'data:image/svg+xml;base64,' + brand.logo"
+            alt="{{brand.title}}"
+        />
     </div>
     <button (click)="deleteBrand(brand)">Delete</button>
 </div>

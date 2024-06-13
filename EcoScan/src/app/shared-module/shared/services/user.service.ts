@@ -10,15 +10,21 @@ import { DataAccessorService } from './data-accessor.service';
 export class UserService {
   private tokenService = inject(TokenService);
   private dataService = inject(DataAccessorService);
-  private role!: string;
   private email!: string;
+  private currentRole: BehaviorSubject<string> = new BehaviorSubject<string>(
+    ""
+  );
   private currentUser: BehaviorSubject<GetUser> = new BehaviorSubject<GetUser>(
     {} as GetUser
   );
 
   constructor() {
+    this.fetchTokenData();
+  }
+
+  fetchTokenData() {
     this.tokenService.getDecodedToken$().subscribe((resp) => {
-      this.role = resp.role;
+      this.currentRole.next(resp.role);
       this.email = resp.sub;
       this.fetchAndSetUser();
     });
@@ -46,6 +52,13 @@ export class UserService {
     const newUser = this.currentUser.value;
     this.currentUser.next({ ...newUser, points });
     console.log('toto', this.currentUser.value);
+  }
+
+  getRole$(): Observable<string>{
+    if (!Object.entries(this.currentRole.value).length) {
+        this.fetchTokenData();
+    }
+    return this.currentRole.asObservable();
   }
 
   refreshUser() {

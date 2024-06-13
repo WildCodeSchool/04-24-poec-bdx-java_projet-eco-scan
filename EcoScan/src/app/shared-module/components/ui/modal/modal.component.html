@@ -55,10 +55,10 @@
           <p><span>End Date:</span> {{ cardData.endDate | date }}</p>
         </div>
         <img
-          class="logo-modal"
-          width="200"
-          src="assets/png/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
-          alt=""
+          *ngIf="cardData.brand"
+          id="logo"
+          [src]="'data:image/svg+xml;base64,' + cardData.brand.logo"
+          alt="{{cardData.brand.title}}"
         />
       </div>
       <button (click)="buyPromo(cardData.id)" class="buy-button">
