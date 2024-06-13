@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 import {
   openClosePageAnimation,
   openPageAnimation,
 } from '../../../shared-module/shared/services/route-animations';
-import { UserService } from '../../../shared-module/shared/services/user.service';
-import { GetUser } from '../../../shared-module/models/types/getUser.type';
+import { GetUser } from '../../../shared-module/models/types/GetUser.type';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

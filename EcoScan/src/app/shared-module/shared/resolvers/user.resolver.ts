@@ -1,7 +1,7 @@
 import { ResolveFn } from '@angular/router';
 
 import { UserService } from '../services/user.service';
-import { GetUser } from '../../models/types/getUser.type';
+import { GetUser } from '../../models/types/GetUser.type';
 import { Observable } from 'rxjs';
 import { inject } from '@angular/core';
 

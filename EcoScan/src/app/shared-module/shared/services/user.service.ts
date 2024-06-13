@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { TokenService } from '../../../host/shared/token.service';
 import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
-import { GetUser } from '../../models/types/getUser.type';
+import { GetUser } from '../../models/types/GetUser.type';
 import { DataAccessorService } from './data-accessor.service';
 
 @Injectable({

@@ -32,9 +32,6 @@ export class ScanService {
     rubbish: Rubbish,
     userLocation: longLat
   ): Observable<string> {
-    console.log(
-      'in bin location check ' + userLocation.lat + ' ' + userLocation.lng
-    );
     return this.dbAccessor.getType$(rubbish.type).pipe(
       switchMap((type: Type) => {
         for (const bin of type.bins) {
@@ -47,11 +44,9 @@ export class ScanService {
           const lngDiff = parseFloat(
             Math.abs(binLocation.lng - userLocation.lng).toFixed(6)
           );
-          console.log(latDiff + ' - ' + lngDiff);
 
           // if (latDiff <= 0.000135 && lngDiff <= 0.000135){ //in 15m
           if (latDiff <= 0.0002 || lngDiff <= 0.0002) {
-            console.log('found a close bin');
             return of(bin.id);
           }
         }

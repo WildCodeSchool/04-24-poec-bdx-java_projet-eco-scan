@@ -1,10 +1,10 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SidebarCloseAnimation, SidebarOpenAnimation } from './animation';
-import { Nav } from '../../../models/nav.type';
+import { Nav } from '../../../../shared-module/models/types/nav.type';
 import { HostService } from '../../../../host/shared/host.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { GetUser } from '../../../../shared-module/models/types/getUser.type';
+import { Router } from '@angular/router';
+import { GetUser } from '../../../../shared-module/models/types/GetUser.type';
 import { Observable } from 'rxjs';
 import { UserService } from '../../../../shared-module/shared/services/user.service';
 
@@ -94,7 +94,7 @@ export class HeaderNavComponent {
         },
       },
       {
-        title: 'Parametre',
+        title: 'Paramètres',
         svg: 'assets/svg/setting.svg',
         click: () => {
           this.routerNavigate.navigate(['/setting']);

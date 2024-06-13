@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Promo } from '../../models/types/Promo.type';
-import { Modal } from '../../models/types/modal.type';
+import { Modal } from '../../models/types/Modal.type';
 
 @Injectable({
   providedIn: 'root',
