@@ -4,7 +4,7 @@ import { BrandAdminService } from '../../../shared/brand-admin.service';
 @Component({
   selector: 'app-brand-display',
   templateUrl: './brand-display.component.html',
-  styleUrl: './brand-display.component.scss'
+  styleUrl: './brand-display.component.scss',
 })
 export class BrandDisplayComponent {
 

@@ -5,7 +5,7 @@ import { Promo } from '../../../../shared-module/models/types/Promo.type';
 @Component({
   selector: 'app-promo-display',
   templateUrl: './promo-display.component.html',
-  styleUrl: './promo-display.component.scss'
+  styleUrl: './promo-display.component.scss',
 })
 export class PromoDisplayComponent implements OnInit{
   private promoAdminService = inject(PromoAdminService);

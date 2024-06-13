@@ -27,21 +27,5 @@ export class LocalStorageService {
     localStorage.removeItem(TOKEN);
   }
 
-  setUser(token: string): void {
-    localStorage.setItem(USER, token);
-  }
-
-  getUser(): string | null {
-    const user = localStorage.getItem(USER);
-    if (user) {
-      return user;
-    } else {
-      return null;
-    }
-  }
-
-  clearUser(): void {
-    localStorage.removeItem(USER);
-  }
 
 }

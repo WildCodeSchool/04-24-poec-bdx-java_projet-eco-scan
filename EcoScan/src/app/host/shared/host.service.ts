@@ -1,22 +1,19 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, of, switchMap, tap } from 'rxjs';
 import { UserForm } from '../models/user.type';
-import { AuthService } from '../../shared-module/shared/auth.service';
 import { Credential } from '../models/credential.type';
 import { Router } from '@angular/router';
-import { DataAccessorService } from '../../shared-module/shared/data-accessor.service';
+import { DataAccessorService } from '../../shared-module/shared/services/data-accessor.service';
 import { AuthResponse } from '../../shared-module/models/types/Login.type';
 import { TokenService } from './token.service';
-import { UserService } from '../../shared-module/shared/user.service';
+import { UserService } from '../../shared-module/shared/services/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HostService {
-  userService = inject(UserService);
-
   constructor(
-    private _authService: AuthService,
+    private _userService: UserService,
     private _router: Router,
     private _dbAccessor: DataAccessorService,
     private _tokenService: TokenService
@@ -53,7 +50,7 @@ export class HostService {
   }
 
   logout(): void {
-    this._authService.setCurrentUser$(null);
+    this._userService.disconnect();
     this._tokenService.resetToken$();
     this._router.navigate(['']);
   }

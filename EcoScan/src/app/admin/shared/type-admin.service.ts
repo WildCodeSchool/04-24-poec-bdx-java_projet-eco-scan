@@ -1,10 +1,11 @@
 import { Injectable, inject } from '@angular/core';
-import { DataAccessorService } from '../../shared-module/shared/data-accessor.service';
+
 import { Type } from '../../shared-module/models/types/Type.type';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { DataAccessorService } from '../../shared-module/shared/services/data-accessor.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TypeAdminService {
 

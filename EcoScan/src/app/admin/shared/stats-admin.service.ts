@@ -18,7 +18,11 @@ export class StatsAdminService {
     price: 0,
     startDate: new Date(),
     endDate: new Date(),
-    brand: {"id": 0, "logo": "", "title": ""}
+    brand: {
+      id: 0,
+      title: "",
+      logo: ""
+    }
 };
   public activePromo$: BehaviorSubject<Promo> = new BehaviorSubject<Promo>(this.emptyPromo);
 

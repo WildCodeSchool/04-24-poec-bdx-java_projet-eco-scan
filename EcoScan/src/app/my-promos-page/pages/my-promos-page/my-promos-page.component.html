@@ -5,7 +5,7 @@
       <div class="pageContent">
         <app-promo-gallery title="MES PROMOS"></app-promo-gallery>
 
-        <div class="card-container" *ngIf="user$ | async as user">
+        <div class="card-container" *ngIf="user">
           <div *ngFor="let userPromo of user.userPromos">
             <app-dumb-card
               [smallBrand]="true"
@@ -13,13 +13,13 @@
               [promo]="userPromo.promos"
             ></app-dumb-card>
           </div>
-          <app-modal />
+          <app-modal [shiwCode]="true" />
         </div>
 
         <!-- @TODO link to explanation page once created -->
-        <div class="yo">
+        <div class="tuto-link">
           <a [routerLink]="['/']" class="tip-link"
-            ><p>How to use your promo</p></a
+            ><p>Comment utiliser vos points</p></a
           >
         </div>
       </div>

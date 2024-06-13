@@ -1,21 +1,19 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthService } from '../shared/auth.service';
+import { UserService } from '../shared/services/user.service';
+import { of, switchMap } from 'rxjs';
 
 export const adminGuard: CanActivateFn = (route, state) => {
+  const router = inject(Router);
+  const userService = inject(UserService);
 
-  //**********************
-  //****just while auth service is skipped
-  //**********************
-
-  // const router = inject(Router);
-  // const authService = inject(AuthService);
-  // if (authService.getCurrentUserValue$() !== null){
-  //   console.log(authService.getCurrentUserValue$());
-  //   return authService.getCurrentUserValue$()?.isAdmin as boolean;
-  // }
-  // console.log(authService.getCurrentUserValue$());
-  // router.navigate(['/'], { queryParams: { returnUrl: state.url } });
-  // return false;
-  return true;
+  return userService.getRole$().pipe(
+    switchMap((role: string) => {
+      if (role !== "ROLE_ADMIN"){
+        router.navigate(['/'], { queryParams: { returnUrl: state.url } });
+        return of(false);
+      }
+      return of(true);
+    })
+  );
 };

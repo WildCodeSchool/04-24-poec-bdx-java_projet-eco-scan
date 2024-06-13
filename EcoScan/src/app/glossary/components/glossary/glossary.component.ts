@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { SecondRubbish } from '../../../shared-module/models/types/SecondRubbish.type';
+import { Type } from '../../../shared-module/models/types/Type.type';
+import { DataAccessorService } from '../../../shared-module/shared/services/data-accessor.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-glossary',
@@ -7,61 +9,19 @@ import { SecondRubbish } from '../../../shared-module/models/types/SecondRubbish
   styleUrl: './glossary.component.scss',
 })
 export class GlossaryComponent {
-  glossary!: SecondRubbish[];
-  newCard!: SecondRubbish;
+  typeCard$: Observable<Type[]> = this._dbAccess.getAllTypes$();
+  newCard!: Type;
+
+  constructor(private _dbAccess: DataAccessorService) {}
 
   ngOnInit() {
-    this.glossary = [
-      {
-        rubbishID: '123',
-        type: 'Verre',
-        points: 20,
-      },
-      {
-        rubbishID: '234',
-        type: 'Batterie',
-        points: 50,
-      },
-      {
-        rubbishID: '345',
-        type: "Cartouche d'encre",
-        points: 100,
-      },
-      {
-        rubbishID: '345',
-        type: 'Cosmetique',
-        points: 150,
-      },
-      {
-        rubbishID: '456',
-        type: 'Parfum',
-        points: 250,
-      },
-      {
-        rubbishID: '234',
-        type: 'Batterie',
-        points: 50,
-      },
-      {
-        rubbishID: '345',
-        type: "Cartouche d'encre",
-        points: 100,
-      },
-      {
-        rubbishID: '345',
-        type: 'Cosmetique',
-        points: 150,
-      },
-      {
-        rubbishID: '456',
-        type: 'Parfum',
-        points: 250,
-      },
-    ];
     this.newCard = {
-      rubbishID: '154',
-      type: 'Telephone',
+      id: 1154,
+      name: 'Telephone',
+      pictogram: '',
       points: 1000,
+      description: 'yoooo',
+      bins: []
     };
   }
 }

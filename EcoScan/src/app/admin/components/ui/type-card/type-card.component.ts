@@ -5,12 +5,11 @@ import { TypeAdminService } from '../../../shared/type-admin.service';
 @Component({
   selector: 'app-type-card',
   templateUrl: './type-card.component.html',
-  styleUrl: './type-card.component.scss'
+  styleUrl: './type-card.component.scss',
 })
 export class TypeCardComponent {
-
   @Input()
-  type!:Type;
+  type!: Type;
 
   private typeService = inject(TypeAdminService);
 
@@ -18,5 +17,4 @@ export class TypeCardComponent {
   deleteType(inType: Type){
     // this.typeService.deleteType(inType);
   }
-
 }

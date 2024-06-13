@@ -22,9 +22,10 @@
   </div>
   <div class="detail-row">
     <img
+      *ngIf="promo.brand.logo"
       id="logo"
-      src="assets/png/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
-      alt="carrouf logo"
+      [src]="'data:image/svg+xml;base64,' + promo.brand.logo"
+      alt="{{promo.brand.title}}"
     />
     <div id="details">
       <p>{{ promo.title }}</p>

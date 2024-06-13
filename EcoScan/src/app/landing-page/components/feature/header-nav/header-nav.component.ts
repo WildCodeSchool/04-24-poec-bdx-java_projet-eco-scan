@@ -1,10 +1,12 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SidebarCloseAnimation, SidebarOpenAnimation } from './animation';
-import { Nav } from '../../../models/nav.type';
+import { Nav } from '../../../../shared-module/models/types/nav.type';
 import { HostService } from '../../../../host/shared/host.service';
 import { Router } from '@angular/router';
-import { UserService } from '../../../../shared-module/shared/user.service';
+import { GetUser } from '../../../../shared-module/models/types/GetUser.type';
+import { Observable } from 'rxjs';
+import { UserService } from '../../../../shared-module/shared/services/user.service';
 
 const animationParams = {
   menuWidth: '250px',
@@ -38,19 +40,18 @@ export class HeaderNavComponent {
   @Output()
   boolChange: EventEmitter<boolean> = new EventEmitter();
 
+  @Input()
+  user$: Observable<GetUser> = this.userService.getUser$();
 
-  private userService = inject(UserService);
-
-  user$ = this.userService.getUser$();
   imagePath: string = 'assets/png/bar.png';
   mapSvg: string = 'assets/svg/map.svg';
   isOpen: boolean = false;
   navigation: Nav[] = [];
-  
 
   constructor(
     private hostService: HostService,
     private routerNavigate: Router,
+    private userService: UserService
   ) {}
 
   sendIsOpenToParent() {
@@ -93,7 +94,7 @@ export class HeaderNavComponent {
         },
       },
       {
-        title: 'Parametre',
+        title: 'Paramètres',
         svg: 'assets/svg/setting.svg',
         click: () => {
           this.routerNavigate.navigate(['/setting']);

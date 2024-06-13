@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
-import { DataAccessorService } from '../../shared-module/shared/data-accessor.service';
+import { DataAccessorService } from '../../shared-module/shared/services/data-accessor.service';
 import { Promo } from '../../shared-module/models/types/Promo.type';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PromoAdminService {
 

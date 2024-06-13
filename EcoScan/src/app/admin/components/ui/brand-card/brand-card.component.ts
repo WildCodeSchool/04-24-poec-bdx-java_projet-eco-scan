@@ -5,12 +5,11 @@ import { BrandAdminService } from '../../../shared/brand-admin.service';
 @Component({
   selector: 'app-brand-card',
   templateUrl: './brand-card.component.html',
-  styleUrl: './brand-card.component.scss'
+  styleUrl: './brand-card.component.scss',
 })
 export class BrandCardComponent {
-  
   @Input()
-  brand!:Brand;
+  brand!: Brand;
 
   private brandService = inject(BrandAdminService);
 
@@ -18,5 +17,4 @@ export class BrandCardComponent {
   deleteBrand(inBrand: Brand){
     this.brandService.deleteBrand(inBrand);
   }
-
 }

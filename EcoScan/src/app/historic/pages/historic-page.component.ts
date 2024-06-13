@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import {
   landingPageAnimation,
   slider,
-} from '../../shared-module/shared/route-animations';
+} from '../../shared-module/shared/services/route-animations';
 import {
   animate,
   state,

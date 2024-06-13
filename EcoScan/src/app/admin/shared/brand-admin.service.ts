@@ -1,13 +1,12 @@
 import { Injectable, inject } from '@angular/core';
-import { DataAccessorService } from '../../shared-module/shared/data-accessor.service';
+import { DataAccessorService } from '../../shared-module/shared/services/data-accessor.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Brand } from '../../shared-module/models/types/Brand.type';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BrandAdminService {
-
   private DBAccessor = inject(DataAccessorService);
   public brandListSubject$: BehaviorSubject<Brand[]> = new BehaviorSubject<Brand[]>([]);
   brandList$ = this.brandListSubject$.asObservable();

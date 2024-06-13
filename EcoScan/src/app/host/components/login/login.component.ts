@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { HostService } from '../../shared/host.service';
 import { Credential } from '../../models/credential.type';
 import { MessageService } from 'primeng/api';
+import { TransitionService } from '../../../shared-module/shared/services/transition.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent {
   constructor(
     private _fb: FormBuilder,
     private _hostService: HostService,
+    private transitionService: TransitionService,
     private messageService: MessageService
   ) {}
 
@@ -25,6 +27,14 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const credentials: Credential = this.loginForm.value as Credential;
 
+      this.transitionService.startTransition();
+      this._hostService.login$(credentials).subscribe((isLoggedIn) => {
+        if (isLoggedIn) {
+          //  success connect toast
+        } else {
+          //  incorrect user toast
+        }
+      });
       this._hostService.login$(credentials).subscribe();
     } else {
       this.messageService.add({

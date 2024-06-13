@@ -27,10 +27,12 @@
     </div>
     <div class="profil-section">
       <div class="photo"></div>
-      <div class="identity">
-        <p>name</p>
-        <p>emailmail.com</p>
-        <p>Your <span>point</span></p>
+      <div class="identity" *ngIf="user$ | async as user">
+        <p>{{ user.username }}</p>
+        <p>Vous avez</p>
+        <p>
+          <span> {{ user.points }} </span> points
+        </p>
       </div>
     </div>
     <div class="white">
