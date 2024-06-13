@@ -61,11 +61,9 @@
   .staged-btn {
     width: 150px;
     height: 40px;
-    justify-content: center;
-    align-items: center;
     font-family: "Lato", sans-serif;
     color: white;
-    background-color: #2f323d;
+    background-color: #178b68;
     border-radius: 3px;
     border: none;
   }
@@ -73,14 +71,12 @@
   .throw-btn {
     width: 150px;
     height: 40px;
-    justify-content: center;
-    align-items: center;
     font-family: "Lato", sans-serif;
     border-radius: 3px;
     border: none;
   }
 
-  .throw-btn:active {
+  .throw-btn:enabled {
     color: white;
     background-color: #178b68;
   }

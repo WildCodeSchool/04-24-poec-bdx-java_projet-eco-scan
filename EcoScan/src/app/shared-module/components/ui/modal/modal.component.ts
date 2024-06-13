@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { DataAccessorService } from '../../../shared/services/data-accessor.service';
 import { UserService } from '../../../shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { GetUser } from '../../../../host/models/getUser.type';
+import { GetUser } from '../../../models/types/getUser.type';
 import { Promo } from '../../../models/types/Promo.type';
 import { Modal } from '../../../models/types/Modal.type';
 

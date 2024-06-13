@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Credential } from '../../../host/models/credential.type';
 import { User } from '../../models/classes/User.class';
-import { GetUser } from '../../../host/models/getUser.type';
+import { GetUser } from '../../models/types/getUser.type';
 
 @Injectable({
   providedIn: 'root',

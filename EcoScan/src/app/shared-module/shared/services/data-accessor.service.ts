@@ -10,7 +10,7 @@ import { StagedRubbish } from '../../models/types/StagedRubbish.type';
 import { Bin } from '../../models/types/Bin.type';
 import { Deposit } from '../../models/types/Deposits.type';
 import { Brand } from '../../models/types/Brand.type';
-import { GetUser } from '../../../host/models/getUser.type';
+import { GetUser } from '../../models/types/getUser.type';
 import { Type } from '../../models/types/Type.type';
 import { Credential } from '../../../host/models/credential.type';
 import { UserForm } from '../../../host/models/user.type';

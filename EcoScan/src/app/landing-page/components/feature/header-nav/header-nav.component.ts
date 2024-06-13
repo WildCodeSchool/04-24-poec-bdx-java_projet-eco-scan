@@ -4,7 +4,7 @@ import { SidebarCloseAnimation, SidebarOpenAnimation } from './animation';
 import { Nav } from '../../../models/nav.type';
 import { HostService } from '../../../../host/shared/host.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GetUser } from '../../../../host/models/getUser.type';
+import { GetUser } from '../../../../shared-module/models/types/getUser.type';
 import { Observable } from 'rxjs';
 import { UserService } from '../../../../shared-module/shared/services/user.service';
 

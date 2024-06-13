@@ -8,13 +8,13 @@
 
   <div class="bandeau">
     {{
-      scannedData
-        ? ("Vous voulez jeter : " + scannedData.type.name | uppercase)
+      scannedRubbish
+        ? ("Vous voulez jeter : " + scannedRubbish.type.name | uppercase)
         : ("Comment scanner vos déchets" | uppercase)
     }}
   </div>
 
-  <div *ngIf="!scannedData" class="info-container">
+  <div *ngIf="!scannedRubbish" class="info-container">
     <div *ngFor="let info of infos" class="information">
       <img src="assets/svg/validation.svg" alt="" />
       <p>{{ info }}</p>
@@ -22,16 +22,16 @@
   </div>
 
   <button
-    *ngIf="!scannedData"
+    *ngIf="!scannedRubbish"
     class="scan-btn"
     (click)="handle(action, action.isStart ? 'stop' : 'start')"
   >
     SCANNER
   </button>
 
-  <div *ngIf="scannedData" class="next-pic">
+  <div *ngIf="scannedRubbish" class="next-pic">
     <div>
-      <app-waste-card [binType]="scannedData"></app-waste-card>
+      <app-waste-card [binType]="scannedRubbish"></app-waste-card>
     </div>
     <div class="next-btn">
       <button class="staged-btn" (click)="sendToStaged()">
@@ -40,7 +40,7 @@
       <button
         [disabled]="!inProximity"
         class="throw-btn"
-        (click)="navigateToPictureComponent()"
+        (click)="makeDeposit()"
         #scannedSection
       >
         Jeter maintenant
