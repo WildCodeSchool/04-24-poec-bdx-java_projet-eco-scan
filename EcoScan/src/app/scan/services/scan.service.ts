@@ -6,6 +6,7 @@ import { Type } from '../../shared-module/models/types/Type.type';
 import { longLat } from '../../shared-module/models/types/LongLat.type';
 import { LocationService } from '../../shared-module/shared/services/location.service';
 import { Deposit } from '../../shared-module/models/types/Deposits.type';
+import { StagedRubbish } from '../../shared-module/models/types/StagedRubbish.type';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +21,8 @@ export class ScanService {
     return this.dbAccessor.getRubbishByID$(id);
   }
 
-  stageRubbishForUser(id: number, rubbish: Rubbish): Observable<Rubbish> {
-    return this.dbAccessor.addStagedRubbish$(id, rubbish);
+  stageRubbishForUser(stagedRubbish: StagedRubbish): Observable<StagedRubbish> {
+    return this.dbAccessor.addStagedRubbish$(stagedRubbish);
   }
 
   sendDeposit$(newDeposit: Deposit) {

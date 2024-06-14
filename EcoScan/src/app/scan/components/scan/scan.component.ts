@@ -13,6 +13,7 @@ import { Deposit } from '../../../shared-module/models/types/Deposits.type';
 import { GetUser } from '../../../shared-module/models/types/GetUser.type';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import { StagedRubbish } from '../../../shared-module/models/types/StagedRubbish.type';
 
 @Component({
   selector: 'app-scan',
@@ -132,8 +133,15 @@ export class ScanComponent implements OnDestroy {
 
   sendToStaged(): void {
     if (this.scannedRubbish && this.user) {
+      this.user.staged.rubbish.push(this.scannedRubbish);
+      const stagedRubbish:StagedRubbish = {
+        id: this.user.staged.id,
+        userID: Number(this.user.id),
+        rubbish: this.user.staged.rubbish
+      }
+  
       const sub = this.scanService
-        .stageRubbishForUser(this.user.staged.id, this.scannedRubbish)
+        .stageRubbishForUser(stagedRubbish)
         .subscribe(
           (response) => {
             console.log('Rubbish staged successfully', response);
@@ -145,6 +153,7 @@ export class ScanComponent implements OnDestroy {
           }
         );
       this.subscriptions.push(sub);
+      this.router.navigate(['/home']);
     }
   }
 
