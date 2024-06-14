@@ -16,6 +16,8 @@ export class StagedWasteComponent {
 
   ngOnInit() {
     this.user = this.route.snapshot.data['user'];
+    console.log(this.user);
+
     this.wastesList = this.user.staged.rubbish;
   }
 }

@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CardService } from '../../../shared-module/shared/services/card.service';
 import { Promo } from '../../../shared-module/models/types/Promo.type';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { GetUser } from '../../../shared-module/models/types/GetUser.type';
+import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
 
 @Component({
   selector: 'app-promos',
@@ -9,7 +12,13 @@ import { Observable } from 'rxjs';
   styleUrl: './promos.component.scss',
 })
 export class PromosComponent {
-  cardList$: Observable<Promo[]> = this.cardService.getPromos$();
+  user!: GetUser;
+  promo!: Rubbish;
+  constructor(private route: ActivatedRoute) {}
 
-  constructor(private cardService: CardService) {}
+  ngOnInit() {
+    console.log(this.user);
+
+    this.user = this.route.snapshot.data['user'];
+  }
 }

@@ -26,7 +26,7 @@ export class ScanComponent implements OnDestroy {
   location!: longLat;
   inProximity: boolean = false;
   binOfDeposit!: string;
-  subscriptions!: Subscription[];
+  subscriptions: Subscription[] = [];
   infos: String[] = [
     'Scanner le Qr-code',
     'Récuperer les informations du déchet',

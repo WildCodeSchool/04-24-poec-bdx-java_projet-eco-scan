@@ -46,7 +46,7 @@ export class ScanService {
           );
 
           // if (latDiff <= 0.000135 && lngDiff <= 0.000135){ //in 15m
-          if (latDiff <= 0.0002 || lngDiff <= 0.0002) {
+          if (latDiff <= 0.1 || lngDiff <= 0.1) {
             return of(bin.id);
           }
         }

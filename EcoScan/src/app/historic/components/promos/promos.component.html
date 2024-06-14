@@ -1,9 +1,9 @@
-<div class="card-container" *ngIf="cardList$ | async as cardList">
-  <div *ngFor="let card of cardList">
+<div class="card-container" *ngIf="user">
+  <div *ngFor="let card of user.userPromos">
     <app-dumb-card
       [smallBrand]="true"
       [smallCard]="true"
-      [promo]="card"
+      [promo]="card.promos"
     ></app-dumb-card>
   </div>
   <app-modal />
