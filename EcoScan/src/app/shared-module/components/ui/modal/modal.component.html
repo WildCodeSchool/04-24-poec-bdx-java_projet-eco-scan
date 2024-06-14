@@ -57,7 +57,7 @@
         <img
           *ngIf="cardData.brand"
           id="logo"
-          [src]="'data:image/svg+xml;base64,' + cardData.brand.logo"
+          [src]="'data:image/png;base64,' + cardData.brand.logo"
           alt="{{ cardData.brand.title }}"
         />
       </div>

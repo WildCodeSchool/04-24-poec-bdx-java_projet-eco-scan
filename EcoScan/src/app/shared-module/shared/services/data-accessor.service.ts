@@ -20,7 +20,7 @@ import { UserForm } from '../../../host/models/user.type';
 export class DataAccessorService {
   private httpOptions!: object;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   handleFailure(err: HttpErrorResponse): void {
     throw 'Connection to DB failure: ' + err.message;
@@ -269,6 +269,17 @@ export class DataAccessorService {
         })
       );
   }
+  deletePromo(promoToDelete: Promo): Observable<void> {
+    return this.http
+      .delete<void>(
+        `${environment.database.path}/promos/delete/${promoToDelete.id}`
+      )
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
 
   /*
     UserPromo
@@ -331,10 +342,32 @@ export class DataAccessorService {
       );
   }
 
+  deleteBrand(brandToDelete: Brand): Observable<void> {
+    return this.http
+      .delete<void>(
+        `${environment.database.path}/brand/delete/${brandToDelete.id}`
+      )
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+
   //types
   getAllTypes$(): Observable<Type[]> {
     return this.http
       .get<Type[]>(`${environment.database.path}/type/get/all`)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+
+  addType$(newType: Type): Observable<Type> {
+    return this.http
+      .post<Type>(`${environment.database.path}/type/add`, newType)
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
@@ -351,4 +384,17 @@ export class DataAccessorService {
         })
       );
   }
+
+  // deleteType(typeToDelete: Type): Observable<void> {
+  //   return this.http
+  //     .delete<void>(
+  //       `${environment.database.path}/type/delete/${typeToDelete.id}`
+  //     )
+  //     .pipe(
+  //       catchError((err) => {
+  //         throw this.handleFailure(err);
+  //       })
+  //     );
+  // }
+
 }

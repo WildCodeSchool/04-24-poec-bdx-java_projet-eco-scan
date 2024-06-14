@@ -1,7 +1,7 @@
 <div class="promo-column">
 
-    <div *ngIf="promos$ | async as promos">
-        <div *ngFor="let promo of promos">
+    <div *ngIf="promoList">
+        <div *ngFor="let promo of promoList">
             <app-promo-admin-card
             [promo]="promo"
             ></app-promo-admin-card>
