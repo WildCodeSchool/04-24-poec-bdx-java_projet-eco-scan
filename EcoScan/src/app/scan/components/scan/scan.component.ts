@@ -94,7 +94,7 @@ export class ScanComponent implements OnDestroy {
                 if (binID === '') {
                   this.inProximity = false;
                   this.messageService.add({
-                    severity: 'warning',
+                    severity: 'warn',
                     summary: 'Aucune poubelle trouvée',
                     detail:
                       "Aucune poubelle trouvée à proximité, approchez-vous d'un bac",
@@ -197,7 +197,7 @@ export class ScanComponent implements OnDestroy {
       : 'Erreur : Votre navigateur ne prend pas en charge la géolocalisation.';
     console.log(error);
     this.messageService.add({
-      severity: 'warning',
+      severity: 'warn',
       summary: 'Impossible de localiser',
       detail: error,
     });
