@@ -1,10 +1,10 @@
 /// <reference types="@types/google.maps" />
 import { Injectable, inject } from '@angular/core';
 
-import { Bin } from '../shared-module/models/types/Bin.type';
-import { DataAccessorService } from '../shared-module/shared/services/data-accessor.service';
 import { Observable, of, tap } from 'rxjs';
-import { LocationService } from '../shared-module/shared/services/location.service';
+import { DataAccessorService } from '../../shared-module/shared/services/data-accessor.service';
+import { LocationService } from '../../shared-module/shared/services/location.service';
+import { Bin } from '../../shared-module/models/types/Bin.type';
 
 interface MarkerTuple {
   marker: google.maps.marker.AdvancedMarkerElement;
@@ -38,12 +38,13 @@ export class GoogleApiService {
 
   public filterBinMarkers(binType: string): void {
     for (let marker of this.markerList) {
-      if (marker.binType != binType) {
-        marker.marker.map = null;
-      } else {
-        marker.marker.map = this.map;
+      if (marker.binType === binType || binType === "Voir tout") {
+          marker.marker.map = this.map;
+        } else {
+          marker.marker.map = null;
       }
     }
+
   }
 
   private createMap(): Observable<void> {
