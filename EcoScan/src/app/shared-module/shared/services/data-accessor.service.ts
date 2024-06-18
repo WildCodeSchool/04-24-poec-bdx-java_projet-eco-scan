@@ -133,19 +133,26 @@ export class DataAccessorService {
   /*
      rubbishItems
   */
+
+     getRubbishByID$(id: string): Observable<Rubbish> {
+      return this.http
+        .get<Rubbish>(`${environment.database.path}/rubbish/get/${id}`)
+        .pipe(
+          catchError((err) => {
+            throw this.handleFailure(err);
+          })
+        );
+    }
+  
+
+  /*
+     StagedRubbish
+  */
+
   // fetch
   getMystaged$(id: string): Observable<StagedRubbish> {
     return this.http
       .get<StagedRubbish>(`${environment.database.path}/staged/get/${id}`)
-      .pipe(
-        catchError((err) => {
-          throw this.handleFailure(err);
-        })
-      );
-  }
-  getRubbishByID$(id: string): Observable<Rubbish> {
-    return this.http
-      .get<Rubbish>(`${environment.database.path}/rubbish/get/${id}`)
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
@@ -400,6 +407,16 @@ export class DataAccessorService {
       );
   }
 
+  getAllTypeNames$(): Observable<string[]> {
+    return this.http
+      .get<string[]>(`${environment.database.path}/type/get/unique-types`)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+  
   // deleteType(typeToDelete: Type): Observable<void> {
   //   return this.http
   //     .delete<void>(
