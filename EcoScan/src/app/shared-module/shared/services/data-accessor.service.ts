@@ -13,6 +13,7 @@ import { GetUser } from '../../models/types/GetUser.type';
 import { Type } from '../../models/types/Type.type';
 import { Credential } from '../../../host/models/credential.type';
 import { UserForm } from '../../../host/models/user.type';
+import { SendUser } from '../../models/types/SendUser.type';
 
 @Injectable({
   providedIn: 'root',
@@ -113,6 +114,21 @@ export class DataAccessorService {
         })
       );
   }
+
+  updateUsersPoints$(updatedUser: SendUser): Observable<SendUser> {
+    return this.http
+      .put<SendUser>(
+        `${environment.database.path}/user/update/${updatedUser.id}`,
+        updatedUser
+      )
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+
+
 
   /*
      rubbishItems
