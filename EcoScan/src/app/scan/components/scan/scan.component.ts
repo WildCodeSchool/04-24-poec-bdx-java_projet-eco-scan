@@ -12,8 +12,9 @@ import { longLat } from '../../../shared-module/models/types/LongLat.type';
 import { Deposit } from '../../../shared-module/models/types/Deposits.type';
 import { GetUser } from '../../../shared-module/models/types/GetUser.type';
 import { MessageService } from 'primeng/api';
-import { Subscription } from 'rxjs';
+import { Subscription, forkJoin } from 'rxjs';
 import { StagedRubbish } from '../../../shared-module/models/types/StagedRubbish.type';
+import { SendUser } from '../../../shared-module/models/types/SendUser.type';
 
 @Component({
   selector: 'app-scan',
@@ -52,11 +53,10 @@ export class ScanComponent implements OnDestroy {
     private route: ActivatedRoute,
     private userService: UserService,
     private messageService: MessageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.user = this.route.snapshot.data['user'];
-    this.updateUserLocation();
   }
 
   ngOnDestroy(): void {
@@ -90,7 +90,7 @@ export class ScanComponent implements OnDestroy {
             action?.stop();
 
             const sub = this.scanService
-              .checkBinsAreClose(this.scannedRubbish, this.location)
+              .checkBinsAreClose(this.scannedRubbish)
               .subscribe((binID) => {
                 if (binID === '') {
                   this.inProximity = false;
@@ -134,12 +134,12 @@ export class ScanComponent implements OnDestroy {
   sendToStaged(): void {
     if (this.scannedRubbish && this.user) {
       this.user.staged.rubbish.push(this.scannedRubbish);
-      const stagedRubbish:StagedRubbish = {
+      const stagedRubbish: StagedRubbish = {
         id: this.user.staged.id,
         userID: Number(this.user.id),
         rubbish: this.user.staged.rubbish
       }
-  
+
       const sub = this.scanService
         .stageRubbishForUser(stagedRubbish)
         .subscribe(
@@ -154,6 +154,17 @@ export class ScanComponent implements OnDestroy {
         );
       this.subscriptions.push(sub);
       this.router.navigate(['/home']);
+    }
+  }
+
+  convertUser(): SendUser {
+    return {
+      id: Number(this.user.id),
+      points: this.user.points,
+      email: this.user.email,
+      firstname: this.user.firstname,
+      lastname: this.user.lastname,
+      username: this.user.username
     }
   }
 
@@ -172,43 +183,16 @@ export class ScanComponent implements OnDestroy {
         },
         scanData: this.scanData,
       };
-      const sub = this.scanService
-        .sendDeposit$(newDeposit)
-        .subscribe((respDeposit) => {
-          console.log(respDeposit);
-          this.router.navigate(['/home']);
-        });
+      this.user.points += this.scannedRubbish.type.points;
+
+      const sub = forkJoin(
+        this.scanService.sendDeposit$(newDeposit),
+        this.scanService.updatePoints$(this.convertUser())
+      ).subscribe((respDeposit) => {
+        this.router.navigate(['/home']);
+      });
+
       this.subscriptions.push(sub);
     }
-  }
-
-  updateUserLocation(): void {
-    navigator.geolocation.getCurrentPosition(
-      (position: GeolocationPosition) => {
-        this.location = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-      },
-      () => {
-        if (navigator.geolocation) {
-          this.handleLocationError(true);
-        } else {
-          this.handleLocationError(false);
-        }
-      }
-    );
-  }
-
-  private handleLocationError(browserHasGeolocation: boolean): void {
-    let error = browserHasGeolocation
-      ? 'Erreur : Le service de géolocalisation a échoué.'
-      : 'Erreur : Votre navigateur ne prend pas en charge la géolocalisation.';
-    console.log(error);
-    this.messageService.add({
-      severity: 'warning',
-      summary: 'Impossible de localiser',
-      detail: error,
-    });
   }
 }
