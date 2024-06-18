@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { GoogleApiService } from '../../../google-api.service';
+import { Component, OnDestroy, inject } from '@angular/core';
+import { GoogleApiService } from '../../../shared/google-api.service';
+import { Observable, Subscription, takeUntil } from 'rxjs';
+import { MapService } from '../../../shared/map.service';
 
 
 interface binSelection {
@@ -11,20 +13,27 @@ interface binSelection {
   templateUrl: './map-ui.component.html',
   styleUrl: './map-ui.component.scss'
 })
-export class MapUiComponent {
+export class MapUiComponent implements OnDestroy{
   
   private googleApi = inject(GoogleApiService);
-  binList:binSelection[];
+  private mapService = inject(MapService);
+  binList: binSelection[] = [];
   selectedBins!: binSelection;
+  binNameSub!: Subscription;
 
   constructor(){
-    this.binList = [
-      {name: "Glass"},
-      {name: "Plastic"},
-      {name: "Battery"},
-      {name: "Paper"},
-      {name: "Waste"},
-    ];
+    this.binNameSub = this.mapService.getAllBinTypes$().subscribe(
+      binTypes => {
+        for (let binName of binTypes) {
+          this.binList.push({ name: binName});
+        }
+        this.binList.push({ name: "Voir tout"});
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.binNameSub.unsubscribe();
   }
 
   refreshMarkers(){
