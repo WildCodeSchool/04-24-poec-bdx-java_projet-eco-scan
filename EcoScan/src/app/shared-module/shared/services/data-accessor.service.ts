@@ -152,13 +152,12 @@ export class DataAccessorService {
   }
   // Create
   addStagedRubbish$(
-    stagedId: number,
-    newRubbish: Rubbish
-  ): Observable<Rubbish> {
+    newStagedRubbish: StagedRubbish
+  ): Observable<StagedRubbish> {
     return this.http
-      .post<Rubbish>(
-        `${environment.database.path}/staged/add/${stagedId}`,
-        newRubbish
+      .post<StagedRubbish>(
+        `${environment.database.path}/staged/add/${newStagedRubbish.id}`,
+        newStagedRubbish
       )
       .pipe(
         catchError((err) => {
