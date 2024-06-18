@@ -1,5 +1,4 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { ModalService } from '../../../shared/services/Modal.service';
 import { Observable } from 'rxjs';
 import { DataAccessorService } from '../../../shared/services/data-accessor.service';
 import { UserService } from '../../../shared/services/user.service';
@@ -7,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GetUser } from '../../../models/types/GetUser.type';
 import { Promo } from '../../../models/types/Promo.type';
 import { Modal } from '../../../models/types/Modal.type';
+import { ModalService } from '../../../shared/services/Modal.service';
 
 @Component({
   selector: 'app-modal',

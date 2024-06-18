@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
 import { UserService } from '../../shared-module/shared/services/user.service';
 import { CardService } from '../../shared-module/shared/services/card.service';
-import { ModalService } from '../../shared-module/shared/services/modal.service';
+import { ModalService } from '../../shared-module/shared/services/Modal.service';
 
 @Component({
   selector: 'app-landing-pages',
