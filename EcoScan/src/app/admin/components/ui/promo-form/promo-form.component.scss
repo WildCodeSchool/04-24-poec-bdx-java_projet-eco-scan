@@ -2,7 +2,7 @@
   margin: 3rem;
   padding: 3rem;
   background-color: #efefef;
-  border-radius: 25px;
+  border-radius: 15px;
   width: max-content;
 }
 
@@ -19,7 +19,7 @@ form {
 input {
   border-radius: 8px;
   padding: 0.2rem;
-  border: 1px solid black;
+  border: 1px solid grey;
 }
 
 .btn-container {
@@ -40,6 +40,7 @@ button {
   border-radius: 3px;
   border: none;
   position: relative;
+  margin-top: 1rem;
 }
 
 button:hover {
@@ -56,5 +57,13 @@ select {
 h1 {
   display: flex;
   justify-content: center;
-  padding-bottom: 2rem;
+  padding: 1rem;
+  background-color: #178b68;
+  color: #efefef;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+label {
+  padding-right: 0.2rem;
 }
