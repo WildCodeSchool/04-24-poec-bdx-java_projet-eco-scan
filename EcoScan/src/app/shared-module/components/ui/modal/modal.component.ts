@@ -47,5 +47,6 @@ export class ModalComponent {
 
   ngOnInit() {
     this.user = this.route.snapshot.data['user'];
+    console.log(this.user);
   }
 }

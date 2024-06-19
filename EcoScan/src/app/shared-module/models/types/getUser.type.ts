@@ -1,3 +1,4 @@
+import { Deposit } from './Deposits.type';
 import { StagedRubbish } from './StagedRubbish.type';
 import { UserPromos } from './UserPromos.type';
 
@@ -10,4 +11,5 @@ export type GetUser = {
   email: string;
   points: number;
   userPromos: UserPromos[];
+  deposits: Deposit[];
 };

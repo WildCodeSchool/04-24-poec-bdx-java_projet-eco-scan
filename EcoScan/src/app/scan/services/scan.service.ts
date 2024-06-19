@@ -31,19 +31,17 @@ export class ScanService {
     return this.dbAccessor.addDeposit$(newDeposit);
   }
 
-  updatePoints$(updatedUser: SendUser){
+  updatePoints$(updatedUser: SendUser) {
     return this.dbAccessor.updateUsersPoints$(updatedUser);
   }
 
-  checkBinsAreClose(
-    rubbish: Rubbish,
-  ): Observable<string> {
+  checkBinsAreClose(rubbish: Rubbish): Observable<string> {
     return this.dbAccessor.getType$(rubbish.type).pipe(
       switchMap((type: Type) => {
         return this.locationService.updateUserLocation().pipe(
-          switchMap(location => {
+          switchMap((location) => {
             console.log(location);
-            
+
             for (const bin of type.bins) {
               const binLocation = this.locationService.splitLongAndLat(
                 bin.localisation
@@ -54,8 +52,8 @@ export class ScanService {
               const lngDiff = parseFloat(
                 Math.abs(binLocation.lng - location.lng).toFixed(6)
               );
-              console.log(latDiff + " - " + lngDiff);
-              
+              console.log(latDiff + ' - ' + lngDiff);
+
               // if (latDiff <= 0.000135 && lngDiff <= 0.000135){ //in 15m
               if (latDiff <= 0.001 || lngDiff <= 0.001) {
                 return of(bin.id);

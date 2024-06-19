@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
-import { RubbishService } from '../../../shared-module/shared/services/rubbish.service';
+import { ActivatedRoute } from '@angular/router';
+import { GetUser } from '../../../shared-module/models/types/GetUser.type';
 
 @Component({
   selector: 'app-waste',
@@ -9,7 +8,12 @@ import { RubbishService } from '../../../shared-module/shared/services/rubbish.s
   styleUrl: './waste.component.scss',
 })
 export class WasteComponent {
-  // wastesList: Observable<Rubbish[]> = this.rubbishService.getRubbish();
+  rubbishList: any[] = [];
 
-  constructor(private rubbishService: RubbishService) {}
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    const user: GetUser = this.route.snapshot.data['user'];
+    this.rubbishList = user.deposits.map((deposit) => deposit.rubbish);
+  }
 }

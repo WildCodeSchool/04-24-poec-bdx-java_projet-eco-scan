@@ -53,7 +53,7 @@ export class ScanComponent implements OnDestroy {
     private route: ActivatedRoute,
     private userService: UserService,
     private messageService: MessageService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.user = this.route.snapshot.data['user'];
@@ -95,7 +95,7 @@ export class ScanComponent implements OnDestroy {
                 if (binID === '') {
                   this.inProximity = false;
                   this.messageService.add({
-                    severity: 'warning',
+                    severity: 'warn',
                     summary: 'Aucune poubelle trouvée',
                     detail:
                       "Aucune poubelle trouvée à proximité, approchez-vous d'un bac",
@@ -137,21 +137,19 @@ export class ScanComponent implements OnDestroy {
       const stagedRubbish: StagedRubbish = {
         id: this.user.staged.id,
         userID: Number(this.user.id),
-        rubbish: this.user.staged.rubbish
-      }
+        rubbish: this.user.staged.rubbish,
+      };
 
-      const sub = this.scanService
-        .stageRubbishForUser(stagedRubbish)
-        .subscribe(
-          (response) => {
-            console.log('Rubbish staged successfully', response);
-            this.userService.refreshUser();
-            this.scannedRubbish = {} as Rubbish;
-          },
-          (error) => {
-            console.error('Failed to stage rubbish', error);
-          }
-        );
+      const sub = this.scanService.stageRubbishForUser(stagedRubbish).subscribe(
+        (response) => {
+          console.log('Rubbish staged successfully', response);
+          this.userService.refreshUser();
+          this.scannedRubbish = {} as Rubbish;
+        },
+        (error) => {
+          console.error('Failed to stage rubbish', error);
+        }
+      );
       this.subscriptions.push(sub);
       this.router.navigate(['/home']);
     }
@@ -164,8 +162,8 @@ export class ScanComponent implements OnDestroy {
       email: this.user.email,
       firstname: this.user.firstname,
       lastname: this.user.lastname,
-      username: this.user.username
-    }
+      username: this.user.username,
+    };
   }
 
   makeDeposit(): void {
@@ -194,5 +192,35 @@ export class ScanComponent implements OnDestroy {
 
       this.subscriptions.push(sub);
     }
+  }
+
+  updateUserLocation(): void {
+    navigator.geolocation.getCurrentPosition(
+      (position: GeolocationPosition) => {
+        this.location = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+      },
+      () => {
+        if (navigator.geolocation) {
+          this.handleLocationError(true);
+        } else {
+          this.handleLocationError(false);
+        }
+      }
+    );
+  }
+
+  private handleLocationError(browserHasGeolocation: boolean): void {
+    let error = browserHasGeolocation
+      ? 'Erreur : Le service de géolocalisation a échoué.'
+      : 'Erreur : Votre navigateur ne prend pas en charge la géolocalisation.';
+    console.log(error);
+    this.messageService.add({
+      severity: 'warn',
+      summary: 'Impossible de localiser',
+      detail: error,
+    });
   }
 }

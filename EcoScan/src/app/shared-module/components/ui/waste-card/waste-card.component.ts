@@ -9,4 +9,7 @@ import { Rubbish } from '../../../models/types/Rubbish.type';
 export class WasteCardComponent {
   @Input()
   binType!: Rubbish;
+
+  @Input()
+  isThrow: boolean = false;
 }

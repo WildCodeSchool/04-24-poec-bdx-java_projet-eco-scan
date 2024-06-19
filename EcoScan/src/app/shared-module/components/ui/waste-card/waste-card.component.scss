@@ -60,5 +60,10 @@
         text-align: end;
       }
     }
+
+    .validated {
+      align-self: flex-end;
+      display: flex;
+    }
   }
 }
