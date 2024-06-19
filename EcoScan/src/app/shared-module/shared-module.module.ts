@@ -13,6 +13,7 @@ import { PointCardComponent } from './components/ui/point-card/point-card/point-
 import { ThousandKPipe } from './pipes/thousand-k.pipe';
 import { PromoGalleryComponent } from './components/ui/promo-gallery/promo-gallery.component';
 import { TransitionComponent } from './components/ui/transition/transition.component';
+import { HasPropertiesPipe } from './pipes/has-properties.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TransitionComponent } from './components/ui/transition/transition.compo
     ThousandKPipe,
     PromoGalleryComponent,
     TransitionComponent,
+    HasPropertiesPipe,
   ],
   imports: [
     CommonModule,

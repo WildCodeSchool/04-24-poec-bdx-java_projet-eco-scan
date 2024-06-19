@@ -6,25 +6,18 @@
     header
     [modal]="true"
     [(visible)]="modal.visible"
-    [style]="{ width: '50rem' }"
+    *ngIf="(modal.cardData | hasProperties)"
+    [style]="{ width: '50rem', borderRadius: '0 0 10px 0' }"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
     (onHide)="hideDialog()"
   >
-    <ng-container *ngIf="modal.cardData as cardData">
+    <ng-container *ngIf="(modal | hasProperties) && modal.cardData as cardData">
       <ng-template pTemplate="header">
         <div
           class="promo-amount"
           [ngStyle]="{ 'background-color': '#' + cardData.color }"
         >
           <div class="exit-btn-and-promo-amount">
-            <button class="exit-modal-btn" (click)="modal.visible = false">
-              <img
-                width="20"
-                class="exit-btn"
-                src="assets/png/arrow-black.png"
-                alt="exit"
-              />
-            </button>
 
             <div class="percent-off">
               <p class="flat">PROMO</p>
@@ -40,21 +33,28 @@
           </div>
 
           <div class="redeemable-amount">
-            <p id="points-amount">{{ cardData.price | thousandK }}</p>
-            points
+            <p>
+              <span id="points-amount">
+                {{ cardData.price | thousandK }}
+              </span>
+              points
+            </p>
           </div>
         </div>
       </ng-template>
 
-      <app-promo-gallery title="DESCRIPTION"></app-promo-gallery>
+
       <div class="modal-logo-container">
         <div class="details-container">
           <p>
-            ECONOMISER {{ cardData.percentOff }}% CHEZ
-            <span class="brand-title">{{
-              cardData.brand.title | uppercase
-            }}</span>
-            SUR
+            ECONOMISER {{ cardData.percentOff }}%
+            <br>
+            POUR
+            <span class="product">
+              {{ cardData.description | uppercase }}
+            </span>
+            <br>
+            DE LA MARQUE {{ cardData.brand.title | uppercase }}
           </p>
           <p class="product">{{ cardData.description | uppercase }}</p>
         </div>
@@ -67,15 +67,26 @@
         />
       </div>
       <div class="btn-promo">
-        <button class="buy-button" *ngIf="showCode">VOIR LE CODE</button>
+
         <button
-          *ngIf="!showCode"
-          (click)="buyPromo(cardData.id)"
           class="buy-button"
+          *ngIf="shiwCode"
+        >VOIR LE CODE</button>
+        <button
+          *ngIf="!shiwCode"
+          class="btn buy-button"
+          (click)="buyPromo(cardData.id)"
         >
-          ACHETER LA PROMOTION
-        </button>
+          <img src="/assets/png/point-landing-page.png">
+            UTILISER MES POINTS
+      </button>
       </div>
+
+      <p
+        class="close-modal"
+        (click)="modal.visible = false"
+      >Retour</p>
+
     </ng-container>
   </p-dialog>
 </div>
