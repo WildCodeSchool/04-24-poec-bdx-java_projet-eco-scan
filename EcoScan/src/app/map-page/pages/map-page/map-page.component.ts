@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Subscription, map } from 'rxjs';
 import { GoogleApiService } from '../../shared/google-api.service';
+import { ActivatedRoute } from '@angular/router';
+import { Bin } from '../../../shared-module/models/types/Bin.type';
 
 @Component({
   selector: 'app-map-page',
@@ -9,19 +11,15 @@ import { GoogleApiService } from '../../shared/google-api.service';
 })
 export class MapPageComponent implements OnInit, OnDestroy{
   private googleApi = inject(GoogleApiService);
-  private dependeciesSub!: Subscription;
+  private route = inject(ActivatedRoute);
   private mapSub!: Subscription;
   
   ngOnInit(): void {
-    this.dependeciesSub = this.googleApi.initDependencies().pipe(
-      map(binList =>{
-        this.mapSub = this.googleApi.initMap(binList).subscribe();
-      })
-    ).subscribe();
+    const binList: Bin[] = this.route.snapshot.data['bins'];
+    this.mapSub = this.googleApi.initMap(binList).subscribe();
   }
   
   ngOnDestroy(): void {
-    this.dependeciesSub.unsubscribe();
     this.mapSub.unsubscribe();
   }
 

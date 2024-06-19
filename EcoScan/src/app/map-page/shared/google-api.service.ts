@@ -20,11 +20,6 @@ export class GoogleApiService {
   private map!: google.maps.Map;
   private markerList: MarkerTuple[] = [];
 
-  public initDependencies(): Observable<Bin[]> {
-    return this.DBAccessor.getAllBins$();
-  }
-
-
   public initMap(binList: Bin[]): Observable<void> {
     return this.createMap().pipe(
       tap(() => {
@@ -37,7 +32,6 @@ export class GoogleApiService {
   }
 
   public filterBinMarkers(binType: string): void {
-    console.log("filtBinMrkrs " + binType);
     for (let marker of this.markerList) {
       if (marker.binType === binType || binType === "Voir tout") {
           marker.marker.map = this.map;

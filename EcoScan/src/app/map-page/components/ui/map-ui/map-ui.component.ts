@@ -27,14 +27,11 @@ export class MapUiComponent implements OnDestroy {
     this.binNameSub = this.mapService.getAllBinTypes$().subscribe(
       binTypes => {
         for (let binName of binTypes) {
-          console.log(":': " + binName);
-          
           this.binList.push({ name: binName });
         }
         this.binList.push({ name: "Voir tout" });
         let binType = this.router.snapshot.paramMap.get('name');
         if (binType !== null) {
-          console.log(binType);
           this.selectedBin = { name: binType };
           this.refreshMarkers();
         }
@@ -46,7 +43,7 @@ export class MapUiComponent implements OnDestroy {
     this.binNameSub.unsubscribe();
   }
 
-  refreshMarkers() {
+  refreshMarkers(): void {
     this.googleApi.filterBinMarkers(this.selectedBin.name);
   }
 
