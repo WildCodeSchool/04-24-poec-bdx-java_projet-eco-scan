@@ -1,0 +1,39 @@
+.glossaire {
+  margin: 0 auto;
+
+  .new-card {
+    // margin-top: 50px;
+    border: 1px solid black;
+    width: 95%;
+    margin: 25px auto 70px;
+    border-radius: 14px;
+
+    p {
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      margin: 0 auto;
+      background-color: #178b68;
+      color: white;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+      // width: 90%;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+
+  .yo {
+    display: flex;
+    justify-content: center;
+    .tuto {
+      font-style: italic;
+      display: inline-block;
+      border-bottom: 1px solid;
+      padding-bottom: 3px;
+      text-decoration: none;
+      color: black;
+    }
+  }
+}

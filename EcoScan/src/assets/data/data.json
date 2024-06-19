@@ -14,8 +14,8 @@
       "lastName": "hemamou",
       "pseudo": "fdfsdfsdfsdf",
       "email": "h-mamou@hotmail.fr",
-      "points": 10,
-      "isAdmin": false
+      "points": 3410,
+      "isAdmin": true
     }
   ],
   "logins": [
@@ -35,22 +35,32 @@
   "rubbishItems": [
     {
       "rubbishID": "123",
-      "type": "Glass",
+      "type": "Verre",
+      "points": 20,
       "id": "667f"
     },
     {
       "rubbishID": "234",
-      "type": "Plastic",
+      "type": "Batterie",
+      "points": 50,
       "id": "be89"
     },
     {
       "rubbishID": "345",
-      "type": "Battery",
+      "type": "Cartouche d'encre",
+      "points": 100,
+      "id": "f55a"
+    },
+    {
+      "rubbishID": "345",
+      "type": "Cosmetique",
+      "points": 150,
       "id": "f55a"
     },
     {
       "rubbishID": "456",
-      "type": "Cardboard",
+      "type": "Parfum",
+      "points": 250,
       "id": "813a"
     }
   ],
@@ -119,10 +129,10 @@
     {
       "promoID": "889",
       "brandID": "66",
-      "title": "Carrefour Popcorn",
-      "item": "Popcorn",
+      "title": "Carrefour bisquits",
+      "item": "bisquits",
       "percentOff": 20,
-      "description": "20% off of this delicious popcorn!",
+      "description": "20% off of this these fantastic bisquits, quite incredible really if you can even believe it! ldjhgldkjghlkdjhls jkfhesjh;se ;efjes;oifjs;oeifjseiojfs;eijf sefijs;efij s iesjf; isjef; isejf ;isjef ois;jee",
       "startDate": "2007-05-10 12:00:00",
       "endDate": "2007-05-15 12:00:00",
       "redeemableAmount": "100",
@@ -158,13 +168,29 @@
   ],
   "brand": [
     {
-      "brandID": "66",
-      "brandName": "Carrefour",
-      "brandLogo": "BLOB",
-      "brandBanner": "BLOB",
-      "otherImages": "BLOB",
-      "brandDescription": "A shop",
+      "title": "Carrefour",
+      "logo": "BLOB",
       "id": "018d"
+    },
+    {
+      "title": "Monop",
+      "logo": "src/s/s",
+      "id": "448d"
     }
+  ],
+  "type": [
+    {
+      "name": "Verre",
+      "description": "place for glass",
+      "points": 100,
+      "pictogram": "src/asset/example.jpg"
+    },
+    {
+      "name": "plastique",
+      "description": "place for plastique",
+      "points": 320,
+      "pictogram": "src/asset/example.jpg"
+    }
+
   ]
 }

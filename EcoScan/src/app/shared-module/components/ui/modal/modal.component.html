@@ -18,7 +18,7 @@
               <img
                 width="20"
                 class="exit-btn"
-                src="../../../../../assets/svg/arrow-black.png"
+                src="assets/png/arrow-black.png"
                 alt="exit"
               />
             </button>
@@ -37,7 +37,7 @@
           </div>
 
           <div class="redeemable-amount">
-            <p id="points-amount">{{ cardData.redeemableAmount }}</p>
+            <p id="points-amount">{{ cardData.price | thousandK }}</p>
             points
           </div>
         </div>
@@ -50,17 +50,25 @@
           <p>{{ cardData.description }}</p>
           <p><span>Item:</span> {{ cardData.item }}</p>
           <p><span>Percent Off:</span> {{ cardData.percentOff }}%</p>
-          <p><span>Redeemable Amount:</span> {{ cardData.redeemableAmount }}</p>
+          <p><span>Redeemable Amount:</span> {{ cardData.amount }}</p>
           <p><span>Start Date:</span> {{ cardData.startDate | date }}</p>
           <p><span>End Date:</span> {{ cardData.endDate | date }}</p>
         </div>
         <img
-          class="logo-modal"
-          width="200"
-          src="../../../../../assets/svg/png-clipart-carrefour-city-logo-supermarket-retail-carrefour-text-retail-thumbnail-removebg-preview.png"
-          alt=""
+          *ngIf="cardData.brand"
+          id="logo"
+          [src]="'data:image/png;base64,' + cardData.brand.logo"
+          alt="{{ cardData.brand.title }}"
         />
       </div>
+      <button *ngIf="shiwCode">Voir le Code</button>
+      <button
+        *ngIf="!shiwCode"
+        (click)="buyPromo(cardData.id)"
+        class="buy-button"
+      >
+        Acheter
+      </button>
     </ng-container>
   </p-dialog>
 </div>

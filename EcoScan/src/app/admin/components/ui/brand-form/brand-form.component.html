@@ -1,0 +1,21 @@
+<div class="brand-form">
+    <form *ngIf="brandConstructor" [formGroup]="brandConstructor" #brandForm="ngForm" (ngSubmit)="brandConstructor.valid && onSubmit()">
+        <div>
+            <label for="title">Titre: </label>
+            <input name="title" type="text" formControlName="title" required>
+        </div>
+
+        <div>
+            <label for="logo">Logo: </label>
+            <input name="logo" type="text" formControlName="logo" required>
+        </div>
+
+        <div *ngIf="brandForm.touched && brandForm.submitted && brandForm.invalid">
+            <ng-template #required>
+                <span style="color: red;">All fields are required to submit this form.</span>
+            </ng-template>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>

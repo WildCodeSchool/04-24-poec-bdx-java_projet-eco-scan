@@ -1,12 +1,15 @@
+import { Brand } from "./Brand.type";
+
 export type Promo = {
-    promoID: number;
-    brandID: number;
+    id: number;
     title: string;
     item: string;
-    percentOff: number;
     description: string;
+    percentOff: number;
+    amount: number;
+    color: string;
+    price: number;
     startDate: Date;
     endDate: Date;
-    redeemableAmount: number;
-    pointsNeed: number;
+    brand: Brand;
 }

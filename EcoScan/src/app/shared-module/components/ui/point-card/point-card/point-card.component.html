@@ -1,0 +1,33 @@
+<div class="point-card" *ngIf="rubbishDetail">
+  <div class="point">
+    <p>{{ rubbishDetail.points | thousandK }}</p>
+    <img src="assets/png/etoile (1).png" alt="point" />
+  </div>
+  <div class="details">
+    <div class="pic-details">
+      <img
+        [src]="'data:image/svg+xml;base64,' + rubbishDetail.pictogram"
+        alt=""
+      />
+      <p>{{ rubbishDetail.name }}</p>
+    </div>
+    <img
+      class="info"
+      src="assets/png/information.png"
+      alt=""
+      (click)="showDialog()"
+    />
+  </div>
+</div>
+
+<p-dialog
+  header="Header"
+  [(visible)]="visible"
+  [modal]="true"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <p>{{ rubbishDetail.description }}</p>
+</p-dialog>

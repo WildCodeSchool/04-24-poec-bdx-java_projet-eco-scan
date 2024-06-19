@@ -2,19 +2,8 @@
   <div class="color-bar">
     <div *ngIf="scanButton">
       <a [routerLink]="['/scan']"
-        ><img
-          class="scan-button"
-          src="../../../../../assets/svg/smartphone.png"
+        ><img class="scan-button" src="assets/png/smartphone.png"
       /></a>
-    </div>
-
-    <div *ngIf="captureButton">
-      <a (click)="takePhotoAction()">
-        <img
-          class="capture-button"
-          src="../../../../../assets/svg/appareil-photo (1).png"
-        />
-      </a>
     </div>
   </div>
 </div>

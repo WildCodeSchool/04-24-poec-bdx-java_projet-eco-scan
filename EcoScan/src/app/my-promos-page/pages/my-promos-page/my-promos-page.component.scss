@@ -1,9 +1,24 @@
 .pageContent {
-    padding-bottom: 6rem;
+  padding-bottom: 6rem;
 }
 
-.tip-link {
-    display: flex;
-    justify-content: center;
+.tuto-link {
+  display: flex;
+  justify-content: center;
+  .tip-link {
+    font-style: italic;
+    display: inline-block;
+    border-bottom: 1px solid;
+    padding-bottom: 3px;
+    text-decoration: none;
     color: black;
+  }
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
 }

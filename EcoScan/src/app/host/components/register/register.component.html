@@ -1,7 +1,7 @@
 <div class="register-container">
   <div>
     <div class="logo-eco">
-      <img src="../../../../assets/svg/logo.svg" alt="" />
+      <img src="assets/svg/logo.svg" alt="" />
     </div>
 
     <div class="bandeau">
@@ -18,6 +18,10 @@
             placeholder="Votre prénom..."
             required
           />
+          <p-messages
+            [value]="messages['firstname']"
+            [closable]="false"
+          ></p-messages>
         </fieldset>
         <fieldset>
           <label for="user-lastname">Nom</label>
@@ -27,16 +31,24 @@
             placeholder="Votre nom..."
             required
           />
+          <p-messages
+            [value]="messages['lastname']"
+            [closable]="false"
+          ></p-messages>
         </fieldset>
       </div>
       <fieldset>
         <label for="user-pseudo">Pseudo</label>
         <input
           type="text"
-          formControlName="pseudo"
+          formControlName="username"
           placeholder="Veuillez entrer un pseudo"
           required
         />
+        <p-messages
+          [value]="messages['username']"
+          [closable]="false"
+        ></p-messages>
       </fieldset>
       <fieldset>
         <label for="user-email">Email</label>
@@ -46,6 +58,7 @@
           placeholder="Votre addresse email"
           required
         />
+        <p-messages [value]="messages['email']" [closable]="false"></p-messages>
       </fieldset>
       <fieldset>
         <label for="user-password">Mot de passe</label>
@@ -55,6 +68,10 @@
           placeholder="Mot de passe"
           required
         />
+        <p-messages
+          [value]="messages['password']"
+          [closable]="false"
+        ></p-messages>
       </fieldset>
       <div class="button-container">
         <button type="submit">S'INSCRIRE</button>

@@ -1,0 +1,5 @@
+<div class="waste-container" *ngIf="wastesList">
+  <div *ngFor="let waste of wastesList">
+    <app-waste-card [binType]="waste"></app-waste-card>
+  </div>
+</div>

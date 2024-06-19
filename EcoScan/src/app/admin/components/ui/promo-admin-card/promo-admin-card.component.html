@@ -1,0 +1,41 @@
+<div class="promo-card">
+  <div class="promo-amount">
+    <div class="percent-off">
+      <p id="flat">FLAT</p>
+      <div class="percent-container">
+        <p class="percent-discount">{{ promo.percentOff }}</p>
+
+        <div class="percent-off-container">
+          <p id="percent">%</p>
+          <p id="off">off</p>
+        </div>
+      </div>
+    </div>
+    <div class="redeemable-amount">
+      <p>User uptake of promo</p>
+      <p>0 / {{ promo.amount }}</p>
+    </div>
+    <div class="points-amount">
+      <p>{{ promo.price }}</p>
+      points
+    </div>
+  </div>
+  <div class="detail-row">
+    <img
+      *ngIf="promo.brand.logo"
+      id="logo"
+      [src]="'data:image/png;base64,' + promo.brand.logo"
+      alt="{{promo.brand.title}}"
+    />
+    <div id="details">
+      <p>{{ promo.title }}</p>
+      <p>{{ promo.item }}</p>
+      <p>{{ promo.description }}</p>
+    </div>
+  </div>
+  <div class="detail-row">
+    <p id="small-date">{{ promo.startDate }} - {{ promo.endDate }}</p>
+    <button type="button" (click)="deletePromo(promo)">Delete promo</button>
+    <button type="button" (click)="suspendPromo(promo)">Suspend promo</button>
+  </div>
+</div>

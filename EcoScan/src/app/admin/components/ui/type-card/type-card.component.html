@@ -1,0 +1,15 @@
+<div class="type-card">
+    <div class="fields">
+        <p>Nom de type: {{type.name}}</p>
+        <img
+            *ngIf="type.pictogram"
+            id="logo"
+            [src]="'data:image/svg+xml;base64,' + type.pictogram"
+            alt="{{type.name}}"
+        />
+        <p>Description: {{type.description}}</p>
+        <p>Points: {{type.points}}</p>
+
+    </div>
+    <!-- <button (click)="deleteType(type)">Delete</button> -->
+</div>

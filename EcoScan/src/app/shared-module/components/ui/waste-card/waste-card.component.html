@@ -1,22 +1,20 @@
 <div class="waste-card" *ngIf="binType">
   <div class="picto">
-    <img
-      [src]="'../../../../../assets/svg/' + (binType.type | binType)"
-      alt=""
-    />
+    <img *ngIf="binType.type.pictogram" [src]="'data:image/svg+xml;base64,' + binType.type.pictogram">
+
   </div>
   <div class="waste-detail">
     <div class="details">
-      <h3>{{ binType.type }}</h3>
+      <h3>{{ binType.type.name }}</h3>
       <p>Poubelle : Verre</p>
       <p>
-        Points : {{ binType.points }}
-        <span><img src="../../../../../assets/svg/etoile.png" alt="" /> </span>
+        Points : {{ binType.type.points }}
+        <span><img src="assets/png/etoile.png" alt="" /> </span>
       </p>
     </div>
     <div class="near">
       <p>poubelle la plus proche</p>
-      <img src="../../../../../assets/svg/green-arrow.svg" alt="" />
+      <img src="assets/svg/green-arrow.svg" alt="" />
     </div>
   </div>
 </div>

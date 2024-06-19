@@ -1,9 +1,12 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SidebarCloseAnimation, SidebarOpenAnimation } from './animation';
-import { Nav } from '../../../models/nav.type';
+import { Nav } from '../../../../shared-module/models/types/nav.type';
 import { HostService } from '../../../../host/shared/host.service';
 import { Router } from '@angular/router';
+import { GetUser } from '../../../../shared-module/models/types/GetUser.type';
+import { Observable } from 'rxjs';
+import { UserService } from '../../../../shared-module/shared/services/user.service';
 
 const animationParams = {
   menuWidth: '250px',
@@ -37,15 +40,19 @@ export class HeaderNavComponent {
   @Output()
   boolChange: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(
-    private hostService: HostService,
-    private routerNavigate: Router
-  ) {}
+  @Input()
+  user$: Observable<GetUser> = this.userService.getUser$();
 
-  imagePath: string = '../../../../../assets/svg/bar.png';
-  mapSvg: string = '../../../../../assets/svg/map.svg';
+  imagePath: string = 'assets/png/bar.png';
+  mapSvg: string = 'assets/svg/map.svg';
   isOpen: boolean = false;
   navigation: Nav[] = [];
+
+  constructor(
+    private hostService: HostService,
+    private routerNavigate: Router,
+    private userService: UserService
+  ) {}
 
   sendIsOpenToParent() {
     this.isOpen = !this.isOpen;
@@ -59,36 +66,43 @@ export class HeaderNavComponent {
   ngOnInit() {
     this.navigation = [
       {
-        title: 'My Promos',
-        svg: '/assets/svg/promos.svg',
+        title: 'Mes Promos',
+        svg: 'assets/png/promotion.png',
         click: () => {
           this.routerNavigate.navigate(['/mypromos']);
         },
       },
       {
-        title: 'Historic',
-        svg: '/assets/svg/historic.svg',
+        title: 'Historique',
+        svg: 'assets/png/fichier.png',
         click: () => {
           this.routerNavigate.navigate(['/historic']);
         },
       },
       {
-        title: 'Staged Waste',
-        svg: '/assets/svg/staged.svg',
+        title: 'Déchets stockés',
+        svg: 'assets/png/poubelle-1.png',
         click: () => {
           this.routerNavigate.navigate(['/staged']);
         },
       },
       {
-        title: 'Setting',
-        svg: '/assets/svg/setting.svg',
+        title: 'Comment ça marche ?',
+        svg: 'assets/png/point-dinterrogation.png',
+        click: () => {
+          this.routerNavigate.navigate(['/glossary']);
+        },
+      },
+      {
+        title: 'Paramètres',
+        svg: 'assets/svg/setting.svg',
         click: () => {
           this.routerNavigate.navigate(['/setting']);
         },
       },
       {
-        title: 'Disconnect',
-        svg: '/assets/svg/disconnect.svg',
+        title: 'Déconnexion',
+        svg: 'assets/svg/disconnect.svg',
         click: () => {
           this.logout();
         },

@@ -1,0 +1,10 @@
+<div class="promo-column">
+
+    <div *ngIf="promoList">
+        <div *ngFor="let promo of promoList">
+            <app-promo-admin-card
+            [promo]="promo"
+            ></app-promo-admin-card>
+        </div>
+    </div>
+</div>

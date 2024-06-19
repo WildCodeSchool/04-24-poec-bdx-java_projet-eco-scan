@@ -1,16 +1,29 @@
-<app-header
-    headerPageTitle="MY PROMOS"
-    [searchBar]="false"
-></app-header>
-<div class="pageContent">
-    <app-promo-gallery
-        title="PROMOS"
-        [verticalCards]="true"
-    ></app-promo-gallery>
+<div [@openClosePageAnimation]>
+  <div [@openClosePageAnimation]>
+    <app-header headerPageTitle="MES PROMOS" [searchBar]="false"></app-header>
+    <div [@openPageAnimation]>
+      <div class="pageContent">
+        <app-promo-gallery title="MES PROMOS"></app-promo-gallery>
 
-    <!-- @TODO link to explanation page once created -->
-    <a [routerLink]="['/']" class="tip-link">How to use your promo</a>
+        <div class="card-container" *ngIf="user">
+          <div *ngFor="let userPromo of user.userPromos">
+            <app-dumb-card
+              [smallBrand]="true"
+              [smallCard]="true"
+              [promo]="userPromo.promos"
+            ></app-dumb-card>
+          </div>
+          <app-modal [shiwCode]="true" />
+        </div>
+
+        <!-- @TODO link to explanation page once created -->
+        <div class="tuto-link">
+          <a [routerLink]="['/']" class="tip-link"
+            ><p>Comment utiliser vos points</p></a
+          >
+        </div>
+      </div>
+    </div>
+    <app-footer [scanButton]="true" />
+  </div>
 </div>
-<app-footer
-    [scanButton]="true"
-/>

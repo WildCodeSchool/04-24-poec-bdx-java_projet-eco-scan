@@ -1,0 +1,16 @@
+<div class="glossaire">
+  <div *ngIf="typeCard$ | async as typeCard">
+    <div *ngFor="let rubbish of typeCard" class="rubbish-points">
+      <app-point-card [rubbishDetail]="rubbish"></app-point-card>
+    </div>
+  </div>
+  <div class="yo">
+    <a [routerLink]="['/']"
+      ><p class="tuto">Comment ça marche ? Voir le tuto !</p></a
+    >
+  </div>
+  <div class="new-card">
+    <p>Des compagnies pourront recycler des déchets spécifiques</p>
+    <app-point-card [rubbishDetail]="newCard"></app-point-card>
+  </div>
+</div>

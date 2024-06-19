@@ -10,24 +10,29 @@
       />
     </div>
 
-    <input type="search " />
+    <div class="points-box" *ngIf="user$ | async as user">
+      <img src="/assets/png/point-landing-page.png" />
+      <p>{{ user.points | thousandK }}</p>
+    </div>
 
     <a [routerLink]="['/map']">
-      <img src="../../../../../assets/svg/map.svg" alt="" />
+      <img src="assets/svg/map.svg" alt="" />
     </a>
   </div>
 
   <div class="side-menu" *ngIf="isOpen" [@sideMenu]>
     <div class="menu-close" (click)="sendIsOpenToParent()">
-      <p>MY PROFILE</p>
+      <p>MON PROFIL</p>
       <img class="gg-push-chevron-left-o" [src]="imagePath" alt="" />
     </div>
     <div class="profil-section">
       <div class="photo"></div>
-      <div class="identity">
-        <p>name</p>
-        <p>emailmail.com</p>
-        <p>Your <span>point</span></p>
+      <div class="identity" *ngIf="user$ | async as user">
+        <p>{{ user.username }}</p>
+        <p>Vous avez</p>
+        <p>
+          <span> {{ user.points }} </span> points
+        </p>
       </div>
     </div>
     <div class="white">

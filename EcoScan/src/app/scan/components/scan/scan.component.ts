@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   NgxScannerQrcodeComponent,
   ScannerQRCodeConfig,
@@ -7,15 +7,28 @@ import {
 } from 'ngx-scanner-qrcode';
 import { ScanService } from '../../services/scan.service';
 import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
+import { UserService } from '../../../shared-module/shared/services/user.service';
+import { longLat } from '../../../shared-module/models/types/LongLat.type';
+import { Deposit } from '../../../shared-module/models/types/Deposits.type';
+import { GetUser } from '../../../shared-module/models/types/GetUser.type';
+import { MessageService } from 'primeng/api';
+import { Subscription, forkJoin } from 'rxjs';
+import { StagedRubbish } from '../../../shared-module/models/types/StagedRubbish.type';
+import { SendUser } from '../../../shared-module/models/types/SendUser.type';
 
 @Component({
   selector: 'app-scan',
   templateUrl: './scan.component.html',
   styleUrl: './scan.component.scss',
 })
-export class ScanComponent {
-  scannedData!: Rubbish | undefined;
-
+export class ScanComponent implements OnDestroy {
+  scannedRubbish!: Rubbish;
+  scanData!: string;
+  user!: GetUser;
+  location!: longLat;
+  inProximity: boolean = false;
+  binOfDeposit!: string;
+  subscriptions: Subscription[] = [];
   infos: String[] = [
     'Scanner le Qr-code',
     'Récuperer les informations du déchet',
@@ -34,7 +47,25 @@ export class ScanComponent {
     },
   };
 
-  constructor(private router: Router, private scanService: ScanService) {}
+  constructor(
+    private router: Router,
+    private scanService: ScanService,
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private messageService: MessageService
+  ) { }
+
+  ngOnInit(): void {
+    this.user = this.route.snapshot.data['user'];
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscriptions.length) {
+      for (const sub of this.subscriptions) {
+        sub.unsubscribe();
+      }
+    }
+  }
 
   private scrollToScannedSection(): void {
     this.scannedSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
@@ -43,12 +74,45 @@ export class ScanComponent {
   public onEvent(e: ScannerQRCodeResult[], action?: any): void {
     if (e.length > 0) {
       const scannedDataString = e[0].value;
-      console.log(scannedDataString);
+      this.scanData = scannedDataString;
 
-      this.scannedData = JSON.parse(scannedDataString);
+      try {
+        const scannedDataObj = JSON.parse(scannedDataString);
+        const rubbishId = scannedDataObj.id;
 
-      action?.stop();
-      setTimeout(() => this.scrollToScannedSection(), 100);
+        const sub = this.scanService
+          .getRubbishById$(rubbishId)
+          .subscribe((rubbish) => {
+            this.scannedRubbish = rubbish;
+
+            console.log(this.scannedRubbish);
+
+            action?.stop();
+
+            const sub = this.scanService
+              .checkBinsAreClose(this.scannedRubbish)
+              .subscribe((binID) => {
+                if (binID === '') {
+                  this.inProximity = false;
+                  this.messageService.add({
+                    severity: 'warning',
+                    summary: 'Aucune poubelle trouvée',
+                    detail:
+                      "Aucune poubelle trouvée à proximité, approchez-vous d'un bac",
+                  });
+                } else {
+                  this.binOfDeposit = binID;
+                  this.inProximity = true;
+                }
+              });
+            this.subscriptions.push(sub);
+
+            setTimeout(() => this.scrollToScannedSection(), 100);
+          });
+        this.subscriptions.push(sub);
+      } catch (error) {
+        console.error('Invalid QR code format', error);
+      }
     }
   }
 
@@ -67,14 +131,68 @@ export class ScanComponent {
     }
   }
 
-  sendToStaged() {
-    this.scannedData = undefined;
+  sendToStaged(): void {
+    if (this.scannedRubbish && this.user) {
+      this.user.staged.rubbish.push(this.scannedRubbish);
+      const stagedRubbish: StagedRubbish = {
+        id: this.user.staged.id,
+        userID: Number(this.user.id),
+        rubbish: this.user.staged.rubbish
+      }
 
-    // TODO POST to staged waste table && DELETE from rubbish table
+      const sub = this.scanService
+        .stageRubbishForUser(stagedRubbish)
+        .subscribe(
+          (response) => {
+            console.log('Rubbish staged successfully', response);
+            this.userService.refreshUser();
+            this.scannedRubbish = {} as Rubbish;
+          },
+          (error) => {
+            console.error('Failed to stage rubbish', error);
+          }
+        );
+      this.subscriptions.push(sub);
+      this.router.navigate(['/home']);
+    }
   }
 
-  navigateToPictureComponent() {
-    this.scanService.addDurtyScan(this.scannedData as Rubbish);
-    this.router.navigate(['/photo']);
+  convertUser(): SendUser {
+    return {
+      id: Number(this.user.id),
+      points: this.user.points,
+      email: this.user.email,
+      firstname: this.user.firstname,
+      lastname: this.user.lastname,
+      username: this.user.username
+    }
+  }
+
+  makeDeposit(): void {
+    if (this.scannedRubbish && this.user && this.binOfDeposit) {
+      let newDeposit: Deposit = {
+        id: null,
+        user: {
+          id: Number(this.user.id),
+        },
+        rubbish: {
+          id: this.scannedRubbish.id,
+        },
+        bin: {
+          id: Number(this.binOfDeposit),
+        },
+        scanData: this.scanData,
+      };
+      this.user.points += this.scannedRubbish.type.points;
+
+      const sub = forkJoin(
+        this.scanService.sendDeposit$(newDeposit),
+        this.scanService.updatePoints$(this.convertUser())
+      ).subscribe((respDeposit) => {
+        this.router.navigate(['/home']);
+      });
+
+      this.subscriptions.push(sub);
+    }
   }
 }
