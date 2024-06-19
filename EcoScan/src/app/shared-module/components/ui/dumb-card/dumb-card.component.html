@@ -1,5 +1,5 @@
 <div class="card-container">
-  <div [ngClass]="smallCard ? 'small-card' : 'promo-card'">
+  <div [ngClass]="smallCard ? 'small-card' : 'promo-card border-radius'">
     <div
       class="promo-amount"
       [ngStyle]="{ 'background-color': '#' + promo.color }"
@@ -16,8 +16,12 @@
         </div>
       </div>
       <div class="redeemable-amount">
-        <p id="points-amount">{{ promo.price | thousandK }}</p>
+        <p>
+          <span id="points-amount">    
+            {{ promo.price | thousandK }}
+          </span>
         points
+        </p>
       </div>
     </div>
     <div class="see-details">
@@ -31,10 +35,10 @@
           alt="{{ promo.brand.title }}"
         />
 
-        <div class="yooa" (click)="openModal(promo)">
+        <div class="open-modal-container" (click)="openModal(promo)">
           <p>{{ promo.brand.title }}</p>
-          <div class="yaao">
-            <p id="details">Voir detail</p>
+          <div class="see-details-container">
+            <p id="details">Voir</p>
             <button type="button">
               <img src="assets/png/arrow.png" alt="arrow" />
             </button>
