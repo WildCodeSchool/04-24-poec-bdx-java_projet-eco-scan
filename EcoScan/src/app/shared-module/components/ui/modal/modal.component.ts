@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, Input, ViewEncapsulation } from '@angular/core';
 import { ModalService } from '../../../shared/services/Modal.service';
 import { Observable, tap } from 'rxjs';
 import { DataAccessorService } from '../../../shared/services/data-accessor.service';
@@ -16,11 +16,18 @@ import { Modal } from '../../../models/types/Modal.type';
 })
 export class ModalComponent {
 
+  @HostListener('document:click', ['$event'])
+  clickout(event: any) {
+    if (event.target.className.includes('p-dialog-mask')) {
+      this.modalService.closeModal();
+    }
+  }
+
   @Input()
   shiwCode: boolean = false;
 
   user!: GetUser;
-  modalState$: Observable<Modal> = this.modalService.modalState$.pipe(tap((val) => console.log(val)));
+  modalState$: Observable<Modal> = this.modalService.modalState$;
 
   constructor(
     private userService: UserService,
@@ -46,6 +53,5 @@ export class ModalComponent {
 
   ngOnInit() {
     this.user = this.route.snapshot.data['user'];
-    console.log(this.user);
   }
 }
