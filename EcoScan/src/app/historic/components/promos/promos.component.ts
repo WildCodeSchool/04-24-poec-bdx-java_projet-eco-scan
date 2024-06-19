@@ -20,6 +20,5 @@ export class PromosComponent {
     this.redeemedPromos = this.user.userPromos
       .filter((promo: { redeemed: boolean }) => promo.redeemed)
       .map((promo: { promos: Promo }) => promo.promos);
-    console.log(this.redeemedPromos);
   }
 }

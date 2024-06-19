@@ -56,7 +56,7 @@
             <br>
             DE LA MARQUE {{ cardData.brand.title | uppercase }}
           </p>
-
+          <p class="product">{{ cardData.description | uppercase }}</p>
         </div>
         <img
           *ngIf="cardData.brand"
@@ -67,6 +67,7 @@
         />
       </div>
       <div class="btn-promo">
+
         <button
           class="buy-button"
           *ngIf="shiwCode"

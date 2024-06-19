@@ -24,7 +24,7 @@ export class ModalComponent {
   }
 
   @Input()
-  shiwCode: boolean = false;
+  showCode: boolean = false;
 
   user!: GetUser;
   modalState$: Observable<Modal> = this.modalService.modalState$;
