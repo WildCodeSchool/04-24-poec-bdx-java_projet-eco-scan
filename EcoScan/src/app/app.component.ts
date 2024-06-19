@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private transitionService: TransitionService
+    private transitionService: TransitionService,
   ) {}
 
   ngOnInit() {
@@ -26,9 +26,6 @@ export class AppComponent implements OnInit {
         this.transitionService.startTransition();
       } else if (event instanceof NavigationEnd) {
         this.transitionService.endTransition();
-      } else if (event instanceof NavigationError) {
-        this.transitionService.endTransition();
-        this.router.navigate(['/register']);
       }
     });
   }

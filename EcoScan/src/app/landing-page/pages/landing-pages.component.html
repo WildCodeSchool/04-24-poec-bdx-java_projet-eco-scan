@@ -24,15 +24,11 @@
     </div>
   </div>
 
-  <app-promo-gallery title="VOS PROMOS FAVORITES"></app-promo-gallery>
-
   <div class="card-container" *ngIf="cardList$ | async as cardList">
     <div *ngFor="let promo of cardList">
       <app-dumb-card [promo]="promo" [blurCards]="isOpen"></app-dumb-card>
     </div>
   </div>
-
-  <app-promo-gallery title="GROS PRIX"></app-promo-gallery>
 
   <app-modal />
 
