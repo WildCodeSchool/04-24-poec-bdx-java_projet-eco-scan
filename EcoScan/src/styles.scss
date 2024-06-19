@@ -10,3 +10,29 @@
 *::-webkit-scrollbar {
   display: none;
 }
+
+:root {
+  --cta-color: #2f323d;
+  --accentuation-color: #178b68;
+  --qr-code-color-bg: #262626;
+}
+
+.btn-cta {
+  display: flex;
+  margin: 20px auto;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 1em 2em;
+  border: none;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lato", sans-serif;
+  color: white;
+  background-color: var(--cta-color);
+  border-radius: 3px;
+}
+
+.flex {
+  display: flex;
+}

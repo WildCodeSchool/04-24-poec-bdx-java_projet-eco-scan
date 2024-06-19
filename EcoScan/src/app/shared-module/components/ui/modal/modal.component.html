@@ -6,11 +6,12 @@
     header
     [modal]="true"
     [(visible)]="modal.visible"
+    *ngIf="(modal.cardData | hasProperties)"
     [style]="{ width: '50rem' }"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
     (onHide)="hideDialog()"
   >
-    <ng-container *ngIf="modal.cardData as cardData">
+    <ng-container *ngIf="(modal | hasProperties) && modal.cardData as cardData">
       <ng-template pTemplate="header">
         <div
           class="promo-amount"

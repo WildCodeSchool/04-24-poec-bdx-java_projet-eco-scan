@@ -1,6 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { ModalService } from '../../../shared/services/Modal.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { DataAccessorService } from '../../../shared/services/data-accessor.service';
 import { UserService } from '../../../shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,20 +15,19 @@ import { Modal } from '../../../models/types/Modal.type';
   encapsulation: ViewEncapsulation.None,
 })
 export class ModalComponent {
-  modalState$: Observable<Modal>;
-  user!: GetUser;
 
   @Input()
   shiwCode: boolean = false;
+
+  user!: GetUser;
+  modalState$: Observable<Modal> = this.modalService.modalState$.pipe(tap((val) => console.log(val)));
 
   constructor(
     private userService: UserService,
     private modalService: ModalService,
     private dbAccess: DataAccessorService,
     private route: ActivatedRoute
-  ) {
-    this.modalState$ = this.modalService.modalState$;
-  }
+  ) {}
 
   hideDialog() {
     this.modalService.closeModal();
