@@ -20,6 +20,13 @@ export class GoogleApiService {
   private map!: google.maps.Map;
   private markerList: MarkerTuple[] = [];
 
+<<<<<<< Updated upstream
+=======
+  public initDependencies(): Observable<Bin[]> {
+    return this.DBAccessor.getAllBins$();
+  }
+
+>>>>>>> Stashed changes
   public initMap(binList: Bin[]): Observable<void> {
     return this.createMap().pipe(
       tap(() => {
@@ -33,13 +40,12 @@ export class GoogleApiService {
 
   public filterBinMarkers(binType: string): void {
     for (let marker of this.markerList) {
-      if (marker.binType === binType || binType === "Voir tout") {
-          marker.marker.map = this.map;
-        } else {
-          marker.marker.map = null;
+      if (marker.binType === binType || binType === 'Voir tout') {
+        marker.marker.map = this.map;
+      } else {
+        marker.marker.map = null;
       }
     }
-
   }
 
   private createMap(): Observable<void> {
@@ -93,9 +99,11 @@ export class GoogleApiService {
 
   private populateMapMarkers(binList: Bin[]): void {
     for (let bin of binList) {
-      const { lat, lng } = this.locationService.splitLongAndLat(bin.localisation);
+      const { lat, lng } = this.locationService.splitLongAndLat(
+        bin.localisation
+      );
       const infoWindow = new google.maps.InfoWindow({
-        content: `<h3>${
+        content: `<h3 class="chips-map">${
           bin.binName ? bin.binName : bin.type.name + ' bin'
         }</h3>`,
       });
@@ -115,8 +123,11 @@ export class GoogleApiService {
 
   private createLocateButton(): void {
     const locationButton = document.createElement('button');
-    locationButton.textContent = 'Re-center map';
-    locationButton.classList.add('custom-map-control-button');
+    locationButton.textContent = 'Se re-centrer';
+    locationButton.classList.add(
+      'custom-map-control-button',
+      'recenter-button'
+    );
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
       locationButton
     );

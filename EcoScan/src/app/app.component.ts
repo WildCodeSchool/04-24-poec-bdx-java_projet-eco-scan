@@ -24,7 +24,10 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart && this.router.url === '') {
         this.transitionService.startTransition();
-      } else if (event instanceof NavigationEnd) {
+      } else if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationError
+      ) {
         this.transitionService.endTransition();
       }
       // } else if (event instanceof NavigationError) {
