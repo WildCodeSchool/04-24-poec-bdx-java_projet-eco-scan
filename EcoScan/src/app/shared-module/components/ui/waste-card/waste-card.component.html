@@ -16,7 +16,7 @@
     </div>
     <div class="near" *ngIf="!isThrow">
       <p>poubelle la plus proche</p>
-      <img src="assets/svg/green-arrow.svg" alt="" />
+      <img (click)="navToMap()" src="assets/svg/green-arrow.svg" alt="" />
     </div>
     <div class="validated" *ngIf="isThrow">
       <img src="assets/svg/validation.svg" alt="validé" />
