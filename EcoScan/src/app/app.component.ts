@@ -27,6 +27,10 @@ export class AppComponent implements OnInit {
       } else if (event instanceof NavigationEnd) {
         this.transitionService.endTransition();
       }
+      // } else if (event instanceof NavigationError) {
+      //   this.transitionService.endTransition();
+      //   this.router.navigate(['/register']);
+      // }
     });
   }
 }

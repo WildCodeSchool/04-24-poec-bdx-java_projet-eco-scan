@@ -57,11 +57,6 @@
             SUR
           </p>
           <p class="product">{{ cardData.description | uppercase }}</p>
-          <!-- <p><span>Item:</span> {{ cardData.item }}</p> -->
-          <!-- <p><span>Percent Off:</span> {{ cardData.percentOff }}%</p> -->
-          <!-- <p><span>Redeemable Amount:</span> {{ cardData.amount }}</p> -->
-          <!-- <p><span>Start Date:</span> {{ cardData.startDate | date }}</p>
-          <p><span>End Date:</span> {{ cardData.endDate | date }}</p> -->
         </div>
         <img
           *ngIf="cardData.brand"
@@ -72,9 +67,9 @@
         />
       </div>
       <div class="btn-promo">
-        <button class="buy-button" *ngIf="shiwCode">VOIR LE CODE</button>
+        <button class="buy-button" *ngIf="showCode">VOIR LE CODE</button>
         <button
-          *ngIf="!shiwCode"
+          *ngIf="!showCode"
           (click)="buyPromo(cardData.id)"
           class="buy-button"
         >
