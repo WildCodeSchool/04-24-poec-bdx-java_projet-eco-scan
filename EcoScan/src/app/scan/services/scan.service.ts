@@ -7,6 +7,8 @@ import { longLat } from '../../shared-module/models/types/LongLat.type';
 import { LocationService } from '../../shared-module/shared/services/location.service';
 import { Deposit } from '../../shared-module/models/types/Deposits.type';
 import { StagedRubbish } from '../../shared-module/models/types/StagedRubbish.type';
+import { GetUser } from '../../shared-module/models/types/GetUser.type';
+import { SendUser } from '../../shared-module/models/types/SendUser.type';
 
 @Injectable({
   providedIn: 'root',
@@ -29,29 +31,37 @@ export class ScanService {
     return this.dbAccessor.addDeposit$(newDeposit);
   }
 
-  checkBinsAreClose(
-    rubbish: Rubbish,
-    userLocation: longLat
-  ): Observable<string> {
+  updatePoints$(updatedUser: SendUser) {
+    return this.dbAccessor.updateUsersPoints$(updatedUser);
+  }
+
+  checkBinsAreClose(rubbish: Rubbish): Observable<string> {
     return this.dbAccessor.getType$(rubbish.type).pipe(
       switchMap((type: Type) => {
-        for (const bin of type.bins) {
-          const binLocation = this.locationService.splitLongAndLat(
-            bin.localisation
-          );
-          const latDiff = parseFloat(
-            Math.abs(binLocation.lat - userLocation.lat).toFixed(6)
-          );
-          const lngDiff = parseFloat(
-            Math.abs(binLocation.lng - userLocation.lng).toFixed(6)
-          );
+        return this.locationService.updateUserLocation().pipe(
+          switchMap((location) => {
+            console.log(location);
 
-          // if (latDiff <= 0.000135 && lngDiff <= 0.000135){ //in 15m
-          if (latDiff <= 0.0002 || lngDiff <= 0.0002) {
-            return of(bin.id);
-          }
-        }
-        return of('');
+            for (const bin of type.bins) {
+              const binLocation = this.locationService.splitLongAndLat(
+                bin.localisation
+              );
+              const latDiff = parseFloat(
+                Math.abs(binLocation.lat - location.lat).toFixed(6)
+              );
+              const lngDiff = parseFloat(
+                Math.abs(binLocation.lng - location.lng).toFixed(6)
+              );
+              console.log(latDiff + ' - ' + lngDiff);
+
+              // if (latDiff <= 0.000135 && lngDiff <= 0.000135){ //in 15m
+              if (latDiff <= 0.001 || lngDiff <= 0.001) {
+                return of(bin.id);
+              }
+            }
+            return of('');
+          })
+        );
       })
     );
   }

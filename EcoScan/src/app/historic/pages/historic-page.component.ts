@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import {
   landingPageAnimation,
   slider,
@@ -11,6 +11,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { GetUser } from '../../shared-module/models/types/GetUser.type';
 
 @Component({
   selector: 'app-historic-page',
@@ -29,7 +30,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistoricPageComponent {
-  constructor() {}
+  user!: GetUser;
+
+  constructor(private route: ActivatedRoute) {}
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet?.activatedRouteData?.['animation'];
@@ -41,5 +44,9 @@ export class HistoricPageComponent {
 
   isPromosRoute(outlet: RouterOutlet) {
     return outlet?.activatedRouteData?.['animation'] === 'isLeft';
+  }
+
+  ngOnInit() {
+    this.user = this.route.snapshot.data['user'];
   }
 }

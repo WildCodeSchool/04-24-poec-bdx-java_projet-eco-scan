@@ -1,7 +1,7 @@
-<!-- <div class="waste-container" *ngIf="wastesList | async as rubbish">
-  <div *ngFor="let waste of rubbish">
-    <app-waste-card [binType]="waste"></app-waste-card>
+<div class="waste-container" *ngIf="rubbishList">
+  <div *ngFor="let waste of rubbishList">
+    <app-waste-card [isThrow]="true" [binType]="waste"></app-waste-card>
   </div>
-</div> -->
+</div>
 
 <!-- // TODO -->

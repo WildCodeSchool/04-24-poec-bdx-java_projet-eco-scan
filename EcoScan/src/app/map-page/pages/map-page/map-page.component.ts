@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { GoogleApiService } from '../../google-api.service';
 import { Subscription, map } from 'rxjs';
+import { GoogleApiService } from '../../shared/google-api.service';
 
 @Component({
   selector: 'app-map-page',

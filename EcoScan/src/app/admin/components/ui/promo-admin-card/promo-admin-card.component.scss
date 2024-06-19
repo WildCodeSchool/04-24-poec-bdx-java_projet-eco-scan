@@ -1,10 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
-
 .promo-card {
   margin: 1rem;
   border-radius: 10px;
-  box-shadow: 0px 0px 4px 2px rgb(0, 0, 0, 0.45);
+  box-shadow: 0px 0px 4px 2px rgb(0, 0, 0, 0.18);
   background-color: white;
 }
 
@@ -16,7 +15,6 @@
   background-color: #f1ece3;
   border-radius: 8px;
 }
-
 
 .points-amount {
   background-color: white;
@@ -94,15 +92,12 @@
 #logo {
   width: 70px;
   height: 70px;
-
 }
-
 
 p {
   width: fit-content;
   margin: 0.2rem;
 }
-
 
 button {
   border-radius: 10px;
@@ -113,4 +108,3 @@ button {
 img {
   width: 20px;
 }
-

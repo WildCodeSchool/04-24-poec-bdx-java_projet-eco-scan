@@ -13,6 +13,7 @@ import { GetUser } from '../../models/types/GetUser.type';
 import { Type } from '../../models/types/Type.type';
 import { Credential } from '../../../host/models/credential.type';
 import { UserForm } from '../../../host/models/user.type';
+import { SendUser } from '../../models/types/SendUser.type';
 
 @Injectable({
   providedIn: 'root',
@@ -114,22 +115,44 @@ export class DataAccessorService {
       );
   }
 
-  /*
-     rubbishItems
-  */
-  // fetch
-  getMystaged$(id: string): Observable<StagedRubbish> {
+  updateUsersPoints$(updatedUser: SendUser): Observable<SendUser> {
     return this.http
-      .get<StagedRubbish>(`${environment.database.path}/staged/get/${id}`)
+      .put<SendUser>(
+        `${environment.database.path}/user/update/${updatedUser.id}`,
+        updatedUser
+      )
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
         }),
       );
   }
-  getRubbishByID$(id: string): Observable<Rubbish> {
+
+
+
+  /*
+     rubbishItems
+  */
+
+     getRubbishByID$(id: string): Observable<Rubbish> {
+      return this.http
+        .get<Rubbish>(`${environment.database.path}/rubbish/get/${id}`)
+        .pipe(
+          catchError((err) => {
+            throw this.handleFailure(err);
+          })
+        );
+    }
+  
+
+  /*
+     StagedRubbish
+  */
+
+  // fetch
+  getMystaged$(id: string): Observable<StagedRubbish> {
     return this.http
-      .get<Rubbish>(`${environment.database.path}/rubbish/get/${id}`)
+      .get<StagedRubbish>(`${environment.database.path}/staged/get/${id}`)
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
@@ -404,6 +427,16 @@ export class DataAccessorService {
       );
   }
 
+  getAllTypeNames$(): Observable<string[]> {
+    return this.http
+      .get<string[]>(`${environment.database.path}/type/get/unique-types`)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+  
   // deleteType(typeToDelete: Type): Observable<void> {
   //   return this.http
   //     .delete<void>(

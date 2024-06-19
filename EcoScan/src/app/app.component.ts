@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import {
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+} from '@angular/router';
 import { TransitionService } from './shared-module/shared/services/transition.service';
 
 @Component({
@@ -21,6 +26,9 @@ export class AppComponent implements OnInit {
         this.transitionService.startTransition();
       } else if (event instanceof NavigationEnd) {
         this.transitionService.endTransition();
+      } else if (event instanceof NavigationError) {
+        this.transitionService.endTransition();
+        this.router.navigate(['/register']);
       }
     });
   }

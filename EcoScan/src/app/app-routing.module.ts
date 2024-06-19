@@ -31,6 +31,7 @@ const routes: Routes = [
     path: 'historic',
     loadChildren: () =>
       import('./historic/historic.module').then((m) => m.HistoricModule),
+    resolve: { user: userResolver },
   },
   {
     path: 'staged',
