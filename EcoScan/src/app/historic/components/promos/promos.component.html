@@ -1,10 +1,13 @@
-<div class="card-container" *ngIf="user">
-  <div *ngFor="let card of user.userPromos">
+<div class="card-container" *ngIf="redeemedPromos">
+  <div *ngFor="let promo of redeemedPromos">
     <app-dumb-card
       [smallBrand]="true"
       [smallCard]="true"
-      [promo]="card.promos"
+      [promo]="promo"
     ></app-dumb-card>
   </div>
   <app-modal />
+</div>
+<div>
+  <!-- if not promos -->
 </div>

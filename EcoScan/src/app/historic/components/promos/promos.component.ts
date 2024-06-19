@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { CardService } from '../../../shared-module/shared/services/card.service';
 import { Promo } from '../../../shared-module/models/types/Promo.type';
-import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { GetUser } from '../../../shared-module/models/types/GetUser.type';
-import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
 
 @Component({
   selector: 'app-promos',
@@ -13,12 +10,16 @@ import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
 })
 export class PromosComponent {
   user!: GetUser;
-  promo!: Rubbish;
+  redeemedPromos: Promo[] = [];
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.user = this.route.snapshot.data['user'];
     console.log(this.user);
 
-    this.user = this.route.snapshot.data['user'];
+    this.redeemedPromos = this.user.userPromos
+      .filter((promo: { redeemed: boolean }) => promo.redeemed)
+      .map((promo: { promos: Promo }) => promo.promos);
+    console.log(this.redeemedPromos);
   }
 }

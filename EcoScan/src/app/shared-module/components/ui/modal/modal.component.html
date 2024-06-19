@@ -12,7 +12,10 @@
   >
     <ng-container *ngIf="modal.cardData as cardData">
       <ng-template pTemplate="header">
-        <div class="promo-amount">
+        <div
+          class="promo-amount"
+          [ngStyle]="{ 'background-color': '#' + cardData.color }"
+        >
           <div class="exit-btn-and-promo-amount">
             <button class="exit-modal-btn" (click)="modal.visible = false">
               <img
@@ -24,7 +27,7 @@
             </button>
 
             <div class="percent-off">
-              <p class="flat">FLAT</p>
+              <p class="flat">PROMO</p>
               <div class="percent-container">
                 <p class="percent-discount">{{ cardData.percentOff }}</p>
 
@@ -43,16 +46,22 @@
         </div>
       </ng-template>
 
-      <h2 class="promo-description-modal">Description</h2>
+      <app-promo-gallery title="DESCRIPTION"></app-promo-gallery>
       <div class="modal-logo-container">
         <div class="details-container">
-          <h3>{{ cardData.title }}</h3>
-          <p>{{ cardData.description }}</p>
-          <p><span>Item:</span> {{ cardData.item }}</p>
-          <p><span>Percent Off:</span> {{ cardData.percentOff }}%</p>
-          <p><span>Redeemable Amount:</span> {{ cardData.amount }}</p>
-          <p><span>Start Date:</span> {{ cardData.startDate | date }}</p>
-          <p><span>End Date:</span> {{ cardData.endDate | date }}</p>
+          <p>
+            ECONOMISER {{ cardData.percentOff }}% CHEZ
+            <span class="brand-title">{{
+              cardData.brand.title | uppercase
+            }}</span>
+            SUR
+          </p>
+          <p class="product">{{ cardData.description | uppercase }}</p>
+          <!-- <p><span>Item:</span> {{ cardData.item }}</p> -->
+          <!-- <p><span>Percent Off:</span> {{ cardData.percentOff }}%</p> -->
+          <!-- <p><span>Redeemable Amount:</span> {{ cardData.amount }}</p> -->
+          <!-- <p><span>Start Date:</span> {{ cardData.startDate | date }}</p>
+          <p><span>End Date:</span> {{ cardData.endDate | date }}</p> -->
         </div>
         <img
           *ngIf="cardData.brand"
@@ -62,14 +71,16 @@
           alt="{{ cardData.brand.title }}"
         />
       </div>
-      <button *ngIf="shiwCode">Voir le Code</button>
-      <button
-        *ngIf="!shiwCode"
-        (click)="buyPromo(cardData.id)"
-        class="buy-button"
-      >
-        Acheter
-      </button>
+      <div class="btn-promo">
+        <button class="buy-button" *ngIf="shiwCode">VOIR LE CODE</button>
+        <button
+          *ngIf="!shiwCode"
+          (click)="buyPromo(cardData.id)"
+          class="buy-button"
+        >
+          ACHETER LA PROMOTION
+        </button>
+      </div>
     </ng-container>
   </p-dialog>
 </div>
