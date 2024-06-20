@@ -1,4 +1,9 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 import { DataAccessorService } from '../../../shared/services/data-accessor.service';
 import { UserService } from '../../../shared/services/user.service';
@@ -15,20 +20,25 @@ import { ModalService } from '../../../shared/services/Modal.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class ModalComponent {
-  modalState$: Observable<Modal>;
-  user!: GetUser;
+  @HostListener('document:click', ['$event'])
+  clickout(event: any) {
+    if (event.target.className.includes('p-dialog-mask')) {
+      this.modalService.closeModal();
+    }
+  }
 
   @Input()
   showCode: boolean = false;
+
+  user!: GetUser;
+  modalState$: Observable<Modal> = this.modalService.modalState$;
 
   constructor(
     private userService: UserService,
     private modalService: ModalService,
     private dbAccess: DataAccessorService,
-    private route: ActivatedRoute
-  ) {
-    this.modalState$ = this.modalService.modalState$;
-  }
+    private route: ActivatedRoute,
+  ) {}
 
   hideDialog() {
     this.modalService.closeModal();

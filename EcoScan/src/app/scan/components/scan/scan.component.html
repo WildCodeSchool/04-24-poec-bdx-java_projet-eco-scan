@@ -1,51 +1,71 @@
 <app-header headerPageTitle="SCAN"></app-header>
-<div>
+
+<div class="container">
+
   <ngx-scanner-qrcode
     #action="scanner"
     [config]="config"
     (event)="onEvent($event, action)"
   ></ngx-scanner-qrcode>
 
-  <div class="bandeau">
-    {{
+  <div class="container__body">
+    <div class="bandeau">
+      {{
       scannedRubbish
         ? ("Vous voulez jeter : " + scannedRubbish.type.name | uppercase)
         : ("Comment scanner vos déchets" | uppercase)
     }}
-  </div>
-
-  <div *ngIf="!scannedRubbish" class="info-container">
-    <div *ngFor="let info of infos" class="information">
-      <img src="assets/svg/validation.svg" alt="" />
-      <p>{{ info }}</p>
     </div>
-  </div>
 
-  <button
-    *ngIf="!scannedRubbish"
-    class="scan-btn"
-    (click)="handle(action, action.isStart ? 'stop' : 'start')"
-  >
-    SCANNER
-  </button>
-
-  <div *ngIf="scannedRubbish" class="next-pic">
-    <div>
-      <app-waste-card [binType]="scannedRubbish"></app-waste-card>
-    </div>
-    <div class="next-btn">
-      <button class="staged-btn" (click)="sendToStaged()">
-        Jeter plus tard
-      </button>
-      <button
-        [disabled]="!inProximity"
-        class="throw-btn"
-        (click)="makeDeposit()"
-        #scannedSection
+    <div
+      *ngIf="!scannedRubbish"
+      class="info-container"
+    >
+      <div
+        *ngFor="let info of infos"
+        class="information"
       >
-        Jeter maintenant
-      </button>
+        <img
+          src="assets/svg/validation.svg"
+          alt=""
+        />
+        <p>{{ info }}</p>
+      </div>
+    </div>
+
+    <button
+      *ngIf="!scannedRubbish"
+      class="btn-cta"
+      (click)="handle(action, action.isStart ? 'stop' : 'start')"
+    >
+      SCANNER
+    </button>
+
+    <div
+      *ngIf="scannedRubbish"
+      class="next-pic"
+    >
+      <div>
+        <app-waste-card [binType]="scannedRubbish"></app-waste-card>
+      </div>
+      <div class="next-btn">
+        <button
+          class="staged-btn"
+          (click)="sendToStaged()"
+        >
+          Jeter plus tard
+        </button>
+        <button
+          [disabled]="!inProximity"
+          class="throw-btn"
+          (click)="makeDeposit()"
+          #scannedSection
+        >
+          Jeter maintenant
+        </button>
+      </div>
     </div>
   </div>
+
 </div>
 <app-footer></app-footer>
