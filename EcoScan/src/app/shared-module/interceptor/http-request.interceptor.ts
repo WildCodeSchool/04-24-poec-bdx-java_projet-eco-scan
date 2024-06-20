@@ -10,9 +10,12 @@ import {
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { LocalStorageService } from '../shared/services/local-storage.service';
 import { MessageService } from 'primeng/api';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class TokenInterceptorInterceptor implements HttpInterceptor {
+
+  blacklist: string[] = environment.blacklists.toasts;
   constructor(
     private lsService: LocalStorageService,
     private messageService: MessageService
@@ -41,7 +44,9 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap((incomingRequest) => {
         const incomingReq = incomingRequest instanceof HttpResponse;
-        if (incomingReq && request.body) {
+
+        if (incomingReq && request.body &&
+           !(this.blacklist.some(element => request.url.includes(element)))) {
           this.messageService.add({
             severity: 'success',
             summary: 'Success',

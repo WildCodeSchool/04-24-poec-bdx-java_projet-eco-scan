@@ -70,10 +70,10 @@
 
         <button
           class="buy-button"
-          *ngIf="shiwCode"
+          *ngIf="showCode"
         >VOIR LE CODE</button>
         <button
-          *ngIf="!shiwCode"
+          *ngIf="!showCode"
           class="btn buy-button"
           (click)="buyPromo(cardData.id)"
         >

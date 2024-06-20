@@ -134,16 +134,26 @@ export class DataAccessorService {
      rubbishItems
   */
 
-     getRubbishByID$(id: string): Observable<Rubbish> {
-      return this.http
-        .get<Rubbish>(`${environment.database.path}/rubbish/get/${id}`)
-        .pipe(
-          catchError((err) => {
-            throw this.handleFailure(err);
-          })
-        );
-    }
-  
+  getRubbishByID$(id: string): Observable<Rubbish> {
+    return this.http
+      .get<Rubbish>(`${environment.database.path}/rubbish/get/${id}`)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+
+  addRubbish$(newRubbish: Rubbish): Observable<Rubbish> {
+    return this.http
+      .post<Rubbish>(`${environment.database.path}/rubbish/add`, newRubbish)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+
 
   /*
      StagedRubbish
