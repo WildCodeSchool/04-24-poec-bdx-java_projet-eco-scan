@@ -3,12 +3,11 @@ import { Observable, of, switchMap } from 'rxjs';
 import { Rubbish } from '../../shared-module/models/types/Rubbish.type';
 import { DataAccessorService } from '../../shared-module/shared/services/data-accessor.service';
 import { Type } from '../../shared-module/models/types/Type.type';
-import { longLat } from '../../shared-module/models/types/LongLat.type';
 import { LocationService } from '../../shared-module/shared/services/location.service';
 import { Deposit } from '../../shared-module/models/types/Deposits.type';
 import { StagedRubbish } from '../../shared-module/models/types/StagedRubbish.type';
-import { GetUser } from '../../shared-module/models/types/GetUser.type';
 import { SendUser } from '../../shared-module/models/types/SendUser.type';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +20,10 @@ export class ScanService {
 
   getRubbishById$(id: string): Observable<Rubbish> {
     return this.dbAccessor.getRubbishByID$(id);
+  }
+
+  generateRubbish$(newRubbish: Rubbish): Observable<Rubbish> {
+    return this.dbAccessor.addRubbish$(newRubbish);
   }
 
   stageRubbishForUser(stagedRubbish: StagedRubbish): Observable<StagedRubbish> {
@@ -54,8 +57,10 @@ export class ScanService {
               );
               console.log(latDiff + ' - ' + lngDiff);
 
-              // if (latDiff <= 0.000135 && lngDiff <= 0.000135){ //in 15m
-              if (latDiff <= 0.1 || lngDiff <= 0.1) {
+              if (
+                latDiff <= environment.parameters.scanDistance ||
+                lngDiff <= environment.parameters.scanDistance
+              ) {
                 return of(bin.id);
               }
             }
