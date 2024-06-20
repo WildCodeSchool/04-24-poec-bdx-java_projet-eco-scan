@@ -16,7 +16,7 @@ import { SendUser } from '../../shared-module/models/types/SendUser.type';
 export class ScanService {
   constructor(
     private dbAccessor: DataAccessorService,
-    private locationService: LocationService
+    private locationService: LocationService,
   ) {}
 
   getRubbishById$(id: string): Observable<Rubbish> {
@@ -44,25 +44,25 @@ export class ScanService {
 
             for (const bin of type.bins) {
               const binLocation = this.locationService.splitLongAndLat(
-                bin.localisation
+                bin.localisation,
               );
               const latDiff = parseFloat(
-                Math.abs(binLocation.lat - location.lat).toFixed(6)
+                Math.abs(binLocation.lat - location.lat).toFixed(6),
               );
               const lngDiff = parseFloat(
-                Math.abs(binLocation.lng - location.lng).toFixed(6)
+                Math.abs(binLocation.lng - location.lng).toFixed(6),
               );
               console.log(latDiff + ' - ' + lngDiff);
 
               // if (latDiff <= 0.000135 && lngDiff <= 0.000135){ //in 15m
-              if (latDiff <= 0.001 || lngDiff <= 0.001) {
+              if (latDiff <= 0.1 || lngDiff <= 0.1) {
                 return of(bin.id);
               }
             }
             return of('');
-          })
+          }),
         );
-      })
+      }),
     );
   }
 }
