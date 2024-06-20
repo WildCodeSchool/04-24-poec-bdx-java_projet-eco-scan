@@ -1,19 +1,31 @@
 ::ng-deep .ngx-scanner-qrcode {
-  background-color: #474747;
+  background-color: var(--qr-code-color-bg);
+
+  height: 360px;
 }
 
 ::ng-deep .origin-video {
   width: 100%;
-  background-color: #474747;
   background-image: url("../../../../assets/svg/scan.svg");
   background-repeat: no-repeat;
   background-position: center;
-  height: 300px;
+  height: 360px !important;
+}
+
+.container {
+  height: 100vh;
+  .container__body {
+    display: flex;
+    height: calc(100vh - 430px);
+    padding-bottom: 70px;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 .bandeau {
   width: 100%;
-  background-color: #178b68;
+  background-color: var(--accentuation-color);
   height: 50px;
   display: flex;
   justify-content: center;
@@ -39,20 +51,6 @@
   }
 }
 
-.scan-btn {
-  display: flex;
-  margin: 20px auto;
-  border: none;
-  width: 150px;
-  height: 40px;
-  justify-content: center;
-  align-items: center;
-  font-family: "Lato", sans-serif;
-  color: white;
-  background-color: #2f323d;
-  border-radius: 3px;
-}
-
 .next-btn {
   display: flex;
   justify-content: space-around;
@@ -63,7 +61,7 @@
     height: 40px;
     font-family: "Lato", sans-serif;
     color: white;
-    background-color: #178b68;
+    background-color: var(--accentuation-color);
     border-radius: 3px;
     border: none;
   }
@@ -78,12 +76,12 @@
 
   .throw-btn:enabled {
     color: white;
-    background-color: #178b68;
+    background-color: var(--accentuation-color);
   }
 
   .throw-btn:disabled {
     color: white;
-    background-color: #2f323d;
+    background-color: var(--cta-color);
   }
 }
 

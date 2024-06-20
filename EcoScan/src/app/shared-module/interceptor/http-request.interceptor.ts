@@ -63,7 +63,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
             detail: err.error.Error,
           });
         }
-        return throwError(() => new Error('Une erreur est survenue'));
+        return throwError(() => new Error('Une erreur est survenue: ' + err.error.Error));
       })
     );
   }

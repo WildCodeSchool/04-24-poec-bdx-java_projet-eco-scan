@@ -29,4 +29,5 @@ export class ModalService {
   updatePromoList(newPromos: Promo[]) {
     this.promoListSubject.next(newPromos);
   }
+
 }

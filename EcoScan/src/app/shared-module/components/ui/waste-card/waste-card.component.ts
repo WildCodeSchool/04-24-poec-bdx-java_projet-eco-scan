@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Rubbish } from '../../../models/types/Rubbish.type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-waste-card',
@@ -12,4 +13,11 @@ export class WasteCardComponent {
 
   @Input()
   isThrow: boolean = false;
+
+  private router = inject(Router);
+
+  navToMap() {
+    this.router.navigate([`/map/${this.binType.type.name}`]);
+  }
+
 }

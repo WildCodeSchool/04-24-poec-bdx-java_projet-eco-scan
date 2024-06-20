@@ -1,13 +1,13 @@
 .footer {
   height: 7%;
   width: 100%;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   position: fixed;
 
   .color-bar {
     @extend .footer;
-    background: #2f323d;
+    background-color: var(--cta-color);
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     width: 100%;
@@ -21,7 +21,6 @@
   translate: 0px -35px;
   margin-bottom: 4rem;
   border-radius: 50%;
-  border: 7px solid #2f323d;
   width: 100px;
 }
 
