@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Promo } from '../../models/types/Promo.type';
 import { Modal } from '../../models/types/Modal.type';
+import { Promo } from '../../models/types/Promo.type';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +29,4 @@ export class ModalService {
   updatePromoList(newPromos: Promo[]) {
     this.promoListSubject.next(newPromos);
   }
-
 }

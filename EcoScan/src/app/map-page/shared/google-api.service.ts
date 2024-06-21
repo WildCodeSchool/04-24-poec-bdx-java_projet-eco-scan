@@ -20,13 +20,6 @@ export class GoogleApiService {
   private map!: google.maps.Map;
   private markerList: MarkerTuple[] = [];
 
-<<<<<<< Updated upstream
-=======
-  public initDependencies(): Observable<Bin[]> {
-    return this.DBAccessor.getAllBins$();
-  }
-
->>>>>>> Stashed changes
   public initMap(binList: Bin[]): Observable<void> {
     return this.createMap().pipe(
       tap(() => {

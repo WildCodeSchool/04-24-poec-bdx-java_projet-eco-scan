@@ -1,9 +1,11 @@
-<div *ngIf="showTransition" id="transition" class="transition">
-  <h1>ECOSCAN</h1>
-  <img
-    class="logo-no-text"
-    src="../../../../../assets/png/logo-no-text.png"
-    alt="logo"
-  />
-  <h4>Scanner vos déchets pour une meilleure société</h4>
+<div [@slideUp]="animationState">
+  <div *ngIf="showTransition" id="transition" class="transition">
+    <h1>ECOSCAN</h1>
+    <img
+      class="logo-no-text"
+      src="../../../../../assets/png/logo-no-text.png"
+      alt="logo"
+    />
+    <h4>Scanner vos déchets pour une meilleure société</h4>
+  </div>
 </div>

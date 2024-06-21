@@ -1,7 +1,6 @@
 <app-header headerPageTitle="SCAN"></app-header>
 
 <div class="container">
-
   <ngx-scanner-qrcode
     #action="scanner"
     [config]="config"
@@ -11,24 +10,15 @@
   <div class="container__body">
     <div class="bandeau">
       {{
-      scannedRubbish
-        ? ("Vous voulez jeter : " + scannedRubbish.type.name | uppercase)
-        : ("Comment scanner vos déchets" | uppercase)
-    }}
+        scannedRubbish
+          ? ("Vous voulez jeter : " + scannedRubbish.type.name | uppercase)
+          : ("Comment scanner vos déchets" | uppercase)
+      }}
     </div>
 
-    <div
-      *ngIf="!scannedRubbish"
-      class="info-container"
-    >
-      <div
-        *ngFor="let info of infos"
-        class="information"
-      >
-        <img
-          src="assets/svg/validation.svg"
-          alt=""
-        />
+    <div *ngIf="!scannedRubbish" class="info-container">
+      <div *ngFor="let info of infos" class="information">
+        <img src="assets/svg/validation.svg" alt="" />
         <p>{{ info }}</p>
       </div>
     </div>
@@ -41,18 +31,12 @@
       SCANNER
     </button>
 
-    <div
-      *ngIf="scannedRubbish"
-      class="next-pic"
-    >
+    <div *ngIf="scannedRubbish" class="next-pic">
       <div>
-        <app-waste-card [binType]="scannedRubbish"></app-waste-card>
+        <app-waste-card [rubbish]="scannedRubbish"></app-waste-card>
       </div>
       <div class="next-btn">
-        <button
-          class="staged-btn"
-          (click)="sendToStaged()"
-        >
+        <button class="staged-btn" (click)="sendToStaged()">
           Jeter plus tard
         </button>
         <button
@@ -66,6 +50,5 @@
       </div>
     </div>
   </div>
-
 </div>
 <app-footer></app-footer>
