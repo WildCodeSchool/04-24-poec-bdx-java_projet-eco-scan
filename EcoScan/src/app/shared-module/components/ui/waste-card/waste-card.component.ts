@@ -1,6 +1,10 @@
 import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { Rubbish } from '../../../models/types/Rubbish.type';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ScanService } from '../../../../scan/services/scan.service';
+import { GetUser } from '../../../models/types/GetUser.type';
+import { Deposit } from '../../../models/types/Deposits.type';
+import { DataAccessorService } from '../../../shared/services/data-accessor.service';
 
 @Component({
   selector: 'app-waste-card',
@@ -8,6 +12,8 @@ import { Router } from '@angular/router';
   styleUrl: './waste-card.component.scss',
 })
 export class WasteCardComponent {
+  user!: GetUser;
+
   @Input()
   rubbish!: Rubbish;
 
@@ -17,23 +23,64 @@ export class WasteCardComponent {
   @Input()
   isBinClose: boolean = false;
 
+  private scanService = inject(ScanService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private dbAccess = inject(DataAccessorService);
 
   navToMap() {
     this.router.navigate([`/map/${this.rubbish.type.name}`]);
   }
 
-  throwWaste() {
+  throwWaste(rubbish: Rubbish) {
     if (this.isBinClose) {
-      console.log('Trash successfully thrown');
-      // Supposons que vous avez une méthode pour supprimer de `staged waste` et ajouter à `deposit`
-      // this.scanService
-      //   .sendDeposit$({
-      //     /* propriétés de dépôt */
-      //   })
-      //   .subscribe(() => {
-      //     // Actualisez votre UI, supprimez de staged waste, etc.
-      //   });
+      this.scanService.checkBinsAreClose(rubbish).subscribe((binId) => {
+        if (binId) {
+          const newDeposit: Deposit = {
+            id: null,
+            user: {
+              id: Number(this.user.id),
+            },
+            rubbish: {
+              id: Number(this.rubbish.id),
+            },
+            bin: {
+              id: Number(binId),
+            },
+            scanData: 'Sample Scan Data',
+          };
+
+          this.scanService.sendDeposit$(newDeposit).subscribe({
+            next: (res) => {
+              console.log('Deposit successful', res);
+              this.isThrow = true;
+              this.dbAccess
+                .deleteStagedRubbish(this.user.staged.id, Number(rubbish.id))
+                .subscribe({
+                  next: (deleteRes) => {
+                    console.log(
+                      'Rubbish successfully deleted from staged',
+                      deleteRes,
+                    );
+                  },
+                  error: (deleteErr) => {
+                    console.error(
+                      'Error deleting rubbish from staged',
+                      deleteErr,
+                    );
+                  },
+                });
+            },
+            error: (err) => {
+              console.error('Error during deposit', err);
+            },
+          });
+        }
+      });
     }
+  }
+
+  ngOnInit() {
+    this.user = this.route.snapshot.data['user'];
   }
 }

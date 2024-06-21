@@ -5,25 +5,28 @@
       [src]="'data:image/svg+xml;base64,' + rubbish.type.pictogram"
     />
   </div>
-  <div class="waste-detail">
+  <div
+    class="waste-detail"
+    [ngStyle]="{ 'background-color': isBinClose ? '#178B68' : '' }"
+  >
     <div class="details">
       <h3>{{ rubbish.type.name }}</h3>
       <p>Poubelle : Verre</p>
-      <p>
+      <p class="rphm">
         Points : {{ rubbish.type.points }}
         <span><img src="assets/png/etoile.png" alt="" /> </span>
       </p>
     </div>
-    <div class="near" *ngIf="!isThrow">
+    <div class="near" *ngIf="!isThrow && !isBinClose" (click)="navToMap()">
       <p>poubelle la plus proche</p>
-      <img (click)="navToMap()" src="assets/svg/green-arrow.svg" alt="" />
+      <img src="assets/svg/green-arrow.svg" alt="" />
     </div>
     <div class="validated" *ngIf="isThrow">
       <img src="assets/svg/validation.svg" alt="validé" />
     </div>
-  </div>
-
-  <div>
-    <button *ngIf="isBinClose" (click)="throwWaste()">Jeter le déchet</button>
+    <div class="near" *ngIf="isBinClose" (click)="throwWaste(rubbish)">
+      <p>Jeter le déchet</p>
+      <img src="assets/svg/bleck-staged-arrow.svg" alt="" [width]="19" />
+    </div>
   </div>
 </div>

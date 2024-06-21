@@ -170,6 +170,18 @@ export class DataAccessorService {
       );
   }
 
+  deleteStagedRubbish(stagedId: number, rubbishId: number): Observable<void> {
+    return this.http
+      .delete<void>(
+        `${environment.database.path}/staged/${stagedId}/delete/rubbish/${rubbishId}`
+      )
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        })
+      );
+  }
+
   /*
      stagingArea
   */

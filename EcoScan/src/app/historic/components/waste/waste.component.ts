@@ -1,10 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetUser } from '../../../shared-module/models/types/GetUser.type';
-import { Subscription, interval } from 'rxjs';
-import { Rubbish } from '../../../shared-module/models/types/Rubbish.type';
-import { ScanService } from '../../../scan/services/scan.service';
-
 @Component({
   selector: 'app-waste',
   templateUrl: './waste.component.html',
