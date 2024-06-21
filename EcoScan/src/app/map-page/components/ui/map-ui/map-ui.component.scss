@@ -1,28 +1,35 @@
-
 .dropdown-container {
-    background-color: var(--accentuation-color);
-    width: 100%;
+  background-color: var(--accentuation-color);
+  width: 100%;
 }
 
 :host ::ng-deep .p-dropdown {
-    width: 100%;
-    left: 0 !important;
-    right: 0 !important;
+  width: 100%;
+  left: 0 !important;
+  right: 0 !important;
+  background-color: #178b68;
+  height: 25px;
 }
 
 :host ::ng-deep .p-dropdown-label {
-    font-size: larger;
-    text-indent: calc(50% - 60px);
+  font-size: larger;
+  text-indent: calc(50% - 60px);
+  color: white;
+  padding-left: 10px;
 }
 
 :host ::ng-deep .p.element {
-    font-size: larger;
+  font-size: larger;
+}
+
+::ng-deep .p-dropdown-trigger {
+  color: white;
 }
 
 :host ::ng-deep .p-dropdown-item {
-    font-size: larger;
-    background-color: var(--accentuation-color);
-    border: 1px solid white;
-    color: white;
-    text-align: center;
+  font-size: larger;
+  background-color: var(--accentuation-color);
+  border: 1px solid white;
+  color: white;
+  text-align: center;
 }

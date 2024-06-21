@@ -208,34 +208,4 @@ export class ScanComponent implements OnDestroy {
       this.subscriptions.push(sub);
     }
   }
-
-  updateUserLocation(): void {
-    navigator.geolocation.getCurrentPosition(
-      (position: GeolocationPosition) => {
-        this.location = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-      },
-      () => {
-        if (navigator.geolocation) {
-          this.handleLocationError(true);
-        } else {
-          this.handleLocationError(false);
-        }
-      }
-    );
-  }
-
-  private handleLocationError(browserHasGeolocation: boolean): void {
-    let error = browserHasGeolocation
-      ? 'Erreur : Le service de géolocalisation a échoué.'
-      : 'Erreur : Votre navigateur ne prend pas en charge la géolocalisation.';
-    console.log(error);
-    this.messageService.add({
-      severity: 'warn',
-      summary: 'Impossible de localiser',
-      detail: error,
-    });
-  }
 }

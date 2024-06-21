@@ -9,6 +9,10 @@ import { HostService } from '../../shared/host.service';
 import { UserForm } from '../../models/user.type';
 import { Message, MessageService } from 'primeng/api';
 
+type FieldNames = {
+  [key: string]: string;
+};
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -22,6 +26,14 @@ export class RegisterComponent {
     username: [],
     email: [],
     password: [],
+  };
+
+  fieldNames: FieldNames = {
+    firstname: 'Le prénom',
+    lastname: 'Le nom',
+    username: 'Le pseudo',
+    email: "L'email",
+    password: 'Le mot de passe',
   };
 
   registrationForm = this._fb.group({
@@ -69,17 +81,18 @@ export class RegisterComponent {
     control: AbstractControl,
     controlName: string
   ) {
+    const fieldName = this.fieldNames[controlName];
     if (control && control.errors) {
       if (control.errors['required']) {
         this.messages[controlName].push({
           severity: 'error',
-          summary: `${controlName} est requis`,
+          summary: `${fieldName} est requis`,
         });
       }
       if (control.errors['email']) {
         this.messages[controlName].push({
           severity: 'error',
-          summary: `L'${controlName} n'est pas valide`,
+          summary: `L'adresse email n'est pas valide`,
         });
       }
       if (control.errors['password']) {
@@ -97,7 +110,7 @@ export class RegisterComponent {
     } else {
       this.messages[controlName].push({
         severity: 'success',
-        summary: `${controlName} est valide`,
+        summary: `${fieldName} est valide`,
       });
     }
   }

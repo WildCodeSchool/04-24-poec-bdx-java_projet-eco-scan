@@ -101,6 +101,20 @@
   width: 90%;
   text-align: left;
 
+  .promos-amount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 12px;
+    position: relative;
+    bottom: 25px;
+    background-color: var(--cta-color);
+    border-radius: 2px;
+    margin: 10px 0 0;
+    color: white;
+    height: 30px;
+  }
+
   .brand-title {
     font-weight: bold;
     font-size: 18px;
@@ -139,7 +153,6 @@ h2 {
 .btn-promo {
   display: flex;
   justify-content: center;
-  margin: 20px 0 0;
 }
 
 .buy-button {
@@ -150,13 +163,10 @@ h2 {
   background-color: var(--accentuation-color);
   border-radius: 3px;
   width: 90%;
+  margin-bottom: 0px;
   img {
     width: 25px;
-    margin-right: .5em;
-  }
-  button {
-
-
+    margin-right: 0.5em;
   }
 }
 

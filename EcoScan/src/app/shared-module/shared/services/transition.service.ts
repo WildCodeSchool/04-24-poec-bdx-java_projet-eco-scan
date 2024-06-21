@@ -13,8 +13,8 @@ export class TransitionService {
   }
 
   endTransition() {
-    setTimeout(() => {
-      this._showTransition.next(false);
-    }, 3500);
+    // setTimeout(() => {
+    this._showTransition.next(false);
+    // }, 3500);
   }
 }

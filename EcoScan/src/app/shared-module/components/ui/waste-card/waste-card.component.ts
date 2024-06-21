@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class WasteCardComponent {
   @Input()
-  binType!: Rubbish;
+  rubbish!: Rubbish;
 
   @Input()
   isThrow: boolean = false;
@@ -17,7 +17,6 @@ export class WasteCardComponent {
   private router = inject(Router);
 
   navToMap() {
-    this.router.navigate([`/map/${this.binType.type.name}`]);
+    this.router.navigate([`/map/${this.rubbish.type.name}`]);
   }
-
 }
