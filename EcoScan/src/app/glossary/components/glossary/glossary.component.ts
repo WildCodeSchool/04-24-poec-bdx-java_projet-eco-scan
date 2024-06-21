@@ -19,6 +19,7 @@ export class GlossaryComponent {
       id: 1154,
       name: 'Telephone',
       pictogram: '',
+      pathOfImage: '',
       points: 1000,
       description: 'yoooo',
       bins: []
