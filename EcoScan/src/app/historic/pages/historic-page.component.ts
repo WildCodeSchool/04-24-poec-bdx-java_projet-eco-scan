@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import {
   landingPageAnimation,
+  openPageAnimation,
   slider,
 } from '../../shared-module/shared/services/route-animations';
 import {
@@ -20,6 +21,7 @@ import { GetUser } from '../../shared-module/models/types/GetUser.type';
   animations: [
     slider,
     landingPageAnimation,
+    openPageAnimation,
     trigger('buttonState', [
       state('inactive', style({ backgroundColor: 'transparent' })),
       state('active', style({ backgroundColor: 'green' })),

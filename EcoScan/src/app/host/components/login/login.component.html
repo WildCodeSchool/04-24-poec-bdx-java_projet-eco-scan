@@ -18,6 +18,10 @@
             placeholder="Votre addresse email"
             required
           />
+          <p-messages
+            [value]="messages['email']"
+            [closable]="false"
+          ></p-messages>
         </fieldset>
         <fieldset>
           <label for="user-password">Mot de passe *</label>
@@ -27,6 +31,10 @@
             placeholder="Mot de passe"
             required
           />
+          <p-messages
+            [value]="messages['password']"
+            [closable]="false"
+          ></p-messages>
         </fieldset>
         <p>Mot de passe oublié</p>
       </div>

@@ -44,6 +44,10 @@
 
       <div class="modal-logo-container">
         <div class="details-container">
+          <div class="promos-amount">
+            <p class="nb-amount">{{ cardData.amount }} promos restantes</p>
+            <!-- <p></p> -->
+          </div>
           <p>
             ECONOMISER {{ cardData.percentOff }}%
             <br />
@@ -54,7 +58,7 @@
             <br />
             DE LA MARQUE {{ cardData.brand.title | uppercase }}
           </p>
-          <p class="product">{{ cardData.description | uppercase }}</p>
+          <!-- <p class="product">{{ cardData.description | uppercase }}</p> -->
         </div>
         <img
           *ngIf="cardData.brand"
@@ -63,10 +67,18 @@
           [src]="'data:image/png;base64,' + cardData.brand.logo"
           alt="{{ cardData.brand.title }}"
         />
+        <p class="time-remaining">
+          Temps restant: {{ cardData.endDate | timeRemaining }}
+        </p>
       </div>
       <div class="btn-promo">
-        <button class="buy-button" *ngIf="showCode">VOIR LE CODE</button>
-        <button class="buy-button" *ngIf="showCode">VOIR LE CODE</button>
+        <button
+          *ngIf="showCode"
+          (click)="showPromoCode()"
+          class="btn buy-button"
+        >
+          {{ showCodePromo ? promoCode : "VOIR LE CODE" }}
+        </button>
         <button
           *ngIf="!showCode"
           class="btn buy-button"

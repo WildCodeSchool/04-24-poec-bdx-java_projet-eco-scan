@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GetUser } from '../../../models/types/GetUser.type';
 import { Promo } from '../../../models/types/Promo.type';
 import { Modal } from '../../../models/types/Modal.type';
-import { ModalService } from '../../../shared/services/Modal.service';
+import { ModalService } from '../../../shared/services/modal.service';
 
 @Component({
   selector: 'app-modal',
@@ -33,12 +33,34 @@ export class ModalComponent {
   user!: GetUser;
   modalState$: Observable<Modal> = this.modalService.modalState$;
 
+  showCodePromo: boolean = false;
+  promoCode: string | null = null;
+
   constructor(
     private userService: UserService,
     private modalService: ModalService,
     private dbAccess: DataAccessorService,
     private route: ActivatedRoute,
   ) {}
+
+  generatePromoCode(): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let code = '';
+    for (let i = 0; i < 10; i++) {
+      code += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return code;
+  }
+
+  showPromoCode() {
+    if (this.showCodePromo) {
+      this.showCodePromo = false;
+      this.promoCode = null;
+    } else {
+      this.promoCode = this.generatePromoCode();
+      this.showCodePromo = true;
+    }
+  }
 
   hideDialog() {
     this.modalService.closeModal();

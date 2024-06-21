@@ -1,8 +1,6 @@
 import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { Rubbish } from '../../../models/types/Rubbish.type';
 import { Router } from '@angular/router';
-import { ScanService } from '../../../../scan/services/scan.service';
-import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-waste-card',
@@ -11,7 +9,7 @@ import { Subscription, interval } from 'rxjs';
 })
 export class WasteCardComponent {
   @Input()
-  binType!: Rubbish;
+  rubbish!: Rubbish;
 
   @Input()
   isThrow: boolean = false;
@@ -22,7 +20,7 @@ export class WasteCardComponent {
   private router = inject(Router);
 
   navToMap() {
-    this.router.navigate([`/map/${this.binType.type.name}`]);
+    this.router.navigate([`/map/${this.rubbish.type.name}`]);
   }
 
   throwWaste() {

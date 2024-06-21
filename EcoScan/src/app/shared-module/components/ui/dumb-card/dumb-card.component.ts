@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Promo } from '../../../models/types/Promo.type';
-import { ModalService } from '../../../shared/services/Modal.service';
+import { ModalService } from '../../../shared/services/modal.service';
+
 @Component({
   selector: 'app-dumb-card',
   templateUrl: './dumb-card.component.html',

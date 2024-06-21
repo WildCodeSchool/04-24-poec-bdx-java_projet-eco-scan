@@ -14,6 +14,7 @@ import { ThousandKPipe } from './pipes/thousand-k.pipe';
 import { PromoGalleryComponent } from './components/ui/promo-gallery/promo-gallery.component';
 import { TransitionComponent } from './components/ui/transition/transition.component';
 import { HasPropertiesPipe } from './pipes/has-properties.pipe';
+import { TimeRemainingPipe } from './pipes/time-remaining.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HasPropertiesPipe } from './pipes/has-properties.pipe';
     PromoGalleryComponent,
     TransitionComponent,
     HasPropertiesPipe,
+    TimeRemainingPipe,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 <div class="waste-container" *ngIf="wasteObv$ | async as wasteObv">
   <div *ngFor="let waste of wasteObv">
     <app-waste-card
-      [binType]="waste.rubbish"
+      [rubbish]="waste.rubbish"
       [isBinClose]="waste.binClose"
     ></app-waste-card>
   </div>
