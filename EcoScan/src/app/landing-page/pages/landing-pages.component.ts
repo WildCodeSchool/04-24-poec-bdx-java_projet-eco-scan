@@ -14,11 +14,9 @@ import { ModalService } from '../../shared-module/shared/services/modal.service'
 })
 export class LandingPagesComponent {
   cardList$!: Observable<Promo[]>;
-  cardListByPercentOff$: Observable<Promo[]> =
-    this.cardService.getPromoByPercentOff$();
+  cardListByPercentOff$!: Observable<Promo[]>;
 
-  cardListByReleasedDate: Observable<Promo[]> =
-    this.cardService.getPromoByReleaseDate$();
+  cardListByReleasedDate$!: Observable<Promo[]>;
 
   isOpen!: boolean;
 
@@ -28,7 +26,6 @@ export class LandingPagesComponent {
     private route: ActivatedRoute,
     private userService: UserService,
     private modalService: ModalService,
-    private cardService: CardService,
   ) {}
 
   onReceivedFromHeader(open: boolean): void {
@@ -40,6 +37,28 @@ export class LandingPagesComponent {
       map((data) => data['promos']),
       switchMap((initialPromos) =>
         this.modalService.promoList$.pipe(
+          map((updatedPromos) =>
+            updatedPromos.length ? updatedPromos : initialPromos,
+          ),
+        ),
+      ),
+    );
+
+    this.cardListByPercentOff$ = this.route.data.pipe(
+      map((data) => data['promoByPercent']),
+      switchMap((initialPromos) =>
+        this.modalService.promoListByPercentOff$.pipe(
+          map((updatedPromos) =>
+            updatedPromos.length ? updatedPromos : initialPromos,
+          ),
+        ),
+      ),
+    );
+
+    this.cardListByReleasedDate$ = this.route.data.pipe(
+      map((data) => data['promoByDate']),
+      switchMap((initialPromos) =>
+        this.modalService.promoListByReleasedDate$.pipe(
           map((updatedPromos) =>
             updatedPromos.length ? updatedPromos : initialPromos,
           ),

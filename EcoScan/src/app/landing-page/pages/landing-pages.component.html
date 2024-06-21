@@ -6,7 +6,7 @@
 
   <div
     class="card-container"
-    *ngIf="cardListByReleasedDate | async as promoListByReleasedDate"
+    *ngIf="cardListByReleasedDate$ | async as promoListByReleasedDate"
   >
     <div *ngFor="let promo of promoListByReleasedDate">
       <app-dumb-card [promo]="promo" [blurCards]="isOpen"></app-dumb-card>
@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <app-promo-gallery title="MEILLEURS PRIX"></app-promo-gallery>
+  <app-promo-gallery title="TOUTES LES PROMOS"></app-promo-gallery>
 
   <div class="card-container" *ngIf="cardList$ | async as cardList">
     <div *ngFor="let promo of cardList">
@@ -32,6 +32,7 @@
     </div>
   </div>
 
+  <div class="r"></div>
   <app-modal />
 
   <app-footer [scanButton]="true"></app-footer>
