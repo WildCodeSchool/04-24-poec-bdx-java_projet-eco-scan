@@ -46,7 +46,6 @@
         <div class="details-container">
           <div class="promos-amount">
             <p class="nb-amount">{{ cardData.amount }} promos restantes</p>
-            <!-- <p></p> -->
           </div>
           <p>
             ECONOMISER {{ cardData.percentOff }}%
@@ -58,7 +57,6 @@
             <br />
             DE LA MARQUE {{ cardData.brand.title | uppercase }}
           </p>
-          <!-- <p class="product">{{ cardData.description | uppercase }}</p> -->
         </div>
         <img
           *ngIf="cardData.brand"
