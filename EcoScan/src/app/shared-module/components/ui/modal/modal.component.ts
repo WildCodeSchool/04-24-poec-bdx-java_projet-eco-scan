@@ -4,7 +4,7 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { DataAccessorService } from '../../../shared/services/data-accessor.service';
 import { UserService } from '../../../shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
@@ -40,7 +40,7 @@ export class ModalComponent {
     private userService: UserService,
     private modalService: ModalService,
     private dbAccess: DataAccessorService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   generatePromoCode(): string {
@@ -71,8 +71,13 @@ export class ModalComponent {
       this.userService.refreshUser();
       this.dbAccess.getAllPromos$().subscribe((updatedPromos: Promo[]) => {
         this.modalService.updatePromoList(updatedPromos);
+        this.dbAccess.getPromoByPercentOff$().subscribe((promosByPercent) => {
+          this.modalService.updatePromoListByPercentOff(promosByPercent);
+        });
+        this.dbAccess.getPromoByReleaseDate$().subscribe((promosByDate) => {
+          this.modalService.updatePromoListByReleasedDate(promosByDate);
+        });
       });
-
       this.modalService.closeModal();
     });
   }

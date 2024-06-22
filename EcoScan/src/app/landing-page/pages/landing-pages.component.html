@@ -4,30 +4,35 @@
 
   <app-promo-gallery title="NOUVELLES PROMOS"></app-promo-gallery>
 
-  <div class="card-container" *ngIf="cardList$ | async as cardList">
-    <div *ngFor="let promo of cardList">
+  <div
+    class="card-container"
+    *ngIf="cardListByReleasedDate$ | async as promoListByReleasedDate"
+  >
+    <div *ngFor="let promo of promoListByReleasedDate">
       <app-dumb-card [promo]="promo" [blurCards]="isOpen"></app-dumb-card>
     </div>
   </div>
 
   <app-promo-gallery title="MEILLEURES PROMOS"></app-promo-gallery>
 
+  <div
+    class="card-container"
+    *ngIf="cardListByPercentOff$ | async as promoPerPercentOff"
+  >
+    <div *ngFor="let promo of promoPerPercentOff">
+      <app-dumb-card [promo]="promo" [blurCards]="isOpen"></app-dumb-card>
+    </div>
+  </div>
+
+  <app-promo-gallery title="TOUTES LES PROMOS"></app-promo-gallery>
+
   <div class="card-container" *ngIf="cardList$ | async as cardList">
     <div *ngFor="let promo of cardList">
       <app-dumb-card [promo]="promo" [blurCards]="isOpen"></app-dumb-card>
     </div>
   </div>
 
-  <app-promo-gallery title="VOS PROMOS FAVORITES"></app-promo-gallery>
-
-  <div class="card-container" *ngIf="cardList$ | async as cardList">
-    <div *ngFor="let promo of cardList">
-      <app-dumb-card [promo]="promo" [blurCards]="isOpen"></app-dumb-card>
-    </div>
-  </div>
-
-  <app-promo-gallery title="GROS PRIX"></app-promo-gallery>
-
+  <div class="r"></div>
   <app-modal />
 
   <app-footer [scanButton]="true"></app-footer>

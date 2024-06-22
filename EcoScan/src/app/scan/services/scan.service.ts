@@ -15,14 +15,14 @@ import { environment } from '../../../environments/environment';
 export class ScanService {
   constructor(
     private dbAccessor: DataAccessorService,
-    private locationService: LocationService
+    private locationService: LocationService,
   ) {}
 
   getRubbishById$(id: string): Observable<Rubbish> {
     return this.dbAccessor.getRubbishByID$(id);
   }
 
-  generateRubbish$(newRubbish: Rubbish): Observable<Rubbish>{
+  generateRubbish$(newRubbish: Rubbish): Observable<Rubbish> {
     return this.dbAccessor.addRubbish$(newRubbish);
   }
 
@@ -47,24 +47,27 @@ export class ScanService {
 
             for (const bin of type.bins) {
               const binLocation = this.locationService.splitLongAndLat(
-                bin.localisation
+                bin.localisation,
               );
               const latDiff = parseFloat(
-                Math.abs(binLocation.lat - location.lat).toFixed(6)
+                Math.abs(binLocation.lat - location.lat).toFixed(6),
               );
               const lngDiff = parseFloat(
-                Math.abs(binLocation.lng - location.lng).toFixed(6)
+                Math.abs(binLocation.lng - location.lng).toFixed(6),
               );
               console.log(latDiff + ' - ' + lngDiff);
 
-              if (latDiff <= environment.parameters.scanDistance || lngDiff <= environment.parameters.scanDistance) {
+              if (
+                latDiff <= environment.parameters.scanDistance ||
+                lngDiff <= environment.parameters.scanDistance
+              ) {
                 return of(bin.id);
               }
             }
             return of('');
-          })
+          }),
         );
-      })
+      }),
     );
   }
 }
