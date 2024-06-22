@@ -4,6 +4,7 @@ import { GetUser } from '../../shared-module/models/types/GetUser.type';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
 import { UserService } from '../../shared-module/shared/services/user.service';
+import { CardService } from '../../shared-module/shared/services/card.service';
 import { ModalService } from '../../shared-module/shared/services/modal.service';
 
 @Component({
@@ -13,6 +14,9 @@ import { ModalService } from '../../shared-module/shared/services/modal.service'
 })
 export class LandingPagesComponent {
   cardList$!: Observable<Promo[]>;
+  cardListByPercentOff$!: Observable<Promo[]>;
+
+  cardListByReleasedDate$!: Observable<Promo[]>;
 
   isOpen!: boolean;
 
@@ -21,7 +25,7 @@ export class LandingPagesComponent {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private modalService: ModalService
+    private modalService: ModalService,
   ) {}
 
   onReceivedFromHeader(open: boolean): void {
@@ -34,10 +38,32 @@ export class LandingPagesComponent {
       switchMap((initialPromos) =>
         this.modalService.promoList$.pipe(
           map((updatedPromos) =>
-            updatedPromos.length ? updatedPromos : initialPromos
-          )
-        )
-      )
+            updatedPromos.length ? updatedPromos : initialPromos,
+          ),
+        ),
+      ),
+    );
+
+    this.cardListByPercentOff$ = this.route.data.pipe(
+      map((data) => data['promoByPercent']),
+      switchMap((initialPromos) =>
+        this.modalService.promoListByPercentOff$.pipe(
+          map((updatedPromos) =>
+            updatedPromos.length ? updatedPromos : initialPromos,
+          ),
+        ),
+      ),
+    );
+
+    this.cardListByReleasedDate$ = this.route.data.pipe(
+      map((data) => data['promoByDate']),
+      switchMap((initialPromos) =>
+        this.modalService.promoListByReleasedDate$.pipe(
+          map((updatedPromos) =>
+            updatedPromos.length ? updatedPromos : initialPromos,
+          ),
+        ),
+      ),
     );
   }
 }

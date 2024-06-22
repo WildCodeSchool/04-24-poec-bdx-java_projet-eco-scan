@@ -12,4 +12,8 @@ export class RubbishService {
   getStaged$(id: string): Observable<StagedRubbish> {
     return this._dbAccess.getMystaged$(id);
   }
+
+  deleteRubbish$(id: number): Observable<StagedRubbish> {
+    return this._dbAccess.
+  }
 }
