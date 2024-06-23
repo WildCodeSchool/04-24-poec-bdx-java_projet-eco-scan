@@ -5,7 +5,7 @@
     #promoForm="ngForm"
     (ngSubmit)="promoConstructor.valid && onSubmit()"
   >
-    <h1>Créez une promotion</h1>
+    <h1>Créer une promotion</h1>
     <div>
       <label for="title">Titre : </label>
       <input name="title" type="text" formControlName="title" required />
@@ -18,12 +18,13 @@
 
     <div>
       <label for="description">Description : </label>
-      <input
+      <textarea
         name="description"
         type="text"
         formControlName="description"
         required
-      />
+      >
+      </textarea>
     </div>
 
     <div>
@@ -48,7 +49,7 @@
       />
     </div>
     <div>
-      <label for="amount">Rachat : </label>
+      <label for="amount">Nombre de promo : </label>
       <input
         name="amount"
         type="number"

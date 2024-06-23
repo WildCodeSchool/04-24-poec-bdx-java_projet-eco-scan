@@ -15,6 +15,7 @@ import { PromoGalleryComponent } from './components/ui/promo-gallery/promo-galle
 import { TransitionComponent } from './components/ui/transition/transition.component';
 import { HasPropertiesPipe } from './pipes/has-properties.pipe';
 import { TimeRemainingPipe } from './pipes/time-remaining.pipe';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TimeRemainingPipe } from './pipes/time-remaining.pipe';
     DialogModule,
     ButtonModule,
     FormsModule,
+    ConfirmPopupModule,
   ],
   exports: [
     FooterComponent,

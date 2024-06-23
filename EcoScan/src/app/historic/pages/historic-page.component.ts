@@ -23,17 +23,44 @@ import { GetUser } from '../../shared-module/models/types/GetUser.type';
     landingPageAnimation,
     openPageAnimation,
     trigger('buttonState', [
-      state('inactive', style({ backgroundColor: 'transparent' })),
-      state('active', style({ backgroundColor: 'green' })),
+      state(
+        'inactive',
+        style({
+          backgroundColor: 'transparent',
+          color: 'black',
+        })
+      ),
+      state(
+        'active',
+        style({
+          backgroundColor: 'green',
+          color: 'white',
+        })
+      ),
       transition('inactive => active', animate('100ms ease-in')),
       transition('active => inactive', animate('100ms ease-out')),
+    ]),
+    trigger('slideButton', [
+      transition('inactive => active', [
+        style({ backgroundColor: 'transparent', transform: 'translateX(0%)' }),
+        animate(
+          '600ms ease',
+          style({ backgroundColor: 'green', transform: 'translateX(100%)' })
+        ),
+      ]),
+      transition('active => inactive', [
+        style({ backgroundColor: 'green', transform: 'translateX(100%)' }),
+        animate(
+          '600ms ease',
+          style({ backgroundColor: 'transparent', transform: 'translateX(0%)' })
+        ),
+      ]),
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistoricPageComponent {
   user!: GetUser;
-
   constructor(private route: ActivatedRoute) {}
 
   prepareRoute(outlet: RouterOutlet) {

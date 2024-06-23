@@ -1,27 +1,40 @@
 <div [@openPageAnimation]>
-  <div [@landingPageAnimation]>
+  <div [@landingPageAnimation] class="all">
     <app-header headerPageTitle="HISTORIQUE"></app-header>
 
     <div class="route-btn">
       <div
+        class="slide-background"
+        [style.transform]="
+          isPromosRoute(outlet) ? 'translateX(0%)' : 'translateX(100%)'
+        "
+      ></div>
+      <div
         class="promos"
         [routerLink]="['/historic/promos']"
-        [@buttonState]="isPromosRoute(outlet) ? 'active' : 'inactive'"
+        [ngClass]="{
+          'active-btn': isPromosRoute(outlet),
+          'inactive-btn': !isPromosRoute(outlet)
+        }"
       >
         <h4>PROMOS</h4>
       </div>
       <div
         class="waste"
         [routerLink]="['/historic/waste']"
-        [@buttonState]="isWasteRoute(outlet) ? 'active' : 'inactive'"
+        [ngClass]="{
+          'active-btn': isWasteRoute(outlet),
+          'inactive-btn': !isWasteRoute(outlet)
+        }"
       >
-        <h4>DECHETS</h4>
+        <h4 class="dechet">DECHETS</h4>
       </div>
     </div>
 
     <main [@routeAnimation]="prepareRoute(outlet)" class="content">
       <router-outlet #outlet="outlet"></router-outlet>
     </main>
+
     <footer>
       <app-footer [scanButton]="true"></app-footer>
     </footer>

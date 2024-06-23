@@ -22,6 +22,17 @@ input {
   border: 1px solid grey;
 }
 
+textarea {
+  display: flex;
+  margin-top: 10px;
+  border-radius: 8px;
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 70px;
+  max-height: 100px;
+  padding: 0.2rem;
+  border: 1px solid grey;
+}
 .btn-container {
   display: flex;
   justify-content: center;

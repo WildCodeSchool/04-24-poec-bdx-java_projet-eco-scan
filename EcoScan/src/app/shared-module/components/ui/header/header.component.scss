@@ -23,9 +23,11 @@
 
     #mapSearch {
       height: 30px;
+      width: 200px;
       border-radius: 14px;
-      padding-left: 10px;
+      padding-left: 20px;
       margin-top: 5px;
+      margin-left: 40px;
 
       &:focus {
         border: none;

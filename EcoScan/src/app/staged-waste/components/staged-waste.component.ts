@@ -25,21 +25,15 @@ export class StagedWasteComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private scanService: ScanService,
+    private scanService: ScanService
   ) {}
 
   ngOnInit() {
     this.user = this.route.snapshot.data['user'];
     console.log(this.user);
 
-    // this.wastesList = this.user.staged.rubbish;
-    this.wasteObv$.next(
-      this.user.staged.rubbish.map((waste) => {
-        let bc = { rubbish: waste, binClose: false };
-        this.wastesList.push(bc);
-        return bc;
-      }),
-    );
+    this.initializeWasteList(this.user.staged.rubbish);
+
     this.subscription = interval(this.checkInterval).subscribe(() => {
       console.log('executin check');
 
@@ -55,6 +49,18 @@ export class StagedWasteComponent implements OnInit, OnDestroy {
     }
   }
 
+  initializeWasteList(rubbishList: Rubbish[] | null | undefined) {
+    if (!rubbishList) {
+      this.wastesList = [];
+    } else {
+      this.wastesList = rubbishList.map((waste) => ({
+        rubbish: waste,
+        binClose: false,
+      }));
+    }
+    this.wasteObv$.next(this.wastesList);
+  }
+
   checkProximityForAllWaste() {
     for (let waste of this.wastesList) {
       this.scanService
@@ -62,10 +68,14 @@ export class StagedWasteComponent implements OnInit, OnDestroy {
         .pipe(
           map((binId) => {
             waste.binClose = !!binId;
-          }),
+          })
         )
         .subscribe();
     }
     this.wasteObv$.next(this.wastesList);
+  }
+
+  handleWasteDeleted(updatedRubbishList: Rubbish[]) {
+    this.initializeWasteList(updatedRubbishList);
   }
 }

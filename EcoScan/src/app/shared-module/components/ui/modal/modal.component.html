@@ -1,3 +1,5 @@
+<p-confirmPopup></p-confirmPopup>
+
 <div
   class="card flex justify-content-center"
   *ngIf="modalState$ | async as modal"
@@ -80,7 +82,7 @@
         <button
           *ngIf="!showCode"
           class="btn buy-button"
-          (click)="buyPromo(cardData.id)"
+          (click)="confirm($event, cardData.id, cardData.price)"
         >
           <img src="/assets/png/point-landing-page.png" />
           UTILISER MES POINTS

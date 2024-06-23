@@ -178,3 +178,28 @@ h2 {
   padding: 2em;
   justify-content: center;
 }
+
+::ng-deep .p-confirm-popup {
+  .p-confirm-popup-content {
+    padding: 1em;
+    font-size: 1.2em;
+    color: #333;
+    background-color: red;
+  }
+
+  .p-confirm-popup-icon {
+    color: #f44336;
+    font-size: 2em;
+    margin-right: 1em;
+  }
+
+  .p-confirm-popup-message {
+    font-size: 1.2em;
+  }
+
+  .p-confirm-popup-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+  }
+}

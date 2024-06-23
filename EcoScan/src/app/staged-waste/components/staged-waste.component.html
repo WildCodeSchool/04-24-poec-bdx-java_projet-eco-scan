@@ -3,6 +3,7 @@
     <app-waste-card
       [rubbish]="waste.rubbish"
       [isBinClose]="waste.binClose"
+      (wasteDeleted)="handleWasteDeleted($event)"
     ></app-waste-card>
   </div>
 </div>
