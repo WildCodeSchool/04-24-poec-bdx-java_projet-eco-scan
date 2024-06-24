@@ -1,8 +1,32 @@
-<div class="menu">
-    <a class="menu-item" [routerLink]="['/admin/promos']"><img class="menu-img" src="assets/svg/promo-box.svg"><p class="menu-text">Promo management</p></a>
-    <a class="menu-item" [routerLink]="['/admin/types']"><img class="menu-img" src="assets/svg/promo-box.svg"><p class="menu-text">Type management</p></a>
-    <a class="menu-item" [routerLink]="['/admin/brands']"><img class="menu-img" src="assets/svg/promo-box.svg"><p class="menu-text">Brand management</p></a>
-    <a class="menu-item" [routerLink]="['/admin/stats']"><img class="menu-img" src="assets/svg/stats.svg"><p class="menu-text">Statistics</p></a>
-    <a class="menu-item" [routerLink]="['/admin']"><img class="menu-img" src="assets/svg/settings.svg"><p class="menu-text" >Settings</p></a>
-
-</div>
+<nav class="sidebar-navigation">
+  <ul>
+    <a [routerLink]="['/admin/promos']">
+      <li class="active">
+        <i class="fa fa-share-alt"></i>
+        <img class="menu-img" src="assets/png/promotion.png" width="20" />
+        <span class="tooltip"> Promo management </span>
+      </li></a
+    >
+    <a class="menu-item" [routerLink]="['/admin/types']">
+      <li>
+        <i class="fa fa-hdd-o"></i>
+        <img class="menu-img" src="assets/png/type-icon.png" width="20" />
+        <span class="tooltip">Type management</span>
+      </li></a
+    >
+    <a class="menu-item" [routerLink]="['/admin/brands']">
+      <li>
+        <i class="fa fa-hdd-o"></i>
+        <img class="menu-img" src="assets/png/brand.png" width="20" />
+        <span class="tooltip">Brands</span>
+      </li></a
+    >
+    <a [routerLink]="['']"
+      ><li>
+        <i class="fa fa-newspaper-o" (click)="logout()"></i>
+        <img class="menu-img" src="assets\svg\disconnect.svg" width="20" />
+        <span class="tooltip">Disconnection</span>
+      </li>
+    </a>
+  </ul>
+</nav>

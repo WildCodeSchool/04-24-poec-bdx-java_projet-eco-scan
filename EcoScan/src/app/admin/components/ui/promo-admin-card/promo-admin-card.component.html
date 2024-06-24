@@ -39,8 +39,20 @@
   <div class="detail-row">
     <p id="small-date">{{ promo.startDate }} - {{ promo.endDate }}</p>
     <div class="btn-part">
-      <button type="button" (click)="deletePromo(promo)">Supprimer</button>
-      <button type="button" (click)="suspendPromo(promo)">Susprendre</button>
+      <button
+        type="button"
+        class="delete-promo-admin"
+        (click)="deletePromo(promo)"
+      >
+        Supprimer
+      </button>
+      <button
+        type="button"
+        class="suspend-promo-admin"
+        (click)="suspendPromo(promo)"
+      >
+        Susprendre
+      </button>
     </div>
   </div>
 </div>

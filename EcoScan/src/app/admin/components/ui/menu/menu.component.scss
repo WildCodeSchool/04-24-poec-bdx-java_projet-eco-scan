@@ -2,19 +2,15 @@
   display: flex;
   flex-direction: column;
 
-  width: 20vw;
+  width: 3rem;
   height: 100%;
 
   gap: 2rem;
-  padding: 2rem;
+  padding: 1rem;
 
   .menu-item {
     display: flex;
     gap: 1rem;
-  }
-
-  .menu-img {
-    width: 10%;
   }
 
   .menu-text {
@@ -32,5 +28,98 @@
   a:hover {
     color: grey;
     top: -2px;
+  }
+}
+
+//Basics
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: "Lato", sans-serif;
+  line-height: 1;
+}
+
+body {
+  background-color: #f5f6f8;
+  overflow: hidden;
+}
+
+//Color Variables
+$sidebar-background-color: #313443;
+$active-sidebar-link-color: #efefef;
+$hover-sidebar-link-color: $active-sidebar-link-color;
+$active-link-color: #98d7ec;
+$tooltip-background-color: $sidebar-background-color;
+
+.sidebar-navigation {
+  display: block;
+  width: 80px;
+  background-color: $sidebar-background-color;
+  height: fit-content;
+  position: relative;
+  background-color: white;
+  margin: 3rem;
+  border-radius: 1rem;
+
+  ul {
+    text-align: center;
+    color: white;
+
+    li {
+      padding: 28px 0;
+      cursor: pointer;
+      transition: all ease-out 120ms;
+      border-radius: 1rem;
+
+      i {
+        display: block;
+        font-size: 24px;
+
+        transition: all ease 450ms;
+      }
+
+      .tooltip {
+        display: inline-block;
+        position: absolute;
+        background-color: $tooltip-background-color;
+        padding: 8px 15px;
+        border-radius: 3px;
+        margin-top: -26px;
+        left: 90px;
+        opacity: 0;
+        visibility: hidden;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        color: white;
+
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          left: -4px;
+          top: 10px;
+          transform: rotate(45deg);
+          width: 10px;
+          height: 10px;
+          background-color: inherit;
+        }
+      }
+
+      &:hover {
+        background-color: #efefef;
+
+        .tooltip {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
+      &.active {
+        i {
+          color: $active-link-color;
+        }
+      }
+    }
   }
 }

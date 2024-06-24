@@ -1,9 +1,9 @@
 .type-form {
-  margin: 3rem;
+  margin-top: 3rem;
   padding: 3rem;
   background-color: #efefef;
-  border-radius: 25px;
-  width: max-content;
+  border-radius: 15px;
+  width: 468px;
 }
 
 div {
@@ -13,7 +13,6 @@ div {
 form {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 input {

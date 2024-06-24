@@ -1,21 +1,22 @@
 .brand-card {
-    display: flex;
-    gap: 1rem;
-    background-color: white;
-    margin: 1rem;
-    box-shadow: 0px 0px 4px 2px rgb(0, 0, 0, 0.45);
-    padding: 1rem;
-    justify-content: space-between;
+  display: flex;
+  gap: 1rem;
+  background-color: white;
+  margin: 1rem;
+  box-shadow: 0px 0px 4px 2px rgb(0, 0, 0, 0.45);
+  padding: 1rem;
+  justify-content: space-between;
+  width: 600px;
 
-    button {
-        margin: 1rem;
-        border-radius: 10px;
-        padding: 6px;
-    }
+  button {
+    margin: 1rem;
+    border-radius: 10px;
+    padding: 6px;
+  }
 }
 
-.fields{
-    p{
-        padding: 0.3rem;
-    }
+.fields {
+  p {
+    padding: 0.3rem;
+  }
 }
