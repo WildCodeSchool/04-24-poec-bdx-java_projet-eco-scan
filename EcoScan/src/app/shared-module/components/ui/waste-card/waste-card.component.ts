@@ -2,8 +2,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnDestroy,
-  OnInit,
   Output,
   inject,
 } from '@angular/core';
@@ -56,7 +54,6 @@ export class WasteCardComponent {
 
           this.scanService.sendDeposit$(newDeposit).subscribe({
             next: (res) => {
-              console.log('Deposit successful', res);
               this.isThrow = true;
               this.dbAccess
                 .deleteStagedRubbish(this.user.staged.id, Number(rubbish.id))

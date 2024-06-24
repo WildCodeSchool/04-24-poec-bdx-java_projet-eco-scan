@@ -1,6 +1,17 @@
-<div class="waste-container" *ngIf="wasteObv$ | async as wasteObv">
-  <div *ngFor="let waste of wasteObv">
-    <app-waste-card
+<div class="proximity-check">
+  <div *ngIf="hideSpinner$ | async as spinner; else proximityButton">
+    <button class="proximity-button" (click)="checkBinsAreClose()">Vérifier la proximité</button>
+  </div>
+  <ng-template #proximityButton>
+    <p-progressSpinner 
+      styleClass="proximity-spinner"
+      ariaLabel="loading" />
+  </ng-template>
+</div>
+
+<div class="waste-container" *ngIf="stagedList$ | async as stagedList">
+  <div *ngFor="let waste of stagedList">
+    <app-waste-card 
       [rubbish]="waste.rubbish"
       [isBinClose]="waste.binClose"
       (wasteDeleted)="handleWasteDeleted($event)"

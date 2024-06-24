@@ -3,3 +3,23 @@
   flex-direction: column;
   margin: 10px auto 60px;
 }
+
+.proximity-check{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+
+}
+
+.proximity-button{
+  background-color: var(--cta-color);
+  padding: 0.5rem;
+  border: none;
+  color: white;
+}
+
+.proximity-spinner{
+  width: 3rem;
+  height: 3rem;
+}
