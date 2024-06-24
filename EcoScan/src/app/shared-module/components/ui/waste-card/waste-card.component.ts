@@ -1,4 +1,12 @@
-import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { Rubbish } from '../../../models/types/Rubbish.type';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ScanService } from '../../../../scan/services/scan.service';
@@ -23,6 +31,8 @@ export class WasteCardComponent {
   @Input()
   isBinClose: boolean = false;
 
+  @Output() wasteDeleted = new EventEmitter<Rubbish[]>();
+
   private scanService = inject(ScanService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
@@ -38,15 +48,9 @@ export class WasteCardComponent {
         if (binId) {
           const newDeposit: Deposit = {
             id: null,
-            user: {
-              id: Number(this.user.id),
-            },
-            rubbish: {
-              id: Number(this.rubbish.id),
-            },
-            bin: {
-              id: Number(binId),
-            },
+            user: { id: Number(this.user.id) },
+            rubbish: { id: Number(this.rubbish.id) },
+            bin: { id: Number(binId) },
             scanData: 'Sample Scan Data',
           };
 
@@ -57,16 +61,14 @@ export class WasteCardComponent {
               this.dbAccess
                 .deleteStagedRubbish(this.user.staged.id, Number(rubbish.id))
                 .subscribe({
-                  next: (deleteRes) => {
-                    console.log(
-                      'Rubbish successfully deleted from staged',
-                      deleteRes,
-                    );
+                  next: (updatedRubbishList) => {
+                    console.log('Rubbish successfully deleted from staged');
+                    this.wasteDeleted.emit(updatedRubbishList);
                   },
                   error: (deleteErr) => {
                     console.error(
                       'Error deleting rubbish from staged',
-                      deleteErr,
+                      deleteErr
                     );
                   },
                 });

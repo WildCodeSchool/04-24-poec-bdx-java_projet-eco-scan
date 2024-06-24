@@ -1,3 +1,5 @@
+<p-confirmPopup></p-confirmPopup>
+
 <div
   class="card flex justify-content-center"
   *ngIf="modalState$ | async as modal"
@@ -46,7 +48,6 @@
         <div class="details-container">
           <div class="promos-amount">
             <p class="nb-amount">{{ cardData.amount }} promos restantes</p>
-            <!-- <p></p> -->
           </div>
           <p>
             ECONOMISER {{ cardData.percentOff }}%
@@ -58,7 +59,6 @@
             <br />
             DE LA MARQUE {{ cardData.brand.title | uppercase }}
           </p>
-          <!-- <p class="product">{{ cardData.description | uppercase }}</p> -->
         </div>
         <img
           *ngIf="cardData.brand"
@@ -82,7 +82,7 @@
         <button
           *ngIf="!showCode"
           class="btn buy-button"
-          (click)="buyPromo(cardData.id)"
+          (click)="confirm($event, cardData.id, cardData.price)"
         >
           <img src="/assets/png/point-landing-page.png" />
           UTILISER MES POINTS

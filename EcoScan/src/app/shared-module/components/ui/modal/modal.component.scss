@@ -112,7 +112,7 @@
     border-radius: 2px;
     margin: 10px 0 0;
     color: white;
-    height: 30px;
+    height: 40px;
   }
 
   .brand-title {
@@ -164,6 +164,7 @@ h2 {
   border-radius: 3px;
   width: 90%;
   margin-bottom: 0px;
+  height: 50px;
   img {
     width: 25px;
     margin-right: 0.5em;
@@ -176,4 +177,29 @@ h2 {
   margin: 0 auto;
   padding: 2em;
   justify-content: center;
+}
+
+::ng-deep .p-confirm-popup {
+  .p-confirm-popup-content {
+    padding: 1em;
+    font-size: 1.2em;
+    color: #333;
+    background-color: red;
+  }
+
+  .p-confirm-popup-icon {
+    color: #f44336;
+    font-size: 2em;
+    margin-right: 1em;
+  }
+
+  .p-confirm-popup-message {
+    font-size: 1.2em;
+  }
+
+  .p-confirm-popup-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+  }
 }

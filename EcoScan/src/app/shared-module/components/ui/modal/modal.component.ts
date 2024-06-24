@@ -12,11 +12,12 @@ import { GetUser } from '../../../models/types/GetUser.type';
 import { Promo } from '../../../models/types/Promo.type';
 import { Modal } from '../../../models/types/Modal.type';
 import { ModalService } from '../../../shared/services/modal.service';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss',
+  styleUrls: ['./modal.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class ModalComponent {
@@ -41,6 +42,7 @@ export class ModalComponent {
     private modalService: ModalService,
     private dbAccess: DataAccessorService,
     private route: ActivatedRoute,
+    private confirmationService: ConfirmationService
   ) {}
 
   generatePromoCode(): string {
@@ -64,6 +66,24 @@ export class ModalComponent {
 
   hideDialog() {
     this.modalService.closeModal();
+  }
+
+  confirm(event: Event, promoId: number, promoPrice: number) {
+    const target = event.target as HTMLElement;
+    if (!target) {
+      console.error('Event target is null');
+      return;
+    }
+
+    const remainingPoints = this.user.points - promoPrice;
+    this.confirmationService.confirm({
+      target: target,
+      message: `Êtes-vous sûr de vouloir acheter cette promotion ? Vos points (${this.user.points}) - le prix de la promotion (${promoPrice}) = vos points restants (${remainingPoints})`,
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.buyPromo(promoId);
+      },
+    });
   }
 
   buyPromo(promoId: number) {

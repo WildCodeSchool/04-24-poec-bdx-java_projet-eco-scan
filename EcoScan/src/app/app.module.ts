@@ -5,11 +5,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared-module/shared-module.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { TokenInterceptorInterceptor } from './shared-module/interceptor/http-request.interceptor';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { TokenInterceptorInterceptor } from './shared-module/interceptor/http-re
   ],
   providers: [
     MessageService,
+    ConfirmationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorInterceptor,
