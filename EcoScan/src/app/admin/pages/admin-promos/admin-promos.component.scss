@@ -2,10 +2,17 @@
   background-color: #d7d5cb;
   display: flex;
   width: 100vw;
+  justify-content: space-between;
 }
 
 .promo-page {
   display: flex;
-  justify-content: space-around;
   min-height: 100vh;
-  }
+}
+
+.forms {
+  margin-left: 40px;
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+}
