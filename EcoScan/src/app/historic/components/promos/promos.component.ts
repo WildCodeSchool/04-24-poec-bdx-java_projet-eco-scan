@@ -15,7 +15,6 @@ export class PromosComponent {
 
   ngOnInit() {
     this.user = this.route.snapshot.data['user'];
-    console.log(this.user);
 
     this.redeemedPromos = this.user.userPromos
       .filter((promo: { redeemed: boolean }) => promo.redeemed)
