@@ -22,10 +22,11 @@ export class StatsAdminService {
       id: 0,
       title: '',
       logo: '',
+      logoPath: '',
     },
   };
   public activePromo$: BehaviorSubject<Promo> = new BehaviorSubject<Promo>(
-    this.emptyPromo
+    this.emptyPromo,
   );
 
   activePromo(inPromo: Promo) {
