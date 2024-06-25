@@ -35,7 +35,6 @@ export class HostService {
             this._tokenService.getToken(),
           );
           const userRole = decodedToken.role;
-          console.log(userRole);
 
           if (userRole === 'ROLE_ADMIN') {
             this._router.navigate(['/admin']);
