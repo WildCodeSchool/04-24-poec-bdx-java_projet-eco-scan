@@ -5,7 +5,7 @@ import { StagedWasteRoutingModule } from './staged-waste-routing.module';
 import { StagedWasteComponent } from './components/staged-waste.component';
 import { StagedWastePageComponent } from './pages/staged-waste-page/staged-waste-page.component';
 import { SharedModule } from '../shared-module/shared-module.module';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ButtonModule } from 'primeng/button'
 
 @NgModule({
   declarations: [StagedWasteComponent, StagedWastePageComponent],
@@ -13,7 +13,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CommonModule,
     StagedWasteRoutingModule,
     SharedModule,
-    ProgressSpinnerModule
+    ButtonModule
   ],
 })
 export class StagedWasteModule {}

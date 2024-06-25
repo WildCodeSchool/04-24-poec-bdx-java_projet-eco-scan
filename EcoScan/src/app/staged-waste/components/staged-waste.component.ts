@@ -18,7 +18,7 @@ export class StagedWasteComponent implements OnInit, OnDestroy {
   user!: GetUser;
   subscription!: Subscription;
   stagedList$ = this.stageService.getWasteList$();
-  hideSpinner$ = this.stageService.getSpinner$();
+  showSpinner$ = this.stageService.getSpinner$();
 
   ngOnInit() {
     this.user = this.route.snapshot.data['user'];

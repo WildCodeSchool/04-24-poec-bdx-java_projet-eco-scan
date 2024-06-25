@@ -11,7 +11,7 @@ export class StageWasteService {
 
   private scanService = inject(ScanService);
   wasteList$: BehaviorSubject<binClose[]> = new BehaviorSubject<binClose[]>([]);
-  hideSpinner$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  showSpinner$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   wastesList: binClose[] = [];
 
   getWasteList$(): Observable<binClose[]> {
@@ -19,7 +19,7 @@ export class StageWasteService {
   }
 
   getSpinner$(): Observable<boolean>{
-    return this.hideSpinner$;
+    return this.showSpinner$;
   }
 
   initializeWasteList(rubbishList: Rubbish[]) {
@@ -35,7 +35,7 @@ export class StageWasteService {
   }
 
   checkProximityForAllWaste(): void {
-    this.hideSpinner$.next(false);
+    this.showSpinner$.next(true);
 
     const observables: Observable<void>[] = this.wastesList.map(waste => 
       this.scanService.checkBinsAreClose(waste.rubbish).pipe(
@@ -48,11 +48,11 @@ export class StageWasteService {
     forkJoin(observables).subscribe({
       next: () => {
         this.wasteList$.next(this.wastesList);
-        this.hideSpinner$.next(true);
+        this.showSpinner$.next(false);
       },
       error: (err) => {
         console.error('Error checking bins:', err);
-        this.hideSpinner$.next(true);
+        this.showSpinner$.next(false);
       }
     });
   }
