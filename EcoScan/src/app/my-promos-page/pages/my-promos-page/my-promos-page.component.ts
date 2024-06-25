@@ -18,8 +18,6 @@ export class MyPromosPageComponent {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    console.log(this.user);
-
     this.user = this.route.snapshot.data['user'];
   }
 }

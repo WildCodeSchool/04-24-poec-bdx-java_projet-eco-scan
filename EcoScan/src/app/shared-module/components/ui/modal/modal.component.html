@@ -85,7 +85,10 @@
           (click)="showPromoCode()"
           class="btn buy-button"
         >
-          {{ showCodePromo ? promoCode : "VOIR LE CODE" }}
+          <span *ngIf="showCodePromo; else viewCode" class="promo-code">{{
+            promoCode
+          }}</span>
+          <ng-template #viewCode>VOIR LE CODE</ng-template>
         </button>
         <button
           *ngIf="!showCode"

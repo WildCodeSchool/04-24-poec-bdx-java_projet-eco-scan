@@ -84,11 +84,7 @@ export class RegisterComponent {
   onSubmit() {
     this.clearMessages();
     if (this.registrationForm.valid) {
-      console.log(this.registrationForm.value);
-
       const newUser: UserForm = this.registrationForm.value as UserForm;
-      console.log(newUser);
-
       this._hostService.register$(newUser).subscribe();
     } else {
       this.messageService.add({
