@@ -4,5 +4,6 @@ export type UserForm = {
   username: string;
   email: string;
   password: string;
-  points: number;
+  // points: number;
+  imagePath: String;
 };

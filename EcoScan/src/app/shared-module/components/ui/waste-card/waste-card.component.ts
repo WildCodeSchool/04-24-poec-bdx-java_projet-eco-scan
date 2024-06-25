@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  inject,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Rubbish } from '../../../models/types/Rubbish.type';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ScanService } from '../../../../scan/services/scan.service';
@@ -59,7 +53,6 @@ export class WasteCardComponent {
                 .deleteStagedRubbish(this.user.staged.id, Number(rubbish.id))
                 .subscribe({
                   next: (updatedRubbishList) => {
-                    console.log('Rubbish successfully deleted from staged');
                     this.wasteDeleted.emit(updatedRubbishList);
                   },
                   error: (deleteErr) => {

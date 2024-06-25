@@ -125,3 +125,23 @@ form {
 ::ng-deep .p-messages .p-component .ng-tns-c108017210-3 {
   margin-top: 20px;
 }
+
+::ng-deep .p-dropdown {
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+
+  .p-element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .p-dropdown-clear-icon {
+      display: none;
+    }
+  }
+
+  img {
+    height: 40px;
+  }
+}

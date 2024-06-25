@@ -73,6 +73,37 @@
           [closable]="false"
         ></p-messages>
       </fieldset>
+      <fieldset>
+        <label for="selectedImage">Choisir une image :</label>
+        <p-dropdown
+          [options]="images"
+          [(ngModel)]="selectedImage"
+          optionLabel="label"
+          [showClear]="true"
+          (onChange)="onImageSelect($event)"
+        >
+          <ng-template let-option pTemplate="item">
+            <div class="flex align-items-center gap-2">
+              <img [src]="option.title" class="option-image" />
+            </div>
+          </ng-template>
+
+          <ng-template let-option pTemplate="selectedItem">
+            <div class="flex align-items-center gap-2">
+              <img
+                [src]="option?.title || ''"
+                class="option-image"
+                *ngIf="option"
+              />
+            </div>
+          </ng-template>
+        </p-dropdown>
+        <!-- Affichage des messages de validation -->
+        <p-messages
+          [value]="messages['imagePath']"
+          [closable]="false"
+        ></p-messages>
+      </fieldset>
       <div class="button-container">
         <button type="submit">S'INSCRIRE</button>
       </div>
