@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +10,6 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { TokenInterceptorInterceptor } from './shared-module/interceptor/http-request.interceptor';
-import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,5 +33,6 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     },
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
