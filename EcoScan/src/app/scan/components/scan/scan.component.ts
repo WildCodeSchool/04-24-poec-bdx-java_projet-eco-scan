@@ -15,11 +15,17 @@ import { MessageService } from 'primeng/api';
 import { Subscription, forkJoin } from 'rxjs';
 import { StagedRubbish } from '../../../shared-module/models/types/StagedRubbish.type';
 import { SendUser } from '../../../shared-module/models/types/SendUser.type';
+import {
+  landingPageAnimation,
+  openClosePageAnimation,
+  scanPageAnimation,
+} from '../../../shared-module/shared/services/route-animations';
 
 @Component({
   selector: 'app-scan',
   templateUrl: './scan.component.html',
   styleUrl: './scan.component.scss',
+  animations: [openClosePageAnimation, scanPageAnimation],
 })
 export class ScanComponent implements OnDestroy {
   scannedRubbish!: Rubbish;
@@ -53,7 +59,7 @@ export class ScanComponent implements OnDestroy {
     private route: ActivatedRoute,
     private userService: UserService,
     private messageService: MessageService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.user = this.route.snapshot.data['user'];
@@ -75,11 +81,11 @@ export class ScanComponent implements OnDestroy {
     this.scannedRubbish = {
       id: null,
       depot: false,
-      type: this.scannedRubbish.type
-    }
-    const sub = this.scanService.generateRubbish$(this.scannedRubbish).subscribe(
-      newRubbish => this.scannedRubbish.id = newRubbish.id
-    );
+      type: this.scannedRubbish.type,
+    };
+    const sub = this.scanService
+      .generateRubbish$(this.scannedRubbish)
+      .subscribe((newRubbish) => (this.scannedRubbish.id = newRubbish.id));
     this.subscriptions.push(sub);
   }
 
@@ -157,11 +163,10 @@ export class ScanComponent implements OnDestroy {
         (error) => {
           this.messageService.add({
             severity: 'warn',
-            summary: 'N\'a pas mis en scène les déchets',
-            detail:
-              "N'a pas mis en scène les déchets, essayez à nouveau",
+            summary: "N'a pas mis en scène les déchets",
+            detail: "N'a pas mis en scène les déchets, essayez à nouveau",
           });
-}
+        }
       );
       this.subscriptions.push(sub);
       this.router.navigate(['/home']);
@@ -196,12 +201,10 @@ export class ScanComponent implements OnDestroy {
       };
       this.user.points += this.scannedRubbish.type.points;
 
-      const sub = forkJoin(
-        [
-          this.scanService.sendDeposit$(newDeposit),
-          this.scanService.updatePoints$(this.convertUser())
-        ]
-      ).subscribe((respDeposit) => {
+      const sub = forkJoin([
+        this.scanService.sendDeposit$(newDeposit),
+        this.scanService.updatePoints$(this.convertUser()),
+      ]).subscribe((respDeposit) => {
         this.router.navigate(['/home']);
       });
 

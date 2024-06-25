@@ -12,4 +12,5 @@ export type GetUser = {
   points: number;
   userPromos: UserPromos[];
   deposits: Deposit[];
+  data?: string;
 };

@@ -1,4 +1,12 @@
-<p-confirmPopup></p-confirmPopup>
+<p-confirmPopup>
+  <ng-template pTemplate="content" let-message>
+    <div
+      class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border p-3 mb-3"
+    >
+      <p>{{ message.message }}</p>
+    </div>
+  </ng-template>
+</p-confirmPopup>
 
 <div
   class="card flex justify-content-center"

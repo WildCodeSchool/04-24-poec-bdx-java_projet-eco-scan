@@ -54,6 +54,18 @@ export const openClosePageAnimation = trigger('openClosePageAnimation', [
   ]),
 ]);
 
+export const scanPageAnimation = trigger('scanPageAnimation', [
+  transition(':enter', [
+    style({
+      transform: 'translateY(100%)',
+      position: 'relative',
+      width: '100%',
+      height: '100vh',
+    }),
+    animate('600ms ease', style({ transform: 'translateY(0%)' })),
+  ]),
+]);
+
 export const slider = trigger('routeAnimation', [
   transition('* => isLeft', slideTo('left')),
   transition('* => isRight', slideTo('right')),

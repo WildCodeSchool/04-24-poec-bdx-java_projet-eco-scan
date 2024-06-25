@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { HostService } from '../../shared/host.service';
 import { UserForm } from '../../models/user.type';
-import { Message, MessageService } from 'primeng/api';
+import { Message, MessageService, SelectItem } from 'primeng/api';
 
 type FieldNames = {
   [key: string]: string;
@@ -20,12 +20,41 @@ type FieldNames = {
   providers: [MessageService],
 })
 export class RegisterComponent {
+  images: SelectItem[] = [
+    {
+      value: 'static/images/avatar/profil.png',
+      title: '../../assets/avatars/profil.png',
+    },
+    {
+      value: 'static/images/avatar/policier.png',
+      title: '../../assets/avatars/policier.png',
+    },
+    {
+      value: 'static/images/avatar/prisonnier.png',
+      title: '../../assets/avatars/prisonnier.png',
+    },
+    {
+      value: 'static/images/avatar/utilisateur.png',
+      title: '../../assets/avatars/utilisateur.png',
+    },
+    {
+      value: 'static/images/avatar/utilisateur1.png',
+      title: '../../assets/avatars/utilisateur1.png',
+    },
+    {
+      value: 'static/images/avatar/utilisateur2.png',
+      title: '../../assets/avatars/utilisateur2.png',
+    },
+  ];
+  selectedImage: string | undefined = '';
+
   messages: { [key: string]: Message[] } = {
     firstname: [],
     lastname: [],
     username: [],
     email: [],
     password: [],
+    imagePath: [],
   };
 
   fieldNames: FieldNames = {
@@ -34,6 +63,7 @@ export class RegisterComponent {
     username: 'Le pseudo',
     email: "L'email",
     password: 'Le mot de passe',
+    imagePath: "L'image",
   };
 
   registrationForm = this._fb.group({
@@ -42,6 +72,7 @@ export class RegisterComponent {
     username: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
+    imagePath: ['', Validators.required],
   });
 
   constructor(
@@ -53,7 +84,10 @@ export class RegisterComponent {
   onSubmit() {
     this.clearMessages();
     if (this.registrationForm.valid) {
+      console.log(this.registrationForm.value);
+
       const newUser: UserForm = this.registrationForm.value as UserForm;
+      console.log(newUser);
 
       this._hostService.register$(newUser).subscribe();
     } else {
@@ -63,6 +97,17 @@ export class RegisterComponent {
         detail: 'Formulaire invalide',
       });
       this.validateForm(this.registrationForm);
+    }
+  }
+
+  onImageSelect(event: any) {
+    const selectedValue = event.value.value; // Notez que nous accédons à `value` à l'intérieur de `value`
+    const selectedOption = this.images.find(
+      (image) => image.value === selectedValue
+    );
+    if (selectedOption) {
+      this.selectedImage = selectedOption.title;
+      this.registrationForm.patchValue({ imagePath: selectedOption.value });
     }
   }
 

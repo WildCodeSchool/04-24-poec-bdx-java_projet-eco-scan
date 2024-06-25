@@ -25,9 +25,11 @@
       <p>MON PROFIL</p>
       <img class="gg-push-chevron-left-o" [src]="imagePath" alt="" />
     </div>
-    <div class="profil-section">
-      <div class="photo"></div>
-      <div class="identity" *ngIf="user$ | async as user">
+    <div class="profil-section" *ngIf="user$ | async as user">
+      <div class="photo">
+        <img [src]="'data:image/png;base64,' + user.data" alt="" />
+      </div>
+      <div class="identity">
         <p>{{ user.username }}</p>
         <p>Vous avez</p>
         <p>

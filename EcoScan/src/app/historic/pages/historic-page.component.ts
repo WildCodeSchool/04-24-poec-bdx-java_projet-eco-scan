@@ -68,11 +68,11 @@ export class HistoricPageComponent {
   }
 
   isWasteRoute(outlet: RouterOutlet) {
-    return outlet?.activatedRouteData?.['animation'] === 'isRight';
+    return this.route.firstChild?.snapshot?.url[0]?.path === 'waste';
   }
 
   isPromosRoute(outlet: RouterOutlet) {
-    return outlet?.activatedRouteData?.['animation'] === 'isLeft';
+    return this.route.firstChild?.snapshot?.url[0]?.path === 'promos';
   }
 
   ngOnInit() {

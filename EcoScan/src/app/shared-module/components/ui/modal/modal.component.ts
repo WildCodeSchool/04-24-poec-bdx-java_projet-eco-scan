@@ -78,8 +78,11 @@ export class ModalComponent {
     const remainingPoints = this.user.points - promoPrice;
     this.confirmationService.confirm({
       target: target,
-      message: `Êtes-vous sûr de vouloir acheter cette promotion ? Vos points (${this.user.points}) - le prix de la promotion (${promoPrice}) = vos points restants (${remainingPoints})`,
+      message: `Êtes-vous sûr de vouloir acheter cette promotion ?
+       ${this.user.points} - ${promoPrice} = ${remainingPoints} points restant`,
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Confirmer',
+      rejectLabel: 'Annuler',
       accept: () => {
         this.buyPromo(promoId);
       },
