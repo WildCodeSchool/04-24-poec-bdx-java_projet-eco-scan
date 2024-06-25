@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BrandAdminService } from '../../../shared/brand-admin.service';
+import { Brand } from '../../../../shared-module/models/types/Brand.type';
 
 @Component({
   selector: 'app-brand-form',
@@ -21,7 +22,13 @@ export class BrandFormComponent {
   }
 
   onSubmit() {
-    this.brandService.addBrand(this.brandConstructor.value);
+    let newBrand: Brand = {
+      id: null,
+      title: this.brandConstructor.value.title,
+      logo: this.brandConstructor.value.logo,
+      logoPath: this.brandConstructor.value.logo
+    }
+    this.brandService.addBrand(newBrand);
     this.brandConstructor.reset();
     this.brandConstructor.markAsUntouched();
   }
