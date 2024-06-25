@@ -44,13 +44,13 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap((incomingRequest) => {
         const incomingReq = incomingRequest instanceof HttpResponse;
-
         if (incomingReq && request.body &&
-           !(this.blacklist.some(element => request.url.includes(element)))) {
-          this.messageService.add({
+          !(this.blacklist.some(element => request.url.includes(element)))) {
+            let message = this.determineMessage(request);
+            this.messageService.add({
             severity: 'success',
-            summary: 'Success',
-            detail: incomingRequest.body.message,
+            summary: 'Succès',
+            detail: message ? message : incomingRequest.body.message,
           });
         }
       }),
@@ -67,4 +67,28 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
       })
     );
   }
+
+  determineMessage(request: HttpRequest<unknown>): string{
+    let url = request.url;
+    if (url.includes("deposit/add")){
+      return "Déchets jetés";
+    }
+    if (url.includes("user-promos/add/promos")){
+      return "Promotion achetée";
+    }
+    if (url.includes("staged/add")){
+      return "Ajouté aux déchets stockés";
+    }
+    if (url.includes("promos/add")){
+        return "Promo crée";
+    }
+    if (url.includes("brand/add")){
+      return "Marque crée";
+    }
+    if (url.includes("type/add")){
+      return "Type crée";
+    }
+    return "";
+  }
+
 }

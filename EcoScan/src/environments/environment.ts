@@ -12,7 +12,8 @@ export const environment = {
     },
     blacklists: {
         toasts: [
-            "rubbish/add"
+            "rubbish/add",
+            "user/update"
         ]
     }
 };

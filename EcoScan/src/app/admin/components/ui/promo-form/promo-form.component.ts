@@ -23,10 +23,9 @@ export class PromoFormComponent {
 
   brands!: Brand[];
   presetColors: colorMap[] = [
-    { name: 'Bleu', hexCode: '215dad' },
-    { name: 'Abricot', hexCode: 'e59e5e' },
-    { name: 'Lavande', hexCode: 'a36da8' },
-    { name: 'Citron vert', hexCode: '93daa1' },
+    { name: 'Menthe', hexCode: '84baa0' },
+    { name: 'Gris clair', hexCode: 'd5e0db' },
+    { name: 'Beige', hexCode: 'f1ece3' },
   ];
 
   constructor(private formBuilder: FormBuilder) {
@@ -56,20 +55,6 @@ export class PromoFormComponent {
   }
 
   onSubmit() {
-    const sendPromo: SendPromo = {
-      title: this.promoConstructor.value.title,
-      item: this.promoConstructor.value.item,
-      description: this.promoConstructor.value.description,
-      percentOff: this.promoConstructor.value.percentOff,
-      amount: this.promoConstructor.value.amount,
-      color: this.promoConstructor.value.color,
-      price: this.promoConstructor.value.price,
-      startDate: this.promoConstructor.value.startDate,
-      endDate: this.promoConstructor.value.endDate,
-      brand: {
-        id: this.promoConstructor.value.brand.id,
-      },
-    };
 
     this.promoService.addPromo(this.promoConstructor.value);
     this.promoConstructor.reset();
