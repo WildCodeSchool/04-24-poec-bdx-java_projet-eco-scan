@@ -16,7 +16,7 @@ export class HostService {
     private _userService: UserService,
     private _router: Router,
     private _dbAccessor: DataAccessorService,
-    private _tokenService: TokenService
+    private _tokenService: TokenService,
   ) {}
 
   login$(credentials: Credential): Observable<boolean> {
@@ -31,9 +31,19 @@ export class HostService {
       }),
       tap((isLoggedIn) => {
         if (isLoggedIn) {
-          this._router.navigate(['/home']);
+          const decodedToken = this._tokenService.decodeToken(
+            this._tokenService.getToken(),
+          );
+          const userRole = decodedToken.role;
+          console.log(userRole);
+
+          if (userRole === 'ROLE_ADMIN') {
+            this._router.navigate(['/admin']);
+          } else {
+            this._router.navigate(['/home']);
+          }
         }
-      })
+      }),
     );
   }
 
@@ -45,7 +55,7 @@ export class HostService {
           password: newUser.password,
         };
         return this.login$(credentials);
-      })
+      }),
     );
   }
 

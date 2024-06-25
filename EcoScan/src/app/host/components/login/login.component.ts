@@ -9,6 +9,8 @@ import { HostService } from '../../shared/host.service';
 import { Credential } from '../../models/credential.type';
 import { Message, MessageService } from 'primeng/api';
 import { TransitionService } from '../../../shared-module/shared/services/transition.service';
+import { Router } from '@angular/router';
+import { TokenService } from '../../shared/token.service';
 
 type FieldNames = {
   [key: string]: string;
@@ -39,7 +41,9 @@ export class LoginComponent {
     private _fb: FormBuilder,
     private _hostService: HostService,
     private transitionService: TransitionService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router,
+    private tokenService: TokenService
   ) {}
 
   onSubmit() {
