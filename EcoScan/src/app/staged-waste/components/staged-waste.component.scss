@@ -1,5 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
 .waste-container {
   display: flex;
   flex-direction: column;
   margin: 10px auto 60px;
+}
+
+.proximity-check{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+
+}
+
+.proximity-button{
+  background-color: var(--cta-color);
+  border: none;
+  color: white;
+  width: 80%;
+  padding: 0.5em 2em;
+  display: flex;
+  margin: 20px auto 0px auto;
+  font-size: 1.2em;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lato", sans-serif;
+}
+
+::ng-deep .p-button{
+  background-color: var(--cta-color);
+  border: none;
+  color: white;
+}
+
+.proximity-spinner{
+  width: 3rem;
+  height: 3rem;
 }
