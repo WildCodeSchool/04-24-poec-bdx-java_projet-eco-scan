@@ -1,18 +1,38 @@
 .type-card {
   display: flex;
   gap: 1rem;
+  justify-content: space-between;
 
   background-color: white;
   margin: 1rem;
-  border-radius: 10px;
+  border-bottom-right-radius: 10px;
   box-shadow: 0px 0px 4px 2px rgb(0, 0, 0, 0.45);
   padding: 1rem;
-  width: 600px;
+  width: 450px;
 
-  button {
-    margin: 1rem;
-    border-radius: 10px;
-    padding: 6px;
+  .type-btn-delete {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    button {
+      background-color: black;
+      color: white;
+      border: 2px solid black;
+      border-radius: 5px;
+      transition: all ease-out 200ms;
+      cursor: pointer;
+      height: 40px;
+      width: 100px;
+    }
+
+    button:hover {
+      background-color: white;
+      border: 2px solid black;
+      color: black;
+      transition: all ease-out 200ms;
+      cursor: pointer;
+    }
   }
 }
 

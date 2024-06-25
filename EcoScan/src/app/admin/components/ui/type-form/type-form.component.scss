@@ -1,5 +1,6 @@
 .type-form {
   margin-top: 3rem;
+  margin-left: 5.5rem;
   padding: 3rem;
   background-color: #efefef;
   border-radius: 15px;
@@ -19,14 +20,15 @@ input {
   border-radius: 8px;
   padding: 0.2rem;
   border: 1px solid grey;
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
 textarea {
   display: flex;
   margin-top: 10px;
   border-radius: 8px;
-  min-width: 300px;
-  max-width: 300px;
+  width: 100%;
   min-height: 70px;
   max-height: 100px;
   padding: 0.2rem;
@@ -55,6 +57,13 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  background-color: #efefef;
+  color: #178b68;
+  border: 2px solid #178b68;
+  transition: all ease-out 200ms;
+  cursor: pointer;
+}
 h1 {
   display: flex;
   justify-content: center;

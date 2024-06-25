@@ -1,10 +1,8 @@
 <div class="type-column">
-
-    <div *ngIf="types$ | async as types">
-        <div *ngFor="let type of types">
-            <app-type-card
-            [type]="type"
-            ></app-type-card>
-        </div>
+  <div *ngIf="types$ | async as types">
+    <div *ngFor="let type of types">
+      <app-type-card [type]="type"></app-type-card>
     </div>
+    
+  </div>
 </div>

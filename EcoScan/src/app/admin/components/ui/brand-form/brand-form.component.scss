@@ -1,5 +1,6 @@
 .brand-form {
   margin-top: 3rem;
+  margin-left: 5.5rem;
   padding: 3rem;
   background-color: #efefef;
   border-radius: 15px;
@@ -20,6 +21,8 @@ input {
   border-radius: 8px;
   padding: 0.2rem;
   border: 1px solid grey;
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
 .btn-container {
@@ -41,6 +44,14 @@ button {
   border: none;
   position: relative;
   margin-top: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #efefef;
+  color: #178b68;
+  border: 2px solid #178b68;
+  transition: all ease-out 200ms;
   cursor: pointer;
 }
 
