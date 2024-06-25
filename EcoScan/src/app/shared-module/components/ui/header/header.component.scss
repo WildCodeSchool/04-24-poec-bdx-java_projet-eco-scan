@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 .header {
-  background-color: #2f323d;
+  background-color: var(--cta-color);
   height: 60px;
   width: 100%;
   position: relative;
@@ -19,6 +19,19 @@
       padding-bottom: 4px;
       color: white;
       font-family: "Lato";
+    }
+
+    #mapSearch {
+      height: 30px;
+      width: 200px;
+      border-radius: 14px;
+      padding-left: 20px;
+      margin-top: 5px;
+      margin-left: 40px;
+
+      &:focus {
+        border: none;
+      }
     }
   }
 }

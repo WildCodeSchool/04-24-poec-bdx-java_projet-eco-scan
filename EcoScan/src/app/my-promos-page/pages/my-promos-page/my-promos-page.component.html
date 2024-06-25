@@ -13,12 +13,12 @@
               [promo]="userPromo.promos"
             ></app-dumb-card>
           </div>
-          <app-modal [shiwCode]="true" />
+          <app-modal [showCode]="true" />
         </div>
 
         <!-- @TODO link to explanation page once created -->
         <div class="tuto-link">
-          <a [routerLink]="['/']" class="tip-link"
+          <a [routerLink]="['/glossary']" class="tip-link"
             ><p>Comment utiliser vos points</p></a
           >
         </div>
@@ -26,4 +26,5 @@
     </div>
     <app-footer [scanButton]="true" />
   </div>
+  <!-- </div> -->
 </div>

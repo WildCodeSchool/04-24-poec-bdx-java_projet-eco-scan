@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 .header {
-  background-color: #2f323d;
+  background-color: var(--cta-color);
   height: 80px;
   width: 100%;
   border-bottom-right-radius: 30px;
@@ -50,7 +50,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2f323d;
+  background-color: var(--cta-color);
 
   p {
     text-align: left;
@@ -73,11 +73,12 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  background-color: #2f323d;
+  background-color: var(--cta-color);
   font-family: "Lato", sans-serif;
 
   .identity {
     line-height: 1.5em;
+    font-size: 20px;
   }
 }
 .photo {
@@ -86,6 +87,12 @@
   height: 100px;
   border-radius: 50%;
   background-color: green;
+
+  img {
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+  }
 }
 
 .menu-item {
@@ -171,7 +178,7 @@
 .points-box {
   display: flex;
   margin-top: 20px;
-  background-color: #178b68;
+  background-color: var(--accentuation-color);
   height: 30px;
   min-width: 100px;
   gap: 0.5rem;

@@ -25,7 +25,7 @@ export const openPageAnimation = trigger('openPageAnimation', [
       transform: 'translateX(100%)',
       position: 'relative',
       width: '100%',
-      height: '100%',
+      height: '100vh',
     }),
     animate('600ms ease', style({ transform: 'translateX(0%)' })),
   ]),
@@ -51,6 +51,18 @@ export const openClosePageAnimation = trigger('openClosePageAnimation', [
         { optional: true }
       ),
     ]),
+  ]),
+]);
+
+export const scanPageAnimation = trigger('scanPageAnimation', [
+  transition(':enter', [
+    style({
+      transform: 'translateY(100%)',
+      position: 'relative',
+      width: '100%',
+      height: '100vh',
+    }),
+    animate('600ms ease', style({ transform: 'translateY(0%)' })),
   ]),
 ]);
 

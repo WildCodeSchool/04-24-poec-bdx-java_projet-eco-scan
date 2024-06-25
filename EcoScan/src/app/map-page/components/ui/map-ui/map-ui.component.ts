@@ -1,7 +1,8 @@
 import { Component, OnDestroy, inject } from '@angular/core';
 import { GoogleApiService } from '../../../shared/google-api.service';
-import { Observable, Subscription, takeUntil } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MapService } from '../../../shared/map.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 interface binSelection {
@@ -13,21 +14,27 @@ interface binSelection {
   templateUrl: './map-ui.component.html',
   styleUrl: './map-ui.component.scss'
 })
-export class MapUiComponent implements OnDestroy{
-  
+export class MapUiComponent implements OnDestroy {
+
   private googleApi = inject(GoogleApiService);
   private mapService = inject(MapService);
+  private router = inject(ActivatedRoute);
   binList: binSelection[] = [];
-  selectedBins!: binSelection;
+  selectedBin!: binSelection;
   binNameSub!: Subscription;
 
-  constructor(){
+  constructor() {
     this.binNameSub = this.mapService.getAllBinTypes$().subscribe(
       binTypes => {
         for (let binName of binTypes) {
-          this.binList.push({ name: binName});
+          this.binList.push({ name: binName });
         }
-        this.binList.push({ name: "Voir tout"});
+        this.binList.push({ name: "Voir tout" });
+        let binType = this.router.snapshot.paramMap.get('name');
+        if (binType !== null) {
+          this.selectedBin = { name: binType };
+          this.refreshMarkers();
+        }
       }
     );
   }
@@ -36,8 +43,8 @@ export class MapUiComponent implements OnDestroy{
     this.binNameSub.unsubscribe();
   }
 
-  refreshMarkers(){
-    this.googleApi.filterBinMarkers(this.selectedBins.name);
+  refreshMarkers(): void {
+    this.googleApi.filterBinMarkers(this.selectedBin.name);
   }
 
 }

@@ -36,7 +36,7 @@
 }
 
 .bandeau {
-  background-color: #178b68;
+  background-color: var(--accentuation-color);
   width: 200px;
   height: 50px;
   display: flex;
@@ -102,10 +102,46 @@ form {
     height: 60px;
     align-self: center;
     color: white;
-    background-color: #178b68;
+    background-color: var(--accentuation-color);
     border: none;
     font-family: "Lato", sans-serif;
     font-weight: bold;
     font-size: 18px;
+  }
+}
+
+::ng-deep .p-message-wrapper {
+  height: 40px;
+  display: flex;
+  padding: 5px;
+  gap: 10px;
+  align-content: center;
+}
+
+::ng-deep .p-icon {
+  margin-top: 5px;
+}
+
+::ng-deep .p-messages .p-component .ng-tns-c108017210-3 {
+  margin-top: 20px;
+}
+
+::ng-deep .p-dropdown {
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+
+  .p-element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .p-dropdown-clear-icon {
+      display: none;
+    }
+  }
+
+  img {
+    height: 40px;
   }
 }

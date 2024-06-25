@@ -1,20 +1,27 @@
 <div class="card-container">
-  <div [ngClass]="smallCard ? 'small-card' : 'promo-card'">
-    <div class="promo-amount">
+  <div [ngClass]="smallCard ? 'small-card' : 'promo-card border-radius'">
+    <div
+      class="promo-amount"
+      [ngStyle]="{ 'background-color': '#' + promo.color }"
+    >
       <div class="percent-off">
-        <p id="flat">FLAT</p>
+        <p id="flat">PROMO</p>
         <div class="percent-container">
           <p class="percent-discount">{{ promo.percentOff }}</p>
 
           <div class="percent-off-container">
-            <p id="percent">%</p>
-            <p id="off">off</p>
+            <p class="percent">%</p>
+            <p class="off">off</p>
           </div>
         </div>
       </div>
       <div class="redeemable-amount">
-        <p id="points-amount">{{ promo.price | thousandK }}</p>
-        points
+        <p>
+          <span id="points-amount">
+            {{ promo.price | thousandK }}
+          </span>
+          points
+        </p>
       </div>
     </div>
     <div class="see-details">
@@ -27,10 +34,16 @@
           [src]="'data:image/png;base64,' + promo.brand.logo"
           alt="{{ promo.brand.title }}"
         />
-        <p id="details">See details</p>
-        <button type="button" (click)="openModal(promo)">
-          <img src="assets/png/arrow.png" alt="arrow" />
-        </button>
+
+        <div class="open-modal-container" (click)="openModal(promo)">
+          <p>{{ promo.brand.title }}</p>
+          <div class="see-details-container">
+            <p id="details">Voir</p>
+            <button type="button">
+              <img src="assets/png/arrow.png" alt="arrow" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

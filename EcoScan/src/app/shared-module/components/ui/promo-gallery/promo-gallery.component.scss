@@ -1,6 +1,6 @@
 .bandeau {
-  background-color: #178b68;
-  width: 220px;
+  background-color: var(--accentuation-color);
+  width: 300px;
   min-height: 50px;
   display: flex;
   align-items: center;
@@ -12,5 +12,7 @@
   h3 {
     color: white;
     text-align: center;
+    letter-spacing: 1.5px;
+    word-spacing: 5px;
   }
 }

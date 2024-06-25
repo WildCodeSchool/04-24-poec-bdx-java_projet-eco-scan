@@ -9,6 +9,9 @@ import { Type } from '../../../../models/types/Type.type';
 export class PointCardComponent {
   @Input()
   rubbishDetail!: Type;
+
+  @Input()
+  imgAsset: boolean = false;
   visible!: boolean;
 
   showDialog() {

@@ -3,12 +3,11 @@ import { Observable, of, switchMap } from 'rxjs';
 import { Rubbish } from '../../shared-module/models/types/Rubbish.type';
 import { DataAccessorService } from '../../shared-module/shared/services/data-accessor.service';
 import { Type } from '../../shared-module/models/types/Type.type';
-import { longLat } from '../../shared-module/models/types/LongLat.type';
 import { LocationService } from '../../shared-module/shared/services/location.service';
 import { Deposit } from '../../shared-module/models/types/Deposits.type';
 import { StagedRubbish } from '../../shared-module/models/types/StagedRubbish.type';
-import { GetUser } from '../../shared-module/models/types/GetUser.type';
 import { SendUser } from '../../shared-module/models/types/SendUser.type';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +22,10 @@ export class ScanService {
     return this.dbAccessor.getRubbishByID$(id);
   }
 
+  generateRubbish$(newRubbish: Rubbish): Observable<Rubbish> {
+    return this.dbAccessor.addRubbish$(newRubbish);
+  }
+
   stageRubbishForUser(stagedRubbish: StagedRubbish): Observable<StagedRubbish> {
     return this.dbAccessor.addStagedRubbish$(stagedRubbish);
   }
@@ -31,19 +34,15 @@ export class ScanService {
     return this.dbAccessor.addDeposit$(newDeposit);
   }
 
-  updatePoints$(updatedUser: SendUser){
+  updatePoints$(updatedUser: SendUser) {
     return this.dbAccessor.updateUsersPoints$(updatedUser);
   }
 
-  checkBinsAreClose(
-    rubbish: Rubbish,
-  ): Observable<string> {
+  checkBinsAreClose(rubbish: Rubbish): Observable<string> {
     return this.dbAccessor.getType$(rubbish.type).pipe(
       switchMap((type: Type) => {
         return this.locationService.updateUserLocation().pipe(
-          switchMap(location => {
-            console.log(location);
-            
+          switchMap((location) => {
             for (const bin of type.bins) {
               const binLocation = this.locationService.splitLongAndLat(
                 bin.localisation
@@ -54,10 +53,11 @@ export class ScanService {
               const lngDiff = parseFloat(
                 Math.abs(binLocation.lng - location.lng).toFixed(6)
               );
-              console.log(latDiff + " - " + lngDiff);
-              
-              // if (latDiff <= 0.000135 && lngDiff <= 0.000135){ //in 15m
-              if (latDiff <= 0.001 || lngDiff <= 0.001) {
+
+              if (
+                latDiff <= environment.parameters.scanDistance ||
+                lngDiff <= environment.parameters.scanDistance
+              ) {
                 return of(bin.id);
               }
             }

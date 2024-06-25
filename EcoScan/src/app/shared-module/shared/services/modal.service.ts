@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Promo } from '../../models/types/Promo.type';
 import { Modal } from '../../models/types/Modal.type';
+import { Promo } from '../../models/types/Promo.type';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,12 @@ export class ModalService {
   private promoListSubject = new BehaviorSubject<Promo[]>([]);
   promoList$ = this.promoListSubject.asObservable();
 
+  private promoListByPercentOffSubject = new BehaviorSubject<Promo[]>([]);
+  promoListByPercentOff$ = this.promoListByPercentOffSubject.asObservable();
+
+  private promoListByReleasedDateSubject = new BehaviorSubject<Promo[]>([]);
+  promoListByReleasedDate$ = this.promoListByReleasedDateSubject.asObservable();
+
   constructor() {}
 
   openModal(cardData: Promo) {
@@ -28,5 +34,13 @@ export class ModalService {
 
   updatePromoList(newPromos: Promo[]) {
     this.promoListSubject.next(newPromos);
+  }
+
+  updatePromoListByPercentOff(newPromos: Promo[]) {
+    this.promoListByPercentOffSubject.next(newPromos);
+  }
+
+  updatePromoListByReleasedDate(newPromos: Promo[]) {
+    this.promoListByReleasedDateSubject.next(newPromos);
   }
 }

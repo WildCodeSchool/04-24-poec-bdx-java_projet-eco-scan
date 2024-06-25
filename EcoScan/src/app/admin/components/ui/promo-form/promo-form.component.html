@@ -1,63 +1,113 @@
 <div class="promo-form">
-    <form *ngIf="promoConstructor" [formGroup]="promoConstructor" #promoForm="ngForm" (ngSubmit)="promoConstructor.valid && onSubmit()">
-        <div>
-            <label for="title">Title: </label>
-            <input name="title" type="text" formControlName="title" required>
-        </div>
+  <form
+    *ngIf="promoConstructor"
+    [formGroup]="promoConstructor"
+    #promoForm="ngForm"
+    (ngSubmit)="promoConstructor.valid && onSubmit()"
+  >
+    <h1>Créer une promotion</h1>
+    <div>
+      <label for="title">Titre : </label>
+      <input name="title" type="text" formControlName="title" required />
+    </div>
 
-        <div>
-            <label for="item">Item: </label>
-            <input name="item" type="text" formControlName="item" required>
-        </div>
+    <div>
+      <label for="item">Objet : </label>
+      <input name="item" type="text" formControlName="item" required />
+    </div>
 
-        <div>
-            <label for="description">Description: </label>
-            <input name="description" type="text" formControlName="description" required>
-        </div>
+    <div>
+      <label for="description">Description : </label>
+      <textarea
+        name="description"
+        type="text"
+        formControlName="description"
+        required
+      >
+      </textarea>
+    </div>
 
-        <div>
-            <label for="percentOff">Percent off: </label>
-            <input name="percentOff" type="number" formControlName="percentOff" required min=1 max="100">
-        </div>
-        <div>
-            <label for="price">Points needed to redeem: </label>
-            <input name="price" type="number" formControlName="price" required min=1>
-        </div>
-        <div>
-            <label for="amount">Redeemable amount: </label>
-            <input name="amount" type="number" formControlName="amount" required min=1>
-        </div>
-        <div>
-            <label for="brand">Brand: </label>
-            <select name="brand" formControlName="brand" required>
-                <option *ngFor="let brand of brands" [ngValue]="brand">{{brand.title}}</option>
-            </select>
-        </div>
-        <div>
-            <label for="color">Color: </label>
-            <select name="color" formControlName="color" required>
-                <option *ngFor="let color of presetColors" [ngValue]="color.hexCode">{{color.name}}</option>
-            </select>
-        </div>
-        <div>
-            <label for="startDate">Start date: </label>
-            <input name="startDate" type="date" formControlName="startDate" required>
-        </div>
-        <div>
-            <label for="endDate">End date: </label>
-            <input name="endDate" type="date" formControlName="endDate" required>
-        </div>
+    <div>
+      <label for="percentOff">Réduction en pourcent : </label>
+      <input
+        name="percentOff"
+        type="number"
+        formControlName="percentOff"
+        required
+        min="1"
+        max="100"
+      />
+    </div>
+    <div>
+      <label for="price">Points nécessaires à l'achat : </label>
+      <input
+        name="price"
+        type="number"
+        formControlName="price"
+        required
+        min="1"
+      />
+    </div>
+    <div>
+      <label for="amount">Nombre de promo : </label>
+      <input
+        name="amount"
+        type="number"
+        formControlName="amount"
+        required
+        min="1"
+      />
+    </div>
+    <div>
+      <label for="brand">Marque : </label>
+      <select name="brand" formControlName="brand" required>
+        <option *ngFor="let brand of brands" [ngValue]="brand">
+          {{ brand.title }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label for="color">Couleur : </label>
+      <select name="color" formControlName="color" required>
+        <option *ngFor="let color of presetColors" [ngValue]="color.hexCode">
+          {{ color.name }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label for="startDate">Date de début : </label>
+      <input
+        name="startDate"
+        type="date"
+        formControlName="startDate"
+        required
+      />
+    </div>
+    <div>
+      <label for="endDate">Date de fin : </label>
+      <input name="endDate" type="date" formControlName="endDate" required />
+    </div>
 
-        <div *ngIf="promoForm.touched && promoForm.submitted && promoForm.invalid">
-            <div *ngIf="promoForm.submitted && promoConstructor.hasError('inValid dates') ; else required">
-                <span style="color: red;">Start date must come before end date.</span>
-            </div>
+    <div *ngIf="promoForm.touched && promoForm.submitted && promoForm.invalid">
+      <div
+        *ngIf="
+          promoForm.submitted && promoConstructor.hasError('inValid dates');
+          else required
+        "
+      >
+        <span style="color: red"
+          >La date de début doit être sélectionnée avant la date de fin.</span
+        >
+      </div>
 
-            <ng-template #required>
-                <span style="color: red;">All fields are required to submit this form.</span>
-            </ng-template>
-        </div>
-
-        <button type="submit">Submit</button>
-    </form>
+      <ng-template #required>
+        <span style="color: red"
+          >Tous les champs doivent être remplis pour créer une promotion.</span
+        >
+      </ng-template>
+    </div>
+    <div class="btn-container">
+      <button type="submit">Envoyer</button>
+    </div>
+  </form>
 </div>

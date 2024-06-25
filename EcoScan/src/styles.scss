@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-* {
+* :not(.p-toast, .p-confirm-popup, .p-button-text, .p-button) {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,4 +9,60 @@
 
 *::-webkit-scrollbar {
   display: none;
+}
+
+:root {
+  --br: 0 0 10px 0;
+  --cta-color: #2f323d;
+  --accentuation-color: #178b68;
+  --qr-code-color-bg: #262626;
+}
+
+.border-radius {
+  border-radius: var(--br);
+}
+
+.btn {
+  width: 80%;
+  padding: 1em 2em;
+  border: none;
+  background: none;
+  display: flex;
+  margin: 20px auto;
+  font-size: 1.2em;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lato", sans-serif;
+  color: white;
+}
+
+.btn-cta {
+  @extend .btn;
+  background-color: var(--cta-color);
+  border-radius: 3px;
+}
+
+.flex {
+  display: flex;
+}
+
+.redeemable-amount {
+  background-color: white;
+  padding: 0 0.4rem;
+  padding-top: 0.4rem;
+  margin-right: 0;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 0;
+  line-height: 0.8;
+  p {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0.2rem;
+  }
+  #points-amount {
+    font-size: 1.3rem;
+    font-weight: normal;
+  }
 }

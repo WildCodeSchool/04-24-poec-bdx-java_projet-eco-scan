@@ -1,3 +1,13 @@
+<p-confirmPopup>
+  <ng-template pTemplate="content" let-message>
+    <div
+      class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border p-3 mb-3"
+    >
+      <p>{{ message.message }}</p>
+    </div>
+  </ng-template>
+</p-confirmPopup>
+
 <div
   class="card flex justify-content-center"
   *ngIf="modalState$ | async as modal"
@@ -6,25 +16,20 @@
     header
     [modal]="true"
     [(visible)]="modal.visible"
-    [style]="{ width: '50rem' }"
+    *ngIf="modal.cardData | hasProperties"
+    [style]="{ width: '50rem', borderRadius: '0 0 10px 0' }"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
     (onHide)="hideDialog()"
   >
-    <ng-container *ngIf="modal.cardData as cardData">
+    <ng-container *ngIf="(modal | hasProperties) && modal.cardData as cardData">
       <ng-template pTemplate="header">
-        <div class="promo-amount">
+        <div
+          class="promo-amount"
+          [ngStyle]="{ 'background-color': '#' + cardData.color }"
+        >
           <div class="exit-btn-and-promo-amount">
-            <button class="exit-modal-btn" (click)="modal.visible = false">
-              <img
-                width="20"
-                class="exit-btn"
-                src="assets/png/arrow-black.png"
-                alt="exit"
-              />
-            </button>
-
             <div class="percent-off">
-              <p class="flat">FLAT</p>
+              <p class="flat">PROMO</p>
               <div class="percent-container">
                 <p class="percent-discount">{{ cardData.percentOff }}</p>
 
@@ -37,38 +42,65 @@
           </div>
 
           <div class="redeemable-amount">
-            <p id="points-amount">{{ cardData.price | thousandK }}</p>
-            points
+            <p>
+              <span id="points-amount">
+                {{ cardData.price | thousandK }}
+              </span>
+              points
+            </p>
           </div>
         </div>
       </ng-template>
 
-      <h2 class="promo-description-modal">Description</h2>
       <div class="modal-logo-container">
         <div class="details-container">
-          <h3>{{ cardData.title }}</h3>
-          <p>{{ cardData.description }}</p>
-          <p><span>Item:</span> {{ cardData.item }}</p>
-          <p><span>Percent Off:</span> {{ cardData.percentOff }}%</p>
-          <p><span>Redeemable Amount:</span> {{ cardData.amount }}</p>
-          <p><span>Start Date:</span> {{ cardData.startDate | date }}</p>
-          <p><span>End Date:</span> {{ cardData.endDate | date }}</p>
+          <div class="promos-amount">
+            <p class="nb-amount">{{ cardData.amount }} promos restantes</p>
+          </div>
+          <p>
+            ECONOMISER {{ cardData.percentOff }}%
+            <br />
+            POUR
+            <span class="product">
+              {{ cardData.description | uppercase }}
+            </span>
+            <br />
+            DE LA MARQUE {{ cardData.brand.title | uppercase }}
+          </p>
         </div>
         <img
           *ngIf="cardData.brand"
           id="logo"
+          class="brand-img"
           [src]="'data:image/png;base64,' + cardData.brand.logo"
           alt="{{ cardData.brand.title }}"
         />
+        <p class="time-remaining">
+          Temps restant: {{ cardData.endDate | timeRemaining }}
+        </p>
       </div>
-      <button *ngIf="shiwCode">Voir le Code</button>
-      <button
-        *ngIf="!shiwCode"
-        (click)="buyPromo(cardData.id)"
-        class="buy-button"
-      >
-        Acheter
-      </button>
+      <div class="btn-promo">
+        <button
+          *ngIf="showCode"
+          (click)="showPromoCode()"
+          class="btn buy-button"
+        >
+          <span *ngIf="showCodePromo; else viewCode" class="promo-code">{{
+            promoCode
+          }}</span>
+          <ng-template #viewCode>VOIR LE CODE</ng-template>
+        </button>
+        <button
+          *ngIf="!showCode"
+          class="btn buy-button"
+          (click)="confirm($event, cardData.id, cardData.price)"
+        >
+          <img src="/assets/png/point-landing-page.png" />
+          UTILISER MES POINTS
+        </button>
+      </div>
+
+      <p class="close-modal" (click)="modal.visible = false">Retour</p>
     </ng-container>
   </p-dialog>
 </div>

@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { TokenService } from '../../../host/shared/token.service';
 import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
-import { GetUser } from '../../models/types/GetUser.type';
 import { DataAccessorService } from './data-accessor.service';
+import { GetUser } from '../../models/types/GetUser.type';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +12,10 @@ export class UserService {
   private dataService = inject(DataAccessorService);
   private email!: string;
   private currentRole: BehaviorSubject<string> = new BehaviorSubject<string>(
-    ''
+    '',
   );
   private currentUser: BehaviorSubject<GetUser> = new BehaviorSubject<GetUser>(
-    {} as GetUser
+    {} as GetUser,
   );
 
   constructor() {
@@ -40,7 +40,7 @@ export class UserService {
   getUser$(): Observable<GetUser> {
     return this.dataService.getUserByEmail$(this.email).pipe(
       tap((user) => this.currentUser.next(user)),
-      switchMap(() => this.currentUser.asObservable())
+      switchMap(() => this.currentUser.asObservable()),
     );
   }
 

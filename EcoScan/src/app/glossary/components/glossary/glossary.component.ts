@@ -18,10 +18,11 @@ export class GlossaryComponent {
     this.newCard = {
       id: 1154,
       name: 'Telephone',
-      pictogram: '',
+      pictogram: '../../../assets/svg/iphone.svg',
+      pathOfImage: '',
       points: 1000,
       description: 'yoooo',
-      bins: []
+      bins: [],
     };
   }
 }

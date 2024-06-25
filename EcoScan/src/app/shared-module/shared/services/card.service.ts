@@ -12,4 +12,12 @@ export class CardService {
   getPromos$(): Observable<Promo[]> {
     return this.dbAccess.getAllPromos$();
   }
+
+  getPromoByPercentOff$(): Observable<Promo[]> {
+    return this.dbAccess.getPromoByPercentOff$();
+  }
+
+  getPromoByReleaseDate$(): Observable<Promo[]> {
+    return this.dbAccess.getPromoByReleaseDate$();
+  }
 }

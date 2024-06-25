@@ -24,7 +24,9 @@
 }
 
 .logo-no-text {
-  height: 100px;
+  width: 100px;
+  aspect-ratio: 1/1;
+  object-fit: contain;
   animation: rotate 2s linear;
 }
 

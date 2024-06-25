@@ -1,9 +1,11 @@
 <div class="footer">
   <div class="color-bar">
-    <div *ngIf="scanButton">
-      <a [routerLink]="['/scan']"
-        ><img class="scan-button" src="assets/png/smartphone.png"
-      /></a>
+    <div *ngIf="scanButton" class="btn-position">
+      <a [routerLink]="['/scan']">
+        <div class="btn-scan">
+          <img src="assets/png/smartphone.png" />
+        </div>
+      </a>
     </div>
   </div>
 </div>

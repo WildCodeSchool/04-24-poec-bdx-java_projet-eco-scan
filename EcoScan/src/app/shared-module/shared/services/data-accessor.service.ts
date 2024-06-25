@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { Promo } from '../../models/types/Promo.type';
 import { environment } from '../../../../environments/environment';
 import { Rubbish } from '../../models/types/Rubbish.type';
@@ -14,6 +14,7 @@ import { Type } from '../../models/types/Type.type';
 import { Credential } from '../../../host/models/credential.type';
 import { UserForm } from '../../../host/models/user.type';
 import { SendUser } from '../../models/types/SendUser.type';
+import { SendPromo } from '../../models/SendPromo.type';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ import { SendUser } from '../../models/types/SendUser.type';
 export class DataAccessorService {
   private httpOptions!: object;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   handleFailure(err: HttpErrorResponse): void {
     throw 'Connection to DB failure: ' + err.message;
@@ -33,7 +34,7 @@ export class DataAccessorService {
   authenticateUser$(login: Credential): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
       `${environment.database.path}/auth/authenticate`,
-      login
+      login,
     );
   }
 
@@ -47,7 +48,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -55,7 +56,7 @@ export class DataAccessorService {
   addUserAndLogin$(newLogin: UserForm): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
       `${environment.database.path}/auth/register`,
-      newLogin
+      newLogin,
     );
   }
 
@@ -69,7 +70,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
   getUserByID$(id: number): Observable<GetUser> {
@@ -78,7 +79,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
   getUserByEmail$(email: string): Observable<GetUser> {
@@ -87,7 +88,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -98,7 +99,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
   // Update
@@ -106,12 +107,12 @@ export class DataAccessorService {
     return this.http
       .put<GetUser>(
         `${environment.database.path}/user/update/${updatedUser.id}`,
-        updatedUser
+        updatedUser,
       )
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -119,31 +120,38 @@ export class DataAccessorService {
     return this.http
       .put<SendUser>(
         `${environment.database.path}/user/update/${updatedUser.id}`,
-        updatedUser
+        updatedUser,
       )
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
-
-
 
   /*
      rubbishItems
   */
 
-     getRubbishByID$(id: string): Observable<Rubbish> {
-      return this.http
-        .get<Rubbish>(`${environment.database.path}/rubbish/get/${id}`)
-        .pipe(
-          catchError((err) => {
-            throw this.handleFailure(err);
-          })
-        );
-    }
-  
+  getRubbishByID$(id: string): Observable<Rubbish> {
+    return this.http
+      .get<Rubbish>(`${environment.database.path}/rubbish/get/${id}`)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        }),
+      );
+  }
+
+  addRubbish$(newRubbish: Rubbish): Observable<Rubbish> {
+    return this.http
+      .post<Rubbish>(`${environment.database.path}/rubbish/add`, newRubbish)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        }),
+      );
+  }
 
   /*
      StagedRubbish
@@ -156,7 +164,22 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
+      );
+  }
+
+  deleteStagedRubbish(
+    stagedId: number,
+    rubbishId: number,
+  ): Observable<Rubbish[]> {
+    return this.http
+      .delete<Rubbish[]>(
+        `${environment.database.path}/staged/${stagedId}/delete/rubbish/${rubbishId}`,
+      )
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        }),
       );
   }
 
@@ -168,24 +191,25 @@ export class DataAccessorService {
     return this.http
       .get<StagedRubbish>(`${environment.database.path}/staged/${id}`)
       .pipe(
+        map((response) => response || []),
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
   // Create
   addStagedRubbish$(
-    newStagedRubbish: StagedRubbish
+    newStagedRubbish: StagedRubbish,
   ): Observable<StagedRubbish> {
     return this.http
       .post<StagedRubbish>(
         `${environment.database.path}/staged/add/${newStagedRubbish.id}`,
-        newStagedRubbish
+        newStagedRubbish,
       )
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -199,7 +223,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
   getBinByID$(id: string): Observable<Bin> {
@@ -208,7 +232,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -222,7 +246,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
   getDepositByID$(id: string): Observable<Deposit> {
@@ -231,7 +255,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
   // Create
@@ -241,7 +265,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -255,7 +279,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -265,7 +289,27 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
+      );
+  }
+
+  getPromoByPercentOff$(): Observable<Promo[]> {
+    return this.http
+      .get<Promo[]>(`${environment.database.path}/promos/get/percent-off`)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        }),
+      );
+  }
+
+  getPromoByReleaseDate$(): Observable<Promo[]> {
+    return this.http
+      .get<Promo[]>(`${environment.database.path}/promos/get/last-released`)
+      .pipe(
+        catchError((err) => {
+          throw this.handleFailure(err);
+        }),
       );
   }
   // Create
@@ -275,7 +319,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
   // Update
@@ -283,23 +327,23 @@ export class DataAccessorService {
     return this.http
       .put<Promo>(
         `${environment.database.path}/promo/update/${updatedPromo.id}`,
-        updatedPromo
+        updatedPromo,
       )
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
   deletePromo(promoToDelete: Promo): Observable<void> {
     return this.http
       .delete<void>(
-        `${environment.database.path}/promos/delete/${promoToDelete.id}`
+        `${environment.database.path}/promos/delete/${promoToDelete.id}`,
       )
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -313,7 +357,7 @@ export class DataAccessorService {
       {
         userId,
         promoId,
-      }
+      },
     );
   }
 
@@ -327,7 +371,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
   getBrandByID$(id: string): Observable<Brand> {
@@ -336,7 +380,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -347,7 +391,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
   // Update
@@ -355,24 +399,24 @@ export class DataAccessorService {
     return this.http
       .put<Brand>(
         `${environment.database.path}/brand/update/${updatedBrand.id}`,
-        updatedBrand
+        updatedBrand,
       )
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
   deleteBrand(brandToDelete: Brand): Observable<void> {
     return this.http
       .delete<void>(
-        `${environment.database.path}/brand/delete/${brandToDelete.id}`
+        `${environment.database.path}/brand/delete/${brandToDelete.id}`,
       )
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -383,7 +427,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -393,7 +437,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -403,7 +447,7 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
 
@@ -413,10 +457,10 @@ export class DataAccessorService {
       .pipe(
         catchError((err) => {
           throw this.handleFailure(err);
-        })
+        }),
       );
   }
-  
+
   // deleteType(typeToDelete: Type): Observable<void> {
   //   return this.http
   //     .delete<void>(
@@ -428,5 +472,4 @@ export class DataAccessorService {
   //       })
   //     );
   // }
-
 }

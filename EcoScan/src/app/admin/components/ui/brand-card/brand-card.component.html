@@ -1,12 +1,15 @@
-<div class="brand-card">
-    <div class="fields">
-        <p>Titre de la marque: {{brand.title}}</p>
-        <img
-            *ngIf="brand.logo"
-            id="logo"
-            [src]="'data:image/png;base64,' + brand.logo"
-            alt="{{brand.title}}"
-        />
-    </div>
-    <button (click)="deleteBrand(brand)">Delete</button>
+<div class="brand-card border-radius">
+  <div class="fields">
+    <p>Titre de la marque: {{ brand.title }}</p>
+    <img
+      *ngIf="brand.logo"
+      id="logo"
+      [src]="'data:image/png;base64,' + brand.logo"
+      alt="{{ brand.title }}"
+      width="100"
+    />
+  </div>
+  <div class="yo">
+    <button (click)="deleteBrand(brand)">Supprimer</button>
+  </div>
 </div>

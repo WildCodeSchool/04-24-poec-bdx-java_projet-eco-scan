@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { adminGuard } from './shared-module/guards/admin.guard';
 import { userResolver } from './shared-module/shared/resolvers/user.resolver';
+import { mapDependenciesResolver } from './shared-module/shared/resolvers/map-dependencies.resolver';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
     path: 'historic',
     loadChildren: () =>
       import('./historic/historic.module').then((m) => m.HistoricModule),
+    resolve: { user: userResolver },
   },
   {
     path: 'staged',
@@ -49,6 +51,8 @@ const routes: Routes = [
     path: 'map',
     loadChildren: () =>
       import('./map-page/map-page.module').then((m) => m.MapPageModule),
+    resolve: { bins: mapDependenciesResolver },
+
   },
   {
     path: 'admin',

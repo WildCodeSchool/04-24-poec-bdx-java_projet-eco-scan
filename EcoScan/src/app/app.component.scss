@@ -6,3 +6,28 @@
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
 }
+
+:host ::ng-deep .p-toast {
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .p-toast-message-content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .p-toast-message {
+    padding: 10px;
+  }
+
+  .p-toast-icon-close {
+    align-items: flex-start;
+  }
+
+  .p-toast-message-icon {
+    padding: 10px;
+    justify-self: center;
+  }
+}
